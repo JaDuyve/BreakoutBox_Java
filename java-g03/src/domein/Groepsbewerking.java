@@ -1,42 +1,36 @@
 package domein;
 
-public class Groepsbewerking {
+public abstract class Groepsbewerking {
 
-	private String naam;
-	private String opgave;
+    private String naam;
+    private String opgave;
 
-	public String getNaam() {
-		return this.naam;
-	}
+    public Groepsbewerking(String naam, String opgave) {
+        setNaam(naam);
+        setOpgave(opgave);
+    }
 
-	public void setNaam(String naam) {
-		if (naam == null || naam.equals("")){
-		    throw new IllegalArgumentException("Naam mag niet leeg zijn");
+    public String getNaam() {
+        return this.naam;
+    }
+
+    public void setNaam(String naam) {
+        if (naam == null || naam.equals("")) {
+            throw new IllegalArgumentException("Naam mag niet leeg zijn");
         }
-	    this.naam = naam;
-	}
+        this.naam = naam;
+    }
 
-	public String getOpgave() {
+    public String getOpgave() {
 
-		return this.opgave;
-	}
+        return this.opgave;
+    }
 
-	public void setOpgave(String opgave) {
+    public void setOpgave(String opgave) {
 
-        if (opgave == null || opgave.equals("")){
+        if (opgave == null || opgave.equals("")) {
             throw new IllegalArgumentException("Opgave mag niet leeg zijn");
         }
-		this.opgave = opgave;
-	}
-
-	/**
-	 *
-	 * @param naam
-	 * @param opgave
-	 */
-	public Groepsbewerking(String naam, String opgave) {
-		setNaam(naam);
-		setOpgave(opgave);
-	}
-
+        this.opgave = opgave;
+    }
 }

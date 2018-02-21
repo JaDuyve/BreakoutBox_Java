@@ -59,8 +59,7 @@ public class OefeningRepositoryJuistTest {
                 .thenReturn(returnOef);
         Mockito.when(oefeningMapperDummy.geefOefeningen())
                 .thenReturn(this.oefeningen);
-        Oefening foutOef = new Oefening("test", "4+4", "8", "Dit is een som", "wiskunde");
-        oefeningRepository.voegOefeningToe(foutOef);
+        oefeningRepository.voegOefeningToe("test", "4+4", "8", "Dit is een som");
         Mockito.verify(oefeningMapperDummy, Mockito.times(1)).geefOefeningen();
         Mockito.verify(oefeningMapperDummy, Mockito.times(1)).zoekOefening(oefeningNaam);
         Assert.assertEquals(resultOefeningen, oefeningRepository.geefOefeningen());
