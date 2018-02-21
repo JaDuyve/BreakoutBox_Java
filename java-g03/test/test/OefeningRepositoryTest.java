@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.Mockito;
 import persistentie.OefeningMapper;
 
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class OefeningRepositoryTest {
     public static Collection<String[]> getTestParameters(){
         return Arrays.asList(
                 new String[][]{
-                        {"test", null}
+                        {"java-g03/test", null}
                 }
         );
     }
@@ -48,7 +49,7 @@ public class OefeningRepositoryTest {
     public void testMaakNieuwOefeningBestaatNaamFout(){
         Mockito.when(oefeningMapperDummy.zoekOefening(oefeningNaam))
                 .thenReturn(returnOef);
-        Oefening foutOef = new Oefening("test", "4+4", "8", "Dit is een som", "wiskunde");
+        Oefening foutOef = new Oefening("java-g03/test", "4+4", "8", "Dit is een som", "wiskunde");
         oefeningRepository.voegOefeningToe(foutOef);
 
     }

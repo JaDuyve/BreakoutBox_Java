@@ -22,8 +22,8 @@ public class OefeningTest {
     public static Collection<String[]> getTestParameters(){
         return Arrays.asList(
                 new String[][]{
-                        {"test","","","",""},
-                        {"test","Wat is 4 + 4","","",""}
+                        {"java-g03/test","","","",""},
+                        {"java-g03/test","Wat is 4 + 4","","",""}
 
                 }
         );
