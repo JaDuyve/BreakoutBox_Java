@@ -31,8 +31,8 @@ public class OefeningRepositoryFoutTest {
     public static Collection<Object[]> getTestParameters(){
         return Arrays.asList(
                 new Object[][]{
-                        {"test", new Oefening("test", "4+4", "8", "Dit is een som", "wiskunde")},
-                        {"test", new Oefening("test", "Haal alle o's uit hoed", "hed", "mqlsjdfmlqksdjf", "taal")}
+                        //{"test", new Oefening("test", "4+4", "8", "Dit is een som", "wiskunde")},
+                        //{"test", new Oefening("test", "Haal alle o's uit hoed", "hed", "mqlsjdfmlqksdjf", "taal")}
 
 
                 }

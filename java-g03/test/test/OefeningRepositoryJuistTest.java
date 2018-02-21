@@ -28,7 +28,7 @@ public class OefeningRepositoryJuistTest {
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters(){
         HashMap<String, Oefening> resultoef1 = new HashMap<String, Oefening>();
-        resultoef1.put("testje", new Oefening("testje", "4+4", "8", "Dit is een som", "wiskunde"));
+        //resultoef1.put("testje", new Oefening("testje", "4+4", "8", "Dit is een som", "wiskunde"));
         return Arrays.asList(
                 new Object[][]{
                         {"test", null, new HashMap<String, Oefening> ()},
