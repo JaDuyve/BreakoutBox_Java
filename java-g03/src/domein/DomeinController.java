@@ -1,6 +1,8 @@
 package domein;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 
 public class DomeinController {
 
@@ -9,13 +11,13 @@ public class DomeinController {
 	private VakRepository vakRepository;
 
 	public DomeinController() {
-		// TODO - implement DomeinController.DomeinController
-		throw new UnsupportedOperationException();
+		oefeningRepository = new OefeningRepository();
+		groepsbewerkingRepository = new GroepsbewerkingRepository();
+		vakRepository = new VakRepository();
 	}
 
-	public ObservableList<Oefening> GeefOefeningen() {
-		// TODO - implement DomeinController.GeefOefeningen
-		throw new UnsupportedOperationException();
+	public ObservableMap GeefOefeningen() {
+		return FXCollections.unmodifiableObservableMap(FXCollections.observableMap(oefeningRepository.geefOefeningen()));
 	}
 
 	/**
@@ -23,8 +25,7 @@ public class DomeinController {
 	 * @param oefening
 	 */
 	public void VerwijderOefening(Oefening oefening) {
-		// TODO - implement DomeinController.VerwijderOefening
-		throw new UnsupportedOperationException();
+		oefeningRepository.verwijderOefening(oefening);
 	}
 
 	/**
@@ -36,13 +37,11 @@ public class DomeinController {
 	 * @param opgave
 	 */
 	public void WijzigOefening(String oefeningNaam, String naam, String feedback, String antwoord, String opgave) {
-		// TODO - implement DomeinController.WijzigOefening
-		throw new UnsupportedOperationException();
+		oefeningRepository.wijzigOefening(oefeningNaam, naam, feedback, antwoord, opgave);
 	}
 
-	public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
-		// TODO - implement DomeinController.geefGroepsbewerkingen
-		throw new UnsupportedOperationException();
+	public ObservableMap geefGroepsbewerkingen() {
+        return FXCollections.unmodifiableObservableMap(FXCollections.observableMap(groepsbewerkingRepository.geefGroepsBewerkingen()));
 	}
 
 	/**
@@ -53,22 +52,20 @@ public class DomeinController {
 	 * @param opgave
 	 */
 	public void voegOefeningToe(String naam, String feedback, String antwoord, String opgave) {
-		// TODO - implement DomeinController.voegOefeningToe
-		throw new UnsupportedOperationException();
+		oefeningRepository.voegOefeningToe(naam, feedback, antwoord, opgave);
 	}
 
 	/**
 	 *
 	 * @param naam
 	 */
-	public Oefening getOefening(String naam) {
-		// TODO - implement DomeinController.getOefening
-		throw new UnsupportedOperationException();
+	public Oefening geefOefening(String naam) {
+	    // TODO - DCD aanpassen methodenaam
+		return oefeningRepository.geefOefening(naam);
 	}
 
-	public ObservableList<Vak> getVakken() {
-		// TODO - implement DomeinController.getVakken
-		throw new UnsupportedOperationException();
+	public ObservableMap getVakken() {
+        return FXCollections.unmodifiableObservableMap(FXCollections.observableMap(vakRepository.geefVakken()));
 	}
 
 }

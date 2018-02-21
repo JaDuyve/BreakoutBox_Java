@@ -4,11 +4,21 @@ import java.util.*;
 
 public class VakRepository {
 
-	private Collection<Vak> vakken;
+	private Map<String, Vak> vakken;
 
 	public VakRepository() {
-		// TODO - implement VakRepository.VakRepository
-		throw new UnsupportedOperationException();
+		this.vakken = new HashMap<>();
+		// TODO - Mapper Uit de DB halen!!! xoxoxo
 	}
 
+	public Map<String, Vak> geefVakken() {
+		return vakken;
+	}
+
+	public Vak geefVak(String naam) {
+		if (!this.vakken.containsKey(naam)) {
+			throw new IllegalArgumentException("Dit vak bestaat niet");
+		}
+		return vakken.get(naam);
+	}
 }

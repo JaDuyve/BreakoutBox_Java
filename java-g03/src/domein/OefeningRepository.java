@@ -17,17 +17,27 @@ public class OefeningRepository {
 		this.oefeningen = oefeningMapper.geefOefeningen();
 	}
 
-    public HashMap<String, Oefening> geefOefeningen(){
-	    throw new UnsupportedOperationException();
+    public Map<String, Oefening> geefOefeningen(){
+		return  oefeningen;
     }
-
+	public Oefening geefOefening(String naam) {
+		if (!this.oefeningen.containsKey(naam)) {
+			throw new IllegalArgumentException("Deze oefening bestaat niet");
+		}
+		return oefeningen.get(naam);
+	}
     /**
      *
-     * @param oefening
+     * @param feedback
+	 * @param naam
+	 * @param feedback
+	 * @param antwoord
+	 * @param opgave
      */
-    public void voegOefeningToe(Oefening oefening) {
-        // TODO - implement OefeningRepository.voegOefeningToe
-        throw new UnsupportedOperationException();
+    public void voegOefeningToe(String naam, String feedback, String antwoord, String opgave) {
+    	controleerOpNaamMap(naam);
+        this.oefeningen.put(naam, new Oefening(naam, feedback, antwoord, opgave));
+        // TODO - Databank ToevoegenShizzle
     }
 
 	/**
@@ -39,17 +49,26 @@ public class OefeningRepository {
 	 * @param opgave
 	 */
 	public void wijzigOefening(String oefeningNaam, String naam, String feedback, String antwoord, String opgave) {
-		// TODO - implement OefeningRepository.wijzigOefening
-		throw new UnsupportedOperationException();
-	}
+		if (oefeningNaam.equals(naam)){
+			this.oefeningen.replace(oefeningNaam, new Oefening(naam, feedback, antwoord, opgave));
 
+		}else {
+
+			this.oefeningen.remove(oefeningNaam);
+			controleerOpNaamMap(naam);
+			this.oefeningen.put(naam, new Oefening(naam, feedback, antwoord, opgave));
+
+		}
+	}
+	private boolean controleerOpNaamMap(String naam) {
+		return this.oefeningen.containsKey(naam);
+	}
     /**
      *
      * @param oefening
      */
-    public void VerwijderOefening(Oefening oefening) {
-        // TODO - implement OefeningRepository.VerwijderOefening
-        throw new UnsupportedOperationException();
+    public void verwijderOefening(Oefening oefening) {
+        this.oefeningen.remove(oefening);
     }
 
     /*
