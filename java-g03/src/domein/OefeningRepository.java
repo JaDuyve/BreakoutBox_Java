@@ -6,15 +6,15 @@ import java.util.*;
 
 public class OefeningRepository {
 
-	private Collection<Oefening> oefeningen;
+	private Map<String, Oefening> oefeningen;
 
 	private OefeningMapper oefeningMapper;
 
 
 
 	public OefeningRepository() {
-		// TODO - implement OefeningRepository.OefeningRepository
-		throw new UnsupportedOperationException();
+		this.oefeningMapper = new OefeningMapper();
+		this.oefeningen = oefeningMapper.geefOefeningen();
 	}
 
 

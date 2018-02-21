@@ -24,10 +24,11 @@ public class OefeningRepositoryTest {
     private Oefening returnOef;
 
     @Parameterized.Parameters
-    public static Collection<String[]> getTestParameters(){
+    public static Collection<Object[]> getTestParameters(){
         return Arrays.asList(
-                new String[][]{
-                        {"java-g03/test", null}
+                new Object[][]{
+                        {"test", new Oefening("test", "4+4", "8", "Dit is een som", "wiskunde")}
+
                 }
         );
     }
@@ -49,7 +50,7 @@ public class OefeningRepositoryTest {
     public void testMaakNieuwOefeningBestaatNaamFout(){
         Mockito.when(oefeningMapperDummy.zoekOefening(oefeningNaam))
                 .thenReturn(returnOef);
-        Oefening foutOef = new Oefening("java-g03/test", "4+4", "8", "Dit is een som", "wiskunde");
+        Oefening foutOef = new Oefening("test", "4+4", "8", "Dit is een som", "wiskunde");
         oefeningRepository.voegOefeningToe(foutOef);
 
     }

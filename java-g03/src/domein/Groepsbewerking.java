@@ -10,14 +10,22 @@ public class Groepsbewerking {
 	}
 
 	public void setNaam(String naam) {
-		this.naam = naam;
+		if (naam == null || naam.equals("")){
+		    throw new IllegalArgumentException("Naam mag niet leeg zijn");
+        }
+	    this.naam = naam;
 	}
 
 	public String getOpgave() {
+
 		return this.opgave;
 	}
 
 	public void setOpgave(String opgave) {
+
+        if (opgave == null || opgave.equals("")){
+            throw new IllegalArgumentException("Opgave mag niet leeg zijn");
+        }
 		this.opgave = opgave;
 	}
 
@@ -27,8 +35,8 @@ public class Groepsbewerking {
 	 * @param opgave
 	 */
 	public Groepsbewerking(String naam, String opgave) {
-		// TODO - implement domein.Groepsbewerking.domein.Groepsbewerking
-		throw new UnsupportedOperationException();
+		setNaam(naam);
+		setOpgave(opgave);
 	}
 
 }

@@ -12,4 +12,8 @@ public class Vak {
 		this.naam = naam;
 	}
 
+
+	public Vak(String naam) {
+		this.naam = naam;
+	}
 }

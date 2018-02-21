@@ -14,6 +14,9 @@ public class Oefening {
 	public String getNaam() { return this.naam;	}
 
 	public void setNaam(String naam) {
+        if (naam == null || naam.equals("")){
+            throw new IllegalArgumentException("Naam mag niet leeg zijn");
+        }
 		this.naam = naam;
 	}
 
@@ -22,14 +25,21 @@ public class Oefening {
 	}
 
 	public void setOpgave(String opgave) {
+        if (opgave == null || opgave.equals("")){
+            throw new IllegalArgumentException("Opgave mag niet leeg zijn");
+        }
 		this.opgave = opgave;
 	}
 
 	public String getAntwoord() {
+
 		return this.antwoord;
 	}
 
 	public void setAntwoord(String antwoord) {
+        if (antwoord == null || antwoord.equals("")){
+            throw new IllegalArgumentException("Antwoord mag niet leeg zijn");
+        }
 		this.antwoord = antwoord;
 	}
 
@@ -41,6 +51,14 @@ public class Oefening {
 		this.feedback = feedback;
 	}
 
+	public void setGroepsbewerkingen(Collection<Groepsbewerking> groepsbewerkingen) {
+		this.groepsbewerkingen = groepsbewerkingen;
+	}
+
+	public void setVak(Vak vak) {
+		this.vak = vak;
+	}
+
 	/**
 	 *
 	 * @param naam
@@ -50,8 +68,14 @@ public class Oefening {
 	 * @param vak
 	 */
 	public Oefening(String naam, String opgave, String antwoord, String feedback, String vak) {
-		// TODO - implement domein.Oefening.domein.Oefening
-		throw new UnsupportedOperationException();
+
+
+		setNaam(naam);
+		setOpgave(opgave);
+		setAntwoord(antwoord);
+		setFeedback(feedback);
+		setVak(new Vak(vak));
+		setGroepsbewerkingen(new ArrayList<Groepsbewerking>());
 	}
 
 	/**
@@ -62,8 +86,7 @@ public class Oefening {
 	 * @param vak
 	 */
 	public Oefening(String naam, String opgave, String antwoord, String vak) {
-		// TODO - implement domein.Oefening.domein.Oefening
-		throw new UnsupportedOperationException();
+		this(naam, opgave, antwoord, null, vak);
 	}
 
 	/**
@@ -71,8 +94,7 @@ public class Oefening {
 	 * @param groepsbewerking
 	 */
 	public void GroepsbewerkingToevoegen(Groepsbewerking groepsbewerking) {
-		// TODO - implement domein.Oefening.GroepsbewerkingToevoegen
-		throw new UnsupportedOperationException();
+		this.groepsbewerkingen.add(groepsbewerking);
 	}
 
 	/**
@@ -80,8 +102,7 @@ public class Oefening {
 	 * @param groepsbewerking
 	 */
 	public void GroepsbewerkingVerwijderen(Groepsbewerking groepsbewerking) {
-		// TODO - implement domein.Oefening.GroepsbewerkingVerwijderen
-		throw new UnsupportedOperationException();
+		this.groepsbewerkingen.remove(groepsbewerking);
 	}
 
 }
