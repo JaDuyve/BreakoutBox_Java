@@ -36,7 +36,7 @@ public class OefeningRepository {
      */
     public void voegOefeningToe(String naam, String feedback, String antwoord, String opgave) {
     	controleerOpNaamMap(naam);
-        this.oefeningen.put(naam, new Oefening(naam, feedback, antwoord, opgave));
+        // this.oefeningen.put(naam, new Oefening(naam, feedback, antwoord, opgave));
         // TODO - Databank ToevoegenShizzle
     }
 
@@ -49,7 +49,7 @@ public class OefeningRepository {
 	 * @param opgave
 	 */
 	public void wijzigOefening(String oefeningNaam, String naam, String feedback, String antwoord, String opgave) {
-		if (oefeningNaam.equals(naam)){
+		/**if (oefeningNaam.equals(naam)){
 			this.oefeningen.replace(oefeningNaam, new Oefening(naam, feedback, antwoord, opgave));
 
 		}else {
@@ -58,7 +58,15 @@ public class OefeningRepository {
 			controleerOpNaamMap(naam);
 			this.oefeningen.put(naam, new Oefening(naam, feedback, antwoord, opgave));
 
-		}
+		}*/
+
+		Oefening oefening = this.oefeningen.get(oefeningNaam);
+		oefening.setNaam(naam);
+		oefening.setFeedback(feedback);
+		// TODO - setAntwoord nog uitwerken
+		oefening.setOpgave(opgave);
+		this.oefeningen.remove(oefeningNaam);
+		this.oefeningen.put(naam, oefening);
 	}
 	private boolean controleerOpNaamMap(String naam) {
 		return this.oefeningen.containsKey(naam);

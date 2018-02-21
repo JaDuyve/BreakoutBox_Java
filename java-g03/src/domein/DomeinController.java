@@ -60,7 +60,6 @@ public class DomeinController {
 	 * @param naam
 	 */
 	public Oefening geefOefening(String naam) {
-	    // TODO - DCD aanpassen methodenaam
 		return oefeningRepository.geefOefening(naam);
 	}
 

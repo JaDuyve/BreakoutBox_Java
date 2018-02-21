@@ -1,7 +1,8 @@
 package test;
 
 
-import domein.Oefening;
+import domein.AlphaNumerischeOefening;
+import domein.NumerischeOefening;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(value=Parameterized.class)
-public class OefeningFoutTest {
+public class AlphaNumerischeOefeningFoutTest {
 
     private String naam;
     private String opgave;
@@ -29,7 +30,7 @@ public class OefeningFoutTest {
         );
     }
 
-    public OefeningFoutTest(String naam, String opgave, String antwoord, String feedback, String vak){
+    public AlphaNumerischeOefeningFoutTest(String naam, String opgave, String antwoord, String feedback, String vak){
         this.naam = naam;
         this.opgave = opgave;
         this.antwoord = antwoord;
@@ -37,13 +38,13 @@ public class OefeningFoutTest {
         this.vak = vak;
     }
 
-    @Test
-    public void testMaakOefeningFoutLang(){
-        new Oefening(naam, opgave, antwoord, feedback, vak);
+    @Test(expected = IllegalArgumentException.class)
+    public void testMaakNumerischeOefeningFoutLang(){
+        new AlphaNumerischeOefening(naam, opgave, antwoord, feedback, vak);
     }
 
-    @Test
-    public void testMaakOefeningFoutKort(){
-        new Oefening(naam, opgave, antwoord, vak);
+    @Test(expected = IllegalArgumentException.class)
+    public void testMaakNumerischeOefeningFoutKort(){
+        new AlphaNumerischeOefening(naam, opgave, vak, antwoord);
     }
 }

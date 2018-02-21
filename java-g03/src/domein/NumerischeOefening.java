@@ -14,14 +14,15 @@ public class NumerischeOefening extends Oefening
 
     }
 
-    public NumerischeOefening(String naam, String opgave, String antwoord, String feedback, String vak)
+    public NumerischeOefening(String naam, String opgave, double antwoord, String feedback, String vak)
     {
         super(naam, opgave, feedback, vak);
+        setAntwoord(antwoord);
     }
 
     public NumerischeOefening(String naam, String opgave, String vak, double antwoord)
     {
-        super(naam, opgave, vak);
+        super(naam, opgave, null, vak);
         setAntwoord(antwoord);
     }
 
