@@ -1,11 +1,19 @@
 package domein;
 
+import com.sun.xml.internal.ws.api.pipe.ClientPipeAssemblerContext;
+
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 public abstract class Oefening {
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Vak vak;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Groepsbewerking> groepsbewerkingen;
+    @Id
     private String naam;
     private String opgave;
     private String feedback;
@@ -49,12 +57,11 @@ public abstract class Oefening {
         this.vak = vak;
     }
 
-    /**
-     * @param naam
-     * @param opgave
-     * @param feedback
-     * @param vak
-     */
+    protected  Oefening()
+    {
+
+    }
+
     public Oefening(String naam, String opgave, String feedback, String vak) {
 
 
@@ -88,4 +95,17 @@ public abstract class Oefening {
         this.groepsbewerkingen.remove(groepsbewerking);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Oefening)) return false;
+        Oefening oefening = (Oefening) o;
+        return Objects.equals(getNaam(), oefening.getNaam());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getNaam());
+    }
 }

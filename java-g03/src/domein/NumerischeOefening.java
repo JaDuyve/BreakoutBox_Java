@@ -1,9 +1,18 @@
 package domein;
 
+import javax.persistence.Entity;
+import java.util.Objects;
+
+@Entity
 public class NumerischeOefening extends Oefening
 {
 
     private double antwoord;
+
+    protected NumerischeOefening()
+    {
+
+    }
 
     public NumerischeOefening(String naam, String opgave, String antwoord, String feedback, String vak)
     {
@@ -26,4 +35,5 @@ public class NumerischeOefening extends Oefening
     {
         this.antwoord = antwoord;
     }
+
 }

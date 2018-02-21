@@ -1,9 +1,18 @@
 package domein;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.Objects;
+
+@Entity
 public class AlphaNumerischeOefening extends Oefening
 {
-
     private String antwoord;
+
+    protected  AlphaNumerischeOefening()
+    {
+
+    }
 
     public AlphaNumerischeOefening(String naam, String opgave, String feedback, String vak, String antwoord)
 {
@@ -29,5 +38,6 @@ public class AlphaNumerischeOefening extends Oefening
         }
         this.antwoord = antwoord;
     }
+
 
 }
