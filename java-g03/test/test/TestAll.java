@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
-        {test.OefeningRepositoryTest.class, test.OefeningTest.class})
+        {test.OefeningRepositoryJuistTest.class, test.OefeningRepositoryFoutTest.class, OefeningJuistTest.class})
 
 public class TestAll {
 }

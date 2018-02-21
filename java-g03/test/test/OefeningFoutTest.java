@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(value=Parameterized.class)
-public class OefeningTest {
+public class OefeningFoutTest {
 
     private String naam;
     private String opgave;
@@ -29,7 +29,7 @@ public class OefeningTest {
         );
     }
 
-    public OefeningTest(String naam, String opgave, String antwoord, String feedback, String vak){
+    public OefeningFoutTest(String naam, String opgave, String antwoord, String feedback, String vak){
         this.naam = naam;
         this.opgave = opgave;
         this.antwoord = antwoord;
@@ -37,12 +37,12 @@ public class OefeningTest {
         this.vak = vak;
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testMaakOefeningFoutLang(){
         new Oefening(naam, opgave, antwoord, feedback, vak);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testMaakOefeningFoutKort(){
         new Oefening(naam, opgave, antwoord, vak);
     }

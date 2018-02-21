@@ -17,7 +17,9 @@ public class OefeningRepository {
 		this.oefeningen = oefeningMapper.geefOefeningen();
 	}
 
-
+    public HashMap<String, Oefening> geefOefeningen(){
+	    throw new UnsupportedOperationException();
+    }
 
     /**
      *
