@@ -1,13 +1,14 @@
 package domein;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @NamedQueries({
 		@NamedQuery(name="Vak.findAll",query="SELECT v FROM Vak v")
 })
 @Entity
-public class Vak {
+public class Vak implements Serializable{
 
 	@Id
 	private String naam;
