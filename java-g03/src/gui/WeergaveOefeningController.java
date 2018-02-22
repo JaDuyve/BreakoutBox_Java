@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.util.Optional;
 
+import domein.NumerischeOefening;
 import domein.Oefening;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,11 +19,12 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 
 import javax.xml.soap.Text;
 
-public class WeergaveOefeningController extends BorderPane {
+public class WeergaveOefeningController extends StackPane {
 
     @FXML
     private JFXDrawer jfxDrawer;
@@ -31,7 +33,7 @@ public class WeergaveOefeningController extends BorderPane {
     private JFXTextField txfSearch;
 
     @FXML
-    private JFXListView<Oefening> listviewOefeningen;
+    private JFXListView<Label> listviewOefeningen;
 
     @FXML
     private JFXButton createButton;
@@ -41,6 +43,8 @@ public class WeergaveOefeningController extends BorderPane {
     public WeergaveOefeningController(DomeinController dc) {
         this.domeinController = dc;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WeergaveOefening.fxml"));
+        loader.setController(this);
+        loader.setRoot(this);
         try {
             loader.load();
         } catch (IOException ex) {
@@ -51,9 +55,10 @@ public class WeergaveOefeningController extends BorderPane {
         build();
     }
     private void build() {
-        listviewOefeningen = new JFXListView<Oefening>();
-        domeinController.GeefOefeningen().entrySet().stream().map(i -> listviewOefeningen.getItems().add((Oefening) i)).sorted();
-        listviewOefeningen.getStyleClass().add("mylistview");
+        //domeinController.GeefOefeningen().entrySet().stream().map(i -> listviewOefeningen.getItems().add((NumerischeOefening) i)).sorted();
+        NumerischeOefening oeftest = new NumerischeOefening("loloef", "opgave", "feedback", 150);
+        Label oefLabel = new Label(oeftest.getNaam());
+        listviewOefeningen.getItems().add(oefLabel);
     }
 
     @FXML
@@ -68,7 +73,7 @@ public class WeergaveOefeningController extends BorderPane {
         dialog.setHeaderText("Maak hier uw eigen oefening");
 
 // Set the button types.
-        ButtonType maakButton = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+        ButtonType maakButton = new ButtonType("Maak Oefening", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(maakButton, ButtonType.CANCEL);
 
 // Create the naam and opgave labels and fields.

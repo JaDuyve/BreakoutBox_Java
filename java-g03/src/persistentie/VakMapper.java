@@ -15,12 +15,13 @@ public class VakMapper {
     }
 
     public Map<String, Vak> geefVakken(){
-        Map<String, Vak> map = new HashMap<>();
+        /*Map<String, Vak> map = new HashMap<>();
 
         EntityManager e = JPAUtil.getEntityManagerFactory().createEntityManager();
 
         TypedQuery<Vak> findAll = e.createNamedQuery("Vak.findAll", Vak.class);
-        return map;
+        return map;*/
+        throw new UnsupportedOperationException();
 
     }
 }

@@ -10,10 +10,9 @@ public class VakRepository {
     private VakMapper vakMapper;
 
 	public VakRepository() {
-        this.vakMapper = new VakMapper();
-		this.vakken = vakMapper.geefVakken();
+        /*this.vakMapper = new VakMapper();
+		this.vakken = vakMapper.geefVakken();*/
 		// TODO - Mapper Uit de DB halen!!! xoxoxo
-
 	}
 
 	public Map<String, Vak> geefVakken() {
