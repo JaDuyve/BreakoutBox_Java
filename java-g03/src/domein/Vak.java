@@ -1,9 +1,11 @@
 package domein;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
+@NamedQueries({
+		@NamedQuery(name="Vak.findAll",query="SELECT v FROM Vak v")
+})
 @Entity
 public class Vak {
 
