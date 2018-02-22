@@ -20,7 +20,7 @@ public class VakMapper {
         EntityManager e = JPAUtil.getEntityManagerFactory().createEntityManager();
 
         TypedQuery<Vak> findAll = e.createNamedQuery("Vak.findAll", Vak.class);
-
+        return map;
 
     }
 }

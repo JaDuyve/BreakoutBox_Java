@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="persistenceUnit">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>domein.AlphaNumerischeGroepsbewerking</class>
+        <class>domein.AlphaNumerischeGroepsbewerkingOefeningEntity</class>
+        <class>domein.AlphaNumerischeOefening</class>
+        <class>domein.NumerischeGroepsbewerking</class>
+        <class>domein.NumerischeGroepsbewerkingOefeningEntity</class>
+        <class>domein.NumerischeOefening</class>
+        <class>domein.Vak</class>
+        <properties>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://188.166.36.83:3306/project_prog_g03"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.user" value="java"/>
+            <property name="eclipselink.jdbc.password" value="Pazaak2.0"/>
+        </properties>
+    </persistence-unit>
+</persistence>
