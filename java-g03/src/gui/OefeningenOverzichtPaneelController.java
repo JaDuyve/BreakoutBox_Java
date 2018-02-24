@@ -1,64 +1,71 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
-import java.io.IOException;
-import java.util.Optional;
-
-import domein.NumerischeOefening;
+import domein.DomeinController;
 import domein.Oefening;
+import domein.Vak;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import domein.DomeinController;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.util.Callback;
 
-import javax.xml.soap.Text;
+import java.io.IOException;
+import java.util.Optional;
 
-public class WeergaveOefeningController extends StackPane {
-
-    @FXML
-    private JFXDrawer jfxDrawer;
+public class OefeningenOverzichtPaneelController extends AnchorPane {
 
     @FXML
-    private JFXTextField txfSearch;
+    private Button backbutton;
 
     @FXML
-    private JFXListView<Label> listviewOefeningen;
+    private JFXButton addExerciseButton;
 
     @FXML
-    private JFXButton createButton;
+    private TableView<Oefening> oefTable;
+
+    @FXML
+    private TableColumn<Oefening, String> categorieTable;
+
+    @FXML
+    private TableColumn<Oefening, String> nameTable;
+
+    @FXML
+    private GridPane toolGrid;
 
     private DomeinController domeinController;
 
-    public WeergaveOefeningController(DomeinController dc) {
-        this.domeinController = dc;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("WeergaveOefening.fxml"));
-        loader.setController(this);
+    public OefeningenOverzichtPaneelController(DomeinController domeinController) {
+        this.domeinController = domeinController;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("OefeningenOverzichtPaneel.fxml"));
         loader.setRoot(this);
+        loader.setController(this);
         try {
             loader.load();
         } catch (IOException ex) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(ex.getMessage());
-            alert.show();
+            throw new RuntimeException(ex);
         }
         build();
     }
+
     private void build() {
-        //domeinController.GeefOefeningen().entrySet().stream().map(i -> listviewOefeningen.getItems().add((NumerischeOefening) i)).sorted();
-        NumerischeOefening oeftest = new NumerischeOefening("loloef", "opgave", "feedback", 150);
-        Label oefLabel = new Label(oeftest.getNaam());
-        listviewOefeningen.getItems().add(oefLabel);
+        oefTable.setItems(domeinController.GeefOefeningen());
+
+        categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
+        nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
+        for (int i = 0; i < domeinController.GeefOefeningen().size(); i++) {
+            Button copy = new Button("Copy");
+            Button edit = new Button("Edit");
+            Button delete = new Button("Delete");
+            toolGrid.add(copy, 0, i + 1);
+            toolGrid.add(edit, 1, i + 1);
+            toolGrid.add(delete, 2, i + 1);
+        }
     }
 
     @FXML
@@ -130,3 +137,4 @@ public class WeergaveOefeningController extends StackPane {
         Optional<Oefening> result = dialog.showAndWait();
     }
 }
+

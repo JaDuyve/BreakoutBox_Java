@@ -9,10 +9,7 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import persistentie.OefeningMapper;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(value=Parameterized.class)
 public class OefeningRepositoryJuistTest {
@@ -23,8 +20,8 @@ public class OefeningRepositoryJuistTest {
 
     private String oefeningNaam;
     private Oefening returnOef;
-    private HashMap<String, Oefening> oefeningen;
-    private HashMap<String, Oefening> resultOefeningen;
+    private List<Oefening> oefeningen;
+    private List<Oefening> resultOefeningen;
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters(){
         HashMap<String, Oefening> resultoef1 = new HashMap<String, Oefening>();
@@ -38,7 +35,7 @@ public class OefeningRepositoryJuistTest {
         );
     }
 
-    public OefeningRepositoryJuistTest(String oefeningNaam, Oefening returnOef, HashMap<String, Oefening> oefeningen, HashMap<String, Oefening> resultOefeningen){
+    public OefeningRepositoryJuistTest(String oefeningNaam, Oefening returnOef, List<Oefening> oefeningen, List<Oefening> resultOefeningen){
         this.oefeningNaam = oefeningNaam;
         this.returnOef = returnOef;
         this.oefeningen = oefeningen;

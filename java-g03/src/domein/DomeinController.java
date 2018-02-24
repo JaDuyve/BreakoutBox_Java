@@ -3,23 +3,41 @@ package domein;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 
-public class DomeinController {
+import java.util.Comparator;
+import java.util.Observable;
+
+public class DomeinController extends Observable {
 
 	private OefeningRepository oefeningRepository;
 	private GroepsbewerkingRepository groepsbewerkingRepository;
 	private VakRepository vakRepository;
 
+	private Oefening currentOefening;
+	private ObservableList<Oefening> oefeningenLijst;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	private FilteredList<Oefening> filterOefeningenLijst;
+	private SortedList<Oefening> sorteerOefeningenLijst;
+
 	public DomeinController() {
 		oefeningRepository = new OefeningRepository();
 		groepsbewerkingRepository = new GroepsbewerkingRepository();
 		vakRepository = new VakRepository();
+
+		oefeningenLijst = FXCollections.observableList(oefeningRepository.geefOefeningen());
+		filterOefeningenLijst = new FilteredList<>(oefeningenLijst, p -> true);
+		sorteerOefeningenLijst = new SortedList<>(filterOefeningenLijst, (x,y) -> x.getNaam().compareToIgnoreCase(y.getNaam()));
 	}
 
-	public ObservableMap GeefOefeningen() {
-		return FXCollections.unmodifiableObservableMap(FXCollections.observableMap(oefeningRepository.geefOefeningen()));
+	public ObservableList<Oefening> GeefOefeningen() {
+		return sorteerOefeningenLijst;
 	}
-
+	public void setCurrentAuto(Oefening oefening){
+		this.currentOefening = oefening;
+		setChanged();//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		notifyObservers(oefening);
+	}
 	/**
 	 *
 	 * @param oefening

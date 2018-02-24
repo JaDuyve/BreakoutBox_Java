@@ -17,6 +17,10 @@ public abstract class Oefening {
     private String opgave;
     private String feedback;
 
+    public Vak getVak() {
+        return vak;
+    }
+
     public String getNaam() {
         return this.naam;
     }

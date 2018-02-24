@@ -6,7 +6,7 @@ import java.util.*;
 
 public class OefeningRepository {
 
-	private Map<String, Oefening> oefeningen;
+	private List<Oefening> oefeningen;
 
 	private OefeningMapper oefeningMapper;
 
@@ -17,14 +17,16 @@ public class OefeningRepository {
 		this.oefeningen = oefeningMapper.geefOefeningen();
 	}
 
-    public Map<String, Oefening> geefOefeningen(){
+    public List<Oefening> geefOefeningen(){
 		return  oefeningen;
     }
+
 	public Oefening geefOefening(String naam) {
-		if (!this.oefeningen.containsKey(naam)) {
+	    Oefening oefening = oefeningen.stream().filter(o -> o.getNaam().equals(naam)).findFirst().get();
+		if (!this.oefeningen.contains(naam)) {
 			throw new IllegalArgumentException("Deze oefening bestaat niet");
 		}
-		return oefeningen.get(naam);
+		return oefening;
 	}
     /**
      *
@@ -58,7 +60,7 @@ public class OefeningRepository {
 			controleerOpNaamMap(naam);
 			this.oefeningen.put(naam, new Oefening(naam, feedback, antwoord, opgave));
 
-		}*/
+		}
 
 		Oefening oefening = this.oefeningen.get(oefeningNaam);
 		oefening.setNaam(naam);
@@ -66,10 +68,11 @@ public class OefeningRepository {
 		// TODO - setAntwoord nog uitwerken
 		oefening.setOpgave(opgave);
 		this.oefeningen.remove(oefeningNaam);
-		this.oefeningen.put(naam, oefening);
+		this.oefeningen.put(naam, oefening);*/
 	}
 	private boolean controleerOpNaamMap(String naam) {
-		return this.oefeningen.containsKey(naam);
+		//return this.oefeningen.containsKey(naam);
+        return true;
 	}
     /**
      *

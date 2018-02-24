@@ -1,13 +1,9 @@
 package startUp;
 
 import domein.DomeinController;
-import gui.WeergaveOefeningController;
+import gui.OefeningController;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class StartUp extends Application {
@@ -17,10 +13,10 @@ public class StartUp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        WeergaveOefeningController wgc = new WeergaveOefeningController(new DomeinController());
-        Scene scene = new Scene(wgc, 1280, 720);
+        OefeningController wgc = new OefeningController(new DomeinController());
+        Scene scene = new Scene(wgc, 1500, 720);
 
-        primaryStage.setTitle("BreakOutBox Controller");
+        primaryStage.setTitle("BreakOutBox");
         primaryStage.setScene(scene);
         primaryStage.show();
 

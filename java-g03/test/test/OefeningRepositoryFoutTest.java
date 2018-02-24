@@ -11,10 +11,7 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import persistentie.OefeningMapper;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(value=Parameterized.class)
 public class OefeningRepositoryFoutTest {
@@ -25,7 +22,7 @@ public class OefeningRepositoryFoutTest {
 
     private String oefeningNaam;
     private Oefening returnOef;
-    private HashMap<String, Oefening> oefeningen;
+    private List<Oefening> oefeningen;
 
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters(){
@@ -39,7 +36,7 @@ public class OefeningRepositoryFoutTest {
         );
     }
 
-    public OefeningRepositoryFoutTest(String oefeningNaam, Oefening returnOef, HashMap<String, Oefening> oefeningen){
+    public OefeningRepositoryFoutTest(String oefeningNaam, Oefening returnOef, List<Oefening> oefeningen){
         this.oefeningNaam = oefeningNaam;
         this.returnOef = returnOef;
         this.oefeningen = oefeningen;
