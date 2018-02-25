@@ -71,7 +71,7 @@ public abstract class Oefening {
         setNaam(naam);
         setOpgave(opgave);
         setFeedback(feedback);
-        setVak(new Vak(vak));
+        setVak(new Vak(vak, "red"));
         setGroepsbewerkingen(new ArrayList<Groepsbewerking>());
     }
 
