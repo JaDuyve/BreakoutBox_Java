@@ -12,23 +12,36 @@ public class Vak implements Serializable{
 
 	@Id
 	private String naam;
+	private String color;
+
+	public Vak(String naam, String color) {
+		this.naam = naam;
+		this.color = color;
+	}
 
 	protected Vak()
 	{
 
 	}
 
+
+
 	public String getNaam() {
+
 		return this.naam;
 	}
 
 	public void setNaam(String naam) {
+
 		this.naam = naam;
 	}
 
+	public String getColor() {
+		return color;
+	}
 
-	public Vak(String naam) {
-		this.naam = naam;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	@Override

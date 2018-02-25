@@ -23,10 +23,10 @@
       <JFXButton fx:id="addExerciseButton" layoutX="22.0" layoutY="647.0" onAction="#createOefening" prefHeight="50.0" prefWidth="115.0" text="Add Exercise" />
       <HBox layoutX="1.0" layoutY="175.0">
          <children>
-            <TableView fx:id="OefTable" nodeOrientation="LEFT_TO_RIGHT" prefHeight="440.0" prefWidth="650.0" style="-fx-background-color: #EFEFEF;">
+            <TableView fx:id="oefTable" nodeOrientation="LEFT_TO_RIGHT" prefHeight="440.0" prefWidth="650.0" style="-fx-background-color: #EFEFEF;">
               <columns>
                 <TableColumn fx:id="categorieTable" minWidth="50.0" prefWidth="150.0" style="-fx-background-color: #EFEFEF;" text="Categories" />
-                <TableColumn fx:id="NameTable" prefWidth="600.0" style="-fx-background-color: #EFEFEF;" text="Name" />
+                <TableColumn fx:id="nameTable" prefWidth="600.0" style="-fx-background-color: #EFEFEF;" text="Name" />
               </columns>
                <padding>
                   <Insets left="20.0" right="20.0" />

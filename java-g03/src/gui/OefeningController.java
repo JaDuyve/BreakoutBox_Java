@@ -14,11 +14,11 @@ public class OefeningController extends HBox {
     public OefeningController(DomeinController domeinController) {
         this.dc = domeinController;
         overzichtPanel = new OefeningenOverzichtPaneelController(dc);
-        detailPanelController = new OefeningenDetailPaneelController();
+       // detailPanelController = new OefeningenDetailPaneelController();
         filterPaneelController = new OefeningenFilterPaneelController();
 
-        getChildren().addAll(overzichtPanel, detailPanelController, filterPaneelController);
+        getChildren().addAll(overzichtPanel,  filterPaneelController);
 
-        dc.addObserver(detailPanelController);
+        //dc.addObserver(detailPanelController);
     }
 }

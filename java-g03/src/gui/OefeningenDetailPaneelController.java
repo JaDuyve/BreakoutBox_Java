@@ -22,7 +22,7 @@ public class OefeningenDetailPaneelController extends AnchorPane implements Obse
 
     public OefeningenDetailPaneelController() {
         FXMLLoader loader
-                = new FXMLLoader(getClass().getResource("OefeningenDetailPanel.fxml"));
+                = new FXMLLoader(getClass().getResource("OefeningenDetailPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {

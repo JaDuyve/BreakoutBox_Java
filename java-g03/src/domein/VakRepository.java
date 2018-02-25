@@ -13,6 +13,9 @@ public class VakRepository {
         /*this.vakMapper = new VakMapper();
 		this.vakken = vakMapper.geefVakken();*/
 		// TODO - Mapper Uit de DB halen!!! xoxoxo
+		vakken = new HashMap<>();
+		vakken.put("Wiskunde", new Vak("Wiskunde", "rood"));
+		vakken.put("Onderzoekstechnieken", new Vak("Onderzoekstechnieken", "blauw"));
 	}
 
 	public Map<String, Vak> geefVakken() {
