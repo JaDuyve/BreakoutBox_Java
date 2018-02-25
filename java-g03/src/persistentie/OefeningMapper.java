@@ -18,6 +18,7 @@ public class OefeningMapper {
         List<Oefening> oefeningen = new ArrayList<>();
         //tester
         oefeningen.add(new NumerischeOefening("testNaam", "testOpgeave", "Wiskunde", 50));
+        oefeningen.add(new NumerischeOefening("optellen", "2X2", "wiskunde", 4));
  /*       try(Connection conn = DriverManager.getConnection(Connectie.JDBC_URL))
         {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM project_prog_g03.")

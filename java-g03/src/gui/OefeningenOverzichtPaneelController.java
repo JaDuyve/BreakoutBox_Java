@@ -18,7 +18,8 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.util.Optional;
 
-public class OefeningenOverzichtPaneelController extends AnchorPane {
+
+public class OefeningenOverzichtPaneelController extends AnchorPane{
 
     @FXML
     private Button backbutton;
@@ -38,10 +39,10 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
     @FXML
     private GridPane toolGrid;
 
-    private DomeinController domeinController;
+    private DomeinController dc;
 
-    public OefeningenOverzichtPaneelController(DomeinController domeinController) {
-        this.domeinController = domeinController;
+    public OefeningenOverzichtPaneelController(DomeinController domainController) {
+        this.dc = domainController;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("OefeningenOverzichtPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -54,11 +55,11 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
     }
 
     private void build() {
-        oefTable.setItems(domeinController.GeefOefeningen());
+        oefTable.setItems(dc.geefOefeningen());
 
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
-        for (int i = 0; i < domeinController.GeefOefeningen().size(); i++) {
+        for (int i = 0; i < dc.geefOefeningen().size(); i++) {
             Button copy = new Button("Copy");
             Button edit = new Button("Edit");
             Button delete = new Button("Delete");

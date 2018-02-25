@@ -9,16 +9,16 @@ public class OefeningController extends HBox {
 
     private OefeningenFilterPaneelController filterPaneelController;
 
-    private DomeinController domeinController;
+    private DomeinController dc;
 
     public OefeningController(DomeinController domeinController) {
-        this.domeinController = domeinController;
-        overzichtPanel = new OefeningenOverzichtPaneelController(domeinController);
+        this.dc = domeinController;
+        overzichtPanel = new OefeningenOverzichtPaneelController(dc);
         detailPanelController = new OefeningenDetailPaneelController();
         filterPaneelController = new OefeningenFilterPaneelController();
 
         getChildren().addAll(overzichtPanel, detailPanelController, filterPaneelController);
 
-        domeinController.addObserver(detailPanelController);
+        dc.addObserver(detailPanelController);
     }
 }
