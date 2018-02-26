@@ -1,5 +1,6 @@
 package gui;
 
+import domein.OefeningBeheerder;
 import javafx.scene.layout.HBox;
 
 public class OefeningController extends HBox {
@@ -8,11 +9,11 @@ public class OefeningController extends HBox {
 
     private OefeningenFilterPaneelController filterPaneelController;
 
-    private DomeinController dc;
+    private OefeningBeheerder oefeningBeheerder;
 
-    public OefeningController(DomeinController domeinController) {
-        this.dc = domeinController;
-        overzichtPanel = new OefeningenOverzichtPaneelController(dc);
+    public OefeningController(OefeningBeheerder oefeningBeheerder) {
+        this.oefeningBeheerder = oefeningBeheerder;
+        overzichtPanel = new OefeningenOverzichtPaneelController(oefeningBeheerder);
        // detailPanelController = new OefeningenDetailPaneelController();
         filterPaneelController = new OefeningenFilterPaneelController();
 

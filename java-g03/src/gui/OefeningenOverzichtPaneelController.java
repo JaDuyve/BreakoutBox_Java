@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import domein.OefeningBeheerder;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
@@ -36,10 +37,10 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     @FXML
     private GridPane toolGrid;
 
-    private DomeinController dc;
+    private OefeningBeheerder oefeningBeheerder;
 
-    public OefeningenOverzichtPaneelController(DomeinController domainController) {
-        this.dc = domainController;
+    public OefeningenOverzichtPaneelController(OefeningBeheerder oefeningBeheerder) {
+        this.oefeningBeheerder = oefeningBeheerder;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("OefeningenOverzichtPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -52,11 +53,11 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     }
 
     private void build() {
-        oefTable.setItems(dc.geefOefeningen());
+        oefTable.setItems(oefeningBeheerder.geefOefeningen());
 
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
-        for (int i = 0; i < dc.geefOefeningen().size(); i++) {
+        for (int i = 0; i < oefeningBeheerder.geefOefeningen().size(); i++) {
             Button copy = new Button("Copy");
             Button edit = new Button("Edit");
             Button delete = new Button("Delete");
