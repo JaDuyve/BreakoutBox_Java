@@ -1,15 +1,20 @@
 package domein;
 
-import javax.persistence.Entity;
+public class NumerischeGroepsbewerking extends Groepsbewerking {
 
-@Entity
-public class NumerischeGroepsbewerking extends Groepsbewerking
-{
+	/**
+	 *
+	 * @param naam
+	 * @param opgave
+	 * @param waarde
+	 * @param bewerking
+	 */
+	public NumerischeGroepsbewerking(String naam, String opgave, double waarde, Bewerking bewerking) {
+		// TODO - implement NumerischeGroepsbewerking.NumerischeGroepsbewerking
+		throw new UnsupportedOperationException();
+	}
 
-    protected NumerischeGroepsbewerking(){}
+	private Bewerking bewerking;
+	private double waarde;
 
-    public NumerischeGroepsbewerking(String naam, String opgave)
-    {
-        super(naam, opgave);
-    }
 }

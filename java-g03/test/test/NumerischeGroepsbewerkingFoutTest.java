@@ -1,8 +1,6 @@
 package test;
 
 
-import domein.AlphaNumerischeGroepsbewerking;
-import domein.NumerischeGroepsbewerking;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 

@@ -1,7 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXTextField;
-import domein.Oefening;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;

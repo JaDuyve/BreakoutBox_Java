@@ -1,9 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import domein.DomeinController;
-import domein.Oefening;
-import domein.Vak;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;

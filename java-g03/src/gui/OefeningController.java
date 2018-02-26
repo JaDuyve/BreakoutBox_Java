@@ -1,6 +1,5 @@
 package gui;
 
-import domein.DomeinController;
 import javafx.scene.layout.HBox;
 
 public class OefeningController extends HBox {

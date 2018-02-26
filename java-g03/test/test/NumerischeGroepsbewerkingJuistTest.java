@@ -1,9 +1,6 @@
 package test;
 
 
-import domein.AlphaNumerischeGroepsbewerking;
-import domein.Groepsbewerking;
-import domein.NumerischeGroepsbewerking;
 import org.junit.Assert;
 import org.junit.Test;
 

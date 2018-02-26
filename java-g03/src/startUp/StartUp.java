@@ -1,6 +1,5 @@
 package startUp;
 
-import domein.DomeinController;
 import gui.OefeningController;
 import javafx.application.Application;
 import javafx.scene.Scene;

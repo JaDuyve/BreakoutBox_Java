@@ -1,40 +1,32 @@
 package domein;
 
-import javax.persistence.Entity;
-import java.util.Objects;
+public class NumerischeOefening extends Oefening {
 
-@Entity
-public class NumerischeOefening extends Oefening
-{
+	private double antwoord;
 
-    private double antwoord;
+	/**
+	 *
+	 * @param naam
+	 * @param opgave
+	 * @param feedback
+	 * @param vak
+	 * @param antwoord
+	 */
+	public NumerischeOefening(String naam, String opgave, String feedback, String vak, double antwoord) {
+		// TODO - implement NumerischeOefening.NumerischeOefening
+		throw new UnsupportedOperationException();
+	}
 
-    protected NumerischeOefening()
-    {
-
-    }
-
-    public NumerischeOefening(String naam, String opgave, double antwoord, String feedback, String vak)
-    {
-        super(naam, opgave, feedback, vak);
-        setAntwoord(antwoord);
-    }
-
-    public NumerischeOefening(String naam, String opgave, String vak, double antwoord)
-    {
-        super(naam, opgave, null, vak);
-        setAntwoord(antwoord);
-    }
-
-
-
-    public double getAntwoord() {
-        return antwoord;
-    }
-
-    public void setAntwoord(double antwoord)
-    {
-        this.antwoord = antwoord;
-    }
+	/**
+	 *
+	 * @param naam
+	 * @param opgave
+	 * @param vak
+	 * @param antwoord
+	 */
+	public NumerischeOefening(String naam, String opgave, String vak, double antwoord) {
+		// TODO - implement NumerischeOefening.NumerischeOefening
+		throw new UnsupportedOperationException();
+	}
 
 }

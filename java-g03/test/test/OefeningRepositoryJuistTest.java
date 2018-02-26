@@ -1,8 +1,6 @@
 package test;
 
 
-import domein.Oefening;
-import domein.OefeningRepository;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

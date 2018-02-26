@@ -1,11 +1,5 @@
 package persistentie;
 
-import domein.Vak;
-import util.JPAUtil;
-
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.util.HashMap;
 import java.util.Map;
 
 public class VakMapper {

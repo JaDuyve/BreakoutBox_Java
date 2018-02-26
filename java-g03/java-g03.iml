@@ -31,5 +31,26 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jfoenix-8.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 1/ontwerpen 2/Mockito/mockito-all-1.10.19.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 1/ontwerpen 2/Mockito/mockito-all-1.10.19.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

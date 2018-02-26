@@ -1,8 +1,6 @@
 package test;
 
 
-import domein.NumerischeOefening;
-import domein.Oefening;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

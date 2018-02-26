@@ -1,7 +1,6 @@
 package test;
 
 
-import domein.Vak;
 import org.junit.Assert;
 import org.junit.Test;
 
