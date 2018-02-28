@@ -1,14 +1,21 @@
 package domein;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Oefening {
 
-	private Collection<Groepsbewerking> lijstGroepsbewerkingen;
-	private Vak vak;
+
+	@Id
 	private String naam;
 	private String opgave;
 	private String feedback;
+	@OneToMany
+	private Collection<Groepsbewerking> lijstGroepsbewerkingen;
+	@ManyToOne
+	private Vak vak;
 
 	public String getNaam() {
 		return this.naam;
@@ -59,4 +66,17 @@ public abstract class Oefening {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Oefening)) return false;
+		Oefening oefening = (Oefening) o;
+		return Objects.equals(getNaam(), oefening.getNaam());
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(getNaam());
+	}
 }

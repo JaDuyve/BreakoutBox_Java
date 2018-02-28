@@ -1,7 +1,14 @@
 package domein;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+@Entity
+
 public class NumerischeGroepsbewerking extends Groepsbewerking {
 
+
+	protected NumerischeGroepsbewerking(){};
 	/**
 	 *
 	 * @param naam

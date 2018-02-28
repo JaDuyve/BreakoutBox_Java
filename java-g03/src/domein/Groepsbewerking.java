@@ -1,7 +1,13 @@
 package domein;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Groepsbewerking {
 
+	@Id
 	private String naam;
 	private String opgave;
 
@@ -33,4 +39,17 @@ public abstract class Groepsbewerking {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Groepsbewerking)) return false;
+		Groepsbewerking that = (Groepsbewerking) o;
+		return Objects.equals(getNaam(), that.getNaam());
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(getNaam());
+	}
 }
