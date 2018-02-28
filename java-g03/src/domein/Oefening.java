@@ -5,6 +5,10 @@ import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@NamedQueries({
+        @NamedQuery(name = "Oefening.findByName",
+                query = "select o from Oefening o where o.naam = :oefeningNaam")
+})
 public abstract class Oefening {
 
 
