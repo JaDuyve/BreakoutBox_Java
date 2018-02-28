@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXTextField;
+import domein.NumerischeOefening;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -33,7 +34,7 @@ public class OefeningenDetailPaneelController extends AnchorPane implements Obse
 
     @Override
     public void update(Observable o, Object arg) {
-        Oefening oefening = (Oefening) arg;
+        NumerischeOefening oefening = (NumerischeOefening) arg;
 
         txfOpgave.setText(oefening.getOpgave());
         txfAntwoord.setText("Dit moet nog geinstantieerd worden want het klopt nog niet");

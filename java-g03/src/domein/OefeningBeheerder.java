@@ -48,7 +48,7 @@ public class OefeningBeheerder {
 		throw new UnsupportedOperationException();
 	}
 
-	public ObservableList<Oefening> geefOefeningen() {
+	public ObservableList<NumerischeOefening> geefOefeningen() {
 		// TODO - implement OefeningBeheerder.geefOefeningen
 		throw new UnsupportedOperationException();
 	}

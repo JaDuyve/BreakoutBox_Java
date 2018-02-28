@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import domein.NumerischeOefening;
 import domein.OefeningBeheerder;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -26,13 +27,13 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     private JFXButton addExerciseButton;
 
     @FXML
-    private TableView<Oefening> oefTable;
+    private TableView<NumerischeOefening> oefTable;
 
     @FXML
-    private TableColumn<Oefening, String> categorieTable;
+    private TableColumn<NumerischeOefening, String> categorieTable;
 
     @FXML
-    private TableColumn<Oefening, String> nameTable;
+    private TableColumn<NumerischeOefening, String> nameTable;
 
     @FXML
     private GridPane toolGrid;
@@ -121,9 +122,9 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
         Platform.runLater(() -> naam.requestFocus());
 
 // Convert the result to a naam-opgave-pair when the login button is clicked.
-        dialog.setResultConverter(dialogButton -> {
+        /*dialog.setResultConverter(dialogButton -> {
             if (dialogButton == maakButton) {
-                return new Oefening(naam.getText(), opgave.getText(), feedback.getText(), vak.getText()) {
+                return new NumerischeOefening(naam.getText(), opgave.getText(), feedback.getText(), vak.getText()) {
                     @Override
                     public String getNaam() {
                         return super.getNaam();
@@ -131,9 +132,9 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
                 };
             }
             return null;
-        });
+        });*/
 
-        Optional<Oefening> result = dialog.showAndWait();
+        Optional<NumerischeOefening> result = dialog.showAndWait();
     }
 }
 
