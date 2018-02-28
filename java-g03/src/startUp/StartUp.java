@@ -1,16 +1,21 @@
 package startUp;
 
+import domein.NumerischeOefening;
 import domein.OefeningBeheerder;
+import domein.Vak;
 import gui.OefeningController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.JPAUtil;
 
-public class StartUp extends Application {
+import javax.persistence.EntityManager;
+
+public class StartUp  {
 
 
 
-    @Override
+    /*@Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(new OefeningController(new OefeningBeheerder()), 1500, 720);
 
@@ -18,11 +23,19 @@ public class StartUp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-    }
+    }*/
 
 
     public static void main(String[] args) {
-        Application.launch(StartUp.class, args);
+        NumerischeOefening n = new NumerischeOefening("test", "Jan", "wiskunde", new Vak("wiskunde"),  0);
+
+
+        EntityManager e = JPAUtil.getEntityManagerFactory().createEntityManager();
+        e.getTransaction().begin();
+        e.persist(n);
+        e.getTransaction().commit();
+        e.close();
+        JPAUtil.getEntityManagerFactory().close();
     }
 
 }

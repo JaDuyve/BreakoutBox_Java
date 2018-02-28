@@ -18,6 +18,12 @@ public class Vak {
 		this.naam = naam;
 	}
 
+    protected Vak() {
+    }
+
+    public Vak(String naam) {
+		this.naam = naam;
+	}
 
 	@Override
 	public boolean equals(Object o) {

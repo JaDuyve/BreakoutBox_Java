@@ -35,8 +35,8 @@ public abstract class Groepsbewerking {
 	 * @param opgave
 	 */
 	public Groepsbewerking(String naam, String opgave) {
-		// TODO - implement Groepsbewerking.Groepsbewerking
-		throw new UnsupportedOperationException();
+		setNaam(naam);
+		setOpgave(opgave);
 	}
 
 	@Override

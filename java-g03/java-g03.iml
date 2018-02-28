@@ -33,7 +33,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -51,7 +51,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/javax.persistence.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/javax.persistence.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -76,5 +76,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="javax.persistence" level="project" />
+    <orderEntry type="library" name="jfoenix-8.0.1" level="project" />
   </component>
 </module>

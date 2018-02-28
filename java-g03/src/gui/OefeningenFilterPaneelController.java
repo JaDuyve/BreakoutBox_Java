@@ -1,8 +1,7 @@
 package gui;
-
-import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -10,8 +9,8 @@ import java.io.IOException;
 
 public class OefeningenFilterPaneelController extends AnchorPane {
 
-    @FXML
-    private JFXTextField filterTxtField;
+    //@FXML
+    //private JFXTextField filterTxtField;
 
     @FXML
     private GridPane vakFilter;

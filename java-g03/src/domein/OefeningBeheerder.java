@@ -1,6 +1,7 @@
 package domein;
 
 import javafx.collections.ObservableList;
+import persistentie.OefeningMapper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,10 +9,11 @@ import java.util.ArrayList;
 public class OefeningBeheerder {
 
 	private Oefening oefening;
+	private ObservableList<NumerischeOefening> ObservableOefeningen;
+    private OefeningMapper oefeningMapper;
 
 	public OefeningBeheerder() {
-		// TODO - implement OefeningBeheerder.OefeningBeheerder
-		throw new UnsupportedOperationException();
+		oefeningMapper = new OefeningMapper();
 	}
 
 	/**
@@ -49,8 +51,7 @@ public class OefeningBeheerder {
 	}
 
 	public ObservableList<NumerischeOefening> geefOefeningen() {
-		// TODO - implement OefeningBeheerder.geefOefeningen
-		throw new UnsupportedOperationException();
+		return ObservableOefeningen;
 	}
 
 	/**
@@ -83,6 +84,8 @@ public class OefeningBeheerder {
 	public void filterOpNaam(String oefeningNaam) {
 		// TODO - implement OefeningBeheerder.filterOpNaam
 		throw new UnsupportedOperationException();
+
+
 	}
 
 	/**

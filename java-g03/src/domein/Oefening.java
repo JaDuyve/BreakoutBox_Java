@@ -22,6 +22,9 @@ public abstract class Oefening {
 	}
 
 	public void setNaam(String naam) {
+		if (naam == null || naam.equals("")){
+			throw new IllegalArgumentException("Naam mag niet leeg zijn.");
+		}
 		this.naam = naam;
 	}
 
@@ -30,7 +33,19 @@ public abstract class Oefening {
 	}
 
 	public void setOpgave(String opgave) {
+
+		if (opgave == null || opgave.equals("")){
+			throw new IllegalArgumentException("Opgave mag niet leeg gelaten worden");
+		}
 		this.opgave = opgave;
+	}
+
+	public void setVak(Vak vak){
+		this.vak = vak;
+	}
+
+	public Vak getVak(){
+		return vak;
 	}
 
 	public String getFeedback() {
@@ -50,9 +65,11 @@ public abstract class Oefening {
 	 * @param feedback
 	 * @param vak
 	 */
-	public Oefening(String naam, String opgave, String feedback, String vak) {
-		// TODO - implement Oefening.Oefening
-		throw new UnsupportedOperationException();
+	public Oefening(String naam, String opgave, String feedback, Vak vak) {
+		setNaam(naam);
+		setOpgave(opgave);
+		setFeedback(feedback);
+		setVak(vak);
 	}
 
 	/**
@@ -61,10 +78,14 @@ public abstract class Oefening {
 	 * @param opgave
 	 * @param vak
 	 */
-	public Oefening(String naam, String opgave, String vak) {
-		// TODO - implement Oefening.Oefening
-		throw new UnsupportedOperationException();
+	public Oefening(String naam, String opgave, Vak vak) {
+
+		setNaam(naam);
+		setOpgave(opgave);
+		setVak(vak);
 	}
+
+
 
 	@Override
 	public boolean equals(Object o) {

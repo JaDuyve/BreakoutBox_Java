@@ -8,7 +8,7 @@
         <class>domein.Vak</class>
         <class>domein.NumerischeOefening</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://breakoutbox.database.windows.net:1433"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://breakoutbox.database.windows.net:1433;database=BoB;encrypt=false;trustServerCertificate=false;hostNameInCertificate=breakoutbox.database.windows.net;loginTimeout=30;"/>
             <property name="javax.persistence.jdbc.user" value="java"/>
             <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
             <property name="javax.persistence.jdbc.password" value="Pazaak2.0"/>

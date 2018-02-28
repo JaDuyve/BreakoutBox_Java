@@ -19,9 +19,9 @@ public class NumerischeOefening extends Oefening {
 	 */
 
 
-	public NumerischeOefening(String naam, String opgave, String feedback, String vak, double antwoord) {
-		// TODO - implement NumerischeOefening.NumerischeOefening
-		throw new UnsupportedOperationException();
+	public NumerischeOefening(String naam, String opgave, String feedback, Vak vak, double antwoord) {
+		super(naam, opgave, feedback, vak);
+		setAntwoord(antwoord);
 	}
 
 	/**
@@ -31,9 +31,17 @@ public class NumerischeOefening extends Oefening {
 	 * @param vak
 	 * @param antwoord
 	 */
-	public NumerischeOefening(String naam, String opgave, String vak, double antwoord) {
-		// TODO - implement NumerischeOefening.NumerischeOefening
-		throw new UnsupportedOperationException();
+	public NumerischeOefening(String naam, String opgave, Vak vak, double antwoord) {
+		super(naam, opgave, vak);
+		setAntwoord(antwoord);
 	}
 
+
+	public double getAntwoord() {
+		return antwoord;
+	}
+
+	public void setAntwoord(double antwoord) {
+		this.antwoord = antwoord;
+	}
 }

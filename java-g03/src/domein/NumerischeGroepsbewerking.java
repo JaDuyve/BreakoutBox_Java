@@ -7,6 +7,9 @@ import javax.persistence.OneToOne;
 
 public class NumerischeGroepsbewerking extends Groepsbewerking {
 
+	private Bewerking bewerking;
+	private double waarde;
+
 
 	protected NumerischeGroepsbewerking(){};
 	/**
@@ -17,11 +20,28 @@ public class NumerischeGroepsbewerking extends Groepsbewerking {
 	 * @param bewerking
 	 */
 	public NumerischeGroepsbewerking(String naam, String opgave, double waarde, Bewerking bewerking) {
-		// TODO - implement NumerischeGroepsbewerking.NumerischeGroepsbewerking
-		throw new UnsupportedOperationException();
+		super(naam, opgave);
+		setBewerking(bewerking);
+		setWaarde(waarde);
+
 	}
 
-	private Bewerking bewerking;
-	private double waarde;
+	public Bewerking getBewerking() {
+		return bewerking;
+	}
+
+	public void setBewerking(Bewerking bewerking) {
+		this.bewerking = bewerking;
+	}
+
+	public double getWaarde() {
+		return waarde;
+	}
+
+	public void setWaarde(double waarde) {
+		this.waarde = waarde;
+	}
+
+
 
 }

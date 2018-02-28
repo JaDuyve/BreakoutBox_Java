@@ -1,4 +1,4 @@
-package persistentie
+package persistentie;
 
 import java.util.List;
 
