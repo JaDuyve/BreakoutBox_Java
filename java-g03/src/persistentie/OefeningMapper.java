@@ -12,4 +12,6 @@ public class OefeningMapper {
     public List<Oefening> geefOefeningen(){
         throw new UnsupportedOperationException();
     }
+
+
 }

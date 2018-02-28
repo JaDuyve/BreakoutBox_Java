@@ -1,6 +1,7 @@
 package domein;
 
 import javax.persistence.Entity;
+import java.util.List;
 
 @Entity
 public class NumerischeOefening extends Oefening {
@@ -19,8 +20,8 @@ public class NumerischeOefening extends Oefening {
 	 */
 
 
-	public NumerischeOefening(String naam, String opgave, String feedback, Vak vak, double antwoord) {
-		super(naam, opgave, feedback, vak);
+	public NumerischeOefening(String naam, String opgave, String feedback, List<Groepsbewerking> lijstGroepsbewerkingen, Vak vak, double antwoord) {
+		super(naam, opgave, feedback, lijstGroepsbewerkingen, vak);
 		setAntwoord(antwoord);
 	}
 
@@ -31,8 +32,8 @@ public class NumerischeOefening extends Oefening {
 	 * @param vak
 	 * @param antwoord
 	 */
-	public NumerischeOefening(String naam, String opgave, Vak vak, double antwoord) {
-		super(naam, opgave, vak);
+	public NumerischeOefening(String naam, String opgave, List<Groepsbewerking> lijstGroepsbewerkingen, Vak vak, double antwoord) {
+		super(naam, opgave, lijstGroepsbewerkingen, vak);
 		setAntwoord(antwoord);
 	}
 
