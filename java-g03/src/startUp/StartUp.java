@@ -27,12 +27,12 @@ public class StartUp  {
 
 
     public static void main(String[] args) {
-        NumerischeOefening n = new NumerischeOefening("test", "Jan", "wiskunde", new Vak("wiskunde"),  0);
+        Vak v = new Vak("test");
 
 
         EntityManager e = JPAUtil.getEntityManagerFactory().createEntityManager();
         e.getTransaction().begin();
-        e.persist(n);
+        e.persist(v);
         e.getTransaction().commit();
         e.close();
         JPAUtil.getEntityManagerFactory().close();

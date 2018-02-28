@@ -8,17 +8,7 @@
         <datasource-mapping>
           <factory-entry name="persistenceUnit" value="2f31da84-e9d3-48f9-8af5-ef34ab49db8e" />
         </datasource-mapping>
-        <deploymentDescriptor name="orm.xml" url="file://$MODULE_DIR$/META-INF/orm.xml" />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
-      </configuration>
-    </facet>
-    <facet type="hibernate" name="Hibernate">
-      <configuration>
-        <datasource-map>
-          <unit-entry name="META-INF:hibernate.cfg.xml" value="2f31da84-e9d3-48f9-8af5-ef34ab49db8e" />
-        </datasource-map>
-        <naming-strategy-map />
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/META-INF/hibernate.cfg.xml" />
       </configuration>
     </facet>
   </component>
@@ -33,7 +23,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
+          <root url="jar:///Users/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -51,7 +41,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/javax.persistence.jar!/" />
+          <root url="jar:///Users/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/javax.persistence.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -66,7 +56,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Hibernate 5.2.12-5.2.12" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -78,5 +67,24 @@
     </orderEntry>
     <orderEntry type="library" name="javax.persistence" level="project" />
     <orderEntry type="library" name="jfoenix-8.0.1" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/javax.persistence.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

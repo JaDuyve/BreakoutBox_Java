@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 @Entity
-
 public class NumerischeGroepsbewerking extends Groepsbewerking {
 
 	private Bewerking bewerking;

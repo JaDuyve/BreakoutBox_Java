@@ -12,9 +12,9 @@ public abstract class Oefening {
 	private String naam;
 	private String opgave;
 	private String feedback;
-	@OneToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private Collection<Groepsbewerking> lijstGroepsbewerkingen;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Vak vak;
 
 	public String getNaam() {
