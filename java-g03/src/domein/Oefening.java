@@ -8,7 +8,7 @@ import java.util.*;
         @NamedQuery(name = "Oefening.deleteByName",
                 query = "delete from Oefening o where o.naam = :oefeningNaam")
 })
-public  class Oefening {
+public class Oefening {
 
 
     @Id

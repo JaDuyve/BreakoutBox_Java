@@ -78,7 +78,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
+          <root url="jar:///Users/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -87,7 +87,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/javax.persistence.jar!/" />
+          <root url="jar:///Users/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/javax.persistence.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -133,11 +133,11 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../OO Ontwerpen II/MOCKITO/mockito-all-1.10.19.jar!/" />
+          <root url="jar:///Users/OO Ontwerpen II/MOCKITO/mockito-all-1.10.19.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../OO Ontwerpen II/MOCKITO/mockito-all-1.10.19.jar!/" />
+          <root url="jar:///Users/OO Ontwerpen II/MOCKITO/mockito-all-1.10.19.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -146,6 +146,16 @@
         <CLASSES>
           <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/" />
           <root url="jar://$APPLICATION_HOME_DIR$/lib/hamcrest-core-1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

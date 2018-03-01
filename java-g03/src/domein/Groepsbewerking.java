@@ -4,31 +4,15 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Groepsbewerking {
+public class Groepsbewerking {
 
 	@Id
 	private String naam;
 	private String opgave;
 
-	public String getNaam() {
-		return this.naam;
-	}
+	@Enumerated(EnumType.STRING)
+	private Bewerking bewerking;
 
-	public void setNaam(String naam) {
-		if (naam == null || naam.equals("")){
-		    throw new IllegalArgumentException("Naam van groepsBewerking niet leeg laten.");
-        }
-		this.naam = naam;
-	}
-
-	public String getOpgave() {
-		return this.opgave;
-	}
-
-	public void setOpgave(String opgave) {
-		this.opgave = opgave;
-	}
 
 	public Groepsbewerking(){};
 
@@ -40,6 +24,25 @@ public abstract class Groepsbewerking {
 	public Groepsbewerking(String naam, String opgave) {
 		setNaam(naam);
 		setOpgave(opgave);
+	}
+
+	public String getNaam() {
+		return this.naam;
+	}
+
+	public void setNaam(String naam) {
+		if (naam == null || naam.equals("")){
+			throw new IllegalArgumentException("Naam van groepsBewerking niet leeg laten.");
+		}
+		this.naam = naam;
+	}
+
+	public String getOpgave() {
+		return this.opgave;
+	}
+
+	public void setOpgave(String opgave) {
+		this.opgave = opgave;
 	}
 
 	@Override

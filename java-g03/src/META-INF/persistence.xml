@@ -3,11 +3,9 @@
 
     <persistence-unit name="persistenceUnit">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>domein.Groepsbewerking</class>
         <class>domein.Oefening</class>
-        <class>domein.NumerischeGroepsbewerking</class>
+        <class>domein.Groepsbewerking</class>
         <class>domein.Vak</class>
-        <class>domein.NumerischeOefening</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://breakoutbox.database.windows.net:1433;database=BoB;encrypt=false;trustServerCertificate=false;hostNameInCertificate=breakoutbox.database.windows.net;loginTimeout=30;"/>
             <property name="javax.persistence.jdbc.user" value="java@breakoutbox"/>
