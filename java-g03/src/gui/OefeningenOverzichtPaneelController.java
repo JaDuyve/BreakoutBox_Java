@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -71,7 +72,15 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
 
     @FXML
     void createOefening(ActionEvent event) {
-        createDialogBoxForInput();
+        Scene s = this.getScene();
+        s.setRoot(new OefeningMakenPaneelController(oefeningBeheerder));
+    }
+
+    private void maken(ActionEvent event)
+    {
+
+        Scene s = this.getScene();
+        s.setRoot(new OefeningMakenPaneelController(oefeningBeheerder));
     }
 
     private void createDialogBoxForInput() {

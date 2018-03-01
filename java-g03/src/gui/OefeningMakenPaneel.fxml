@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<fx:root prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: transparent;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="390.0" layoutY="4.0" prefHeight="720.0" prefWidth="200.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0">
+         <children>
+            <Label fx:id="lblTitel" text="OEFENING MAKEN" />
+            <Label fx:id="lblNaam" text="Naam" />
+            <TextField fx:id="txfNaam" text="Naam" />
+         </children>
+      </VBox>
+   </children>
+</fx:root>

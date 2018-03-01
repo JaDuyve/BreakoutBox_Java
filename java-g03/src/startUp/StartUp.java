@@ -6,7 +6,9 @@ import domein.Vak;
 import gui.OefeningController;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import util.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -22,6 +24,7 @@ public class StartUp extends Application {
         OefeningController oc = new OefeningController(new OefeningBeheerder());
         Scene scene = new Scene(oc, 1280, 720);
 
+        scene.setFill(Color.TRANSPARENT);
         primaryStage.setTitle("BreakOutBox Controller");
         primaryStage.setScene(scene);
         primaryStage.show();
