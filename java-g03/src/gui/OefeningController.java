@@ -14,8 +14,8 @@ public class OefeningController extends HBox {
     public OefeningController(OefeningBeheerder oefeningBeheerder) {
         this.oefeningBeheerder = oefeningBeheerder;
         overzichtPanel = new OefeningenOverzichtPaneelController(oefeningBeheerder);
-       // detailPanelController = new OefeningenDetailPaneelController();
-        filterPaneelController = new OefeningenFilterPaneelController();
+       detailPanelController = new OefeningenDetailPaneelController(oefeningBeheerder);
+        filterPaneelController = new OefeningenFilterPaneelController(oefeningBeheerder);
 
         getChildren().addAll(overzichtPanel,  filterPaneelController);
 

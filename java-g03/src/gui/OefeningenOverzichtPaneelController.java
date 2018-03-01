@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import domein.NumerischeOefening;
+import domein.Oefening;
 import domein.OefeningBeheerder;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -27,13 +28,13 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     private JFXButton addExerciseButton;
 
     @FXML
-    private TableView<NumerischeOefening> oefTable;
+    private TableView<Oefening> oefTable;
 
     @FXML
-    private TableColumn<NumerischeOefening, String> categorieTable;
+    private TableColumn<Oefening, String> categorieTable;
 
     @FXML
-    private TableColumn<NumerischeOefening, String> nameTable;
+    private TableColumn<Oefening, String> nameTable;
 
     @FXML
     private GridPane toolGrid;

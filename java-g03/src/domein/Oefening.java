@@ -60,7 +60,7 @@ public abstract class Oefening {
         this.feedback = feedback;
     }
 
-    public Collection<Groepsbewerking> getLijstGroepsbewerkingen() {
+    public List<Groepsbewerking> getLijstGroepsbewerkingen() {
         return lijstGroepsbewerkingen;
     }
 
@@ -100,6 +100,16 @@ public abstract class Oefening {
         setVak(vak);
     }
 
+    public void addGroepsbewerking(Groepsbewerking groepsbewerking){
+        lijstGroepsbewerkingen.add(groepsbewerking);
+        // TODO - update database
+    }
+
+    public void removeGroepsbewerking(Groepsbewerking groepsbewerking){
+        lijstGroepsbewerkingen.remove(groepsbewerking);
+        // TODO - update database
+
+    }
 
     @Override
     public boolean equals(Object o) {

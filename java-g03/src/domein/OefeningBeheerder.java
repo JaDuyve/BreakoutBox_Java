@@ -1,7 +1,9 @@
 package domein;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import persistentie.OefeningMapper;
+import persistentie.GenericDao;
+import persistentie.GenericDaoJpa;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,19 +12,31 @@ import java.util.List;
 public class OefeningBeheerder {
 
     private Oefening oefening;
-    private ObservableList<NumerischeOefening> ObservableOefeningen;
-    private OefeningMapper oefeningMapper;
+    private List<Oefening> oefeningList;
+    private GenericDao<Oefening> oefeningRepo;
+    private GenericDao<Vak> vakRepo;
+
 
     public OefeningBeheerder() {
-        oefeningMapper = new OefeningMapper();
+        setOefeningRepo(new GenericDaoJpa<>(Oefening.class));
+        setVakRepo(new GenericDaoJpa<>(Vak.class));
+    }
+
+    public void setOefeningRepo(GenericDao<Oefening> mock) {
+        oefeningRepo = mock;
+    }
+
+    public void setVakRepo(GenericDao<Vak> mock){
+        vakRepo = mock;
     }
 
     /**
      * @param naam
      */
     public void verwijderOefening(String naam) {
-        // TODO - implement OefeningBeheerder.verwijderOefening
-        throw new UnsupportedOperationException();
+
+        oefeningRepo.delete(oefeningRepo.get(naam));//mss in 1 query
+        oefeningList = oefeningRepo.findAll();
     }
 
     /**
@@ -35,22 +49,23 @@ public class OefeningBeheerder {
      * @param vak
      */
     public void wijzigOefening(String oefeningNaam, String naam, String opgavePath, String antwoord, String feedback, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        if (oefeningMapper.geefOefeningen().stream().filter(i -> i.getNaam().equals(oefeningNaam)).findFirst().isPresent()) { //MOET NOG AAN DE OEFENINGENDAO GEVRAAGD WORDEN
+        if (getOefeningList().stream().filter(i -> i.getNaam().equals(oefeningNaam)).findFirst().isPresent()) { //MOET NOG AAN DE OEFENINGENDAO GEVRAAGD WORDEN
             //TODO - OEFENING AANMAKEN IN WIJZIGINGOEFENING
             throw new UnsupportedOperationException();
         } else {
-            oefening = oefeningMapper.geefOefeningen().stream().filter(i -> i.getNaam().equals(oefeningNaam)).findAny().get();
-            oefening.setNaam(naam);
+            //oefening = oefeningMapper.geefOefeningen().stream().filter(i -> i.getNaam().equals(oefeningNaam)).findAny().get();
+            oefening = oefeningRepo.get(oefeningNaam);
+            oefening.setNaam(naam);///???????
             oefening.setOpgave(opgavePath);
             oefening.setFeedback(feedback);
             oefening.setVak(vak);
             oefening.setLijstGroepsbewerkingen(groepsbewerkingen);
+            oefeningRepo.update(oefening);
         }
     }
 
     public ObservableList<Vak> geefVakken() {
-        // TODO - implement OefeningBeheerder.geefVakken
-        throw new UnsupportedOperationException();
+        return FXCollections.unmodifiableObservableList(FXCollections.observableList(vakRepo.findAll()));
     }
 
     public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
@@ -58,8 +73,19 @@ public class OefeningBeheerder {
         throw new UnsupportedOperationException();
     }
 
-    public ObservableList<NumerischeOefening> geefOefeningen() {
-        return ObservableOefeningen;
+    public ObservableList<Oefening> geefOefeningen() {
+        ObservableList<Oefening> obsOef = FXCollections.observableList(getOefeningList());
+        return obsOef;
+    }
+
+    private List<Oefening> getOefeningList(){
+        if (oefeningList == null){
+            //oefeningList = oefeningRepo.findAll();
+            // TODO - findall uitwerken
+            oefeningList = new ArrayList<>();
+        }
+
+        return oefeningList;
     }
 
     /**
@@ -79,8 +105,7 @@ public class OefeningBeheerder {
      * @param naam
      */
     public Oefening geefOefening(String naam) {
-        // TODO - implement OefeningBeheerder.geefOefening
-        throw new UnsupportedOperationException();
+        return oefeningRepo.get(naam);
     }
 
     /**

@@ -16,6 +16,9 @@ public abstract class Groepsbewerking {
 	}
 
 	public void setNaam(String naam) {
+		if (naam == null || naam.equals("")){
+		    throw new IllegalArgumentException("Naam van groepsBewerking niet leeg laten.");
+        }
 		this.naam = naam;
 	}
 

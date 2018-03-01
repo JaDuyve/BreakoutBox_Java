@@ -2,6 +2,8 @@ package gui;
 
 import com.jfoenix.controls.JFXTextField;
 import domein.NumerischeOefening;
+import domein.Oefening;
+import domein.OefeningBeheerder;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +22,11 @@ public class OefeningenDetailPaneelController extends AnchorPane implements Obse
     @FXML
     private JFXTextField tfxFeedback;
 
-    public OefeningenDetailPaneelController() {
+    private OefeningBeheerder oefeningBeheerder;
+
+    public OefeningenDetailPaneelController(OefeningBeheerder oefeningBeheerder) {
+        this.oefeningBeheerder = oefeningBeheerder;
+
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("OefeningenDetailPaneel.fxml"));
         loader.setRoot(this);
