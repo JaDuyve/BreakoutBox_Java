@@ -1,7 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import domein.NumerischeOefening;
 import domein.Oefening;
 import domein.OefeningBeheerder;
 import javafx.application.Platform;
@@ -144,7 +143,7 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
             return null;
         });*/
 
-        Optional<NumerischeOefening> result = dialog.showAndWait();
+        Optional<Oefening> result = dialog.showAndWait();
     }
 }
 

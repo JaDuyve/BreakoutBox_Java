@@ -4,18 +4,19 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQueries({
-        @NamedQuery(name = "Oefening.findByName",
-                query = "select o from Oefening o where o.naam = :oefeningNaam")
+        @NamedQuery(name = "Oefening.deleteByName",
+                query = "delete from Oefening o where o.naam = :oefeningNaam")
 })
-public abstract class Oefening {
+public  class Oefening {
 
 
     @Id
     private String naam;
     private String opgave;
     private String feedback;
+    private String antwoord;
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Groepsbewerking> lijstGroepsbewerkingen;
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -68,7 +69,15 @@ public abstract class Oefening {
         this.lijstGroepsbewerkingen = lijstGroepsbewerkingen;
     }
 
-    public Oefening() {
+    public String getAntwoord() {
+        return antwoord;
+    }
+
+    public void setAntwoord(String antwoord) {
+        this.antwoord = antwoord;
+    }
+
+    protected Oefening() {
     }
 
 
@@ -79,9 +88,10 @@ public abstract class Oefening {
      * @param feedback
      * @param vak
      */
-    public Oefening(String naam, String opgave, String feedback, List<Groepsbewerking> groepsbewerkingen ,Vak vak) {
+    public Oefening(String naam, String opgave,String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen ,Vak vak) {
         setNaam(naam);
         setOpgave(opgave);
+        setAntwoord(antwoord);
         setFeedback(feedback);
         setLijstGroepsbewerkingen(groepsbewerkingen);
         setVak(vak);
@@ -92,10 +102,11 @@ public abstract class Oefening {
      * @param opgave
      * @param vak
      */
-    public Oefening(String naam, String opgave, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
+    public Oefening(String naam, String opgave, String antwoord, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
 
         setNaam(naam);
         setOpgave(opgave);
+        setAntwoord(antwoord);
         setLijstGroepsbewerkingen(groepsbewerkingen);
         setVak(vak);
     }

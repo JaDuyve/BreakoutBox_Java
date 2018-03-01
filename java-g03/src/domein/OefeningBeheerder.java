@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
+import persistentie.OefeningDao;
+import persistentie.OefeningDaoJpa;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,16 +15,16 @@ public class OefeningBeheerder {
 
     private Oefening oefening;
     private List<Oefening> oefeningList;
-    private GenericDao<Oefening> oefeningRepo;
+    private OefeningDao oefeningRepo;
     private GenericDao<Vak> vakRepo;
 
 
     public OefeningBeheerder() {
-        setOefeningRepo(new GenericDaoJpa<>(Oefening.class));
+        setOefeningRepo(new OefeningDaoJpa());
         setVakRepo(new GenericDaoJpa<>(Vak.class));
     }
 
-    public void setOefeningRepo(GenericDao<Oefening> mock) {
+    public void setOefeningRepo(OefeningDao mock) {
         oefeningRepo = mock;
     }
 
@@ -35,7 +37,7 @@ public class OefeningBeheerder {
      */
     public void verwijderOefening(String naam) {
 
-        oefeningRepo.delete(oefeningRepo.get(naam));//mss in 1 query
+        oefeningRepo.deleteOefeningByName(naam);
         oefeningList = oefeningRepo.findAll();
     }
 

@@ -1,17 +1,11 @@
 package startUp;
 
-import domein.NumerischeOefening;
 import domein.OefeningBeheerder;
-import domein.Vak;
 import gui.OefeningController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import util.JPAUtil;
-
-import javax.persistence.EntityManager;
 
 
 public class StartUp extends Application {
