@@ -5,7 +5,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class OefeningController extends HBox {
+public class OefeningSchermController extends HBox {
     private OefeningenOverzichtPaneelController overzichtPanel;
     private OefeningenDetailPaneelController detailPanelController;
 
@@ -14,7 +14,7 @@ public class OefeningController extends HBox {
 
     private OefeningBeheerder oefeningBeheerder;
 
-    public OefeningController(OefeningBeheerder oefeningBeheerder) {
+    public OefeningSchermController(OefeningBeheerder oefeningBeheerder) {
 
         this.oefeningBeheerder = oefeningBeheerder;
         overzichtPanel = new OefeningenOverzichtPaneelController(oefeningBeheerder);

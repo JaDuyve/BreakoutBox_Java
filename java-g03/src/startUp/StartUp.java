@@ -1,7 +1,7 @@
 package startUp;
 
 import domein.OefeningBeheerder;
-import gui.OefeningController;
+import gui.OefeningSchermController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -15,7 +15,7 @@ public class StartUp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        OefeningController oc = new OefeningController(new OefeningBeheerder());
+        OefeningSchermController oc = new OefeningSchermController(new OefeningBeheerder());
         Scene scene = new Scene(oc, 1280, 720);
 
         scene.setFill(Color.TRANSPARENT);
