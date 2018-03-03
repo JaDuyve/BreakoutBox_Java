@@ -104,7 +104,7 @@ public class OefeningBeheerder {
      * @param groepsbewerkingen
      * @param vak
      */
-    public void createOefening(String naam, String opgavePath, String antwoord, String feedback, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
+    public void createOefening(String naam, String opgavePath, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         oefeningList.add(new Oefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak));
     }
 
@@ -140,5 +140,7 @@ public class OefeningBeheerder {
         // TODO - implement OefeningBeheerder.geefOpgave
         throw new UnsupportedOperationException();
     }
+
+
 
 }
