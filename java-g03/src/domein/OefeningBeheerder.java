@@ -2,6 +2,8 @@ package domein;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 import persistentie.OefeningDao;
@@ -9,21 +11,24 @@ import persistentie.OefeningDaoJpa;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class OefeningBeheerder {
 
     private Oefening oefening;
-    private List<Oefening> oefeningList;
     private OefeningDao oefeningRepo;
     private GenericDao<Vak> vakRepo;
 
+    private FilteredList<Oefening> oefeningList;
 
-
+    private final Comparator<Oefening> byOefeningNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
 
     public OefeningBeheerder() {
         setOefeningRepo(new OefeningDaoJpa());
         setVakRepo(new GenericDaoJpa<>(Vak.class));
+
+
     }
 
     public OefeningBeheerder(OefeningDao mock){
@@ -44,7 +49,9 @@ public class OefeningBeheerder {
     public void verwijderOefening(String naam) {
 
         oefeningRepo.deleteOefeningByName(naam);
-        oefeningList = oefeningRepo.findAll();
+        oefeningList = null;
+        getOefeningList();
+
     }
 
     /**
@@ -73,7 +80,7 @@ public class OefeningBeheerder {
     }
 
     public ObservableList<Vak> geefVakken() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableList(vakRepo.findAll()));
+        return FXCollections.observableList(vakRepo.findAll());
     }
 
     public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
@@ -82,15 +89,12 @@ public class OefeningBeheerder {
     }
 
     public ObservableList<Oefening> geefOefeningen() {
-        ObservableList<Oefening> obsOef = FXCollections.observableList(getOefeningList());
-        return obsOef;
+        return new SortedList<>(getOefeningList(), byOefeningNaam);
     }
 
-    private List<Oefening> getOefeningList(){
+    private ObservableList<Oefening> getOefeningList(){
         if (oefeningList == null){
-            //oefeningList = oefeningRepo.findAll();
-            // TODO - findall uitwerken
-            oefeningList = new ArrayList<>();
+            oefeningList = new FilteredList<>(FXCollections.observableList(oefeningRepo.findAll()));
         }
 
         return oefeningList;
@@ -118,20 +122,36 @@ public class OefeningBeheerder {
     /**
      * @param oefeningNaam
      */
-    public void filterOpNaam(String oefeningNaam) {
-        // TODO - implement OefeningBeheerder.filterOpNaam
-        throw new UnsupportedOperationException();
+    public void changeFilter(String oefeningNaam, List<String> vakken) {
+        oefeningList.setPredicate(oefening -> {
 
+            boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
+            boolean vakkenLeeg = vakken == null || vakken.isEmpty();
 
+            if (oefeningNaamLeeg && vakkenLeeg){
+                return true;
+            }
+
+            String lowerCaseOefeningNaam = "";
+
+            if (!oefeningNaamLeeg){
+                lowerCaseOefeningNaam = oefeningNaam.toLowerCase();
+            }
+
+            boolean conditieOefeningNaam = oefeningNaamLeeg ? false: oefening.getNaam().toLowerCase().contains(lowerCaseOefeningNaam);
+            boolean conditieVakken = vakkenLeeg ? false: vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
+
+            if (oefeningNaamLeeg){
+                return conditieOefeningNaam;
+            }else if (vakkenLeeg){
+                return conditieVakken;
+            }
+
+            return conditieOefeningNaam && conditieVakken;
+        });
     }
 
-    /**
-     * @param vakNaam
-     */
-    public void filterOpVak(String vakNaam) {
-        // TODO - implement OefeningBeheerder.filterOpVak
-        throw new UnsupportedOperationException();
-    }
+
 
     /**
      * @param pathName
@@ -143,7 +163,8 @@ public class OefeningBeheerder {
 
     public Oefening kopieOefening(String naam)
     {
-        throw new UnsupportedOperationException();
+        // TODO - implement OefeningBeheerder.kopieOefening
+        throw new UnsupportedOperationException();//is dit nodig? Dient geefoefening hier niet voor, die voor kopieOefening en wijzigig oefening gebruikt word om de details op te halen.
     }
 
 

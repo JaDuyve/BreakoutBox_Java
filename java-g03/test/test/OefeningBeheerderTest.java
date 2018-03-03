@@ -45,7 +45,9 @@ public class OefeningBeheerderTest {
 
     @Test
     public void testOefeningVerwijderen(){
-        Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"))));
+        Oefening oef = new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"));
+
+        Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));
 
         List<Oefening> oefeningen = new ArrayList<>();
         oefeningen.add(new Oefening("oefening2","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red")));
@@ -55,16 +57,17 @@ public class OefeningBeheerderTest {
 
         oefeningBeheerder.verwijderOefening("oefening3");
 
-        Assert.assertFalse(oefeningBeheerder.geefOefeningen().contains(new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"))));
+        Assert.assertFalse(oefeningBeheerder.geefOefeningen().contains(oef));
     }
 
     @Test
     public void testOefeningVerwijderenOefeningBestaatNiet(){
-        Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"))));
+        Oefening oef = new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"));
+        Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));
 
         oefeningBeheerder.verwijderOefening("oefening3");
 
-        Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"))));
+        Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));
     }
 
     @Test

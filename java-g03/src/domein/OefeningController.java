@@ -3,9 +3,9 @@ package domein;
 import javafx.collections.ObservableList;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import javax.management.Notification;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class OefeningController
@@ -39,13 +39,10 @@ public class OefeningController
         return oefeningBeheerder.geefOefeningen();
     }
 
-    public void filterOpNaam(String oefeningNaam){
-        oefeningBeheerder.filterOpNaam(oefeningNaam);
+    public void changeFilter(String oefeningNaam, List<String> vakken){
+        oefeningBeheerder.changeFilter(oefeningNaam, vakken);
     }
 
-    public void filterOpVak(String vakNaam){
-        oefeningBeheerder.filterOpNaam(vakNaam);
-    }
 
     public File GeefFile(String pathName){
         throw new NotImplementedException();

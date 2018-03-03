@@ -1,15 +1,19 @@
 package test;
 
-import domein.*;
-import org.junit.Assert;
+import domein.Groepsbewerking;
+import domein.Oefening;
+import domein.OefeningBeheerder;
+import domein.Vak;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import persistentie.OefeningDao;
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class OefeningKopieToevoegenTest
 {
@@ -35,6 +39,7 @@ public class OefeningKopieToevoegenTest
         assertFalse(oefeningBeheerder.geefOefeningen().contains(oef));
         oefeningBeheerder.createOefening(oef.getNaam(), oef.getOpgave(), oef.getAntwoord(), oef.getFeedback() ,oef.getLijstGroepsbewerkingen(), oef.getVak());
         assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));
-        oefeningBeheerder.kopieOefening(oef.getNaam());
+        oefeningBeheerder.kopieOefening(oef.getNaam()); // TODO - Thibaut waarom is dit nodig? (De functie kopeiOefening)
+
     }
 }
