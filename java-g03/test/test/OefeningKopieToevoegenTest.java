@@ -35,5 +35,6 @@ public class OefeningKopieToevoegenTest
         assertFalse(oefeningBeheerder.geefOefeningen().contains(oef));
         oefeningBeheerder.createOefening(oef.getNaam(), oef.getOpgave(), oef.getAntwoord(), oef.getFeedback() ,oef.getLijstGroepsbewerkingen(), oef.getVak());
         assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));
+        oefeningBeheerder.kopieOefening(oef.getNaam());
     }
 }

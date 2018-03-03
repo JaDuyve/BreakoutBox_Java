@@ -141,6 +141,11 @@ public class OefeningBeheerder {
         throw new UnsupportedOperationException();
     }
 
+    public Oefening kopieOefening(String naam)
+    {
+        throw new UnsupportedOperationException();
+    }
+
 
 
 }
