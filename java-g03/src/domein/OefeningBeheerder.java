@@ -19,9 +19,15 @@ public class OefeningBeheerder {
     private GenericDao<Vak> vakRepo;
 
 
+
+
     public OefeningBeheerder() {
         setOefeningRepo(new OefeningDaoJpa());
         setVakRepo(new GenericDaoJpa<>(Vak.class));
+    }
+
+    public OefeningBeheerder(OefeningDao mock){
+        this.oefeningRepo = mock;
     }
 
     public void setOefeningRepo(OefeningDao mock) {
