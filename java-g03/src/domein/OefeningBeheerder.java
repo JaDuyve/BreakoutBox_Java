@@ -113,7 +113,13 @@ public class OefeningBeheerder {
      * @param vak
      */
     public void createOefening(String naam, String opgavePath, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        oefeningList.add(new Oefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak));
+        Oefening oef = new Oefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak);
+        oefeningList.add(oef);
+        if (oefeningRepo.exists(naam)){
+            throw new IllegalArgumentException("Oefening bestaat al");}
+        else {
+            oefeningRepo.insert(oef);
+        }
     }
 
     /**
