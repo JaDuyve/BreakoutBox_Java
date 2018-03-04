@@ -44,7 +44,7 @@ public class OefeningBeheerderTest {
     }
 
     @Test
-    public void testOefeningVerwijderen(){
+    public void testOefeningVerwijderen(){ // TODO - nog kijken hoe void functie verwijderOefening via mockito werkt.
         Oefening oef = new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"));
 
         Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));

@@ -43,6 +43,10 @@ public class OefeningBeheerder {
         vakRepo = mock;
     }
 
+    private Comparator<Oefening> getByOefeningNaam(){
+        return byOefeningNaam;
+    }
+
     /**
      * @param naam
      */
@@ -80,7 +84,7 @@ public class OefeningBeheerder {
     }
 
     public ObservableList<Vak> geefVakken() {
-        return FXCollections.observableList(vakRepo.findAll());
+        return FXCollections.unmodifiableObservableList(FXCollections.observableList(vakRepo.findAll()));
     }
 
     public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
@@ -89,12 +93,12 @@ public class OefeningBeheerder {
     }
 
     public ObservableList<Oefening> geefOefeningen() {
-        return new SortedList<>(getOefeningList(), byOefeningNaam);
+        return new SortedList<>(getOefeningList(), getByOefeningNaam());
     }
 
     private ObservableList<Oefening> getOefeningList(){
         if (oefeningList == null){
-            oefeningList = new FilteredList<>(FXCollections.observableList(oefeningRepo.findAll()));
+            oefeningList = new FilteredList<>(FXCollections.observableList(oefeningRepo.findAll()), e -> true);
         }
 
         return oefeningList;
@@ -142,9 +146,9 @@ public class OefeningBeheerder {
             boolean conditieVakken = vakkenLeeg ? false: vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
 
             if (oefeningNaamLeeg){
-                return conditieOefeningNaam;
-            }else if (vakkenLeeg){
                 return conditieVakken;
+            }else if (vakkenLeeg){
+                return conditieOefeningNaam;
             }
 
             return conditieOefeningNaam && conditieVakken;

@@ -16,7 +16,9 @@ public class Vak {
     }
 
     public void setNaam(String naam) {
-
+        if (naam == null || naam.isEmpty()){
+            throw new IllegalArgumentException("Naam vak mag niet leeg zijn.");
+        }
         this.naam = naam;
     }
 
@@ -25,6 +27,9 @@ public class Vak {
     }
 
     public void setKleur(String kleur) {
+        if (kleur == null || kleur.isEmpty()){
+            throw new IllegalArgumentException("Kleur vak mag niet leeg zijn.");
+        }
         this.kleur = kleur;
     }
 
