@@ -1,12 +1,21 @@
 package domein;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Toegangscode {
+    @Id
     private int id;
     private int code;
 
     public Toegangscode(int id, int code){
-        this.id = id;
-        this.code = code;
+        setId(id);
+        setCode(code);
+    }
+
+    protected Toegangscode(){
+
     }
 
     public int getId() {

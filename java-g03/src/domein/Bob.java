@@ -2,13 +2,22 @@ package domein;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Bob {
+
+    @Id
     private String naam;
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Oefening> lijstOefeningen;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Actie> lijstActies;
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Toegangscode> lijstToegangscode;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Vak vak;
 
     public Bob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak vak) {
@@ -17,6 +26,10 @@ public class Bob {
         setLijstActies(acties);
         setLijstToegangscode(toegangscodes);
         setVak(vak);
+    }
+
+    protected Bob(){
+
     }
 
     public String getNaam() {

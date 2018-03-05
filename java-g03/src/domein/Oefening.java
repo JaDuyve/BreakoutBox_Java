@@ -4,11 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "Oefening.deleteByName",
-                query =  "delete from Oefening o where o.naam = :oefeningNaam"),
-        @NamedQuery(name = "Oefening.getByName", query = "select o from Oefening o where o.naam = :oefeningNaam")
-})
+
 public class Oefening {
 
 

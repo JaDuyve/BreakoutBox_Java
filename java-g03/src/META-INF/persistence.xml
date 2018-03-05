@@ -6,6 +6,9 @@
         <class>domein.Oefening</class>
         <class>domein.Groepsbewerking</class>
         <class>domein.Vak</class>
+        <class>domein.Bob</class>
+        <class>domein.Actie</class>
+        <class>domein.Toegangscode</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://breakoutbox.database.windows.net:1433;database=BoB;encrypt=false;trustServerCertificate=false;hostNameInCertificate=breakoutbox.database.windows.net;loginTimeout=30;"/>
             <property name="javax.persistence.jdbc.user" value="java@breakoutbox"/>
