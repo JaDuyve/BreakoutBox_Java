@@ -31,7 +31,7 @@ public class OefeningBeheerder extends Observable {
 
     }
 
-    public OefeningBeheerder(OefeningDao mock){
+    public OefeningBeheerder(OefeningDao mock) {
         this.oefeningRepo = mock;
     }
 
@@ -39,7 +39,7 @@ public class OefeningBeheerder extends Observable {
         oefeningRepo = mock;
     }
 
-    public void setVakRepo(GenericDao<Vak> mock){
+    public void setVakRepo(GenericDao<Vak> mock) {
         vakRepo = mock;
     }
 
@@ -53,7 +53,7 @@ public class OefeningBeheerder extends Observable {
         notifyObservers(oefening);
     }
 
-    private Comparator<Oefening> getByOefeningNaam(){
+    private Comparator<Oefening> getByOefeningNaam() {
         return byOefeningNaam;
     }
 
@@ -95,13 +95,12 @@ public class OefeningBeheerder extends Observable {
     }
 
 
-
     public ObservableList<Oefening> geefOefeningen() {
         return new SortedList<>(getOefeningList(), getByOefeningNaam());
     }
 
-    private ObservableList<Oefening> getOefeningList(){
-        if (oefeningList == null){
+    private ObservableList<Oefening> getOefeningList() {
+        if (oefeningList == null) {
             oefeningList = new FilteredList<>(FXCollections.observableList(oefeningRepo.findAll()), e -> true);
         }
 
@@ -119,9 +118,9 @@ public class OefeningBeheerder extends Observable {
     public void createOefening(String naam, String opgavePath, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         Oefening oef = new Oefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak);
 
-        if (oefeningRepo.exists(oef.getNaam())){
-            throw new IllegalArgumentException("Oefening bestaat al");}
-        else {
+        if (oefeningRepo.exists(oef.getNaam())) {
+            throw new IllegalArgumentException("Oefening met naam: " + naam + " bestaat al");
+        } else {
             GenericDaoJpa.startTransaction();
             oefeningRepo.insert(oef);
             GenericDaoJpa.commitTransaction();
@@ -145,29 +144,28 @@ public class OefeningBeheerder extends Observable {
             boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
             boolean vakkenLeeg = vakken == null || vakken.isEmpty();
 
-            if (oefeningNaamLeeg && vakkenLeeg){
+            if (oefeningNaamLeeg && vakkenLeeg) {
                 return true;
             }
 
             String lowerCaseOefeningNaam = "";
 
-            if (!oefeningNaamLeeg){
+            if (!oefeningNaamLeeg) {
                 lowerCaseOefeningNaam = oefeningNaam.toLowerCase();
             }
 
-            boolean conditieOefeningNaam = oefeningNaamLeeg ? false: oefening.getNaam().toLowerCase().contains(lowerCaseOefeningNaam);
-            boolean conditieVakken = vakkenLeeg ? false: vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
+            boolean conditieOefeningNaam = oefeningNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowerCaseOefeningNaam);
+            boolean conditieVakken = vakkenLeeg ? false : vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
 
-            if (oefeningNaamLeeg){
+            if (oefeningNaamLeeg) {
                 return conditieVakken;
-            }else if (vakkenLeeg){
+            } else if (vakkenLeeg) {
                 return conditieOefeningNaam;
             }
 
             return conditieOefeningNaam && conditieVakken;
         });
     }
-
 
 
     /**

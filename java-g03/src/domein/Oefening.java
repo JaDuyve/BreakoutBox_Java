@@ -43,6 +43,9 @@ public class Oefening {
     }
 
     public void setVak(Vak vak) {
+        if (vak == null){
+            throw new IllegalArgumentException("Vak moet ingevuld zijn");
+        }
         this.vak = vak;
     }
 

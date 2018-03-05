@@ -1,8 +1,6 @@
 package startUp;
 
-import domein.OefeningBeheerder;
-import domein.OefeningController;
-import gui.OefeningSchermController;
+import gui.StartupMenuController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -16,8 +14,8 @@ public class StartUp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        OefeningSchermController oc = new OefeningSchermController(new OefeningController());
-        Scene scene = new Scene(oc);
+        StartupMenuController smc = new StartupMenuController();
+        Scene scene = new Scene(smc);
 
         scene.setFill(Color.TRANSPARENT);
         primaryStage.setTitle("BreakOutBox Controller");

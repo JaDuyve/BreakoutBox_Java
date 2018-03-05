@@ -104,6 +104,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
         right.getSelectionModel().selectFirst();
         vakDropDown.setItems(oefeningController.geefVakken());
         toLeft.setDisable(true);
+
     }
 
     @FXML
@@ -133,24 +134,30 @@ public class OefeningMakenPaneelController extends AnchorPane {
     @FXML
     void toLeft(ActionEvent event) {
         Groepsbewerking groep = right.getSelectionModel().getSelectedItem();
-        lijstLeft.add(groep);
-        lijstRight.remove(groep);
-        if (lijstRight.isEmpty())
-            toLeft.setDisable(true);
-        if (!lijstLeft.isEmpty())
-            toRight.setDisable(false);
+        if (groep != null){
+            lijstLeft.add(groep);
+            lijstRight.remove(groep);
+            if (lijstRight.isEmpty())
+                toLeft.setDisable(true);
+            if (!lijstLeft.isEmpty())
+                toRight.setDisable(false);
+        }
+
 
     }
 
     @FXML
     void toRight(ActionEvent event) {
         Groepsbewerking groep = left.getSelectionModel().getSelectedItem();
-        lijstRight.add(groep);
-        lijstLeft.remove(groep);
-        if (lijstLeft.isEmpty())
-            toRight.setDisable(true);
-        if (!lijstRight.isEmpty())
-            toLeft.setDisable(false);
+        if (groep != null){
+            lijstRight.add(groep);
+            lijstLeft.remove(groep);
+            if (lijstLeft.isEmpty())
+                toRight.setDisable(true);
+            if (!lijstRight.isEmpty())
+                toLeft.setDisable(false);
+        }
+
     }
 
     @FXML

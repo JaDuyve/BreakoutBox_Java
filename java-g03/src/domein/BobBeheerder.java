@@ -19,52 +19,52 @@ public class BobBeheerder {
 
     private final Comparator<Bob> byBobNaam = (b1, b2) -> b1.getNaam().compareToIgnoreCase(b2.getNaam());
 
-    public BobBeheerder(){
+    public BobBeheerder() {
         setBobRepo(new GenericDaoJpa<>(Bob.class));
     }
 
-    public void setBobRepo(GenericDao<Bob> mock){
+    public void setBobRepo(GenericDao<Bob> mock) {
         this.bobRepo = mock;
     }
 
-    public Bob geefBob(String naam){
+    public Bob geefBob(String naam) {
         throw new NotImplementedException();
     }
 
-    public ObservableList<Bob> geefBobs(){
+    public ObservableList<Bob> geefBobs() {
         return new SortedList<>(getBobList(), byBobNaam);
     }
 
-    private ObservableList<Bob> getBobList(){
-        if (bobs == null){
+    private ObservableList<Bob> getBobList() {
+        if (bobs == null) {
             bobs = new FilteredList<>(FXCollections.observableList(bobRepo.findAll()), e -> true);
         }
 
         return bobs;
     }
 
-    public void  changeFilter(String bobNaam, List<String> vakken){
+    public void changeFilter(String bobNaam, List<String> vakken) {
         bobs.setPredicate(oefening -> {
 
             boolean bobNaamLeeg = bobNaam == null || bobNaam.isEmpty();
             boolean vakkenLeeg = vakken == null || vakken.isEmpty();
 
-            if (bobNaamLeeg && vakkenLeeg){
+            if (bobNaamLeeg && vakkenLeeg) {
                 return true;
             }
 
             String lowercaseBobNaam = "";
 
-            if (!bobNaamLeeg){
+            if (!bobNaamLeeg) {
                 lowercaseBobNaam = bobNaam.toLowerCase();
             }
 
-            boolean conditieOefeningNaam = bobNaamLeeg ? false: oefening.getNaam().toLowerCase().contains(lowercaseBobNaam);
-            boolean conditieVakken = vakkenLeeg ? false: vakken.stream().anyMatch(t -> t.equals(bob.getVak().getNaam()));
+            boolean conditieOefeningNaam = bobNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowercaseBobNaam);
+            boolean conditieVakken = vakkenLeeg ? false : vakken.stream().anyMatch(t -> t.equals(bob.getVak().getNaam()));
 
-            if (bobNaamLeeg){
+            if (bobNaamLeeg) {
                 return conditieVakken;
-            }else if (vakkenLeeg){
+            } else if (vakkenLeeg) {
                 return conditieOefeningNaam;
             }
 
@@ -72,20 +72,26 @@ public class BobBeheerder {
         });
     }
 
-    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak bobVak){
+    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak bobVak) {
 
-        Bob bob = new Bob(naam, oefeningen,acties,toegangscodes,bobVak);
+        Bob bob = new Bob(naam, oefeningen, acties, toegangscodes, bobVak);
+
+        if (bobRepo.exists(bob.getNaam())){
+            throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
+        }else {
+            GenericDaoJpa.startTransaction();
+            bobRepo.insert(bob);
+            GenericDaoJpa.commitTransaction();
+        }
     }
 
-    public void verwijderBob(String naam){
+    public void verwijderBob(String naam) {
         throw new NotImplementedException();
     }
 
-    public void wijzigBob(String bobNaam, String naam, Vak vak){
+    public void wijzigBob(String bobNaam, String naam, Vak vak) {
         throw new NotImplementedException();
     }
-
-
 
 
 }
