@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXTextField;
 import domein.OefeningController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,7 @@ import java.util.List;
 public class OefeningenFilterPaneelController extends VBox {
 
     @FXML
-    private TextField txtFiltByNaam;
+    private JFXTextField txtFiltByNaam;
 
     @FXML
     private VBox vbVakken;
@@ -28,11 +29,11 @@ public class OefeningenFilterPaneelController extends VBox {
 
     private OefeningController oefeningController;
 
-    public OefeningenFilterPaneelController(OefeningController oefeningController) {
-        this.oefeningController = oefeningController;
+    public OefeningenFilterPaneelController(OefeningController dc) {
+        this.oefeningController = dc;
 
         FXMLLoader loader
-                = new FXMLLoader(getClass().getResource("OefeningFilterPaneel.fxml"));
+                = new FXMLLoader(getClass().getResource("OefeningenFilterPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
@@ -58,7 +59,6 @@ public class OefeningenFilterPaneelController extends VBox {
     }
 
     @FXML
-    void changeFilterName(KeyEvent event) {
-
+    void filtByName(KeyEvent event) {
     }
 }

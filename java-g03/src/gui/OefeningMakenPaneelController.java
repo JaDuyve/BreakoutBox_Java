@@ -1,6 +1,7 @@
 package gui;
 
 import domein.OefeningBeheerder;
+import domein.OefeningController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -20,10 +21,10 @@ public class OefeningMakenPaneelController extends AnchorPane {
     @FXML
     private TextField txfNaam;
 
-    private OefeningBeheerder oefeningBeheerder;
+    private OefeningController oefeningController;
 
-    public OefeningMakenPaneelController(OefeningBeheerder oefeningBeheerder) {
-        this.oefeningBeheerder = oefeningBeheerder;
+    public OefeningMakenPaneelController(OefeningController dc) {
+        this.oefeningController = dc;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("OefeningMakenPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);

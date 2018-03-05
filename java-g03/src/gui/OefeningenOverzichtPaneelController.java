@@ -3,6 +3,7 @@ package gui;
 import com.jfoenix.controls.JFXButton;
 import domein.Oefening;
 import domein.OefeningBeheerder;
+import domein.OefeningController;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
@@ -42,10 +43,10 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     @FXML
     private GridPane toolGrid;
 
-    private OefeningBeheerder oefeningBeheerder;
+    private OefeningController oefeningController;
 
-    public OefeningenOverzichtPaneelController(OefeningBeheerder oefeningBeheerder) {
-        this.oefeningBeheerder = oefeningBeheerder;
+    public OefeningenOverzichtPaneelController(OefeningController dc) {
+        this.oefeningController = dc;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("OefeningenOverzichtPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -58,13 +59,13 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     }
 
     private void build() {
-        oefTable.setItems(oefeningBeheerder.geefOefeningen());
+        oefTable.setItems(oefeningController.geefOefeningen());
 
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
 
 
-        for (int i = 0; i < oefeningBeheerder.geefOefeningen().size(); i++) {
+        for (int i = 0; i < oefeningController.geefOefeningen().size(); i++) {
             Button btnCopy =  new Button("Copy");
             Button btnEdit = new Button("Edit");
             Button btnDelete = new Button("Delete");
@@ -89,14 +90,14 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     @FXML
     void createOefening(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new OefeningMakenPaneelController(oefeningBeheerder));
+        s.setRoot(new OefeningMakenPaneelController(oefeningController));
     }
 
     private void maken(ActionEvent event)
     {
 
         Scene s = this.getScene();
-        s.setRoot(new OefeningMakenPaneelController(oefeningBeheerder));
+        s.setRoot(new OefeningMakenPaneelController(oefeningController));
     }
 
     private void createDialogBoxForInput() {
