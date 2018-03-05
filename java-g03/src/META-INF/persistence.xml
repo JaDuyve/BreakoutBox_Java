@@ -11,7 +11,7 @@
             <property name="javax.persistence.jdbc.user" value="java@breakoutbox"/>
             <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
             <property name="javax.persistence.jdbc.password" value="Pazaak2.0"/>
-            <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"></property>-->
+            <property name="javax.persistence.schema-generation.database.action" value="create"></property>
         </properties>
     </persistence-unit>
 </persistence>

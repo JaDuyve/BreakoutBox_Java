@@ -55,7 +55,7 @@ public class OefeningBeheerderTest {
 
         Mockito.when(oefeningDaoDummy.findAll()).thenReturn(oefeningen);
 
-        oefeningBeheerder.verwijderOefening("oefening3");
+        oefeningBeheerder.verwijderOefening(oef);
 
         Assert.assertFalse(oefeningBeheerder.geefOefeningen().contains(oef));
     }
@@ -65,7 +65,7 @@ public class OefeningBeheerderTest {
         Oefening oef = new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red"));
         Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));
 
-        oefeningBeheerder.verwijderOefening("oefening3");
+        oefeningBeheerder.verwijderOefening(oef);
 
         Assert.assertTrue(oefeningBeheerder.geefOefeningen().contains(oef));
     }

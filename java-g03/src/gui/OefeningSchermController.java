@@ -21,7 +21,7 @@ public class OefeningSchermController extends HBox {
         filterPaneelController = new OefeningenFilterPaneelController(oefeningController);
         oefeningMakenPaneelController = new OefeningMakenPaneelController(oefeningController);
 
-        getChildren().addAll(filterPaneelController, overzichtPanel);
+        getChildren().addAll(overzichtPanel, filterPaneelController);
 
         //dc.addObserver(detailPanelController);s
     }

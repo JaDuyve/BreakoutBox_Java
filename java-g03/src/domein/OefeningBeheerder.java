@@ -17,7 +17,7 @@ import java.util.List;
 public class OefeningBeheerder {
 
     private Oefening oefening;
-    private OefeningDao oefeningRepo;
+    private GenericDao<Oefening> oefeningRepo;
     private GenericDao<Vak> vakRepo;
 
     private FilteredList<Oefening> oefeningList;
@@ -49,9 +49,10 @@ public class OefeningBeheerder {
     /**
      * @param naam
      */
-    public void verwijderOefening(String naam) {
-
-        oefeningRepo.deleteOefeningByName(naam);
+    public void verwijderOefening(Oefening oef) {
+        GenericDaoJpa.startTransaction();
+        oefeningRepo.delete(oef);
+        GenericDaoJpa.commitTransaction();
         oefeningList = null;
         getOefeningList();
 

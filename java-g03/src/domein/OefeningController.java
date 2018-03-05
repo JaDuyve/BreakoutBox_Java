@@ -23,8 +23,8 @@ public class OefeningController
         groepsbewerkingRepo = new GenericDaoJpa<>(Groepsbewerking.class);
     }
 
-    public void verwijderOefening(String naam){
-        oefeningBeheerder.verwijderOefening(naam);
+    public void verwijderOefening(Oefening oef){
+        oefeningBeheerder.verwijderOefening(oef);
     }
 
     public void wijzigOefening(String oefeningNaam, String naam, String opgavePath, String antwoord, String feedbackPath, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak){

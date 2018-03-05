@@ -6,6 +6,7 @@ import domein.OefeningBeheerder;
 import domein.OefeningController;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -41,7 +44,14 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
     private TableColumn<Oefening, String> nameTable;
 
     @FXML
-    private GridPane toolGrid;
+    private JFXButton btnCopy;
+
+    @FXML
+    private JFXButton btnEdit;
+
+    @FXML
+    private JFXButton btnDelete;
+
 
     private OefeningController oefeningController;
 
@@ -63,29 +73,46 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
 
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
-
-
-        for (int i = 0; i < oefeningController.geefOefeningen().size(); i++) {
+        btnCopy = new JFXButton("Copy");
+        btnEdit = new JFXButton("Edit");
+        btnDelete = new JFXButton("Delete");
+        btnDelete.setOnAction(this::deleteOefening);
+        /*for (int i = 0; i < oefeningController.geefOefeningen().size(); i++) {
             Button btnCopy =  new Button("Copy");
             Button btnEdit = new Button("Edit");
             Button btnDelete = new Button("Delete");
-            toolGrid.add(btnCopy, 0, i + 1);
-            toolGrid.add(btnEdit, 1, i + 1);
-            toolGrid.add(btnDelete, 2, i + 1);
+            HBox toolBox = new HBox(3);
+            HBox.setHgrow(btnCopy, Priority.ALWAYS);
+            HBox.setHgrow(btnEdit, Priority.ALWAYS);
+            HBox.setHgrow(btnDelete, Priority.ALWAYS);
+            toolBox.getChildren().addAll(btnCopy, btnEdit, btnDelete);
             btnDelete.setOnAction(this::delete);
-        }
+        }*/
 
 
 
     }
 
-    private void delete(ActionEvent event)
-    {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "");
-        alert.setTitle("test");
+
+    @FXML
+    void deleteOefening(ActionEvent event) {
+
+        Alert alert = new Alert(AlertType.CONFIRMATION, "verwijder oefening");
+        alert.setTitle("Oefening verwijderen");
         alert.initOwner((Stage) this.getScene().getWindow());
-        alert.show();
+        Scene s = this.getScene();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get().equals(ButtonType.OK)) {
+            oefeningController.verwijderOefening(oefTable.getSelectionModel().getSelectedItem());
+            s.setRoot(new OefeningSchermController(oefeningController));
+
+        }else
+        {
+            s.setRoot(new OefeningSchermController(oefeningController));
+        }
     }
+
 
     @FXML
     void createOefening(ActionEvent event) {
