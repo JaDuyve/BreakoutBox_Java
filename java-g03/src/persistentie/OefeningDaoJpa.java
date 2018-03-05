@@ -18,6 +18,7 @@ public class OefeningDaoJpa extends GenericDaoJpa<Oefening> implements OefeningD
         em.createNamedQuery("Oefening.deleteByName", Oefening.class)
                 .setParameter("oefeningNaam", name);
 
+
     }
 
     @Override

@@ -1,6 +1,9 @@
 package domein;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import persistentie.GenericDao;
+import persistentie.GenericDaoJpa;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.File;
@@ -10,13 +13,18 @@ import java.util.List;
 
 public class OefeningController
 {
+    private GenericDao<Vak> vakRepo;
+    private GenericDao<Groepsbewerking> groepsbewerkingRepo;
+
     private OefeningBeheerder oefeningBeheerder = new OefeningBeheerder();
 
     public OefeningController() {
+        vakRepo = new GenericDaoJpa<>(Vak.class);
+        groepsbewerkingRepo = new GenericDaoJpa<>(Groepsbewerking.class);
     }
 
-    public void verwijderOefening(String naam){
-        oefeningBeheerder.verwijderOefening(naam);
+    public void verwijderOefening(Oefening oef){
+        oefeningBeheerder.verwijderOefening(oef);
     }
 
     public void wijzigOefening(String oefeningNaam, String naam, String opgavePath, String antwoord, String feedbackPath, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak){
@@ -24,11 +32,12 @@ public class OefeningController
     }
 
     public ObservableList<Vak> geefVakken(){
-        return oefeningBeheerder.geefVakken();
+        return FXCollections.unmodifiableObservableList(FXCollections.observableList(vakRepo.findAll()));
     }
 
     public ObservableList<Groepsbewerking> geefGroepsbewerkingen(){
-        return oefeningBeheerder.geefGroepsbewerkingen();
+        return FXCollections.unmodifiableObservableList(FXCollections.observableList(groepsbewerkingRepo.findAll()));
+
     }
 
     public void createOefening(String naam, String opgavePath,String antwoord, String feedback, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak){

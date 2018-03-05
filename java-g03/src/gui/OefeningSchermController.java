@@ -1,6 +1,7 @@
 package gui;
 
-import domein.OefeningBeheerder;
+
+import domein.OefeningController;
 import javafx.scene.layout.HBox;
 
 public class OefeningSchermController extends HBox {
@@ -10,18 +11,18 @@ public class OefeningSchermController extends HBox {
     private OefeningenFilterPaneelController filterPaneelController;
     private OefeningMakenPaneelController oefeningMakenPaneelController;
 
-    private OefeningBeheerder oefeningBeheerder;
+    private OefeningController oefeningController;
 
-    public OefeningSchermController(OefeningBeheerder oefeningBeheerder) {
+    public OefeningSchermController(OefeningController dc) {
 
-        this.oefeningBeheerder = oefeningBeheerder;
-        overzichtPanel = new OefeningenOverzichtPaneelController(oefeningBeheerder);
-        detailPanelController = new OefeningenDetailPaneelController(oefeningBeheerder);
-        filterPaneelController = new OefeningenFilterPaneelController(oefeningBeheerder);
-        oefeningMakenPaneelController = new OefeningMakenPaneelController(oefeningBeheerder);
+        this.oefeningController = dc;
+        overzichtPanel = new OefeningenOverzichtPaneelController(oefeningController);
+        detailPanelController = new OefeningenDetailPaneelController(oefeningController);
+        filterPaneelController = new OefeningenFilterPaneelController(oefeningController);
+        oefeningMakenPaneelController = new OefeningMakenPaneelController(oefeningController);
 
         getChildren().addAll(overzichtPanel, filterPaneelController);
 
-        //dc.addObserver(detailPanelController);
+        //dc.addObserver(detailPanelController);s
     }
 }

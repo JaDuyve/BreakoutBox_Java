@@ -7,12 +7,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="980.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="980.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="backbutton" layoutX="44.0" layoutY="43.0" mnemonicParsing="false" opacity="0.27" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-text-fill: #333; -fx-effect: none; -fx-font-weight: 100;" text="&lt; Back to BreakoutBoxes">
          <opaqueInsets>
@@ -20,37 +17,25 @@
          </opaqueInsets>
       </Button>
       <Label layoutX="388.0" layoutY="99.0" style="-fx-font-size: 48;" text="Exercises" />
-      <JFXButton fx:id="addExerciseButton" layoutX="22.0" layoutY="647.0" onAction="#createOefening" prefHeight="50.0" prefWidth="115.0" text="Add Exercise" />
+      <JFXButton fx:id="addExerciseButton" layoutX="798.0" layoutY="647.0" onAction="#createOefening" prefHeight="50.0" prefWidth="115.0" text="Add Exercise" />
       <HBox layoutX="1.0" layoutY="175.0">
          <children>
             <TableView fx:id="oefTable" nodeOrientation="LEFT_TO_RIGHT" prefHeight="440.0" prefWidth="650.0" style="-fx-background-color: #EFEFEF;">
               <columns>
-                <TableColumn fx:id="categorieTable" minWidth="50.0" prefWidth="150.0" style="-fx-background-color: #EFEFEF;" text="Categories" />
                 <TableColumn fx:id="nameTable" prefWidth="600.0" style="-fx-background-color: #EFEFEF;" text="Name" />
+                <TableColumn fx:id="categorieTable" minWidth="50.0" prefWidth="150.0" style="-fx-background-color: #EFEFEF;" text="Categories" />
               </columns>
                <padding>
                   <Insets left="20.0" right="20.0" />
                </padding>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
-            <GridPane fx:id="toolGrid" prefWidth="330.0" style="-fx-background-color: #EFEFEF;">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="401.0" minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label opacity="0.59" style="-fx-font-size: 12;" text="Tools" GridPane.columnSpan="3">
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
-                  </Label>
-               </children>
-            </GridPane>
          </children>
       </HBox>
+      <JFXButton fx:id="btnCopy" layoutX="107.0" layoutY="657.0" prefHeight="50.0" prefWidth="115.0" text="Copy" />
+      <JFXButton fx:id="btnEdit" layoutX="14.0" layoutY="657.0" prefHeight="50.0" prefWidth="115.0" text="Edit" />
+      <JFXButton fx:id="btnDelete" layoutX="222.0" layoutY="657.0" onAction="#deleteOefening" prefHeight="50.0" prefWidth="115.0" text="Delete" />
    </children>
 </fx:root>

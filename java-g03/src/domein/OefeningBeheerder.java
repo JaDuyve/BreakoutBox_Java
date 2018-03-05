@@ -17,7 +17,7 @@ import java.util.List;
 public class OefeningBeheerder {
 
     private Oefening oefening;
-    private OefeningDao oefeningRepo;
+    private GenericDao<Oefening> oefeningRepo;
     private GenericDao<Vak> vakRepo;
 
     private FilteredList<Oefening> oefeningList;
@@ -27,7 +27,6 @@ public class OefeningBeheerder {
     public OefeningBeheerder() {
         setOefeningRepo(new OefeningDaoJpa());
         setVakRepo(new GenericDaoJpa<>(Vak.class));
-
 
     }
 
@@ -50,9 +49,10 @@ public class OefeningBeheerder {
     /**
      * @param naam
      */
-    public void verwijderOefening(String naam) {
-
-        oefeningRepo.deleteOefeningByName(naam);
+    public void verwijderOefening(Oefening oef) {
+        GenericDaoJpa.startTransaction();
+        oefeningRepo.delete(oef);
+        GenericDaoJpa.commitTransaction();
         oefeningList = null;
         getOefeningList();
 
@@ -83,14 +83,7 @@ public class OefeningBeheerder {
         }
     }
 
-    public ObservableList<Vak> geefVakken() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableList(vakRepo.findAll()));
-    }
 
-    public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
-        // TODO - implement OefeningBeheerder.geefGroepsbewerkingen
-        throw new UnsupportedOperationException();
-    }
 
     public ObservableList<Oefening> geefOefeningen() {
         return new SortedList<>(getOefeningList(), getByOefeningNaam());
@@ -171,11 +164,7 @@ public class OefeningBeheerder {
         throw new UnsupportedOperationException();
     }
 
-    public Oefening kopieOefening(String naam)
-    {
-        // TODO - implement OefeningBeheerder.kopieOefening
-        throw new UnsupportedOperationException();//is dit nodig? Dient geefoefening hier niet voor, die voor kopieOefening en wijzigig oefening gebruikt word om de details op te halen.
-    }
+
 
 
 
