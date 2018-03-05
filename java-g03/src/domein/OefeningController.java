@@ -1,5 +1,6 @@
 package domein;
 
+import gui.OefeningenDetailPaneelController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GenericDao;
@@ -57,4 +58,10 @@ public class OefeningController
         throw new NotImplementedException();
     }
 
+    public void veranderHuidigeOefening(Oefening oefening) {
+        oefeningBeheerder.setOefening(oefening);
+    }
+    public void addObservertje(OefeningenDetailPaneelController detailPanelController) {
+        oefeningBeheerder.addObserver(detailPanelController);
+    }
 }

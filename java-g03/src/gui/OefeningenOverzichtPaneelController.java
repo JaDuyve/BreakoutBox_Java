@@ -8,12 +8,14 @@ import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -54,9 +56,13 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
 
 
     private OefeningController oefeningController;
+    private OefeningSchermController oefschcont;
+    private OefeningenDetailPaneelController detailscherm;
 
-    public OefeningenOverzichtPaneelController(OefeningController dc) {
+    public OefeningenOverzichtPaneelController(OefeningController dc, OefeningSchermController oefschcont, OefeningenDetailPaneelController detailscherm) {
         this.oefeningController = dc;
+        this.oefschcont = oefschcont;
+        this.detailscherm = detailscherm;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("OefeningenOverzichtPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -70,28 +76,38 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
 
     private void build() {
         oefTable.setItems(oefeningController.geefOefeningen());
-
-        categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
+        categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
         btnCopy = new JFXButton("Copy");
         btnEdit = new JFXButton("Edit");
         btnDelete = new JFXButton("Delete");
         btnDelete.setOnAction(this::deleteOefening);
-        /*for (int i = 0; i < oefeningController.geefOefeningen().size(); i++) {
-            Button btnCopy =  new Button("Copy");
-            Button btnEdit = new Button("Edit");
-            Button btnDelete = new Button("Delete");
-            HBox toolBox = new HBox(3);
-            HBox.setHgrow(btnCopy, Priority.ALWAYS);
-            HBox.setHgrow(btnEdit, Priority.ALWAYS);
-            HBox.setHgrow(btnDelete, Priority.ALWAYS);
-            toolBox.getChildren().addAll(btnCopy, btnEdit, btnDelete);
-            btnDelete.setOnAction(this::delete);
-        }*/
 
+        oefTable.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue, oldValue, newValue) -> {
+                    oefeningController.veranderHuidigeOefening(newValue);
+                });
+
+        // TODO - BUG VAN EEN NIEUW SCHERM TE SETTEN
+        if (oefschcont.getChildren().size() < 2) {
+            oefTable.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    oefschcont.getChildren().add(detailscherm);
+                    oefschcont.getScene().getWindow().sizeToScene();
+                }
+            });
+        }
+        oefTable.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                oefschcont.getChildren().set(2 , detailscherm);
+            }
+        });
 
 
     }
+
 
 
     @FXML

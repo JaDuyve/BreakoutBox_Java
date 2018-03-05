@@ -43,7 +43,7 @@ public class OefeningenDetailPaneelController extends AnchorPane implements Obse
         Oefening oefening =  (Oefening)arg;
 
         txfOpgave.setText(oefening.getOpgave());
-        txfAntwoord.setText("Dit moet nog geinstantieerd worden want het klopt nog niet");
+        txfAntwoord.setText(oefening.getAntwoord());
         tfxFeedback.setText(oefening.getFeedback());
     }
 }

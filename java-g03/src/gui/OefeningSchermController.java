@@ -16,13 +16,14 @@ public class OefeningSchermController extends HBox {
     public OefeningSchermController(OefeningController dc) {
 
         this.oefeningController = dc;
-        overzichtPanel = new OefeningenOverzichtPaneelController(oefeningController);
+
         detailPanelController = new OefeningenDetailPaneelController(oefeningController);
+        overzichtPanel = new OefeningenOverzichtPaneelController(oefeningController, this, detailPanelController);
         filterPaneelController = new OefeningenFilterPaneelController(oefeningController);
         oefeningMakenPaneelController = new OefeningMakenPaneelController(oefeningController);
 
-        getChildren().addAll(overzichtPanel, filterPaneelController);
+        getChildren().addAll(filterPaneelController, overzichtPanel);
 
-        //dc.addObserver(detailPanelController);s
+        oefeningController.addObservertje(detailPanelController);
     }
 }

@@ -17,11 +17,12 @@ public class StartUp extends Application {
     @Override
     public void start(Stage primaryStage) {
         OefeningSchermController oc = new OefeningSchermController(new OefeningController());
-        Scene scene = new Scene(oc, 1280, 720);
+        Scene scene = new Scene(oc);
 
         scene.setFill(Color.TRANSPARENT);
         primaryStage.setTitle("BreakOutBox Controller");
         primaryStage.setScene(scene);
+        primaryStage.sizeToScene();
         primaryStage.show();
 
     }

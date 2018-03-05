@@ -1,5 +1,6 @@
 package domein;
 
+import gui.OefeningenDetailPaneelController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -13,8 +14,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Observable;
 
-public class OefeningBeheerder {
+public class OefeningBeheerder extends Observable {
 
     private Oefening oefening;
     private GenericDao<Oefening> oefeningRepo;
@@ -42,12 +44,22 @@ public class OefeningBeheerder {
         vakRepo = mock;
     }
 
+    public Oefening getOefening() {
+        return oefening;
+    }
+
+    public void setOefening(Oefening oefening) {
+        this.oefening = oefening;
+        setChanged();
+        notifyObservers(oefening);
+    }
+
     private Comparator<Oefening> getByOefeningNaam(){
         return byOefeningNaam;
     }
 
     /**
-     * @param naam
+     * @param oef
      */
     public void verwijderOefening(Oefening oef) {
         GenericDaoJpa.startTransaction();
@@ -163,9 +175,6 @@ public class OefeningBeheerder {
         // TODO - implement OefeningBeheerder.geefOpgave
         throw new UnsupportedOperationException();
     }
-
-
-
 
 
 }
