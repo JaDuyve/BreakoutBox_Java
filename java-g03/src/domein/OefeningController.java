@@ -37,7 +37,7 @@ public class OefeningController
     }
 
     public ObservableList<Groepsbewerking> geefGroepsbewerkingen(){
-        return FXCollections.unmodifiableObservableList(FXCollections.observableList(groepsbewerkingRepo.findAll()));
+        return FXCollections.observableList(groepsbewerkingRepo.findAll());
 
     }
 

@@ -54,4 +54,9 @@ public class Vak {
 
         return Objects.hash(getNaam());
     }
+
+    @Override
+    public String toString() {
+        return this.naam;
+    }
 }
