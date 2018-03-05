@@ -14,6 +14,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -59,14 +62,28 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
 
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
+
+
         for (int i = 0; i < oefeningBeheerder.geefOefeningen().size(); i++) {
-            Button copy = new Button("Copy");
-            Button edit = new Button("Edit");
-            Button delete = new Button("Delete");
-            toolGrid.add(copy, 0, i + 1);
-            toolGrid.add(edit, 1, i + 1);
-            toolGrid.add(delete, 2, i + 1);
+            Button btnCopy =  new Button("Copy");
+            Button btnEdit = new Button("Edit");
+            Button btnDelete = new Button("Delete");
+            toolGrid.add(btnCopy, 0, i + 1);
+            toolGrid.add(btnEdit, 1, i + 1);
+            toolGrid.add(btnDelete, 2, i + 1);
+            btnDelete.setOnAction(this::delete);
         }
+
+
+
+    }
+
+    private void delete(ActionEvent event)
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "");
+        alert.setTitle("test");
+        alert.initOwner((Stage) this.getScene().getWindow());
+        alert.show();
     }
 
     @FXML

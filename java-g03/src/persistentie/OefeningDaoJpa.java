@@ -20,8 +20,4 @@ public class OefeningDaoJpa extends GenericDaoJpa<Oefening> implements OefeningD
 
     }
 
-    @Override
-    public Oefening getOefeningByName(String name) {
-      return  em.createNamedQuery("Oefening.getByName", Oefening.class).setParameter("oefeningNaam", name).getSingleResult();
-    }
 }
