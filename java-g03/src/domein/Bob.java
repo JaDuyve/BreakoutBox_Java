@@ -11,8 +11,11 @@ public class Bob {
     private List<Toegangscode> lijstToegangscode;
     private Vak vak;
 
-    public Bob(String naam, Vak vak) {
+    public Bob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak vak) {
         setNaam(naam);
+        setLijstOefeningen(oefeningen);
+        setLijstActies(acties);
+        setLijstToegangscode(toegangscodes);
         setVak(vak);
     }
 
@@ -60,6 +63,7 @@ public class Bob {
         this.vak = vak;
     }
 
+    //mss weg doen??????
     public void voegToegangsCodeToe(Toegangscode code){
         throw new NotImplementedException();
     }

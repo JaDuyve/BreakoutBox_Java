@@ -29,8 +29,8 @@ public class BobController {
         bobBeheerder.changeFilter(bobNaam, vakken);
     }
 
-    public void CreateBob(String naam, Vak bobVak){
-        bobBeheerder.createBob(naam, bobVak);
+    public void CreateBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak bobVak){
+        bobBeheerder.createBob(naam, oefeningen,acties,toegangscodes,bobVak);
     }
 
     public ObservableList<Toegangscode> geefToegangsCodes(){

@@ -72,9 +72,9 @@ public class BobBeheerder {
         });
     }
 
-    public void createBob(String naam, Vak bobVak){
+    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak bobVak){
 
-        throw new NotImplementedException();
+        Bob bob = new Bob(naam, oefeningen,acties,toegangscodes,bobVak);
     }
 
     public void verwijderBob(String naam){
