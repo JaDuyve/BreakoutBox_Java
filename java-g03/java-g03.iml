@@ -69,21 +69,59 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 1/ontwerpen 2/Mockito/mockito-all-1.10.19.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 1/ontwerpen 2/Mockito/mockito-all-1.10.19.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 1/ontwerpen 2/Mockito/mockito-all-1.10.19.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 1/ontwerpen 2/Mockito/mockito-all-1.10.19.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../school/2017-2018/semester 2/Projecten-workshops_II__Programmeren_/Java/eclipselink.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jfoenix-8.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/eclipselink.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/javax.persistence.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mockito-all-1.10.19.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib/mockito-all-1.10.19.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>

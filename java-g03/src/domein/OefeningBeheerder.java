@@ -28,7 +28,6 @@ public class OefeningBeheerder {
         setOefeningRepo(new OefeningDaoJpa());
         setVakRepo(new GenericDaoJpa<>(Vak.class));
 
-
     }
 
     public OefeningBeheerder(OefeningDao mock){
@@ -83,14 +82,7 @@ public class OefeningBeheerder {
         }
     }
 
-    public ObservableList<Vak> geefVakken() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableList(vakRepo.findAll()));
-    }
 
-    public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
-        // TODO - implement OefeningBeheerder.geefGroepsbewerkingen
-        throw new UnsupportedOperationException();
-    }
 
     public ObservableList<Oefening> geefOefeningen() {
         return new SortedList<>(getOefeningList(), getByOefeningNaam());
@@ -171,11 +163,7 @@ public class OefeningBeheerder {
         throw new UnsupportedOperationException();
     }
 
-    public Oefening kopieOefening(String naam)
-    {
-        // TODO - implement OefeningBeheerder.kopieOefening
-        throw new UnsupportedOperationException();//is dit nodig? Dient geefoefening hier niet voor, die voor kopieOefening en wijzigig oefening gebruikt word om de details op te halen.
-    }
+
 
 
 

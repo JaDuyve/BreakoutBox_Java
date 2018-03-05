@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="300.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Filter">
@@ -13,6 +12,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField />
+      <TextField fx:id="txtFilterByName" onKeyReleased="#changeFilterName" />
+      <VBox fx:id="vboxVakken" />
    </children>
 </VBox>
