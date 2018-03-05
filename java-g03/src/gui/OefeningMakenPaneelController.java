@@ -19,7 +19,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class OefeningMakenPaneelController extends AnchorPane {
 
@@ -96,7 +96,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
 
     private void buildGui(){
         lijstLeft = oefeningController.geefGroepsbewerkingen();
-        lijstRight = FXCollections.observableList(new ArrayList<>());
+        lijstRight = FXCollections.observableArrayList();
         left.setItems(lijstLeft);
         left.getSelectionModel().selectFirst();
         right.setItems(lijstRight);
@@ -154,7 +154,12 @@ public class OefeningMakenPaneelController extends AnchorPane {
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
+        String naam = txfNaam.getText();
+        String antwoord = txtAntwoord.getText();
+        List<Groepsbewerking> list = new ArrayList<>();
+        lijstRight.stream().forEach(g -> list.add(g));
+        Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-        oefeningController.createOefening(txfNaam.toString(), opgavePath, txtAntwoord.toString(), feedbackPath, lijstRight.stream().collect(Collectors.toList()), vakDropDown.getSelectionModel().getSelectedItem() );
+        oefeningController.createOefening(naam, "opgave", antwoord, "feedback", list, vak );
     }
 }

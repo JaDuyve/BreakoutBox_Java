@@ -67,6 +67,9 @@ public class Oefening {
     }
 
     public void setLijstGroepsbewerkingen(List<Groepsbewerking> lijstGroepsbewerkingen) {
+        if (lijstGroepsbewerkingen == null || lijstGroepsbewerkingen.isEmpty()){
+            throw new IllegalArgumentException("Er werden geen Groepsbewerkingen toegevoegd");
+        }
         this.lijstGroepsbewerkingen = lijstGroepsbewerkingen;
     }
 

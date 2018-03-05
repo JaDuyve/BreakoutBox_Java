@@ -12,7 +12,51 @@ public class Bob {
     private Vak vak;
 
     public Bob(String naam, Vak vak) {
+        setNaam(naam);
+        setVak(vak);
+    }
+
+    public String getNaam() {
+
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        if (naam == null || naam.isEmpty()){
+            throw new IllegalArgumentException("Naam Breakout Box mag niet leeg zijn");
+        }
         this.naam = naam;
+    }
+
+    public List<Oefening> getLijstOefeningen() {
+        return lijstOefeningen;
+    }
+
+    public void setLijstOefeningen(List<Oefening> lijstOefeningen) {
+        this.lijstOefeningen = lijstOefeningen;
+    }
+
+    public List<Actie> getLijstActies() {
+        return lijstActies;
+    }
+
+    public void setLijstActies(List<Actie> lijstActies) {
+        this.lijstActies = lijstActies;
+    }
+
+    public List<Toegangscode> getLijstToegangscode() {
+        return lijstToegangscode;
+    }
+
+    public void setLijstToegangscode(List<Toegangscode> lijstToegangscode) {
+        this.lijstToegangscode = lijstToegangscode;
+    }
+
+    public Vak getVak() {
+        return vak;
+    }
+
+    public void setVak(Vak vak) {
         this.vak = vak;
     }
 

@@ -33,11 +33,11 @@ public class OefeningController
     }
 
     public ObservableList<Vak> geefVakken(){
-        return FXCollections.unmodifiableObservableList(FXCollections.observableList(vakRepo.findAll()));
+        return FXCollections.observableList(vakRepo.findAll());
     }
 
     public ObservableList<Groepsbewerking> geefGroepsbewerkingen(){
-        return FXCollections.observableList(groepsbewerkingRepo.findAll());
+        return FXCollections.observableArrayList(groepsbewerkingRepo.findAll());
 
     }
 
