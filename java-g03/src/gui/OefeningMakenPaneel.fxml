@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <fx:root prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: transparent;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -12,7 +13,15 @@
          <children>
             <Label fx:id="lblTitel" text="OEFENING MAKEN" />
             <Label fx:id="lblNaam" text="Naam" />
-            <TextField fx:id="txfNaam" text="Naam" />
+            <TextField fx:id="txfNaam" text="Naam">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin></TextField>
+            <Label fx:id="lblOpgave" text="Opgave">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Label>
+            <Button fx:id="opgaveButton" mnemonicParsing="false" onAction="#opgaveFileChooser" text="Kies PDF" />
          </children>
       </VBox>
    </children>

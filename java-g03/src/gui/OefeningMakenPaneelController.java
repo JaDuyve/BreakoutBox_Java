@@ -4,10 +4,12 @@ import domein.OefeningBeheerder;
 import domein.OefeningController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class OefeningMakenPaneelController extends AnchorPane {
@@ -21,6 +23,9 @@ public class OefeningMakenPaneelController extends AnchorPane {
     @FXML
     private TextField txfNaam;
 
+    @FXML
+    private Button opgaveButton;
+
     private OefeningController oefeningController;
 
     public OefeningMakenPaneelController(OefeningController dc) {
@@ -33,5 +38,10 @@ public class OefeningMakenPaneelController extends AnchorPane {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    @FXML
+    void opgaveFileChooser(ActionEvent event) {
+
     }
 }
