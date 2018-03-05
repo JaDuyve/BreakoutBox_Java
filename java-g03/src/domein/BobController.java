@@ -3,7 +3,7 @@ package domein;
 import javafx.collections.ObservableList;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.NotActiveException;
+import java.util.List;
 
 public class BobController {
 
@@ -25,8 +25,8 @@ public class BobController {
         throw new NotImplementedException();
     }
 
-    public Bob filterOpNaam(String bobNaam){
-        return bobBeheerder.filterOpNaam(bobNaam);
+    public void changeFilter(String bobNaam, List<String> vakken){
+        bobBeheerder.changeFilter(bobNaam, vakken);
     }
 
     public void CreateBob(String naam, Vak bobVak){
