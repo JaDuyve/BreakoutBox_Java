@@ -119,11 +119,16 @@ public class OefeningBeheerder extends Observable {
      */
     public void createOefening(String naam, String opgavePath, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         Oefening oef = new Oefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak);
-        oefeningList.add(oef);
-        if (oefeningRepo.exists(naam)){
+
+        if (oefeningRepo.exists(oef.getNaam())){
             throw new IllegalArgumentException("Oefening bestaat al");}
         else {
+            GenericDaoJpa.startTransaction();
             oefeningRepo.insert(oef);
+            GenericDaoJpa.commitTransaction();
+
+            //oefeningList.add(oef);
+
         }
     }
 
