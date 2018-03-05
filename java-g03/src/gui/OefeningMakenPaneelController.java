@@ -2,7 +2,6 @@ package gui;
 
 import com.jfoenix.controls.JFXComboBox;
 import domein.Groepsbewerking;
-import domein.OefeningBeheerder;
 import domein.OefeningController;
 import domein.Vak;
 import javafx.collections.FXCollections;
@@ -10,12 +9,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
-
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
 
     private void buildGui(){
         lijstLeft = oefeningController.geefGroepsbewerkingen();
-        lijstRight = FXCollections.observableArrayList();
+        lijstRight = FXCollections.observableList(new ArrayList<>());
         left.setItems(lijstLeft);
         left.getSelectionModel().selectFirst();
         right.setItems(lijstRight);
@@ -154,6 +154,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
-        oefeningController.createOefening(txfNaam.toString(), opgavePath, txtAntwoord.toString(), feedbackPath, lijstRight, vakDropDown.getSelectionModel().getSelectedItem() );
+
+        oefeningController.createOefening(txfNaam.toString(), opgavePath, txtAntwoord.toString(), feedbackPath, lijstRight.stream().collect(Collectors.toList()), vakDropDown.getSelectionModel().getSelectedItem() );
     }
 }

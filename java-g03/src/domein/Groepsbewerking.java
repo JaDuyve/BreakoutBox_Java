@@ -9,6 +9,7 @@ public class Groepsbewerking {
 	@Id
 	private String naam;
 	private String opgave;
+	private String waarde;
 
 	@Enumerated(EnumType.STRING)
 	private Bewerking bewerking;
@@ -21,9 +22,11 @@ public class Groepsbewerking {
 	 * @param naam
 	 * @param opgave
 	 */
-	public Groepsbewerking(String naam, String opgave) {
+	public Groepsbewerking(String naam, String opgave, String waarde, Bewerking bewerking) {
 		setNaam(naam);
 		setOpgave(opgave);
+		setWaarde(waarde);
+		setBewerking(bewerking);
 	}
 
 	public String getNaam() {
@@ -43,6 +46,22 @@ public class Groepsbewerking {
 
 	public void setOpgave(String opgave) {
 		this.opgave = opgave;
+	}
+
+	public String getWaarde() {
+		return waarde;
+	}
+
+	public void setWaarde(String waarde) {
+		this.waarde = waarde;
+	}
+
+	public Bewerking getBewerking() {
+		return bewerking;
+	}
+
+	public void setBewerking(Bewerking bewerking) {
+		this.bewerking = bewerking;
 	}
 
 	@Override

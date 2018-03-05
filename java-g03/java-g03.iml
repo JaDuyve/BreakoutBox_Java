@@ -49,63 +49,18 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../eclipselink.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../javax.persistence.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../jfoenix-8.0.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../sqljdbc4-2.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/Program Files/Java/jdk1.8.0_151/db/lib/derbyclient.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../OO Ontwerpen II/MOCKITO/mockito-all-1.10.19.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/mockito-all-1.10.19.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../OO Ontwerpen II/MOCKITO/mockito-all-1.10.19.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/mockito-all-1.10.19.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/Chrome/javax.persistence.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jfoenix-8.0.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -114,7 +69,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/Chrome/jfoenix-8.0.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/javax.persistence.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -123,18 +78,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/Chrome/mockito-all-1.10.19 (1).jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://D:/Chrome/mockito-all-1.10.19 (1).jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://D:/Chrome/sqljdbc4-2.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/eclipselink.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -143,7 +87,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/Chrome/eclipselink.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/sqljdbc4-2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

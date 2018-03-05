@@ -41,7 +41,7 @@ public class OefeningController
 
     }
 
-    public void createOefening(String naam, String opgavePath,String antwoord, String feedback, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak){
+    public void createOefening(String naam, String opgavePath,String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak){
         oefeningBeheerder.createOefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak);
     }
 
