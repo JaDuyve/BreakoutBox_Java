@@ -47,7 +47,7 @@ public class OefeningBeheerder {
     }
 
     /**
-     * @param naam
+     * @param oef
      */
     public void verwijderOefening(Oefening oef) {
         GenericDaoJpa.startTransaction();
