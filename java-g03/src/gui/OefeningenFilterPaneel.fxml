@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root prefWidth="300.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefWidth="300.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-        <Label prefHeight="23.0" prefWidth="73.0" style="-fx-font-size: 17;" text="FILTER" />
+        <Label prefHeight="23.0" prefWidth="73.0" style="-fx-font-size: 17;" text="FILTER">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin></Label>
         <JFXTextField fx:id="txtFiltByName" alignment="TOP_LEFT" onKeyReleased="#filtByName" prefHeight="26.0" prefWidth="278.0" promptText="Search by name" style="-fx-background-color: white; -fx-padding: 10; -fx-border-radius: 3; -fx-background-radius: 3;">
             <effect>
                 <DropShadow blurType="GAUSSIAN" color="#00000033" height="10.0" offsetX="2.0" offsetY="4.0" radius="5.75" width="15.0" />
             </effect>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
         </JFXTextField>
-      <VBox />
+      <VBox fx:id="vbVakken">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </VBox.margin></VBox>
    </children>
 </fx:root>
