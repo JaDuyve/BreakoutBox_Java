@@ -28,7 +28,7 @@ public class OefeningBeheerderTest {
 
 
     @Before
-    public void Before(){
+    public void before(){
         oefeningDaoDummy = Mockito.mock(OefeningDaoJpa.class);
 
         List<Oefening> oefeningen = new ArrayList<>();
