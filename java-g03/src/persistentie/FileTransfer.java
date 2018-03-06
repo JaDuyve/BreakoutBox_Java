@@ -94,6 +94,21 @@ public class FileTransfer {
         }
     }
 
+    public void deleteFile(String destinationFile) throws IllegalArgumentException{
+        if (c == null || session == null || !session.isConnected() || !c.isConnected()) {
+            throw new IllegalArgumentException("Connection to server is closed. Open it first.");
+        }
+
+        try {
+            System.out.println("Delete file server");
+            c.rm("uploads/" + destinationFile);
+            System.out.println("Delete successfull.");
+        }catch(SftpException e){
+            throw new IllegalArgumentException(e.getMessage());
+
+        }
+    }
+
     public void disconnect() {
         if (c != null) {
             System.out.println("Disconnecting sftp channel");

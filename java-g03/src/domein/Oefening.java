@@ -107,23 +107,10 @@ public class Oefening {
      */
     public Oefening(String naam, String opgave, String antwoord, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
 
-        setNaam(naam);
-        setOpgave(opgave);
-        setAntwoord(antwoord);
-        setLijstGroepsbewerkingen(groepsbewerkingen);
-        setVak(vak);
+        this(naam, opgave, antwoord, null, groepsbewerkingen, vak);
     }
 
-    public void addGroepsbewerking(Groepsbewerking groepsbewerking){
-        lijstGroepsbewerkingen.add(groepsbewerking);
-        // TODO - update database
-    }
 
-    public void removeGroepsbewerking(Groepsbewerking groepsbewerking){
-        lijstGroepsbewerkingen.remove(groepsbewerking);
-        // TODO - update database
-
-    }
 
     @Override
     public boolean equals(Object o) {
