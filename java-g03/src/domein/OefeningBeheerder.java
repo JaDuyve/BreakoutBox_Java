@@ -184,8 +184,10 @@ public class OefeningBeheerder extends Observable {
      * @param fileName
      */
     public File geefPdf(String fileName) {
-        // TODO  - retrieve file
-        throw new UnsupportedOperationException();
+        fileTransfer.connect();
+        File file = fileTransfer.retrieveFile(fileName, fileName);
+        fileTransfer.disconnect();
+        return file;
     }
 
 

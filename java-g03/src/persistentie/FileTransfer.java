@@ -2,6 +2,7 @@ package persistentie;
 
 import com.jcraft.jsch.*;
 
+import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
@@ -80,18 +81,22 @@ public class FileTransfer {
      * @param sourceFile String path on the local fileSystem
      * @throws IllegalArgumentException if connection and channel are not available or if an error occurs during download.
      */
-    public void retrieveFile(String sourceFile, String destinationFile) throws IllegalArgumentException {
+    public File retrieveFile(String sourceFile, String destinationFile) throws IllegalArgumentException {
         if (c == null || session == null || !session.isConnected() || !c.isConnected()) {
             throw new IllegalArgumentException("Connection to server is closed. Open it first.");
         }
+        File file;
 
         try {
             System.out.println("Downloading file to server");
             c.get(sourceFile, "uploads/" + destinationFile);
             System.out.println("Download successfull.");
+            file = new File(getClass().getResource("/" + sourceFile).getFile());
         } catch (SftpException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
+
+        return file;
     }
 
     public void deleteFile(String destinationFile) throws IllegalArgumentException{
@@ -103,7 +108,6 @@ public class FileTransfer {
             System.out.println("Delete file server");
             c.rm("uploads/" + destinationFile);
             System.out.println("Delete successfull.");
-
         }catch(SftpException e){
             throw new IllegalArgumentException(e.getMessage());
 

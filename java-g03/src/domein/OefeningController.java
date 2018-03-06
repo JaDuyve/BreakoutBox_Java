@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class OefeningController
 
 
     public File GeefFile(String pathName){
-        throw new NotImplementedException();
+        return oefeningBeheerder.geefPdf(pathName);
     }
 
     public void veranderHuidigeOefening(Oefening oefening) {
