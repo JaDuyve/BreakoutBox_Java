@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import domein.Groepsbewerking;
 import domein.OefeningController;
@@ -38,7 +39,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private Label lblOpgave;
 
     @FXML
-    private Button opgaveButton;
+    private JFXButton btnOpgaveButton;
 
     @FXML
     private Label lblAntwoord;
@@ -50,7 +51,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private Label lblFeedback;
 
     @FXML
-    private Button feedbackButton;
+    private JFXButton btnFeedbackButton;
 
     @FXML
     private Label lblGroepsbewerkingen;
@@ -59,10 +60,10 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private ListView<Groepsbewerking> left;
 
     @FXML
-    private Button toRight;
+    private JFXButton toRight;
 
     @FXML
-    private Button toLeft;
+    private JFXButton toLeft;
 
     @FXML
     private ListView<Groepsbewerking> right;
@@ -74,7 +75,10 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private JFXComboBox<Vak> vakDropDown;
 
     @FXML
-    private Button voegOefeningToe;
+    private JFXButton btnVoegOefeningToe;
+
+    @FXML
+    private JFXButton btnCancel;
 
     private ObservableList<Groepsbewerking> lijstLeft;
     private ObservableList<Groepsbewerking> lijstRight;
@@ -166,6 +170,12 @@ public class OefeningMakenPaneelController extends AnchorPane {
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
         oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
+        Scene s = this.getScene();
+        s.setRoot(new OefeningSchermController(oefeningController));
+    }
+
+    @FXML
+    void canel(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }

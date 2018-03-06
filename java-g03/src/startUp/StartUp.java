@@ -1,5 +1,6 @@
 package startUp;
 
+import domein.OefeningController;
 import gui.StartupMenuController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,7 +15,7 @@ public class StartUp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        StartupMenuController smc = new StartupMenuController();
+        StartupMenuController smc = new StartupMenuController(new OefeningController());
         Scene scene = new Scene(smc);
 
         scene.setFill(Color.TRANSPARENT);

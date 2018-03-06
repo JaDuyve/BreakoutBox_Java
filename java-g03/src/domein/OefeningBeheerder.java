@@ -127,6 +127,8 @@ public class OefeningBeheerder extends Observable {
             fileTransfer.uploadFile(opgaveFile.getPath(), opgaveFile.getName());
             fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
             fileTransfer.disconnect();
+            oefeningList = null;
+            getOefeningList();
         }
     }
 
