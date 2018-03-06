@@ -206,5 +206,12 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
 
         Optional<Oefening> result = dialog.showAndWait();
     }
+
+
+    @FXML
+    void backButton(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(new StartupMenuController(oefeningController));
+    }
 }
 

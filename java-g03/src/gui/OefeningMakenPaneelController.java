@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import domein.Groepsbewerking;
 import domein.OefeningController;
@@ -38,7 +39,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private Label lblOpgave;
 
     @FXML
-    private Button opgaveButton;
+    private JFXButton btnOpgaveButton;
 
     @FXML
     private Label lblAntwoord;
@@ -50,7 +51,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private Label lblFeedback;
 
     @FXML
-    private Button feedbackButton;
+    private JFXButton btnFeedbackButton;
 
     @FXML
     private Label lblGroepsbewerkingen;
@@ -59,10 +60,10 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private ListView<Groepsbewerking> left;
 
     @FXML
-    private Button toRight;
+    private JFXButton toRight;
 
     @FXML
-    private Button toLeft;
+    private JFXButton toLeft;
 
     @FXML
     private ListView<Groepsbewerking> right;
@@ -74,13 +75,16 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private JFXComboBox<Vak> vakDropDown;
 
     @FXML
-    private Button voegOefeningToe;
+    private JFXButton btnVoegOefeningToe;
+
+    @FXML
+    private JFXButton btnCancel;
 
     private ObservableList<Groepsbewerking> lijstLeft;
     private ObservableList<Groepsbewerking> lijstRight;
     private OefeningController oefeningController;
-    private String opgavePath;
-    private String feedbackPath;
+    private File opgaveFile;
+    private File feedbackFile;
 
     public OefeningMakenPaneelController(OefeningController dc) {
         this.oefeningController = dc;
@@ -111,24 +115,18 @@ public class OefeningMakenPaneelController extends AnchorPane {
     void opgaveFileChooser(ActionEvent event) {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
-        File f = fc.showOpenDialog(null);
+        opgaveFile = fc.showOpenDialog(null);
 
-        if (f != null)
-        {
-            this.opgavePath = f.getAbsolutePath();
-        }
+
     }
 
     @FXML
     void feedbackFileChooser(ActionEvent event){
         FileChooser fc2 = new FileChooser();
         fc2.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
-        File f = fc2.showOpenDialog(null);
+        feedbackFile = fc2.showOpenDialog(null);
 
-        if (f != null)
-        {
-            this.feedbackPath = f.getAbsolutePath();
-        }
+
     }
 
     @FXML
@@ -162,13 +160,22 @@ public class OefeningMakenPaneelController extends AnchorPane {
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
+        if (opgaveFile == null || feedbackFile == null){
+            throw new IllegalArgumentException("Er is geen opgave of feedback geselecteerd.");
+        }
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
         List<Groepsbewerking> list = new ArrayList<>();
         lijstRight.stream().forEach(g -> list.add(g));
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-        oefeningController.createOefening(naam, "opgave", antwoord, "feedback", list, vak );
+        oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
+        Scene s = this.getScene();
+        s.setRoot(new OefeningSchermController(oefeningController));
+    }
+
+    @FXML
+    void canel(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }

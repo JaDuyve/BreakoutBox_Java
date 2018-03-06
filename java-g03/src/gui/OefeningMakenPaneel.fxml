@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +12,7 @@
 
 <fx:root prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: transparent;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutX="6.0" layoutY="4.0" prefHeight="720.0" prefWidth="306.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="668.0">
+      <VBox layoutX="334.0" layoutY="2.0" maxWidth="-Infinity" prefHeight="720.0" prefWidth="306.0" spacing="10.0" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="334.0">
          <children>
             <Label fx:id="lblTitel" text="OEFENING MAKEN" />
             <Label fx:id="lblNaam" text="Naam" />
@@ -20,46 +20,57 @@
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin></TextField>
-            <Label fx:id="lblOpgave" text="Opgave">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></Label>
-            <Button fx:id="opgaveButton" mnemonicParsing="false" onAction="#opgaveFileChooser" text="Kies PDF">
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin></Button>
             <Label fx:id="lblAntwoord" text="Antwoord" />
             <TextField fx:id="txtAntwoord" text="Antwoord">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <Label fx:id="lblFeedback" text="Feedback" />
-            <Button fx:id="feedbackButton" mnemonicParsing="false" onAction="#feedbackFileChooser" text="Kies PDF">
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin></Button>
+            <HBox spacing="50.0">
+               <children>
+                  <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE" />
+                  <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE" />
+               </children>
+            </HBox>
             <Label fx:id="lblGroepsbewerkingen" prefHeight="18.0" prefWidth="129.0" text="Groepsbewerkingen" />
             <HBox prefHeight="250.0" prefWidth="398.0">
                <children>
-                  <ListView fx:id="left" prefHeight="250.0" />
-                  <VBox prefHeight="250.0" prefWidth="30.0">
+                  <ListView fx:id="left" prefHeight="250.0">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></ListView>
+                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="30.0" spacing="5.0">
                      <children>
-                        <Button fx:id="toRight" minWidth="50.0" mnemonicParsing="false" onAction="#toRight" text="&gt;&gt;" />
-                        <Button fx:id="toLeft" minWidth="50.0" mnemonicParsing="false" onAction="#toLeft" prefHeight="25.0" prefWidth="47.0" text="&lt;&lt;" />
+                        <JFXButton fx:id="toRight" minWidth="50.0" onAction="#toRight" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B;" text="&gt;&gt;" />
+                        <JFXButton fx:id="toLeft" minWidth="50.0" onAction="#toLeft" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B #00897B;" text="&lt;&lt;" />
                      </children></VBox>
-                  <ListView fx:id="right" prefHeight="250.0" />
+                  <ListView fx:id="right" prefHeight="250.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></ListView>
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </HBox>
             <Label fx:id="lblVak" text="Vak" />
-            <JFXComboBox fx:id="vakDropDown" prefHeight="25.0">
+            <JFXComboBox fx:id="vakDropDown" prefHeight="20.0" prefWidth="130.0">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin></JFXComboBox>
-            <Button fx:id="voegOefeningToe" mnemonicParsing="false" onAction="#VoegOefeningToe" text="Voeg oefening toe" />
+            <HBox alignment="CENTER" spacing="50.0">
+               <children>
+                  <JFXButton fx:id="btnVoegOefeningToe" alignment="CENTER" onAction="#VoegOefeningToe" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Voeg toe" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#canel" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Cancel" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
    </children>

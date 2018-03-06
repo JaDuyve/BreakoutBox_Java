@@ -41,8 +41,8 @@ public class OefeningController
 
     }
 
-    public void createOefening(String naam, String opgavePath,String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak){
-        oefeningBeheerder.createOefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak);
+    public void createOefening(String naam, File opgaveFile,String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak){
+        oefeningBeheerder.createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
     }
 
     public ObservableList<Oefening> geefOefeningen(){

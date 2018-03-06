@@ -19,7 +19,10 @@ public class StartupMenuController extends AnchorPane {
     @FXML
     private JFXButton btnOefB;
 
-    public StartupMenuController() {
+    private OefeningController oefeningController;
+
+    public StartupMenuController(OefeningController dc) {
+        this.oefeningController = dc;
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("startupMenu.fxml"));
         loader.setRoot(this);
@@ -42,7 +45,7 @@ public class StartupMenuController extends AnchorPane {
     void showOefBeheren(ActionEvent event) {
         Scene s = this.getScene();
 
-        s.setRoot(new OefeningSchermController(new OefeningController()));
+        s.setRoot(new OefeningSchermController(oefeningController));
         Window stage = s.getWindow();
         stage.sizeToScene();
     }
