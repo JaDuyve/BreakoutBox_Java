@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: transparent;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fillWidth="false" layoutX="334.0" layoutY="2.0" maxWidth="312.0" minWidth="-Infinity" prefHeight="720.0" prefWidth="312.0" spacing="10.0">
+         <children>
+            <Label fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" maxWidth="134.0" minWidth="-Infinity" text="OEFENING KOPIEREN" VBox.vgrow="NEVER">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+            <Label fx:id="lblNaam" minWidth="-Infinity" text="Naam" VBox.vgrow="NEVER" />
+            <TextField fx:id="txfNaam" minWidth="-Infinity" prefWidth="306.0" text="Naam" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin></TextField>
+            <Label fx:id="lblAntwoord" maxWidth="60.0" minWidth="-Infinity" text="Antwoord" VBox.vgrow="NEVER" />
+            <TextField fx:id="txtAntwoord" maxWidth="306.0" minWidth="-Infinity" prefWidth="306.0" text="Antwoord" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <HBox minWidth="-Infinity" prefWidth="306.0" spacing="50.0" VBox.vgrow="NEVER">
+               <children>
+                  <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE" />
+                  <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Label fx:id="lblGroepsbewerkingen" minWidth="-Infinity" prefHeight="18.0" prefWidth="129.0" text="Groepsbewerkingen" VBox.vgrow="NEVER" />
+            <HBox maxWidth="312.0" minWidth="-Infinity" prefHeight="250.0" prefWidth="312.0" VBox.vgrow="NEVER">
+               <children>
+                  <ListView fx:id="left" prefHeight="250.0">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></ListView>
+                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="30.0" spacing="5.0">
+                     <children>
+                        <JFXButton fx:id="toRight" minWidth="50.0" onAction="#toRight" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B;" text="&gt;&gt;" />
+                        <JFXButton fx:id="toLeft" minWidth="50.0" onAction="#toLeft" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B #00897B;" text="&lt;&lt;" />
+                     </children></VBox>
+                  <ListView fx:id="right" prefHeight="250.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></ListView>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lblVak" maxWidth="23.0" minWidth="-Infinity" text="Vak" VBox.vgrow="NEVER" />
+            <JFXComboBox fx:id="vakDropDown" maxWidth="130.0" minWidth="-Infinity" prefHeight="20.0" prefWidth="130.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin></JFXComboBox>
+            <HBox maxWidth="312.0" minWidth="-Infinity" prefWidth="312.0" spacing="50.0" VBox.vgrow="NEVER">
+               <children>
+                  <JFXButton fx:id="btnVoegOefeningToe" onAction="#VoegOefeningToe" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Kopieer" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnCancel" onAction="#canel" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Cancel" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</fx:root>

@@ -213,5 +213,11 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
         Scene s = this.getScene();
         s.setRoot(new StartupMenuController(oefeningController));
     }
+
+    @FXML
+    void kopieerOefening(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(new OefeningKopiePaneelController(oefeningController, oefTable.getSelectionModel().getSelectedItem()));
+    }
 }
 
