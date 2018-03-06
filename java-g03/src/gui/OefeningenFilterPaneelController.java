@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import domein.OefeningController;
 import javafx.event.ActionEvent;
@@ -59,7 +60,7 @@ public class OefeningenFilterPaneelController extends VBox {
                     HBox hbox = new HBox();
                     Circle circle = new Circle(20, Paint.valueOf(vak.getKleur()));
                     Label lblVak = new Label(vak.getNaam());
-                    CheckBox chVak = new CheckBox();
+                    JFXCheckBox chVak = new JFXCheckBox();
                     chVak.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
