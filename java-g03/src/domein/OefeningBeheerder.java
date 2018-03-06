@@ -15,7 +15,7 @@ import java.util.Observable;
 public class OefeningBeheerder extends Observable {
 
     private Oefening oefening;
-    private GenericDao<Oefening> oefeningRepo;
+    private OefeningDao oefeningRepo;
     private GenericDao<Vak> vakRepo;
     private FileTransfer fileTransfer;
 
@@ -57,17 +57,19 @@ public class OefeningBeheerder extends Observable {
 
 
     public void verwijderOefening() {
-        fileTransfer.connect();
-        fileTransfer.deleteFile(oefening.getOpgave());
-        if (oefening.getFeedback() != null){
-            fileTransfer.deleteFile(oefening.getFeedback());
+        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0) {
+            fileTransfer.connect();
+            fileTransfer.deleteFile(oefening.getOpgave());
+            if (oefening.getFeedback() != null) {
+                fileTransfer.deleteFile(oefening.getFeedback());
+            }
+            fileTransfer.disconnect();
+            GenericDaoJpa.startTransaction();
+            oefeningRepo.delete(oefening);
+            GenericDaoJpa.commitTransaction();
+            oefeningList = null;
+            getOefeningList();
         }
-        fileTransfer.disconnect();
-        GenericDaoJpa.startTransaction();
-        oefeningRepo.delete(oefening);
-        GenericDaoJpa.commitTransaction();
-        oefeningList = null;
-        getOefeningList();
 
     }
 
@@ -81,10 +83,13 @@ public class OefeningBeheerder extends Observable {
      */
 
     public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        GenericDaoJpa.startTransaction();
-        oefeningRepo.delete(oefening);
-        GenericDaoJpa.commitTransaction();
-        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
+        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0){
+            GenericDaoJpa.startTransaction();
+            oefeningRepo.delete(oefening);
+            GenericDaoJpa.commitTransaction();
+            createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
+        }
+
     }
 
 

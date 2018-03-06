@@ -103,6 +103,7 @@ public class FileTransfer {
             System.out.println("Delete file server");
             c.rm("uploads/" + destinationFile);
             System.out.println("Delete successfull.");
+
         }catch(SftpException e){
             throw new IllegalArgumentException(e.getMessage());
 

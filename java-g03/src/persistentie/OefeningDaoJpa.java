@@ -2,9 +2,6 @@ package persistentie;
 
 import domein.Oefening;
 
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.NoResultException;
-
 public class OefeningDaoJpa extends GenericDaoJpa<Oefening> implements OefeningDao {
 
     public OefeningDaoJpa() {
@@ -12,17 +9,12 @@ public class OefeningDaoJpa extends GenericDaoJpa<Oefening> implements OefeningD
     }
 
 
-
     @Override
-    public void deleteOefeningByName(String name) {
-        em.createNamedQuery("Oefening.deleteByName", Oefening.class)
-                .setParameter("oefeningNaam", name);
+    public int sitsInBob(String naam) {
+        /*TypedQuery<Oefening> q = em.createNamedQuery("Oefening.sitsInBob", Oefening.class);
 
+        return  q.getSingleResult();*/
+       return 0;
 
-    }
-
-    @Override
-    public Oefening getOefeningByName(String name) {
-      return  em.createNamedQuery("Oefening.getByName", Oefening.class).setParameter("oefeningNaam", name).getSingleResult();
     }
 }

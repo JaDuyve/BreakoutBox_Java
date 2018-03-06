@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-
+@NamedQueries(
+        @NamedQuery(name="Oefening.sitsInBob", query="SELECT count(bo.lijstOefeningen) FROM Bob bo")
+)
 public class Oefening {
 
 
