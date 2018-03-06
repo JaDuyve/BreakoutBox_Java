@@ -1,6 +1,7 @@
 package gui;
 
 
+import domein.BobController;
 import domein.OefeningController;
 import javafx.scene.layout.HBox;
 

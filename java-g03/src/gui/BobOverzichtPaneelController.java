@@ -12,11 +12,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.util.Observer;
 
 public class BobOverzichtPaneelController extends AnchorPane {
 
-    BobController bobController;
+    private BobController bobController;
 
     @FXML
     private Label lblBobs;

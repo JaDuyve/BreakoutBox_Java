@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import domein.BobController;
 import domein.Oefening;
 import domein.OefeningBeheerder;
 import domein.OefeningController;

@@ -21,7 +21,7 @@ public class StartupMenuController extends AnchorPane {
     private JFXButton btnOefB;
 
     private OefeningController oefeningController;
-    private BobController bobController;
+
 
     public StartupMenuController(OefeningController dc) {
         this.oefeningController = dc;
@@ -40,8 +40,9 @@ public class StartupMenuController extends AnchorPane {
     void showBobBeheren(ActionEvent event) {
         Scene s = this.getScene();
 
-        s.setRoot(new BobOverzichtPaneelController(bobController));
-
+        s.setRoot(new BobOverzichtPaneelController(new BobController()));
+        Window stage = s.getWindow();
+        stage.sizeToScene();
 
     }
 
