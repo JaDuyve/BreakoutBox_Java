@@ -1,7 +1,6 @@
 package gui;
 
 
-import domein.BobController;
 import domein.OefeningController;
 import javafx.scene.layout.HBox;
 
@@ -23,7 +22,7 @@ public class OefeningSchermController extends HBox {
         filterPaneelController = new OefeningenFilterPaneelController(oefeningController);
         oefeningMakenPaneelController = new OefeningMakenPaneelController(oefeningController);
 
-        getChildren().addAll(filterPaneelController, overzichtPanel);
+        getChildren().addAll(filterPaneelController, overzichtPanel, detailPanelController);
 
         oefeningController.addObservertje(detailPanelController);
     }
