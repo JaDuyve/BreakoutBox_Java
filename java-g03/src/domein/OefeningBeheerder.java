@@ -55,10 +55,14 @@ public class OefeningBeheerder extends Observable {
         return byOefeningNaam;
     }
 
-    /**
-     * @param oef
-     */
+
     public void verwijderOefening() {
+        fileTransfer.connect();
+        fileTransfer.deleteFile(oefening.getOpgave());
+        if (oefening.getFeedback() != null){
+            fileTransfer.deleteFile(oefening.getFeedback());
+        }
+        fileTransfer.disconnect();
         GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
         GenericDaoJpa.commitTransaction();
@@ -68,11 +72,10 @@ public class OefeningBeheerder extends Observable {
     }
 
     /**
-     * @param oefeningNaam
      * @param naam
-     * @param opgavePath
+     * @param opgaveFile
      * @param antwoord
-     * @param feedback
+     * @param feedbackFile
      * @param groepsbewerkingen
      * @param vak
      */
@@ -106,8 +109,13 @@ public class OefeningBeheerder extends Observable {
      * @param vak
      */
     public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
+        Oefening oef;
+        if (feedbackFile == null){
+             oef = new Oefening(naam, opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
 
-        Oefening oef = new Oefening(naam, opgaveFile.getName(), antwoord, feedbackFile.getName(), groepsbewerkingen, vak);
+        }else {
+            oef = new Oefening(naam, opgaveFile.getName(), antwoord, feedbackFile.getName(), groepsbewerkingen, vak);
+        }
 
         if (oefeningRepo.exists(oef.getNaam())) {
             throw new IllegalArgumentException("Oefening met naam: " + naam + " bestaat al");
@@ -117,6 +125,9 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.commitTransaction();
             fileTransfer.connect();
             fileTransfer.uploadFile(opgaveFile.getPath(), opgaveFile.getName());
+            if (oef.getFeedback() != null){
+                fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
+            }
             fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
             fileTransfer.disconnect();
             oefeningList = null;

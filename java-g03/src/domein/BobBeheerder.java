@@ -28,7 +28,7 @@ public class BobBeheerder {
     }
 
     public Bob geefBob(String naam) {
-        throw new NotImplementedException();
+        return bobRepo.get(naam);
     }
 
     public ObservableList<Bob> geefBobs() {
@@ -86,7 +86,17 @@ public class BobBeheerder {
     }
 
     public void verwijderBob(String naam) {
-        throw new NotImplementedException();
+        Bob bob = geefBob(naam);
+        if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
+            GenericDaoJpa.startTransaction();
+            bobRepo.delete(bob);
+            GenericDaoJpa.commitTransaction();
+            bobs = null;
+            getBobList();
+        }
+        else {
+            throw new IllegalArgumentException("Uw bob moet leeg zijn.");
+        }
     }
 
     public void wijzigBob(String bobNaam, String naam, Vak vak) {
