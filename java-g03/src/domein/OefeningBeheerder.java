@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import persistentie.GenericDao;
-import persistentie.GenericDaoJpa;
-import persistentie.OefeningDao;
-import persistentie.OefeningDaoJpa;
+import persistentie.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,6 +17,7 @@ public class OefeningBeheerder extends Observable {
     private Oefening oefening;
     private GenericDao<Oefening> oefeningRepo;
     private GenericDao<Vak> vakRepo;
+    private FileTransfer fileTransfer;
 
     private FilteredList<Oefening> oefeningList;
 
@@ -28,7 +26,7 @@ public class OefeningBeheerder extends Observable {
     public OefeningBeheerder() {
         setOefeningRepo(new OefeningDaoJpa());
         setVakRepo(new GenericDaoJpa<>(Vak.class));
-
+        fileTransfer = new FileTransfer();
     }
 
     public OefeningBeheerder(OefeningDao mock) {
@@ -109,14 +107,15 @@ public class OefeningBeheerder extends Observable {
 
     /**
      * @param naam
-     * @param opgavePath
+     * @param opgaveFile
      * @param antwoord
-     * @param feedback
+     * @param feedbackFile
      * @param groepsbewerkingen
      * @param vak
      */
-    public void createOefening(String naam, String opgavePath, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        Oefening oef = new Oefening(naam, opgavePath, antwoord, feedback, groepsbewerkingen, vak);
+    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
+
+        Oefening oef = new Oefening(naam, opgaveFile.getName(), antwoord, feedbackFile.getName(), groepsbewerkingen, vak);
 
         if (oefeningRepo.exists(oef.getNaam())) {
             throw new IllegalArgumentException("Oefening met naam: " + naam + " bestaat al");
@@ -124,7 +123,10 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             oefeningRepo.insert(oef);
             GenericDaoJpa.commitTransaction();
-
+            fileTransfer.connect();
+            fileTransfer.uploadFile(opgaveFile.getPath(), opgaveFile.getName());
+            fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
+            fileTransfer.disconnect();
         }
     }
 
@@ -169,10 +171,10 @@ public class OefeningBeheerder extends Observable {
 
 
     /**
-     * @param pathName
+     * @param fileName
      */
-    public File geefOpgave(String pathName) {
-        // TODO - implement OefeningBeheerder.geefOpgave
+    public File geefPdf(String fileName) {
+        // TODO  - retrieve file
         throw new UnsupportedOperationException();
     }
 
