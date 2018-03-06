@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import domein.BobController;
 import domein.OefeningController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ public class StartupMenuController extends AnchorPane {
     private JFXButton btnOefB;
 
     private OefeningController oefeningController;
+    private BobController bobController;
 
     public StartupMenuController(OefeningController dc) {
         this.oefeningController = dc;
@@ -36,7 +38,9 @@ public class StartupMenuController extends AnchorPane {
 
     @FXML
     void showBobBeheren(ActionEvent event) {
+        Scene s = this.getScene();
 
+        s.setRoot(new BobOverzichtPaneelController(bobController));
 
 
     }

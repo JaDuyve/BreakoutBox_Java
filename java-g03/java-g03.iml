@@ -169,5 +169,18 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../libaries" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../libaries" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../../libaries" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../libaries" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>
