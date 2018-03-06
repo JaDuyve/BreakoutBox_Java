@@ -120,7 +120,7 @@ public class OefeningenOverzichtPaneelController extends AnchorPane{
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get().equals(ButtonType.OK)) {
-            oefeningController.verwijderOefening(oefTable.getSelectionModel().getSelectedItem());
+            oefeningController.verwijderOefening();
             s.setRoot(new OefeningSchermController(oefeningController));
 
         }else
