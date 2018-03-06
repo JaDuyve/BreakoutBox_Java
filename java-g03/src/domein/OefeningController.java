@@ -28,8 +28,8 @@ public class OefeningController
         oefeningBeheerder.verwijderOefening();
     }
 
-    public void wijzigOefening(String oefeningNaam, String naam, String opgavePath, String antwoord, String feedbackPath, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak){
-        oefeningBeheerder.wijzigOefening(oefeningNaam, naam, opgavePath, antwoord, feedbackPath, groepsbewerkingen, vak);
+    public void wijzigOefening(String naam, File opgavefile, String antwoord, File feedbackFile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak){
+        oefeningBeheerder.wijzigOefening(naam, opgavefile, antwoord, feedbackFile, groepsbewerkingen, vak);
     }
 
     public ObservableList<Vak> geefVakken(){
