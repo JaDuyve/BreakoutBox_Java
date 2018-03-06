@@ -58,9 +58,9 @@ public class OefeningBeheerder extends Observable {
     /**
      * @param oef
      */
-    public void verwijderOefening(Oefening oef) {
+    public void verwijderOefening() {
         GenericDaoJpa.startTransaction();
-        oefeningRepo.delete(oef);
+        oefeningRepo.delete(oefening);
         GenericDaoJpa.commitTransaction();
         oefeningList = null;
         getOefeningList();
