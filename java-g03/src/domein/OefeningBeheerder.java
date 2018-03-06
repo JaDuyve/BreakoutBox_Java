@@ -6,7 +6,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import persistentie.*;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -133,7 +135,6 @@ public class OefeningBeheerder extends Observable {
             if (oef.getFeedback() != null){
                 fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
             }
-            fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
             fileTransfer.disconnect();
             oefeningList = null;
             getOefeningList();
@@ -183,11 +184,15 @@ public class OefeningBeheerder extends Observable {
     /**
      * @param fileName
      */
-    public File geefPdf(String fileName) {
+    public void geefFile(String fileName) {
         fileTransfer.connect();
         File file = fileTransfer.retrieveFile(fileName, fileName);
         fileTransfer.disconnect();
-        return file;
+        try {
+            Desktop.getDesktop().open(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

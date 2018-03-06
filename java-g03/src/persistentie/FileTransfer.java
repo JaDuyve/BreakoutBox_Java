@@ -89,9 +89,9 @@ public class FileTransfer {
 
         try {
             System.out.println("Downloading file to server");
-            c.get(sourceFile, "uploads/" + destinationFile);
+            c.get("uploads/" + destinationFile, sourceFile);
             System.out.println("Download successfull.");
-            file = new File(getClass().getResource("/" + sourceFile).getFile());
+            file = new File(sourceFile);
         } catch (SftpException e) {
             throw new IllegalArgumentException(e.getMessage());
         }

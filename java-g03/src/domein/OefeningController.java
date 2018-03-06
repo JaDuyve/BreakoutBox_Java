@@ -53,8 +53,8 @@ public class OefeningController
     }
 
 
-    public File GeefFile(String pathName){
-        return oefeningBeheerder.geefPdf(pathName);
+    public void geefFile(String pathName){
+        oefeningBeheerder.geefFile(pathName);
     }
 
     public void veranderHuidigeOefening(Oefening oefening) {

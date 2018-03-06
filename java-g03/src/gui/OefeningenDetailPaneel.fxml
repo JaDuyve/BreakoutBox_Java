@@ -15,14 +15,14 @@
       <Label layoutX="22.0" layoutY="135.0" opacity="0.45" style="-fx-font-size: 18;" text="Open Opgave" textAlignment="CENTER" />
       <Label layoutX="22.0" layoutY="248.0" opacity="0.45" style="-fx-font-size: 18;" text="Antwoord" />
       <JFXTextField fx:id="txfAntwoord" alignment="CENTER" editable="false" layoutX="20.0" layoutY="275.0" prefHeight="37.0" prefWidth="360.0" style="-fx-padding: 10;" />
-      <JFXButton fx:id="openFile" layoutX="22.0" layoutY="178.0" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" text="Open" textFill="WHITE">
+      <JFXButton fx:id="openFile" layoutX="22.0" layoutY="178.0" onAction="#openOpgave" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" text="Open" textFill="WHITE">
          <font>
             <Font name="Roboto Regular" size="16.0" />
          </font>
       </JFXButton>
       <Label fx:id="fileLabelOpgave" layoutX="22.0" layoutY="220.0" prefHeight="17.0" prefWidth="170.0" style="-fx-background-color: white;" />
       <Label layoutX="256.0" layoutY="135.0" opacity="0.45" style="-fx-font-size: 18;" text="Open Feedback" textAlignment="CENTER" />
-      <JFXButton fx:id="openFeedback" layoutX="304.0" layoutY="178.0" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" text="Open" textFill="WHITE">
+      <JFXButton fx:id="openFeedback" layoutX="304.0" layoutY="178.0" onAction="#openFeedback" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" text="Open" textFill="WHITE">
          <font>
             <Font name="Roboto Regular" size="16.0" />
          </font>
@@ -31,7 +31,7 @@
       <Label layoutX="22.0" layoutY="333.0" opacity="0.45" style="-fx-font-size: 18;" text="Vak" />
       <JFXTextField fx:id="txfVak" alignment="CENTER" editable="false" layoutX="94.0" layoutY="385.0" prefHeight="37.0" prefWidth="293.0" style="-fx-padding: 10;" />
       <Circle fx:id="colorCircle" fill="WHITE" layoutX="44.0" layoutY="403.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <ListView fx:id="left" layoutY="516.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="204.0" prefWidth="400.0" />
+      <ListView fx:id="left" layoutY="516.0" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="400.0" />
       <Label layoutX="21.0" layoutY="473.0" opacity="0.45" style="-fx-font-size: 18;" text="Groepsbewerkingen" />
    </children>
    <padding>

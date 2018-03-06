@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -32,7 +31,7 @@ public class OefeningenFilterPaneelController extends VBox {
     @FXML
     private VBox vbVakken;
 
-    private Map<String, CheckBox> vakken;
+    private Map<String, JFXCheckBox> vakken;
 
     private OefeningController oefeningController;
 
