@@ -76,20 +76,12 @@ public class OefeningBeheerder extends Observable {
      * @param groepsbewerkingen
      * @param vak
      */
-    public void wijzigOefening(String oefeningNaam, String naam, String opgavePath, String antwoord, String feedback, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        if (getOefeningList().stream().filter(i -> i.getNaam().equals(oefeningNaam)).findFirst().isPresent()) { //MOET NOG AAN DE OEFENINGENDAO GEVRAAGD WORDEN
-            //TODO - OEFENING AANMAKEN IN WIJZIGINGOEFENING
-            throw new UnsupportedOperationException();
-        } else {
-            //oefening = oefeningMapper.geefOefeningen().stream().filter(i -> i.getNaam().equals(oefeningNaam)).findAny().get();
-            oefening = oefeningRepo.get(oefeningNaam);
-            oefening.setNaam(naam);///???????
-            oefening.setOpgave(opgavePath);
-            oefening.setFeedback(feedback);
-            oefening.setVak(vak);
-            oefening.setLijstGroepsbewerkingen(groepsbewerkingen);
-            oefeningRepo.update(oefening);
-        }
+
+    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
+        GenericDaoJpa.startTransaction();
+        oefeningRepo.delete(oefening);
+        GenericDaoJpa.commitTransaction();
+        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
     }
 
 
