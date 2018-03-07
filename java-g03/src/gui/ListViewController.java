@@ -32,7 +32,6 @@ public class ListViewController<T> extends HBox {
 
         this.lijstLeft = lijstLeft;
         this.lijstRight = lijstRight;
-
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("ListView.fxml"));
         loader.setRoot(this);
@@ -42,6 +41,8 @@ public class ListViewController<T> extends HBox {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+
+        buildGui();
     }
 
     private void buildGui() {
@@ -51,7 +52,7 @@ public class ListViewController<T> extends HBox {
         right.setItems(lijstRight);
         right.getSelectionModel().selectFirst();
         toLeft.setDisable(true);
-
+        //lijstLeft.addListener(e -> toRight.setDisableVisualFocus(lijstLeft.isEmpty()));
     }
 
     @FXML
