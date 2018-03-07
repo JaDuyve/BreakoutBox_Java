@@ -39,26 +39,26 @@ public class BobController {
         return FXCollections.observableArrayList(actieRepo.findAll());
     }
 
-    public void changeFilter(String bobNaam, List<String> vakken){
+    public void changeFilter(String bobNaam){
 
-        bobBeheerder.changeFilter(bobNaam, vakken);
+        bobBeheerder.changeFilter(bobNaam);
     }
 
-    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak bobVak){
-        bobBeheerder.createBob(naam, oefeningen,acties,toegangscodes,bobVak);
+    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes){
+        bobBeheerder.createBob(naam, oefeningen,acties,toegangscodes);
     }
 
     public ObservableList<Toegangscode> geefToegangsCodes(){
         return FXCollections.observableArrayList(toegangscodeRepo.findAll());
     }
 
-    public void verwijderBob(String naam){
+    public void verwijderBob(){
 
-        bobBeheerder.verwijderBob(naam);
+        bobBeheerder.verwijderBob();
     }
 
-    public void wijzigBob(String bobNaam, String naam, Vak vak){
+    public void wijzigBob(String bobNaam, String naam){
 
-        bobBeheerder.wijzigBob(bobNaam, naam, vak);
+        bobBeheerder.wijzigBob(bobNaam, naam);
     }
 }

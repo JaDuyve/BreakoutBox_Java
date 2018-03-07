@@ -55,7 +55,6 @@ public class FileTransfer {
 
     /**
      * Uploads a file to the sftp server
-     *
      * @param sourceFile      String path to sourceFile
      * @param destinationFile String path on the remote server
      * @throws IllegalArgumentException if connection and channel are not available or if an error occurs during upload.

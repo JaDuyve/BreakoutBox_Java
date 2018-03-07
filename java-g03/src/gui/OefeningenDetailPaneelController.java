@@ -15,6 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -73,11 +75,21 @@ public class OefeningenDetailPaneelController extends AnchorPane implements Obse
 
     @FXML
     void openFeedback(ActionEvent event) {
-        oefeningController.geefFile(oefening.getFeedback());
+        File file = oefeningController.geefFile(oefening.getFeedback());
+        try {
+            Desktop.getDesktop().open(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void openOpgave(ActionEvent event) {
-        oefeningController.geefFile(oefening.getOpgave());
+        File file = oefeningController.geefFile(oefening.getOpgave());
+        try {
+            Desktop.getDesktop().open(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

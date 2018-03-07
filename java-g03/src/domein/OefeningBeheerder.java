@@ -118,10 +118,10 @@ public class OefeningBeheerder extends Observable {
     public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         Oefening oef;
         if (feedbackFile == null) {
-            oef = new Oefening(naam, opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
+            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
 
         } else {
-            oef = new Oefening(naam, opgaveFile.getName(), antwoord, feedbackFile.getName(), groepsbewerkingen, vak);
+            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, vak);
         }
 
         if (oefeningRepo.exists(oef.getNaam())) {
@@ -131,9 +131,9 @@ public class OefeningBeheerder extends Observable {
             oefeningRepo.insert(oef);
             GenericDaoJpa.commitTransaction();
             fileTransfer.connect();
-            fileTransfer.uploadFile(opgaveFile.getPath(), opgaveFile.getName());
+            fileTransfer.uploadFile(opgaveFile.getPath(), oef.getOpgave());
             if (oef.getFeedback() != null) {
-                fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
+                fileTransfer.uploadFile(feedbackFile.getPath(), oef.getFeedback());
             }
             fileTransfer.disconnect();
             oefeningList = null;
@@ -184,15 +184,11 @@ public class OefeningBeheerder extends Observable {
     /**
      * @param fileName
      */
-    public void geefFile(String fileName) {
+    public File geefFile(String fileName) {
         fileTransfer.connect();
         File file = fileTransfer.retrieveFile(fileName, fileName);
         fileTransfer.disconnect();
-        try {
-            Desktop.getDesktop().open(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return file;
     }
 
 

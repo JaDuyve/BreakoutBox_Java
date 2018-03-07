@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import domein.Groepsbewerking;
 import domein.Oefening;
 import domein.OefeningController;
@@ -18,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class OefeningKopiePaneelController extends AnchorPane {
     private Label lblNaam;
 
     @FXML
-    private TextField txfNaam;
+    private JFXTextField txfNaam;
 
     @FXML
     private Label lblOpgave;
@@ -45,7 +47,7 @@ public class OefeningKopiePaneelController extends AnchorPane {
     private Label lblAntwoord;
 
     @FXML
-    private TextField txtAntwoord;
+    private JFXTextField txtAntwoord;
 
     @FXML
     private Label lblFeedback;
@@ -80,6 +82,12 @@ public class OefeningKopiePaneelController extends AnchorPane {
     @FXML
     private JFXButton btnCancel;
 
+    @FXML
+    private JFXButton btnOpgave;
+
+    @FXML
+    private JFXButton btnFeedback;
+
     private ObservableList<Groepsbewerking> lijstLeft;
     private ObservableList<Groepsbewerking> lijstRight;
     private OefeningController oefeningController;
@@ -104,6 +112,7 @@ public class OefeningKopiePaneelController extends AnchorPane {
     private void buildGui(){
         lijstLeft = oefeningController.geefGroepsbewerkingen();
         lijstRight = FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen());
+        lijstLeft.removeAll(lijstRight);
         left.setItems(lijstLeft);
         left.getSelectionModel().selectFirst();
         right.setItems(lijstRight);
@@ -113,6 +122,8 @@ public class OefeningKopiePaneelController extends AnchorPane {
         txfNaam.setText(oefening.getNaam());
         txtAntwoord.setText(oefening.getAntwoord());
         vakDropDown.getSelectionModel().select(oefening.getVak());
+        opgaveFile = oefeningController.geefFile(oefening.getOpgave());
+        feedbackFile = oefeningController.geefFile(oefening.getFeedback());
 
     }
 
@@ -183,5 +194,24 @@ public class OefeningKopiePaneelController extends AnchorPane {
     void canel(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
+    }
+
+    @FXML
+    void toonFeedback(ActionEvent event) {
+        try {
+            Desktop.getDesktop().open(feedbackFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void toonOpgave(ActionEvent event) {
+        try {
+            Desktop.getDesktop().open(opgaveFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

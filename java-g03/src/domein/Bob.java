@@ -1,8 +1,9 @@
 package domein;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
@@ -17,15 +18,13 @@ public class Bob {
     private List<Actie> lijstActies;
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Toegangscode> lijstToegangscode;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private Vak vak;
 
-    public Bob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak vak) {
+
+    public Bob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes) {
         setNaam(naam);
         setLijstOefeningen(oefeningen);
         setLijstActies(acties);
         setLijstToegangscode(toegangscodes);
-        setVak(vak);
     }
 
     protected Bob(){
@@ -68,36 +67,9 @@ public class Bob {
         this.lijstToegangscode = lijstToegangscode;
     }
 
-    public Vak getVak() {
-        return vak;
-    }
 
-    public void setVak(Vak vak) {
-        this.vak = vak;
-    }
-
-    //mss weg doen??????
-    public void voegToegangsCodeToe(Toegangscode code){
-        throw new NotImplementedException();
-    }
-
-    public void verwijderToegangscode(Toegangscode code){
-        throw new NotImplementedException();
-    }
-
-    public void voegActieToe(Actie actie){
-        throw new NotImplementedException();
-    }
-
-    public void verwijderActie(Actie actie){
-        throw new NotImplementedException();
-    }
-
-    public void voegOefeningToe(Oefening oefening){
-        throw new NotImplementedException();
-    }
-
-    public void verwijderOefening(Oefening oefening){
-        throw new NotImplementedException();
+    @Override
+    public String toString() {
+        return naam;
     }
 }

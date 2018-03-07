@@ -10,8 +10,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class BobBeheerder {
+public class BobBeheerder extends Observable {
 
     private Bob bob;
     private FilteredList<Bob> bobs;
@@ -43,15 +45,16 @@ public class BobBeheerder {
         return bobs;
     }
 
-    public void changeFilter(String bobNaam, List<String> vakken) {
+    public void setBob(Bob bob) {
+        this.bob = bob;
+        setChanged();
+        notifyObservers(bob);
+    }
+
+    public void changeFilter(String bobNaam) {
         bobs.setPredicate(oefening -> {
 
             boolean bobNaamLeeg = bobNaam == null || bobNaam.isEmpty();
-            boolean vakkenLeeg = vakken == null || vakken.isEmpty();
-
-            if (bobNaamLeeg && vakkenLeeg) {
-                return true;
-            }
 
             String lowercaseBobNaam = "";
 
@@ -59,22 +62,16 @@ public class BobBeheerder {
                 lowercaseBobNaam = bobNaam.toLowerCase();
             }
 
-            boolean conditieOefeningNaam = bobNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowercaseBobNaam);
-            boolean conditieVakken = vakkenLeeg ? false : vakken.stream().anyMatch(t -> t.equals(bob.getVak().getNaam()));
+            boolean conditieBobNaam = bobNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowercaseBobNaam);
 
-            if (bobNaamLeeg) {
-                return conditieVakken;
-            } else if (vakkenLeeg) {
-                return conditieOefeningNaam;
-            }
 
-            return conditieOefeningNaam && conditieVakken;
+            return conditieBobNaam ;
         });
     }
 
-    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes, Vak bobVak) {
+    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes) {
 
-        Bob bob = new Bob(naam, oefeningen, acties, toegangscodes, bobVak);
+        Bob bob = new Bob(naam, oefeningen, acties, toegangscodes);
 
         if (bobRepo.exists(bob.getNaam())){
             throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
@@ -85,21 +82,20 @@ public class BobBeheerder {
         }
     }
 
-    public void verwijderBob(String naam) {
-        Bob bob = geefBob(naam);
-        if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
-            GenericDaoJpa.startTransaction();
-            bobRepo.delete(bob);
-            GenericDaoJpa.commitTransaction();
-            bobs = null;
-            getBobList();
+    public void verwijderBob() {
+            if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
+                GenericDaoJpa.startTransaction();
+                bobRepo.delete(bob);
+                GenericDaoJpa.commitTransaction();
+                bobs = null;
+                getBobList();
         }
         else {
             throw new IllegalArgumentException("Uw bob moet leeg zijn.");
         }
     }
 
-    public void wijzigBob(String bobNaam, String naam, Vak vak) {
+    public void wijzigBob(String bobNaam, String naam) {
         throw new NotImplementedException();
     }
 
