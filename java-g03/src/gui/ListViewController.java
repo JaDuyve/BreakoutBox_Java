@@ -6,17 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class listViewController<E> {
-    private ObservableList<E> lijstLeft;
-    private ObservableList<E> lijstRight;
+public class ListViewController<T> extends HBox {
+    private ObservableList<T> lijstLeft;
+    private ObservableList<T> lijstRight;
 
     @FXML
-    private ListView<E> left;
+    private ListView<T> left;
 
     @FXML
     private JFXButton toRight;
@@ -25,17 +26,15 @@ public class listViewController<E> {
     private JFXButton toLeft;
 
     @FXML
-    private ListView<E> right;
+    private ListView<T> right;
 
-
-
-    public listViewController(ObservableList<E> lijstLeft, ObservableList<E> lijstRight) {
+    public ListViewController(ObservableList<T> lijstLeft, ObservableList<T> lijstRight) {
 
         this.lijstLeft = lijstLeft;
         this.lijstRight = lijstRight;
 
         FXMLLoader loader
-                = new FXMLLoader(getClass().getResource("listView.fxml"));
+                = new FXMLLoader(getClass().getResource("ListView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
@@ -45,12 +44,20 @@ public class listViewController<E> {
         }
     }
 
+    private void buildGui() {
 
+        left.setItems(lijstLeft);
+        left.getSelectionModel().selectFirst();
+        right.setItems(lijstRight);
+        right.getSelectionModel().selectFirst();
+        toLeft.setDisable(true);
+
+    }
 
     @FXML
     void toLeft(ActionEvent event) {
-        E obj = right.getSelectionModel().getSelectedItem();
-        if (obj != null){
+        T obj = right.getSelectionModel().getSelectedItem();
+        if (obj != null) {
             lijstLeft.add(obj);
             lijstRight.remove(obj);
             if (lijstRight.isEmpty())
@@ -64,8 +71,8 @@ public class listViewController<E> {
 
     @FXML
     void toRight(ActionEvent event) {
-        E obj = left.getSelectionModel().getSelectedItem();
-        if (obj != null){
+        T obj = left.getSelectionModel().getSelectedItem();
+        if (obj != null) {
             lijstRight.add(obj);
             lijstLeft.remove(obj);
             if (lijstLeft.isEmpty())
@@ -76,7 +83,7 @@ public class listViewController<E> {
 
     }
 
-    public List<E> getLijstRight(){
+    public List<T> getLijstRight() {
         return lijstRight.stream().collect(Collectors.toList());
     }
 }

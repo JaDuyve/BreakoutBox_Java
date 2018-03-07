@@ -9,7 +9,6 @@ public class OefeningSchermController extends HBox {
     private OefeningenDetailPaneelController detailPanelController;
 
     private OefeningenFilterPaneelController filterPaneelController;
-    private OefeningMakenPaneelController oefeningMakenPaneelController;
 
     private OefeningController oefeningController;
 
@@ -20,7 +19,6 @@ public class OefeningSchermController extends HBox {
         detailPanelController = new OefeningenDetailPaneelController(oefeningController);
         overzichtPanel = new OefeningenOverzichtPaneelController(oefeningController, this, detailPanelController);
         filterPaneelController = new OefeningenFilterPaneelController(oefeningController);
-        oefeningMakenPaneelController = new OefeningMakenPaneelController(oefeningController);
 
         getChildren().addAll(filterPaneelController, overzichtPanel, detailPanelController);
 

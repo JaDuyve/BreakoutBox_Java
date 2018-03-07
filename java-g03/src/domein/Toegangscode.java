@@ -33,4 +33,9 @@ public class Toegangscode {
     public void setCode(int code) {
         this.code = code;
     }
+
+    @Override
+    public String toString() {
+        return  Integer.toString(code);
+    }
 }

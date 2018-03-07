@@ -127,4 +127,9 @@ public class Oefening {
 
         return Objects.hash(getNaam());
     }
+
+    @Override
+    public String toString() {
+        return  naam;
+    }
 }

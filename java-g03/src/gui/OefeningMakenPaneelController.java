@@ -19,8 +19,8 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OefeningMakenPaneelController extends AnchorPane {
 
@@ -164,8 +164,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
         }
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
-        List<Groepsbewerking> list = new ArrayList<>();
-        lijstRight.stream().forEach(g -> list.add(g));
+        List<Groepsbewerking> list = lijstRight.stream().collect(Collectors.toList());
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
         oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );

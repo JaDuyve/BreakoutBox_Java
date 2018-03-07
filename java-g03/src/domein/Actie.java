@@ -2,6 +2,7 @@ package domein;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Actie {
@@ -32,5 +33,25 @@ public class Actie {
 
     public void setOpgave(String opgave) {
         this.opgave = opgave;
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Actie actie = (Actie) o;
+        return Objects.equals(naam, actie.naam);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(naam);
+    }
+
+    @Override
+    public String toString() {
+        return  naam;
     }
 }
