@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -22,13 +23,7 @@ public class BobOverzichtPaneelController extends AnchorPane {
     private Label lblBobs;
 
     @FXML
-    private TableView<Bob> bobTable;
-
-    @FXML
-    private TableColumn<Bob, String> nameTable;
-
-    @FXML
-    private TableColumn<Bob, String> categorieTable;
+    private ListView<Bob> bobView;
 
     @FXML
     private JFXButton addBobButton;
@@ -54,6 +49,11 @@ public class BobOverzichtPaneelController extends AnchorPane {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+        build();
+    }
+
+    private void build() {
+        bobView.setItems(bobController.geefBobs());
     }
 
     @FXML
