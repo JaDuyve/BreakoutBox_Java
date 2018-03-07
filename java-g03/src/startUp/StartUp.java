@@ -16,7 +16,7 @@ public class StartUp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        StartupMenuController smc = new StartupMenuController(new OefeningController());
+        StartupMenuController smc = new StartupMenuController(new OefeningController(), new BobController());
         Scene scene = new Scene(smc);
 
         scene.setFill(Color.TRANSPARENT);
