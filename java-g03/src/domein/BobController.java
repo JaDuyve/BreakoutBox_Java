@@ -60,4 +60,9 @@ public class BobController {
     public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes){
         bobBeheerder.wijzigBob(naam, oefeningen, acties, toegangscodes);
     }
+
+    public void veranderHuidigeOefening(Bob bob) {
+        bobBeheerder.setBob(bob);
+    }
+
 }
