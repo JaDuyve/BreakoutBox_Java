@@ -6,23 +6,22 @@ import domein.Groepsbewerking;
 import domein.OefeningController;
 import domein.Vak;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class OefeningMakenPaneelController extends AnchorPane {
+public class OefeningMakenPaneelController extends StackPane {
 
     @FXML
     private Label lblTitel;
@@ -38,6 +37,9 @@ public class OefeningMakenPaneelController extends AnchorPane {
 
     @FXML
     private JFXButton btnOpgaveButton;
+
+    @FXML
+    private ImageView img;
 
     @FXML
     private Label lblAntwoord;
