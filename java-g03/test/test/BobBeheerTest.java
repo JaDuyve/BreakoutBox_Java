@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
@@ -22,7 +23,7 @@ public class BobBeheerTest
 {
     private BobBeheerder bobBeheerder;
 
-    private GenericDao genericDaoDummy;
+    private GenericDao<Bob> genericDaoDummy;
     private Bob bobTest;
 
     List<Bob> bobs = new ArrayList<>();
@@ -68,5 +69,19 @@ public class BobBeheerTest
         genericDaoDummy.delete(bobTest);
 
         Assert.assertFalse(bobBeheerder.geefBobs().contains(bobTest));
+    }
+
+    @Test
+    public void testBobWijzigen()
+    {
+        Mockito.when(genericDaoDummy.get(bobTest)).thenReturn(bobTest);
+
+        bobBeheerder.setBob(bobTest);
+        Bob bobGewijzigd = new Bob("bob5", new ArrayList<Oefening>(), new ArrayList<Actie>(), new ArrayList<Toegangscode>());
+
+        bobBeheerder.wijzigBob(bobGewijzigd.getNaam(), bobGewijzigd.getLijstOefeningen(), bobGewijzigd.getLijstActies(), bobGewijzigd.getLijstToegangscode());
+        bobBeheerder.setBob(bobGewijzigd);
+
+        Assert.assertEquals(bobGewijzigd, bobBeheerder.getBob());
     }
 }
