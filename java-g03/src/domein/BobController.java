@@ -57,8 +57,7 @@ public class BobController {
         bobBeheerder.verwijderBob();
     }
 
-    public void wijzigBob(String bobNaam, String naam){
-
-        bobBeheerder.wijzigBob(bobNaam, naam);
+    public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes){
+        bobBeheerder.wijzigBob(naam, oefeningen, acties, toegangscodes);
     }
 }

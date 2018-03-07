@@ -6,7 +6,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Comparator;
 import java.util.List;
@@ -96,8 +95,12 @@ public class BobBeheerder extends Observable {
         }
     }
 
-    public void wijzigBob(String bobNaam, String naam) {
-        throw new NotImplementedException();
+    public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes) {
+            GenericDaoJpa.startTransaction();
+            bobRepo.delete(bob);
+            GenericDaoJpa.commitTransaction();
+            createBob(naam, oefeningen, acties, toegangscodes);
+
     }
 
 
