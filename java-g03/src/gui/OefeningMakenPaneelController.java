@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 
 public class OefeningMakenPaneelController extends AnchorPane {
 
-
     @FXML
     private Label lblTitel;
 
@@ -56,18 +55,6 @@ public class OefeningMakenPaneelController extends AnchorPane {
     private Label lblGroepsbewerkingen;
 
     @FXML
-    private ListView<Groepsbewerking> left;
-
-    @FXML
-    private JFXButton toRight;
-
-    @FXML
-    private JFXButton toLeft;
-
-    @FXML
-    private ListView<Groepsbewerking> right;
-
-    @FXML
     private Label lblVak;
 
     @FXML
@@ -79,8 +66,11 @@ public class OefeningMakenPaneelController extends AnchorPane {
     @FXML
     private JFXButton btnCancel;
 
-    private ObservableList<Groepsbewerking> lijstLeft;
-    private ObservableList<Groepsbewerking> lijstRight;
+    @FXML
+    private AnchorPane apGroepsbewerking;
+
+    private ListViewController<Groepsbewerking> lvGroepsbewerking;
+
     private OefeningController oefeningController;
     private File opgaveFile;
     private File feedbackFile;
@@ -99,15 +89,9 @@ public class OefeningMakenPaneelController extends AnchorPane {
     }
 
     private void buildGui(){
-        lijstLeft = oefeningController.geefGroepsbewerkingen();
-        lijstRight = FXCollections.observableArrayList();
-        left.setItems(lijstLeft);
-        left.getSelectionModel().selectFirst();
-        right.setItems(lijstRight);
-        right.getSelectionModel().selectFirst();
+        lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), FXCollections.observableArrayList());
         vakDropDown.setItems(oefeningController.geefVakken());
-        toLeft.setDisable(true);
-
+        apGroepsbewerking.getChildren().add(lvGroepsbewerking);
     }
 
     @FXML
@@ -128,34 +112,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
 
     }
 
-    @FXML
-    void toLeft(ActionEvent event) {
-        Groepsbewerking groep = right.getSelectionModel().getSelectedItem();
-        if (groep != null){
-            lijstLeft.add(groep);
-            lijstRight.remove(groep);
-            if (lijstRight.isEmpty())
-                toLeft.setDisable(true);
-            if (!lijstLeft.isEmpty())
-                toRight.setDisable(false);
-        }
 
-
-    }
-
-    @FXML
-    void toRight(ActionEvent event) {
-        Groepsbewerking groep = left.getSelectionModel().getSelectedItem();
-        if (groep != null){
-            lijstRight.add(groep);
-            lijstLeft.remove(groep);
-            if (lijstLeft.isEmpty())
-                toRight.setDisable(true);
-            if (!lijstRight.isEmpty())
-                toLeft.setDisable(false);
-        }
-
-    }
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
@@ -164,7 +121,7 @@ public class OefeningMakenPaneelController extends AnchorPane {
         }
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
-        List<Groepsbewerking> list = lijstRight.stream().collect(Collectors.toList());
+        List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
         oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
