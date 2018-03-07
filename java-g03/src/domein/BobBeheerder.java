@@ -19,6 +19,10 @@ public class BobBeheerder extends Observable {
 
     private final Comparator<Bob> byBobNaam = (b1, b2) -> b1.getNaam().compareToIgnoreCase(b2.getNaam());
 
+    public BobBeheerder(GenericDao mock)
+    {
+        this.bobRepo = mock;
+    }
     public BobBeheerder() {
         setBobRepo(new GenericDaoJpa<>(Bob.class));
     }
