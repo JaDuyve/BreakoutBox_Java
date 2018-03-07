@@ -85,7 +85,7 @@ public class OefeningBeheerder extends Observable {
      */
 
     public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0){
+        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0) {
             GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);
             GenericDaoJpa.commitTransaction();
@@ -117,11 +117,11 @@ public class OefeningBeheerder extends Observable {
      */
     public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         Oefening oef;
-        if (feedbackFile == null){
-             oef = new Oefening(naam, "Opgave_" + naam + opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
+        if (feedbackFile == null) {
+            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
 
-        }else {
-            oef = new Oefening(naam, "Opgave_" + naam + opgaveFile.getName(), antwoord, "Feedback_" + naam + feedbackFile.getName(), groepsbewerkingen, vak);
+        } else {
+            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, vak);
         }
 
         if (oefeningRepo.exists(oef.getNaam())) {
@@ -131,9 +131,9 @@ public class OefeningBeheerder extends Observable {
             oefeningRepo.insert(oef);
             GenericDaoJpa.commitTransaction();
             fileTransfer.connect();
-            fileTransfer.uploadFile(opgaveFile.getPath(), oefening.getOpgave());
-            if (oef.getFeedback() != null){
-                fileTransfer.uploadFile(feedbackFile.getPath(), oefening.getFeedback());
+            fileTransfer.uploadFile(opgaveFile.getPath(), oef.getOpgave());
+            if (oef.getFeedback() != null) {
+                fileTransfer.uploadFile(feedbackFile.getPath(), oef.getFeedback());
             }
             fileTransfer.disconnect();
             oefeningList = null;

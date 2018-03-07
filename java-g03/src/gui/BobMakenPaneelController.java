@@ -1,9 +1,11 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import domein.*;
+import domein.Actie;
+import domein.BobController;
+import domein.Oefening;
+import domein.Toegangscode;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,9 +29,6 @@ public class BobMakenPaneelController extends AnchorPane {
 
     @FXML
     private AnchorPane apToegangscodes;
-
-    @FXML
-    private JFXComboBox<Vak> vakDropDown;
 
     @FXML
     private JFXButton btnVoegOefeningToe;
