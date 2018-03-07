@@ -52,9 +52,9 @@ public class BobController {
         return FXCollections.observableArrayList(toegangscodeRepo.findAll());
     }
 
-    public void verwijderBob(String naam){
+    public void verwijderBob(){
 
-        bobBeheerder.verwijderBob(naam);
+        bobBeheerder.verwijderBob();
     }
 
     public void wijzigBob(String bobNaam, String naam){

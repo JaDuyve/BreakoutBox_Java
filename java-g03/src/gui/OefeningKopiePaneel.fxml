@@ -33,12 +33,12 @@
                <children>
                   <VBox spacing="10.0">
                      <children>
-                        <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE">
+                        <JFXButton fx:id="btnOpgave" onAction="#toonOpgave" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Bekijk opgave" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="btnOpgave" onAction="#toonOpgave" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Opgave" textFill="WHITE">
+                        <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -47,12 +47,12 @@
                   </VBox>
                   <VBox spacing="10.0">
                      <children>
-                        <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE">
+                        <JFXButton fx:id="btnFeedback" onAction="#toonFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Bekijk feedback" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="btnFeedback" onAction="#toonFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Feedback" textFill="WHITE">
+                        <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>

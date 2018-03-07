@@ -10,8 +10,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class BobBeheerder {
+public class BobBeheerder extends Observable {
 
     private Bob bob;
     private FilteredList<Bob> bobs;
@@ -41,6 +43,12 @@ public class BobBeheerder {
         }
 
         return bobs;
+    }
+
+    public void setBob(Bob bob) {
+        this.bob = bob;
+        setChanged();
+        notifyObservers(bob);
     }
 
     public void changeFilter(String bobNaam) {
@@ -74,14 +82,13 @@ public class BobBeheerder {
         }
     }
 
-    public void verwijderBob(String naam) {
-        Bob bob = geefBob(naam);
-        if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
-            GenericDaoJpa.startTransaction();
-            bobRepo.delete(bob);
-            GenericDaoJpa.commitTransaction();
-            bobs = null;
-            getBobList();
+    public void verwijderBob() {
+            if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
+                GenericDaoJpa.startTransaction();
+                bobRepo.delete(bob);
+                GenericDaoJpa.commitTransaction();
+                bobs = null;
+                getBobList();
         }
         else {
             throw new IllegalArgumentException("Uw bob moet leeg zijn.");

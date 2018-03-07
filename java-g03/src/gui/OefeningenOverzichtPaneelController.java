@@ -83,7 +83,7 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
     @FXML
     void deleteOefening(ActionEvent event) {
 
-        Alert alert = new Alert(AlertType.CONFIRMATION, "verwijder oefening");
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Wilt u de geselecteerde oefening verwijderen?");
         alert.setTitle("Oefening verwijderen");
         alert.initOwner((Stage) this.getScene().getWindow());
         Scene s = this.getScene();

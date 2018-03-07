@@ -124,8 +124,6 @@ public class OefeningKopiePaneelController extends AnchorPane {
         vakDropDown.getSelectionModel().select(oefening.getVak());
         opgaveFile = oefeningController.geefFile(oefening.getOpgave());
         feedbackFile = oefeningController.geefFile(oefening.getFeedback());
-        btnOpgave.setText(oefening.getOpgave());
-        btnFeedback.setText(oefening.getFeedback());
 
     }
 

@@ -7,13 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
+
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class BobOverzichtPaneelController extends AnchorPane {
 
@@ -64,6 +65,19 @@ public class BobOverzichtPaneelController extends AnchorPane {
 
     @FXML
     void deleteBob(ActionEvent event) {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Wilt u de geselecteerde BOB verwijderen?");
+        alert.setTitle("BOB verwijderen");
+        alert.initOwner((Stage)this.getScene().getWindow());
+        Scene s = this.getScene();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get().equals(ButtonType.OK)) {
+            bobController.verwijderBob();
+            s.setRoot(new BobOverzichtPaneelController(bobController));
+        }
+        else {
+            s.setRoot(new BobOverzichtPaneelController(bobController));
+        }
 
     }
 
