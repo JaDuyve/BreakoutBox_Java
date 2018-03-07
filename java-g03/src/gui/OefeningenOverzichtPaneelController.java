@@ -97,6 +97,11 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
         }
     }
 
+    @FXML
+    void editOefening(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(new OefeningEditPaneelController(oefeningController));
+    }
 
     @FXML
     void createOefening(ActionEvent event) {

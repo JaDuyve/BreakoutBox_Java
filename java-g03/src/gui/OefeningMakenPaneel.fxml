@@ -31,7 +31,7 @@
                   <Font name="Roboto Regular" size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtAntwoord" />
+            <JFXTextField fx:id="txtAntwoord" promptText="Antwoord" />
             <HBox alignment="CENTER" spacing="50.0">
                <children>
                   <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE">
@@ -53,7 +53,7 @@
             </Label>
             <HBox prefHeight="250.0" prefWidth="398.0">
                <children>
-                  <ListView fx:id="left" prefHeight="250.0">
+                  <ListView fx:id="left" prefHeight="250.0" style="-fx-background-color: white;">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
@@ -72,7 +72,7 @@
                         </JFXButton>
                      </children>
                   </VBox>
-                  <ListView fx:id="right" prefHeight="250.0">
+                  <ListView fx:id="right" prefHeight="250.0" style="-fx-background-color: white;">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>

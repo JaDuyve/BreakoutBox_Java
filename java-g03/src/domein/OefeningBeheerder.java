@@ -85,7 +85,7 @@ public class OefeningBeheerder extends Observable {
      */
 
     public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0){
+        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0) {
             GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);
             GenericDaoJpa.commitTransaction();
@@ -117,10 +117,10 @@ public class OefeningBeheerder extends Observable {
      */
     public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         Oefening oef;
-        if (feedbackFile == null){
-             oef = new Oefening(naam, opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
+        if (feedbackFile == null) {
+            oef = new Oefening(naam, opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
 
-        }else {
+        } else {
             oef = new Oefening(naam, opgaveFile.getName(), antwoord, feedbackFile.getName(), groepsbewerkingen, vak);
         }
 
@@ -132,7 +132,7 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.commitTransaction();
             fileTransfer.connect();
             fileTransfer.uploadFile(opgaveFile.getPath(), opgaveFile.getName());
-            if (oef.getFeedback() != null){
+            if (oef.getFeedback() != null) {
                 fileTransfer.uploadFile(feedbackFile.getPath(), feedbackFile.getName());
             }
             fileTransfer.disconnect();

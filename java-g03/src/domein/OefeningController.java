@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class OefeningController
-{
+public class OefeningController {
     private GenericDao<Vak> vakRepo;
     private GenericDao<Groepsbewerking> groepsbewerkingRepo;
 
@@ -23,43 +22,49 @@ public class OefeningController
         groepsbewerkingRepo = new GenericDaoJpa<>(Groepsbewerking.class);
     }
 
-    public void verwijderOefening(){
+    public void verwijderOefening() {
         oefeningBeheerder.verwijderOefening();
     }
 
-    public void wijzigOefening(String naam, File opgavefile, String antwoord, File feedbackfile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak){
+    public void wijzigOefening(String naam, File opgavefile, String antwoord, File feedbackfile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
         oefeningBeheerder.wijzigOefening(naam, opgavefile, antwoord, feedbackfile, groepsbewerkingen, vak);
     }
 
-    public ObservableList<Vak> geefVakken(){
+    public Oefening geefOefening() {
+        return oefeningBeheerder.getOefening();
+    }
+
+    ;
+
+    public ObservableList<Vak> geefVakken() {
         return FXCollections.observableList(vakRepo.findAll());
     }
 
-    public ObservableList<Groepsbewerking> geefGroepsbewerkingen(){
+    public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
         return FXCollections.observableArrayList(groepsbewerkingRepo.findAll());
-
     }
 
-    public void createOefening(String naam, File opgaveFile,String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak){
+    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         oefeningBeheerder.createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
     }
 
-    public ObservableList<Oefening> geefOefeningen(){
+    public ObservableList<Oefening> geefOefeningen() {
         return oefeningBeheerder.geefOefeningen();
     }
 
-    public void changeFilter(String oefeningNaam, List<String> vakken){
+    public void changeFilter(String oefeningNaam, List<String> vakken) {
         oefeningBeheerder.changeFilter(oefeningNaam, vakken);
     }
 
 
-    public void geefFile(String pathName){
+    public void geefFile(String pathName) {
         oefeningBeheerder.geefFile(pathName);
     }
 
     public void veranderHuidigeOefening(Oefening oefening) {
         oefeningBeheerder.setOefening(oefening);
     }
+
     public void addObservertje(OefeningenDetailPaneelController detailPanelController) {
         oefeningBeheerder.addObserver(detailPanelController);
     }

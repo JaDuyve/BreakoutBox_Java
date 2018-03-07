@@ -5,7 +5,7 @@ import java.util.*;
 
 @Entity
 @NamedQueries(
-        @NamedQuery(name="Oefening.sitsInBob", query="SELECT count(bo.lijstOefeningen) FROM Bob bo")
+        @NamedQuery(name = "Oefening.sitsInBob", query = "SELECT count(bo.lijstOefeningen) FROM Bob bo")
 )
 public class Oefening {
 
@@ -45,7 +45,7 @@ public class Oefening {
     }
 
     public void setVak(Vak vak) {
-        if (vak == null){
+        if (vak == null) {
             throw new IllegalArgumentException("Vak moet ingevuld zijn");
         }
         this.vak = vak;
@@ -68,7 +68,7 @@ public class Oefening {
     }
 
     public void setLijstGroepsbewerkingen(List<Groepsbewerking> lijstGroepsbewerkingen) {
-        if (lijstGroepsbewerkingen == null || lijstGroepsbewerkingen.isEmpty()){
+        if (lijstGroepsbewerkingen == null || lijstGroepsbewerkingen.isEmpty()) {
             throw new IllegalArgumentException("Er werden geen Groepsbewerkingen toegevoegd");
         }
         this.lijstGroepsbewerkingen = lijstGroepsbewerkingen;
@@ -86,14 +86,13 @@ public class Oefening {
     }
 
 
-
     /**
      * @param naam
      * @param opgave
      * @param feedback
      * @param vak
      */
-    public Oefening(String naam, String opgave,String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen ,Vak vak) {
+    public Oefening(String naam, String opgave, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         setNaam(naam);
         setOpgave(opgave);
         setAntwoord(antwoord);
@@ -113,7 +112,6 @@ public class Oefening {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,6 +128,6 @@ public class Oefening {
 
     @Override
     public String toString() {
-        return  naam;
+        return naam;
     }
 }

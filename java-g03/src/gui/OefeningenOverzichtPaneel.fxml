@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="651.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="651.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="backbutton" layoutX="44.0" layoutY="43.0" mnemonicParsing="false" onAction="#backButton" opacity="0.27" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-text-fill: #333; -fx-effect: none; -fx-font-weight: 100;" text="&lt; Back to BreakoutBoxes">
          <opaqueInsets>
@@ -39,7 +39,7 @@
          </children>
       </HBox>
       <JFXButton fx:id="btnCopy" layoutX="143.0" layoutY="657.0" onAction="#kopieerOefening" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #00897B;" text="Copy" textFill="WHITE" />
-      <JFXButton fx:id="btnEdit" layoutX="14.0" layoutY="657.0" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #00897B;" text="Edit" textFill="WHITE" />
+      <JFXButton fx:id="btnEdit" layoutX="14.0" layoutY="657.0" onAction="#editOefening" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #00897B;" text="Edit" textFill="WHITE" />
       <JFXButton fx:id="btnDelete" layoutX="273.0" layoutY="657.0" onAction="#deleteOefening" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #00897B;" text="Delete" textFill="WHITE" />
    </children>
 </fx:root>

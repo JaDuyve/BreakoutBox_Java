@@ -1,6 +1,5 @@
 package startUp;
 
-import domein.BobController;
 import domein.OefeningController;
 import gui.StartupMenuController;
 import javafx.application.Application;
@@ -22,7 +21,7 @@ public class StartUp extends Application {
         scene.setFill(Color.TRANSPARENT);
         primaryStage.setTitle("BreakOutBox Controller");
         primaryStage.setScene(scene);
-        primaryStage.sizeToScene();
+        primaryStage.setMaximized(true);
         primaryStage.show();
 
     }
