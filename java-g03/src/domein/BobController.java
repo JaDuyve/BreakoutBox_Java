@@ -61,4 +61,9 @@ public class BobController {
 
         bobBeheerder.wijzigBob(bobNaam, naam);
     }
+
+    public void veranderHuidigeOefening(Bob bob) {
+        bobBeheerder.setBob(bob);
+    }
+
 }
