@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import domein.Bob;
 import domein.BobController;
 import domein.OefeningController;
@@ -13,10 +14,13 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class BobOverzichtPaneelController extends AnchorPane {
@@ -40,6 +44,9 @@ public class BobOverzichtPaneelController extends AnchorPane {
 
     @FXML
     private JFXButton btnEdit;
+
+    @FXML
+    private JFXTextField txfZoekNaam;
 
     public BobOverzichtPaneelController(BobController dc) {
         this.bobController = dc;
@@ -75,7 +82,7 @@ public class BobOverzichtPaneelController extends AnchorPane {
     void deleteBob(ActionEvent event) {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Wilt u de geselecteerde BOB verwijderen?");
         alert.setTitle("BOB verwijderen");
-        alert.initOwner((Stage)this.getScene().getWindow());
+        alert.initOwner((Stage) this.getScene().getWindow());
         Scene s = this.getScene();
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -83,20 +90,18 @@ public class BobOverzichtPaneelController extends AnchorPane {
             try {
                 bobController.verwijderBob();
 
-            }catch(IllegalArgumentException ex){
-                AlertBox.showAlertError("Fout delete bob", ex.getMessage(), (Stage)this.getScene().getWindow());
+            } catch (IllegalArgumentException ex) {
+                AlertBox.showAlertError("Fout delete bob", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
             s.setRoot(new BobOverzichtPaneelController(bobController));
-        }
-        else {
+        } else {
             s.setRoot(new BobOverzichtPaneelController(bobController));
         }
 
     }
 
     @FXML
-    void copyBob(ActionEvent event)
-    {
+    void copyBob(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new BobKopiePaneelController(bobController, bobView.getSelectionModel().getSelectedItem()));
     }
@@ -106,9 +111,16 @@ public class BobOverzichtPaneelController extends AnchorPane {
         Scene s = this.getScene();
         s.setRoot(new StartupMenuController(new OefeningController(), bobController));
     }
+
     @FXML
     void onEdit(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new BobEditPaneelController(bobController));
     }
+
+    @FXML
+    void zoekNaam(KeyEvent event) {
+        bobController.changeFilter(txfZoekNaam.getText());
+    }
+
 }
