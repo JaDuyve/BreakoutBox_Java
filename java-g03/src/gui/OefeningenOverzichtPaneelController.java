@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import domein.BobController;
 import domein.Oefening;
 import domein.OefeningController;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -112,7 +113,7 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
     @FXML
     void backButton(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new StartupMenuController(oefeningController));
+        s.setRoot(new StartupMenuController(oefeningController, new BobController()));
     }
 
     @FXML

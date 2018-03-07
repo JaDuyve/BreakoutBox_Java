@@ -21,10 +21,11 @@ public class StartupMenuController extends AnchorPane {
     private JFXButton btnOefB;
 
     private OefeningController oefeningController;
+    private BobController bobController;
 
-
-    public StartupMenuController(OefeningController dc) {
-        this.oefeningController = dc;
+    public StartupMenuController(OefeningController oefeningController, BobController bobController) {
+        this.oefeningController = oefeningController;
+        this.bobController = bobController;
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("startupMenu.fxml"));
         loader.setRoot(this);
@@ -40,7 +41,7 @@ public class StartupMenuController extends AnchorPane {
     void showBobBeheren(ActionEvent event) {
         Scene s = this.getScene();
 
-        s.setRoot(new BobOverzichtPaneelController(new BobController()));
+        s.setRoot(new BobOverzichtPaneelController(bobController));
         Window stage = s.getWindow();
         stage.sizeToScene();
 
