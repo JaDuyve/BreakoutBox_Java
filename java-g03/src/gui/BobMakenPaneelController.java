@@ -75,7 +75,7 @@ public class BobMakenPaneelController extends AnchorPane {
     @FXML
     void voegBobToe(ActionEvent event) {
         try {
-            bobController.createBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight(), lvToegangscodes.getLijstRight(), vakDropDown.getSelectionModel().getSelectedItem());
+            bobController.createBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight(), lvToegangscodes.getLijstRight());
 
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
