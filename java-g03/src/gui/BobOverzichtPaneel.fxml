@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -37,5 +38,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <JFXTextField fx:id="txfZoekNaam" layoutX="393.0" layoutY="62.0" onKeyReleased="#zoekNaam" prefHeight="50.0" prefWidth="243.0" promptText="Zoek op naam" />
    </children>
 </fx:root>

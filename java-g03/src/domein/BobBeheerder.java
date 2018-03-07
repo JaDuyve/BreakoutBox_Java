@@ -52,18 +52,11 @@ public class BobBeheerder extends Observable {
     public void changeFilter(String bobNaam) {
         bobs.setPredicate(oefening -> {
 
-            boolean bobNaamLeeg = bobNaam == null || bobNaam.isEmpty();
-
-            String lowercaseBobNaam = "";
-
-            if (!bobNaamLeeg) {
-                lowercaseBobNaam = bobNaam.toLowerCase();
+            if(bobNaam == null || bobNaam.isEmpty()){
+                return true;
             }
 
-            boolean conditieBobNaam = bobNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowercaseBobNaam);
-
-
-            return conditieBobNaam ;
+            return oefening.getNaam().toLowerCase().contains(bobNaam.toLowerCase());
         });
     }
 
