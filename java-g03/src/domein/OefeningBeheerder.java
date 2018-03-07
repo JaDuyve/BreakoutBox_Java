@@ -184,15 +184,11 @@ public class OefeningBeheerder extends Observable {
     /**
      * @param fileName
      */
-    public void geefFile(String fileName) {
+    public File geefFile(String fileName) {
         fileTransfer.connect();
         File file = fileTransfer.retrieveFile(fileName, fileName);
         fileTransfer.disconnect();
-        try {
-            Desktop.getDesktop().open(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return file;
     }
 
 
