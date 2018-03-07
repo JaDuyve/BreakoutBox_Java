@@ -7,11 +7,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class OefeningenFilterPaneelController extends VBox {
@@ -53,10 +56,10 @@ public class OefeningenFilterPaneelController extends VBox {
     }
 
     private void build() {
-
+        GridPane gridPane = new GridPane();
+        AtomicInteger i = new AtomicInteger();
         oefeningController.geefVakken().stream()
                 .forEach(vak -> {
-                    HBox hbox = new HBox();
                     Circle circle = new Circle(20, Paint.valueOf(vak.getKleur()));
                     Label lblVak = new Label(vak.getNaam());
                     JFXCheckBox chVak = new JFXCheckBox();
@@ -67,18 +70,21 @@ public class OefeningenFilterPaneelController extends VBox {
                         }
                     });
 
-                    lblVak.setPadding(new Insets(10, 10,10,10));
+                    lblVak.setPadding(new Insets(10, 20,10,10));
+                    lblVak.setMinWidth(60);
                     chVak.setPadding(new Insets(10,10,10,10));
-                    hbox.getChildren().addAll(circle, lblVak, chVak);
+                    gridPane.addRow(i.get(), circle,lblVak,chVak);
+                    gridPane.setAlignment(Pos.CENTER_LEFT);
+                    GridPane.setHalignment(chVak, HPos.RIGHT); // To align horizontally in the cell
+                    GridPane.setValignment(chVak, VPos.CENTER);
 
-                    hbox.setPadding(new Insets(10,10,10,10));
-                    hbox.setAlignment(Pos.CENTER_LEFT);
                     vakken.put(vak.getNaam(), chVak);
-
-                    vbVakken.getChildren().add(hbox);
+                    i.getAndIncrement();
                 });
-
-
+        vbVakken.getChildren().add(gridPane);
+        gridPane.setMinWidth(400);
+        gridPane.setHgap(40);
+        gridPane.setVgap(20);
     }
 
     @FXML

@@ -43,8 +43,6 @@ public class StartupMenuController extends AnchorPane {
 
         s.setRoot(new BobOverzichtPaneelController(bobController));
         Window stage = s.getWindow();
-        stage.sizeToScene();
-
     }
 
     @FXML
@@ -53,7 +51,6 @@ public class StartupMenuController extends AnchorPane {
 
         s.setRoot(new OefeningSchermController(oefeningController));
         Window stage = s.getWindow();
-        stage.sizeToScene();
     }
 
 }
