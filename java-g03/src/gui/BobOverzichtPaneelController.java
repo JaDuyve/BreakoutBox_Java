@@ -3,16 +3,18 @@ package gui;
 import com.jfoenix.controls.JFXButton;
 import domein.Bob;
 import domein.BobController;
+import domein.OefeningController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
 
 import java.io.IOException;
 import java.util.Optional;
@@ -99,4 +101,14 @@ public class BobOverzichtPaneelController extends AnchorPane {
         s.setRoot(new BobKopiePaneelController(bobController, bobView.getSelectionModel().getSelectedItem()));
     }
 
+    @FXML
+    void backButton(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(new StartupMenuController(new OefeningController(), bobController));
+    }
+    @FXML
+    void onEdit(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(new BobEditPaneelController(bobController));
+    }
 }
