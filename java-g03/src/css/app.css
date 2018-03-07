@@ -1,0 +1,91 @@
+.anchor {
+    -fx-background-image:url('../images/mountains.jpg');
+	-fx-font-family: 'Roboto', Verdana, sans-serif;
+}
+.button {
+	-fx-background-color: rgba(250,250,250 ,0.3);
+}
+.sidepanels {
+	-fx-background-color: rgba(250,250,250 ,1);
+		-fx-font-family: 'Roboto', Verdana, sans-serif;
+}
+
+.txf {
+	-fx-background-color: white;
+	-fx-border-radius: 5;
+	-fx-background-radius: 5;
+	-fx-padding: 10 0;
+}
+.table-view{
+	-fx-font-family: 'Roboto', Verdana, sans-serif;
+	-fx-text-fill: black;
+    /*-fx-background-color: transparent;*/
+	
+ }
+
+ /*Style of entire tableView when is getting focused*/
+.table-view:focused{
+	-fx-text-fill: black;
+    /*-fx-background-color: transparent;*/
+}
+
+
+
+/*Style of each column header in the tableView/*/
+.table-view .column-header {
+     -fx-background-color: transparent;
+} 
+
+/*Style of each column header's background in the tableView*/
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0.0%, #424141 100.0%);
+}
+
+ /*Style of each column header's label  in the tableView*/
+.table-view .column-header-background .label{
+	-fx-font-family: 'Roboto Light', Verdana, sans-serif;
+    -fx-background-color: transparent;
+	-fx-font-size:20px;	 
+    -fx-text-fill: black;
+	-fx-padding: 20px;
+}
+
+/*Style of each column in the tableView*/
+.table-view .table-column{
+    -fx-alignment:center-left;
+}
+
+ /*Style of each table cell*/
+.table-view .table-cell{
+    -fx-font-size:14px;
+	-fx-padding: 15px;
+    -fx-text-fill:#212121;
+	
+}
+
+
+/*Style for each < non odd> row of table view*/
+ .table-row-cell{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;
+	-fx-text-fill: black;
+-fx-font-size:14px;	
+}
+
+/*Style for each <odd> row of table view*/
+.table-row-cell:odd{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;  
+	-fx-text-fill: black;
+	-fx-font-size:14px;
+}
+/*
+
+/*Style of each entire row in the table view*/
+.table-row-cell:selected {
+    -fx-border-color:transparent firebrick transparent firebrick  ;
+    -fx-border-width:2.0;
+	-fx-text-fill: #212121;
+}
