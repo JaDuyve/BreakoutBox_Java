@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import domein.Groepsbewerking;
 import domein.Oefening;
 import domein.OefeningController;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,7 +66,7 @@ public class OefeningenDetailPaneelController extends AnchorPane implements Obse
         colorCircle.setFill(Paint.valueOf(oefening.getVak().getKleur()));
         txfAntwoord.setText(oefening.getAntwoord());
         txfVak.setText(oefening.getVak().getNaam());
-        left.setItems(oefeningController.geefGroepsbewerkingen());
+        left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
         fileLabelOpgave.setText(oefening.getOpgave());
         fileLabelFeedback.setText(oefening.getFeedback());
     }
