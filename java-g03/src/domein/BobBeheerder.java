@@ -11,7 +11,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
 public class BobBeheerder extends Observable {
 
@@ -79,6 +78,8 @@ public class BobBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             bobRepo.insert(bob);
             GenericDaoJpa.commitTransaction();
+            bobs = null;
+            getBobList();
         }
     }
 
