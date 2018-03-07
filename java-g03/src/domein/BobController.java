@@ -22,9 +22,9 @@ public class BobController {
         toegangscodeRepo = new GenericDaoJpa<>(Toegangscode.class);
     }
 
-    public Bob geefBob(String naam){
+    public Bob geefBob(){
 
-        return bobBeheerder.geefBob(naam);
+        return bobBeheerder.getBob();
     }
 
     public ObservableList<Bob> geefBobs(){

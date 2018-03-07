@@ -59,13 +59,9 @@ public class BobMakenPaneelController extends AnchorPane {
     }
 
     private void buildGui() {
-        try {
-            lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), FXCollections.observableArrayList());
-            lvActies = new ListViewController<>(bobController.geefActies(), FXCollections.observableArrayList());
-            lvToegangscodes = new ListViewController<>(bobController.geefToegangsCodes(), FXCollections.observableArrayList());
-        } catch (IllegalArgumentException e) {
-            AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
-        }
+        lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), FXCollections.observableArrayList());
+        lvActies = new ListViewController<>(bobController.geefActies(), FXCollections.observableArrayList());
+        lvToegangscodes = new ListViewController<>(bobController.geefToegangsCodes(), FXCollections.observableArrayList());
         apOefeningen.getChildren().add(lvOefeningen);
         apActies.getChildren().add(lvActies);
         apToegangscodes.getChildren().add(lvToegangscodes);

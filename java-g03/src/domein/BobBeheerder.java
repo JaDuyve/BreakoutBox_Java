@@ -27,10 +27,6 @@ public class BobBeheerder extends Observable {
         this.bobRepo = mock;
     }
 
-    public Bob geefBob(String naam) {
-        return bobRepo.get(naam);
-    }
-
     public ObservableList<Bob> geefBobs() {
         return new SortedList<>(getBobList(), byBobNaam);
     }
@@ -41,6 +37,10 @@ public class BobBeheerder extends Observable {
         }
 
         return bobs;
+    }
+
+    public Bob getBob() {
+        return bob;
     }
 
     public void setBob(Bob bob) {

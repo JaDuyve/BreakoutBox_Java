@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -40,9 +39,7 @@ public class StartupMenuController extends AnchorPane {
     @FXML
     void showBobBeheren(ActionEvent event) {
         Scene s = this.getScene();
-
         s.setRoot(new BobSchermController(bobController));
-        Window stage = s.getWindow();
     }
 
     @FXML
@@ -50,7 +47,6 @@ public class StartupMenuController extends AnchorPane {
         Scene s = this.getScene();
 
         s.setRoot(new OefeningSchermController(oefeningController));
-        Window stage = s.getWindow();
     }
 
 }

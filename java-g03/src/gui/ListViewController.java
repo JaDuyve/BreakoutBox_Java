@@ -1,6 +1,8 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,10 +30,10 @@ public class ListViewController<T> extends HBox {
     @FXML
     private ListView<T> right;
 
-    public ListViewController(ObservableList<T> lijstLeft, ObservableList<T> lijstRight) {
+    public ListViewController(ObservableList<T> lijstLeft, List<T> lijstRight) {
 
         this.lijstLeft = lijstLeft;
-        this.lijstRight = lijstRight;
+        this.lijstRight = FXCollections.observableArrayList(lijstRight);
         lijstLeft.removeAll(lijstRight);
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("ListView.fxml"));
@@ -52,8 +54,22 @@ public class ListViewController<T> extends HBox {
         left.getSelectionModel().selectFirst();
         right.setItems(lijstRight);
         right.getSelectionModel().selectFirst();
-        toLeft.setDisable(true);
-        //lijstLeft.addListener(e -> toRight.setDisableVisualFocus(lijstLeft.isEmpty()));
+        toLeft.setDisable(lijstRight.isEmpty());
+        toRight.setDisable(lijstLeft.isEmpty());
+
+        lijstLeft.addListener(new ListChangeListener<T>() {
+            @Override
+            public void onChanged(Change<? extends T> c) {
+                toRight.setDisable(lijstLeft.isEmpty());
+            }
+        });
+        lijstRight.addListener(new ListChangeListener<T>() {
+            @Override
+            public void onChanged(Change<? extends T> c) {
+                toLeft.setDisable(lijstRight.isEmpty());
+            }
+        });
+
     }
 
     @FXML
@@ -62,13 +78,7 @@ public class ListViewController<T> extends HBox {
         if (obj != null) {
             lijstLeft.add(obj);
             lijstRight.remove(obj);
-            if (lijstRight.isEmpty())
-                toLeft.setDisable(true);
-            if (!lijstLeft.isEmpty())
-                toRight.setDisable(false);
         }
-
-
     }
 
     @FXML
@@ -77,10 +87,6 @@ public class ListViewController<T> extends HBox {
         if (obj != null) {
             lijstRight.add(obj);
             lijstLeft.remove(obj);
-            if (lijstLeft.isEmpty())
-                toRight.setDisable(true);
-            if (!lijstRight.isEmpty())
-                toLeft.setDisable(false);
         }
 
     }

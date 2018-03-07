@@ -2,15 +2,12 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import domein.Actie;
-import domein.BobController;
-import domein.Oefening;
-import domein.Toegangscode;
-import javafx.collections.FXCollections;
+import domein.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -36,14 +33,19 @@ public class BobEditPaneelController extends AnchorPane {
     @FXML
     private JFXButton btnCancel;
 
+    @FXML
+    private Label lblTitel;
+
     private ListViewController<Oefening> lvOefeningen;
     private ListViewController<Actie> lvActies;
     private ListViewController<Toegangscode> lvToegangscodes;
+    private Bob bob;
 
     private BobController bobController;
 
     public BobEditPaneelController(BobController bobController) {
         this.bobController = bobController;
+        this.bob = bobController.geefBob();
 
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("BobMakenPaneel.fxml"));
@@ -54,30 +56,30 @@ public class BobEditPaneelController extends AnchorPane {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-
         buildGui();
     }
 
     private void buildGui() {
-        try {
-            lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), FXCollections.observableArrayList());
-            lvActies = new ListViewController<>(bobController.geefActies(), FXCollections.observableArrayList());
-            lvToegangscodes = new ListViewController<>(bobController.geefToegangsCodes(), FXCollections.observableArrayList());
-        } catch (IllegalArgumentException e) {
-            AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
-        }
+        lblTitel.setText("BREAKOUT-BOX WIJZIGEN");
+        txfNaam.setText(bob.getNaam());
+        lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), bob.getLijstOefeningen());
+        lvActies = new ListViewController<>(bobController.geefActies(), bob.getLijstActies());
+        lvToegangscodes = new ListViewController<>(bobController.geefToegangsCodes(), bob.getLijstToegangscode());
+
         apOefeningen.getChildren().add(lvOefeningen);
         apActies.getChildren().add(lvActies);
         apToegangscodes.getChildren().add(lvToegangscodes);
+
+
     }
 
     @FXML
     void voegBobToe(ActionEvent event) {
         try {
-            bobController.createBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight(), lvToegangscodes.getLijstRight());
+            bobController.wijzigBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight(), lvToegangscodes.getLijstRight());
 
         } catch (IllegalArgumentException e) {
-            AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
+            AlertBox.showAlertError("Wijzigen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
         }
 
         Scene s = this.getScene();

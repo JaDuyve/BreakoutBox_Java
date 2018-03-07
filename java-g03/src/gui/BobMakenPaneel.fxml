@@ -13,7 +13,7 @@
    <children>
       <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="720.0" prefWidth="400.0" spacing="15.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="OEFENING MAKEN">
+            <Label fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" text="BREAKOUT BOX MAKEN">
                <font>
                   <Font name="Roboto Light" size="24.0" />
                </font>

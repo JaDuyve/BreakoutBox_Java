@@ -119,7 +119,7 @@ public class OefeningEditPaneelController extends AnchorPane {
         right.setItems(lijstRight);
         right.getSelectionModel().selectFirst();
         vakDropDown.setItems(oefeningController.geefVakken());
-        toLeft.setDisable(true);
+        toLeft.setDisable(lijstRight.isEmpty());
 
     }
 
