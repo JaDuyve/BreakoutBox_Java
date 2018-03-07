@@ -6,10 +6,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import persistentie.*;
 
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
@@ -84,7 +81,7 @@ public class OefeningBeheerder extends Observable {
      * @param vak
      */
 
-    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, ArrayList<Groepsbewerking> groepsbewerkingen, Vak vak) {
+    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0) {
             GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);

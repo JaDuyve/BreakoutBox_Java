@@ -1,5 +1,6 @@
 package startUp;
 
+import domein.BobController;
 import domein.OefeningController;
 import gui.StartupMenuController;
 import javafx.application.Application;

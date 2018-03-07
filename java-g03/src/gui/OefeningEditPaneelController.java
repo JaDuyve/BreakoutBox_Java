@@ -108,6 +108,7 @@ public class OefeningEditPaneelController extends AnchorPane {
         txtAntwoord.setText(oefening.getAntwoord());
         vakDropDown.getSelectionModel().select(oefening.getVak());
         opgaveFile = oefeningController.geefFile(oefening.getOpgave());
+        feedbackFile = oefeningController.geefFile(oefening.getFeedback());
 
         lijstLeft = oefeningController.geefGroepsbewerkingen();
         lijstRight = FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen());
@@ -179,7 +180,7 @@ public class OefeningEditPaneelController extends AnchorPane {
         List<Groepsbewerking> list = lijstRight.stream().collect(Collectors.toList());
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-        oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
+        oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }
