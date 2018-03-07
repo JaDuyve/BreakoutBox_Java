@@ -41,7 +41,7 @@ public class StartupMenuController extends AnchorPane {
     void showBobBeheren(ActionEvent event) {
         Scene s = this.getScene();
 
-        s.setRoot(new BobOverzichtPaneelController(bobController));
+        s.setRoot(new BobSchermController(bobController));
         Window stage = s.getWindow();
     }
 

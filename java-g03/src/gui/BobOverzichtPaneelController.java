@@ -60,7 +60,7 @@ public class BobOverzichtPaneelController extends AnchorPane {
         bobView.setItems(bobController.geefBobs());
         bobView.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
-                    bobController.veranderHuidigeOefening(newValue);
+                    bobController.veranderHuidigeBob(newValue);
                 });
 
     }
