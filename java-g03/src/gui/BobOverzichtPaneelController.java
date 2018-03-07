@@ -81,4 +81,11 @@ public class BobOverzichtPaneelController extends AnchorPane {
 
     }
 
+    @FXML
+    void copyBob(ActionEvent event)
+    {
+        Scene s = this.getScene();
+        s.setRoot(new BobKopiePaneelController(bobController, bobView.getSelectionModel().getSelectedItem()));
+    }
+
 }

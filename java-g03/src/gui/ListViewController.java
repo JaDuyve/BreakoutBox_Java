@@ -32,6 +32,7 @@ public class ListViewController<T> extends HBox {
 
         this.lijstLeft = lijstLeft;
         this.lijstRight = lijstRight;
+        lijstLeft.removeAll(lijstRight);
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("ListView.fxml"));
         loader.setRoot(this);

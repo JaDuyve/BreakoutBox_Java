@@ -5,7 +5,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -62,32 +61,7 @@
                </children>
             </HBox>
             <Label fx:id="lblGroepsbewerkingen" prefHeight="18.0" prefWidth="125.0" text="Groepsbewerkingen" />
-            <HBox prefHeight="250.0" prefWidth="398.0">
-               <children>
-                  <ListView fx:id="left" prefHeight="250.0">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin></ListView>
-                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="30.0" spacing="5.0">
-                     <children>
-                        <JFXButton fx:id="toRight" minWidth="50.0" onAction="#toRight" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B;" text="&gt;&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font></JFXButton>
-                        <JFXButton fx:id="toLeft" minWidth="50.0" onAction="#toLeft" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B #00897B;" text="&lt;&lt;" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font></JFXButton>
-                     </children></VBox>
-                  <ListView fx:id="right" prefHeight="250.0">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin></ListView>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-            </HBox>
+            <AnchorPane fx:id="apGroepsbewerking" prefWidth="200.0" />
             <Label fx:id="lblVak" text="Vak" VBox.vgrow="NEVER">
                <font>
                   <Font size="14.0" />
