@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 import java.io.IOException;
@@ -77,7 +78,12 @@ public class BobOverzichtPaneelController extends AnchorPane {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get().equals(ButtonType.OK)) {
-            bobController.verwijderBob();
+            try {
+                bobController.verwijderBob();
+
+            }catch(IllegalArgumentException ex){
+                AlertBox.showAlertError("Fout delete bob", ex.getMessage(), (Stage)this.getScene().getWindow());
+            }
             s.setRoot(new BobOverzichtPaneelController(bobController));
         }
         else {

@@ -1,5 +1,6 @@
 package domein;
 
+import com.sun.tools.javah.Gen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,12 +11,13 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
+import java.util.stream.Collectors;
 
 public class OefeningBeheerder extends Observable {
 
     private Oefening oefening;
-    private OefeningDao oefeningRepo;
-    private GenericDao<Vak> vakRepo;
+    private GenericDao<Oefening> oefeningRepo;
+    private GenericDao<Bob> bobRepo;
     private FileTransfer fileTransfer;
 
     private FilteredList<Oefening> oefeningList;
@@ -24,8 +26,12 @@ public class OefeningBeheerder extends Observable {
 
     public OefeningBeheerder() {
         setOefeningRepo(new OefeningDaoJpa());
-        setVakRepo(new GenericDaoJpa<>(Vak.class));
+        setBobRepo(new GenericDaoJpa(Bob.class));
         fileTransfer = new FileTransfer();
+    }
+
+    public void setBobRepo(GenericDaoJpa mock){
+        this.bobRepo = mock;
     }
 
     public OefeningBeheerder(OefeningDao mock) {
@@ -36,9 +42,6 @@ public class OefeningBeheerder extends Observable {
         oefeningRepo = mock;
     }
 
-    public void setVakRepo(GenericDao<Vak> mock) {
-        vakRepo = mock;
-    }
 
     public Oefening getOefening() {
         return oefening;
@@ -55,8 +58,9 @@ public class OefeningBeheerder extends Observable {
     }
 
 
+
     public void verwijderOefening() {
-        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0) {
+        if (controleerOefInBob(oefening.getNaam())) {
             fileTransfer.connect();
             fileTransfer.deleteFile(oefening.getOpgave());
             if (oefening.getFeedback() != null) {
@@ -82,7 +86,7 @@ public class OefeningBeheerder extends Observable {
      */
 
     public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        if (oefeningRepo.sitsInBob(oefening.getNaam()) == 0) {
+        if (controleerOefInBob(oefening.getNaam())) {
             GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);
             GenericDaoJpa.commitTransaction();
@@ -102,6 +106,13 @@ public class OefeningBeheerder extends Observable {
         }
 
         return oefeningList;
+    }
+
+    private boolean controleerOefInBob(String oefNaam){
+        return bobRepo.findAll().stream().filter(bob -> bob.getLijstOefeningen()
+                .stream().filter(oef -> oef.getNaam().equals(oefNaam))
+                .collect(Collectors.toList()).size() == 0)
+                .collect(Collectors.toList()).size() == 0;
     }
 
     /**
