@@ -1,5 +1,6 @@
 package domein;
 
+import gui.BobDetailPaneelController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GenericDao;
@@ -61,8 +62,12 @@ public class BobController {
         bobBeheerder.wijzigBob(naam, oefeningen, acties, toegangscodes);
     }
 
-    public void veranderHuidigeOefening(Bob bob) {
+    public void veranderHuidigeBob(Bob bob) {
         bobBeheerder.setBob(bob);
     }
 
+
+    public void addObserver(BobDetailPaneelController bobDetailPaneelController){
+        bobBeheerder.addObserver(bobDetailPaneelController);
+    }
 }
