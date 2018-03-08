@@ -8,13 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class BobDetailPaneelController extends AnchorPane implements Observer {
+public class BobDetailPaneelController extends VBox implements Observer {
 
     @FXML
     private JFXTextField txfNaam;
