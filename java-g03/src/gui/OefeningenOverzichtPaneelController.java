@@ -81,6 +81,7 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
                     btnEdit.setDisable(false);
                 });
 
+
     }
 
     @FXML

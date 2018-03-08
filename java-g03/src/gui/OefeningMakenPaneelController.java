@@ -119,21 +119,25 @@ public class OefeningMakenPaneelController extends StackPane {
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
-        if (opgaveFile == null){
-            throw new IllegalArgumentException("Er is geen opgave geselecteerd.");
-        }
-        String naam = txfNaam.getText();
-        String antwoord = txtAntwoord.getText();
-        List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
-        Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
-
         try {
-            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak);
-        } catch(IllegalArgumentException ex){
-            AlertBox.showAlertError("Fout maak Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
+            if (opgaveFile == null) {
+                throw new IllegalArgumentException("Er is geen opgave geselecteerd.");
+            }
+            String naam = txfNaam.getText();
+            String antwoord = txtAntwoord.getText();
+            List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
+            Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
+
+            try {
+                oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak);
+            } catch (IllegalArgumentException ex) {
+                AlertBox.showAlertError("Fout maak Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
+            }
+            Scene s = this.getScene();
+            s.setRoot(new OefeningSchermController(oefeningController));
+        }catch (IllegalArgumentException ex) {
+            AlertBox.showAlertError("Fout Oefening Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
-        Scene s = this.getScene();
-        s.setRoot(new OefeningSchermController(oefeningController));
     }
 
     @FXML

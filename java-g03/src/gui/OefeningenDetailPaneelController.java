@@ -28,7 +28,7 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
     private JFXTextField txfAntwoord;
 
     @FXML
-    private JFXButton openFile;
+    private JFXButton btnOpenOpgave;
 
     @FXML
     private Label fileLabelOpgave;
@@ -64,12 +64,13 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
             throw new RuntimeException(ex);
         }
 
+        buildGui();
 
     }
 
     private void buildGui(){
         openFeedback.setDisable(true);
-        openFeedback.setDisable(true);
+        btnOpenOpgave.setDisable(true);
     }
 
     @Override
@@ -80,7 +81,7 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
         txfVak.setText(oefening.getVak().getNaam());
         left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
         fileLabelOpgave.setText(oefening.getOpgave());
-        openFeedback.setDisable(false);
+        btnOpenOpgave.setDisable(false);
 
         if (oefening.getFeedback() != null){
             openFeedback.setDisable(false);

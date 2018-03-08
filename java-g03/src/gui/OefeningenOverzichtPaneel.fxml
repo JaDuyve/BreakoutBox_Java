@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1025.0" styleClass="anchor" stylesheets="@../css/app.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="anchor" stylesheets="@../css/app.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="backbutton" layoutX="44.0" layoutY="43.0" mnemonicParsing="false" onAction="#backButton" opacity="0.48" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-text-fill: white; -fx-effect: none; -fx-font-weight: 100;" text=" Back to BreakoutBoxes">
+      <Button fx:id="backbutton" layoutX="44.0" layoutY="43.0" mnemonicParsing="false" onAction="#backButton" opacity="0.48" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-text-fill: white; -fx-effect: none; -fx-font-weight: 100;" text="Menu">
          <opaqueInsets>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </opaqueInsets>
@@ -31,11 +31,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="379.0" layoutY="187.0" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Exercises" textFill="WHITE" />
+      <Label layoutX="379.0" layoutY="187.0" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Oefeningen" textFill="WHITE" />
       <TableView fx:id="oefTable" layoutX="63.0" layoutY="317.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="896.0">
         <columns>
-          <TableColumn fx:id="categorieTable" prefWidth="275.0" text="Categories" />
-          <TableColumn fx:id="nameTable" prefWidth="585.0" text="Name" />
+          <TableColumn fx:id="categorieTable" prefWidth="275.0" text="Categorieën" />
+          <TableColumn fx:id="nameTable" prefWidth="585.0" text="Naam" />
         </columns>
          <effect>
             <InnerShadow blurType="GAUSSIAN" color="#0000001a" height="23.895" radius="12.188749999999999" width="26.86" />
@@ -44,21 +44,21 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <JFXButton fx:id="addExerciseButton" layoutX="789.0" layoutY="914.0" onAction="#createOefening" prefHeight="62.0" prefWidth="174.0" style="-fx-background-color: FF8F00;" text="Add Exercise" textFill="WHITE">
+      <JFXButton fx:id="addExerciseButton" layoutX="789.0" layoutY="914.0" onAction="#createOefening" prefHeight="62.0" prefWidth="174.0" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
          <font>
             <Font name="Roboto Light" size="24.0" />
          </font></JFXButton>
       <HBox alignment="CENTER" layoutX="63.0" layoutY="914.0" prefHeight="62.0" prefWidth="570.0" spacing="25.0">
          <children>
-            <JFXButton fx:id="btnCopy" alignment="CENTER" contentDisplay="CENTER" onAction="#kopieerOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Copy" textFill="WHITE">
+            <JFXButton fx:id="btnCopy" alignment="CENTER" contentDisplay="CENTER" onAction="#kopieerOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Kopiëren" textFill="WHITE">
                <font>
                   <Font name="Roboto Light" size="24.0" />
                </font></JFXButton>
-            <JFXButton fx:id="btnEdit" onAction="#editOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Edit" textFill="WHITE">
+            <JFXButton fx:id="btnEdit" onAction="#editOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Wijzigen" textFill="WHITE">
                <font>
                   <Font name="Roboto Light" size="24.0" />
                </font></JFXButton>
-            <JFXButton fx:id="btnDelete" onAction="#deleteOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Delete" textFill="WHITE">
+            <JFXButton fx:id="btnDelete" onAction="#deleteOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Verwijderen" textFill="WHITE">
                <font>
                   <Font name="Roboto Light" size="24.0" />
                </font></JFXButton>
