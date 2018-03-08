@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -23,7 +24,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OefeningEditPaneelController extends AnchorPane {
+public class OefeningEditPaneelController extends StackPane {
 
 
     @FXML
@@ -80,6 +81,11 @@ public class OefeningEditPaneelController extends AnchorPane {
     @FXML
     private JFXButton btnCancel;
 
+    @FXML
+    private AnchorPane apGroepsbewerking;
+
+    private ListViewController<Groepsbewerking> lvGroepsbewerkingen;
+
     private ObservableList<Groepsbewerking> lijstLeft;
     private ObservableList<Groepsbewerking> lijstRight;
     private OefeningController oefeningController;
@@ -109,18 +115,11 @@ public class OefeningEditPaneelController extends AnchorPane {
         vakDropDown.getSelectionModel().select(oefening.getVak());
         opgaveFile = oefeningController.geefFile(oefening.getOpgave());
         feedbackFile = oefeningController.geefFile(oefening.getFeedback());
+        lvGroepsbewerkingen = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), oefening.getLijstGroepsbewerkingen());
 
-        lijstLeft = oefeningController.geefGroepsbewerkingen();
-        lijstRight = FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen());
-        lijstLeft.removeAll(lijstRight);
-
-        left.setItems(lijstLeft);
-        left.getSelectionModel().selectFirst();
-        right.setItems(lijstRight);
-        right.getSelectionModel().selectFirst();
         vakDropDown.setItems(oefeningController.geefVakken());
-        toLeft.setDisable(lijstRight.isEmpty());
 
+        apGroepsbewerking.getChildren().add(lvGroepsbewerkingen);
     }
 
     @FXML
@@ -142,42 +141,13 @@ public class OefeningEditPaneelController extends AnchorPane {
     }
 
     @FXML
-    void toLeft(ActionEvent event) {
-        Groepsbewerking groep = right.getSelectionModel().getSelectedItem();
-        if (groep != null) {
-            lijstLeft.add(groep);
-            lijstRight.remove(groep);
-            if (lijstRight.isEmpty())
-                toLeft.setDisable(true);
-            if (!lijstLeft.isEmpty())
-                toRight.setDisable(false);
-        }
-
-
-    }
-
-    @FXML
-    void toRight(ActionEvent event) {
-        Groepsbewerking groep = left.getSelectionModel().getSelectedItem();
-        if (groep != null) {
-            lijstRight.add(groep);
-            lijstLeft.remove(groep);
-            if (lijstLeft.isEmpty())
-                toRight.setDisable(true);
-            if (!lijstRight.isEmpty())
-                toLeft.setDisable(false);
-        }
-
-    }
-
-    @FXML
     void VoegOefeningToe(ActionEvent event) {
         if (opgaveFile == null){
             throw new IllegalArgumentException("Er is geen opgave geselecteerd.");
         }
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
-        List<Groepsbewerking> list = lijstRight.stream().collect(Collectors.toList());
+        List<Groepsbewerking> list = lvGroepsbewerkingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
         oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );

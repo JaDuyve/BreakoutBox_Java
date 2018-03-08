@@ -68,14 +68,17 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
         oefTable.setItems(oefeningController.geefOefeningen());
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
-        btnCopy = new JFXButton("Copy");
-        btnEdit = new JFXButton("Edit");
-        btnDelete = new JFXButton("Delete");
-        btnDelete.setOnAction(this::deleteOefening);
+
+        btnCopy.setDisable(true);
+        btnDelete.setDisable(true);
+        btnEdit.setDisable(true);
 
         oefTable.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     oefeningController.veranderHuidigeOefening(newValue);
+                    btnCopy.setDisable(false);
+                    btnDelete.setDisable(false);
+                    btnEdit.setDisable(false);
                 });
 
     }

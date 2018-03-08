@@ -148,12 +148,6 @@ public class OefeningBeheerder extends Observable {
         }
     }
 
-    /**
-     * @param naam
-     */
-    public Oefening geefOefening(String naam) {
-        return oefeningRepo.get(naam);
-    }
 
     /**
      * @param oefeningNaam

@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -126,7 +127,11 @@ public class OefeningMakenPaneelController extends StackPane {
         List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-        oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
+        try {
+            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak);
+        } catch(IllegalArgumentException ex){
+            AlertBox.showAlertError("Fout maak Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
+        }
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }

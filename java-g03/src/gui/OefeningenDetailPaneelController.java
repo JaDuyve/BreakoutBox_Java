@@ -9,11 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
@@ -48,6 +50,7 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
 
     private OefeningController oefeningController;
     private Oefening oefening;
+
     public OefeningenDetailPaneelController(OefeningController dc) {
         this.oefeningController = dc;
 
@@ -60,36 +63,58 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+
+
+    }
+
+    private void buildGui(){
+        openFeedback.setDisable(true);
+        openFeedback.setDisable(true);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        oefening =  (Oefening)arg;
+        oefening = (Oefening) arg;
         colorCircle.setFill(Paint.valueOf(oefening.getVak().getKleur()));
         txfAntwoord.setText(oefening.getAntwoord());
         txfVak.setText(oefening.getVak().getNaam());
         left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
         fileLabelOpgave.setText(oefening.getOpgave());
-        fileLabelFeedback.setText(oefening.getFeedback());
+        openFeedback.setDisable(false);
+
+        if (oefening.getFeedback() != null){
+            openFeedback.setDisable(false);
+            fileLabelFeedback.setText(oefening.getFeedback());
+
+        }
     }
 
     @FXML
     void openFeedback(ActionEvent event) {
-        File file = oefeningController.geefFile(oefening.getFeedback());
         try {
-            Desktop.getDesktop().open(file);
-        } catch (IOException e) {
-            e.printStackTrace();
+            File file = oefeningController.geefFile(oefening.getFeedback());
+            try {
+                Desktop.getDesktop().open(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IllegalArgumentException ex) {
+            AlertBox.showAlertError("Fout open feedback", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
     }
 
     @FXML
     void openOpgave(ActionEvent event) {
-        File file = oefeningController.geefFile(oefening.getOpgave());
         try {
-            Desktop.getDesktop().open(file);
-        } catch (IOException e) {
-            e.printStackTrace();
+            File file = oefeningController.geefFile(oefening.getOpgave());
+            try {
+                Desktop.getDesktop().open(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IllegalArgumentException ex) {
+            AlertBox.showAlertError("Fout open opgave", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
+
     }
 }
