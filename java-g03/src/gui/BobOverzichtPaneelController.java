@@ -93,9 +93,9 @@ public class BobOverzichtPaneelController extends AnchorPane {
             } catch (IllegalArgumentException ex) {
                 AlertBox.showAlertError("Fout delete bob", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
-            s.setRoot(new BobOverzichtPaneelController(bobController));
+            s.setRoot(new BobSchermController(bobController));
         } else {
-            s.setRoot(new BobOverzichtPaneelController(bobController));
+            s.setRoot(new BobSchermController(bobController));
         }
 
     }
