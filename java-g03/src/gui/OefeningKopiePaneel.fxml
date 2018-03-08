@@ -5,94 +5,114 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="720.0" prefWidth="400.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" type="StackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="400.0" spacing="15.0">
-         <children>
-            <Label fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" text="OEFENING KOPIEREN">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-            <Label fx:id="lblNaam" text="Naam">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <JFXTextField fx:id="txfNaam" />
-            <Label fx:id="lblAntwoord" text="Antwoord">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <JFXTextField fx:id="txtAntwoord" />
-            <HBox alignment="CENTER" spacing="50.0">
+      <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/mountains.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane>
+         <right>
+            <VBox alignment="CENTER" prefHeight="720.0" prefWidth="400.0" spacing="15.0" styleClass="sidepanels" stylesheets="@../css/app.css" BorderPane.alignment="CENTER">
                <children>
-                  <VBox spacing="10.0">
-                     <children>
-                        <JFXButton fx:id="btnOpgave" onAction="#toonOpgave" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Bekijk opgave" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-                  <VBox spacing="10.0">
-                     <children>
-                        <JFXButton fx:id="btnFeedback" onAction="#toonFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Bekijk feedback" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <Label fx:id="lblGroepsbewerkingen" prefHeight="18.0" prefWidth="125.0" text="Groepsbewerkingen" />
-            <AnchorPane fx:id="apGroepsbewerking" prefWidth="200.0" />
-            <Label fx:id="lblVak" text="Vak" VBox.vgrow="NEVER">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <JFXComboBox fx:id="vakDropDown" prefHeight="20.0" prefWidth="130.0">
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin></JFXComboBox>
-            <HBox alignment="CENTER" spacing="50.0" VBox.vgrow="NEVER">
-               <children>
-                  <JFXButton fx:id="btnVoegOefeningToe" alignment="CENTER" onAction="#VoegOefeningToe" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Kopieer" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
+                  <Label fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" text="OEFENING KOPIEREN">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblNaam" text="Naam">
                      <font>
                         <Font size="14.0" />
                      </font>
-                  </JFXButton>
-                  <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#canel" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Cancel" textFill="WHITE">
+                  </Label>
+                  <JFXTextField fx:id="txfNaam" styleClass="txf" />
+                  <Label fx:id="lblAntwoord" text="Antwoord">
                      <font>
                         <Font size="14.0" />
-                     </font></JFXButton>
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="txtAntwoord" styleClass="txf" />
+                  <HBox alignment="CENTER" spacing="50.0">
+                     <children>
+                        <VBox spacing="10.0">
+                           <children>
+                              <JFXButton fx:id="btnOpgave" onAction="#toonOpgave" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Bekijk opgave" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0">
+                           <children>
+                              <JFXButton fx:id="btnFeedback" onAction="#toonFeedback" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Bekijk feedback" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Label fx:id="lblGroepsbewerkingen" prefHeight="18.0" prefWidth="125.0" text="Groepsbewerkingen" />
+                  <AnchorPane fx:id="apGroepsbewerking" prefWidth="200.0" />
+                  <Label fx:id="lblVak" text="Vak" VBox.vgrow="NEVER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="vakDropDown" prefHeight="20.0" prefWidth="130.0" styleClass="txf">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <HBox alignment="CENTER" spacing="50.0" VBox.vgrow="NEVER">
+                     <children>
+                        <JFXButton fx:id="btnVoegOefeningToe" alignment="CENTER" onAction="#VoegOefeningToe" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Kopieer" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#canel" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Cancel" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </right>
+      </BorderPane>
    </children>
 </fx:root>

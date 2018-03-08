@@ -9,11 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BobEditPaneelController extends AnchorPane {
+public class BobEditPaneelController extends StackPane {
 
     @FXML
     private JFXTextField txfNaam;
