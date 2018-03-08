@@ -65,9 +65,16 @@ public class BobOverzichtPaneelController extends AnchorPane {
 
     private void build() {
         bobView.setItems(bobController.geefBobs());
+        btnCopy.setDisable(true);
+        btnDelete.setDisable(true);
+        btnEdit.setDisable(true);
+
         bobView.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     bobController.veranderHuidigeBob(newValue);
+                    btnCopy.setDisable(false);
+                    btnDelete.setDisable(false);
+                    btnEdit.setDisable(false);
                 });
 
     }
@@ -89,13 +96,11 @@ public class BobOverzichtPaneelController extends AnchorPane {
         if (result.get().equals(ButtonType.OK)) {
             try {
                 bobController.verwijderBob();
+                s.setRoot(new BobSchermController(bobController));
 
             } catch (IllegalArgumentException ex) {
                 AlertBox.showAlertError("Fout delete bob", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
-            s.setRoot(new BobSchermController(bobController));
-        } else {
-            s.setRoot(new BobSchermController(bobController));
         }
 
     }

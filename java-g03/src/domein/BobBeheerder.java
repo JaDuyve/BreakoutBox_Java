@@ -19,12 +19,15 @@ public class BobBeheerder extends Observable {
 
     private final Comparator<Bob> byBobNaam = (b1, b2) -> b1.getNaam().compareToIgnoreCase(b2.getNaam());
 
-    public BobBeheerder(GenericDao mock)
-    {
-        this.bobRepo = mock;
-    }
+
+        public BobBeheerder(GenericDao mock)
+        {
+            this.bobRepo = mock;
+            getBobList();
+        }
     public BobBeheerder() {
         setBobRepo(new GenericDaoJpa<>(Bob.class));
+        getBobList();
     }
 
     public void setBobRepo(GenericDao<Bob> mock) {
@@ -56,7 +59,7 @@ public class BobBeheerder extends Observable {
     public void changeFilter(String bobNaam) {
         bobs.setPredicate(oefening -> {
 
-            if(bobNaam == null || bobNaam.isEmpty()){
+            if (bobNaam == null || bobNaam.isEmpty()) {
                 return true;
             }
 
@@ -68,9 +71,9 @@ public class BobBeheerder extends Observable {
 
         Bob bob = new Bob(naam, oefeningen, acties, toegangscodes);
 
-        if (bobRepo.exists(bob.getNaam())){
+        if (bobRepo.exists(bob.getNaam())) {
             throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
-        }else {
+        } else {
             GenericDaoJpa.startTransaction();
             bobRepo.insert(bob);
             GenericDaoJpa.commitTransaction();
@@ -80,23 +83,22 @@ public class BobBeheerder extends Observable {
     }
 
     public void verwijderBob() {
-            if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
-                GenericDaoJpa.startTransaction();
-                bobRepo.delete(bob);
-                GenericDaoJpa.commitTransaction();
-                bobs = null;
-                getBobList();
-        }
-        else {
+        if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
+            GenericDaoJpa.startTransaction();
+            bobRepo.delete(bob);
+            GenericDaoJpa.commitTransaction();
+            bobs = null;
+            getBobList();
+        } else {
             throw new IllegalArgumentException("Uw bob moet leeg zijn.");
         }
     }
 
     public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes) {
-            GenericDaoJpa.startTransaction();
-            bobRepo.delete(bob);
-            GenericDaoJpa.commitTransaction();
-            createBob(naam, oefeningen, acties, toegangscodes);
+        GenericDaoJpa.startTransaction();
+        bobRepo.delete(bob);
+        GenericDaoJpa.commitTransaction();
+        createBob(naam, oefeningen, acties, toegangscodes);
 
     }
 

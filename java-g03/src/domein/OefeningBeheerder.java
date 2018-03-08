@@ -27,6 +27,7 @@ public class OefeningBeheerder extends Observable {
         setOefeningRepo(new OefeningDaoJpa());
         setBobRepo(new GenericDaoJpa(Bob.class));
         fileTransfer = new FileTransfer();
+        getOefeningList();
     }
 
     public void setBobRepo(GenericDaoJpa mock) {
