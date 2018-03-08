@@ -99,8 +99,6 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
             }catch (IllegalArgumentException ex){
                 AlertBox.showAlertError("Fout verwijder oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
-        } else {
-            //s.setRoot(new OefeningSchermController(oefeningController));
         }
     }
 
