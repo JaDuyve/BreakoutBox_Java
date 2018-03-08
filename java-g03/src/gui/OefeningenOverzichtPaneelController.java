@@ -93,11 +93,14 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get().equals(ButtonType.OK)) {
-            oefeningController.verwijderOefening();
-            s.setRoot(new OefeningSchermController(oefeningController));
-
+            try {
+                oefeningController.verwijderOefening();
+                s.setRoot(new OefeningSchermController(oefeningController));
+            }catch (IllegalArgumentException ex){
+                AlertBox.showAlertError("Fout verwijder oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
+            }
         } else {
-            s.setRoot(new OefeningSchermController(oefeningController));
+            //s.setRoot(new OefeningSchermController(oefeningController));
         }
     }
 

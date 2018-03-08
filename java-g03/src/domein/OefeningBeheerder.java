@@ -29,7 +29,7 @@ public class OefeningBeheerder extends Observable {
         fileTransfer = new FileTransfer();
     }
 
-    public void setBobRepo(GenericDaoJpa mock){
+    public void setBobRepo(GenericDaoJpa mock) {
         this.bobRepo = mock;
     }
 
@@ -57,21 +57,20 @@ public class OefeningBeheerder extends Observable {
     }
 
 
-
     public void verwijderOefening() {
-        if (controleerOefInBob(oefening.getNaam())) {
-            fileTransfer.connect();
-            fileTransfer.deleteFile(oefening.getOpgave());
-            if (oefening.getFeedback() != null) {
-                fileTransfer.deleteFile(oefening.getFeedback());
-            }
-            fileTransfer.disconnect();
-            GenericDaoJpa.startTransaction();
-            oefeningRepo.delete(oefening);
-            GenericDaoJpa.commitTransaction();
-            oefeningList = null;
-            getOefeningList();
+        controleerOefInBob(oefening.getNaam());
+        fileTransfer.connect();
+        fileTransfer.deleteFile(oefening.getOpgave());
+        if (oefening.getFeedback() != null) {
+            fileTransfer.deleteFile(oefening.getFeedback());
         }
+        fileTransfer.disconnect();
+        GenericDaoJpa.startTransaction();
+        oefeningRepo.delete(oefening);
+        GenericDaoJpa.commitTransaction();
+        oefeningList = null;
+        getOefeningList();
+
 
     }
 
@@ -85,12 +84,13 @@ public class OefeningBeheerder extends Observable {
      */
 
     public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        if (controleerOefInBob(oefening.getNaam())) {
-            GenericDaoJpa.startTransaction();
-            oefeningRepo.delete(oefening);
-            GenericDaoJpa.commitTransaction();
-            createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
-        }
+        controleerOefInBob(oefening.getNaam());
+
+        GenericDaoJpa.startTransaction();
+        oefeningRepo.delete(oefening);
+        GenericDaoJpa.commitTransaction();
+        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
+
 
     }
 
@@ -107,11 +107,15 @@ public class OefeningBeheerder extends Observable {
         return oefeningList;
     }
 
-    private boolean controleerOefInBob(String oefNaam){
-        return bobRepo.findAll().stream().filter(bob -> bob.getLijstOefeningen()
+    private void controleerOefInBob(String oefNaam) {
+        boolean result = bobRepo.findAll().stream().filter(bob -> bob.getLijstOefeningen()
                 .stream().filter(oef -> oef.getNaam().equals(oefNaam))
                 .collect(Collectors.toList()).size() == 0)
                 .collect(Collectors.toList()).size() == 0;
+
+        if (!result) {
+            throw new IllegalArgumentException("Oefening is nog gelinkte met een oefening, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
+        }
     }
 
     /**

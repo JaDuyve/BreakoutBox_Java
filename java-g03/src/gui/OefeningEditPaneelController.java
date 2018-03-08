@@ -12,12 +12,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import org.eclipse.persistence.internal.oxm.schema.model.All;
 
 import java.io.File;
 import java.io.IOException;
@@ -150,7 +153,11 @@ public class OefeningEditPaneelController extends StackPane {
         List<Groepsbewerking> list = lvGroepsbewerkingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-        oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
+        try {
+            oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak);
+        } catch(IllegalArgumentException ex){
+            AlertBox.showAlertError("Fout wijzig Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
+        }
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }
