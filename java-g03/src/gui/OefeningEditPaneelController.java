@@ -117,7 +117,10 @@ public class OefeningEditPaneelController extends StackPane {
         txtAntwoord.setText(oefening.getAntwoord());
         vakDropDown.getSelectionModel().select(oefening.getVak());
         opgaveFile = oefeningController.geefFile(oefening.getOpgave());
-        feedbackFile = oefeningController.geefFile(oefening.getFeedback());
+        if (oefening.getFeedback() != null){
+            feedbackFile = oefeningController.geefFile(oefening.getFeedback());
+
+        }
         lvGroepsbewerkingen = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), oefening.getLijstGroepsbewerkingen());
 
         vakDropDown.setItems(oefeningController.geefVakken());
