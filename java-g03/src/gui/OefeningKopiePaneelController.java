@@ -137,7 +137,7 @@ public class OefeningKopiePaneelController extends StackPane {
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
-        if (opgaveFile == null || feedbackFile == null){
+        if (opgaveFile == null){
             throw new IllegalArgumentException("Er is geen opgave of feedback geselecteerd.");
         }
         String naam = txfNaam.getText();
