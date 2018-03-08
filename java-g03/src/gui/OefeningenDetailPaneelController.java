@@ -81,7 +81,7 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
         txfVak.setText(oefening.getVak().getNaam());
         left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
         fileLabelOpgave.setText(oefening.getOpgave());
-        openFeedback.setDisable(false);
+        btnOpenOpgave.setDisable(false);
 
         if (oefening.getFeedback() != null){
             openFeedback.setDisable(false);
