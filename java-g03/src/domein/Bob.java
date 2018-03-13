@@ -25,6 +25,8 @@ public class Bob {
         setLijstOefeningen(oefeningen);
         setLijstActies(acties);
         setLijstToegangscode(toegangscodes);
+
+        controleerGenoegActies();
     }
 
     protected Bob(){
@@ -52,6 +54,9 @@ public class Bob {
     }
 
     public List<Actie> getLijstActies() {
+        if (lijstActies == null || lijstActies.isEmpty()) {
+            throw new IllegalArgumentException("Acties mag niet leeg gelaten worden.");
+        }
         return lijstActies;
     }
 
@@ -65,6 +70,12 @@ public class Bob {
 
     public void setLijstToegangscode(List<Toegangscode> lijstToegangscode) {
         this.lijstToegangscode = lijstToegangscode;
+    }
+
+    public void controleerGenoegActies(){
+        if (lijstOefeningen.size() != lijstActies.size()){
+            throw new IllegalArgumentException("Er moeten evenveel oefeningen zijn als acties.");
+        }
     }
 
 
