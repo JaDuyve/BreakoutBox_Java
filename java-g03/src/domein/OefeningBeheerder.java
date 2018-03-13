@@ -59,7 +59,7 @@ public class OefeningBeheerder extends Observable {
 
 
     public void verwijderOefening() {
-        controleerOefInBob(oefening.getNaam());
+        controleerOefInBob(oefening);
         fileTransfer.connect();
         fileTransfer.deleteFile(oefening.getOpgave());
         if (oefening.getFeedback() != null) {
@@ -85,7 +85,7 @@ public class OefeningBeheerder extends Observable {
      */
 
     public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        controleerOefInBob(oefening.getNaam());
+        controleerOefInBob(oefening);
 
         GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
@@ -108,12 +108,10 @@ public class OefeningBeheerder extends Observable {
         return oefeningList;
     }
 
-    private void controleerOefInBob(String oefNaam) {
-        boolean result = bobRepo.findAll().stream().filter(bob -> {
-            List<Oefening> oefen = bob.getLijstOefeningen();
+    private void controleerOefInBob(Oefening oef) {
+        boolean result = bobRepo.findAll().stream()
+                .filter(bob -> bob.getLijstOefeningen().contains(oef)).collect(Collectors.toList()).size() != 0;
 
-            return oefen.stream().filter(oef -> oefening.getNaam().equals(oefNaam)).collect(Collectors.toList()).size() != 0;
-        }).collect(Collectors.toList()).size() != 0;
 
         if (result) {
             throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
