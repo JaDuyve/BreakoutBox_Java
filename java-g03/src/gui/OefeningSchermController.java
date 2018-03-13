@@ -14,10 +14,15 @@ public class OefeningSchermController extends BorderPane {
 
     private OefeningController oefeningController;
 
-    public OefeningSchermController(OefeningController dc) {
+    public OefeningSchermController() {
 
-        this.oefeningController = dc;
+        this(new OefeningController());
 
+    }
+
+    public OefeningSchermController(OefeningController oc){
+
+        this.oefeningController = oc;
         detailPanelController = new OefeningenDetailPaneelController(oefeningController);
         overzichtPanel = new OefeningenOverzichtPaneelController(oefeningController, this, detailPanelController);
         filterPaneelController = new OefeningenFilterPaneelController(oefeningController);

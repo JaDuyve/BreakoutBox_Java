@@ -3,6 +3,7 @@ package gui;
 import com.jfoenix.controls.JFXButton;
 import domein.BobController;
 import domein.OefeningController;
+import domein.SessieController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,12 +20,13 @@ public class StartupMenuController extends BorderPane {
     @FXML
     private JFXButton btnOefB;
 
-    private OefeningController oefeningController;
-    private BobController bobController;
+    @FXML
+    private JFXButton btnSesstieToevoegen;
 
-    public StartupMenuController(OefeningController oefeningController, BobController bobController) {
-        this.oefeningController = oefeningController;
-        this.bobController = bobController;
+
+
+    public StartupMenuController() {
+
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("startupMenu.fxml"));
         loader.setRoot(this);
@@ -39,14 +41,19 @@ public class StartupMenuController extends BorderPane {
     @FXML
     void showBobBeheren(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new BobSchermController(bobController));
+        s.setRoot(new BobSchermController());
     }
 
     @FXML
     void showOefBeheren(ActionEvent event) {
         Scene s = this.getScene();
+        s.setRoot(new OefeningSchermController());
+    }
 
-        s.setRoot(new OefeningSchermController(oefeningController));
+    @FXML
+    void showSessieToevoegen(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(new SessieMakenPaneelController(new SessieController()));
     }
 
 }

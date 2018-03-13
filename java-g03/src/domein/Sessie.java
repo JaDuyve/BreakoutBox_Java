@@ -4,24 +4,25 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.File;
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class Sessie {
     private String naam;
-    private Date startDatum;
+    private LocalDate startDatum;
     private int code;
     private boolean contactLeer;
     private static SecureRandom random = new SecureRandom();
     private List<Groep> groepen;
     private Bob bob;
 
-    public Sessie(String naam, Date startDatum,Bob bob, File groepen, boolean contactLeer) {
+    public Sessie(String naam, LocalDate startDatum, Bob bob, File groepen, boolean contactLeer) {
         setNaam(naam);
         setStartDatum(startDatum);
+        setContactLeer(contactLeer);
         setBob(bob);
         groepenToevoegen(groepen);
-        setContactLeer(contactLeer);
         setCode(random.nextInt(10000)+ 1000);
     }
 
@@ -51,11 +52,11 @@ public class Sessie {
         this.naam = naam;
     }
 
-    public Date getStartDatum() {
+    public LocalDate getStartDatum() {
         return startDatum;
     }
 
-    public void setStartDatum(Date startDatum) {
+    public void setStartDatum(LocalDate startDatum) {
         if (startDatum == null){
             throw new IllegalArgumentException("startDatum mag niet leeg zijn");
         }
