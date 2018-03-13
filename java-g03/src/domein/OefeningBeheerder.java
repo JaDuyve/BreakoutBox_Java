@@ -109,13 +109,14 @@ public class OefeningBeheerder extends Observable {
     }
 
     private void controleerOefInBob(String oefNaam) {
-        boolean result = bobRepo.findAll().stream().filter(bob -> bob.getLijstOefeningen()
-                .stream().filter(oef -> oef.getNaam().equals(oefNaam))
-                .collect(Collectors.toList()).size() == 0)
-                .collect(Collectors.toList()).size() == 0;
+        boolean result = bobRepo.findAll().stream().filter(bob -> {
+            List<Oefening> oefen = bob.getLijstOefeningen();
 
-        if (!result) {
-            throw new IllegalArgumentException("Oefening is nog gelinkte met een oefening, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
+            return oefen.stream().filter(oef -> oefening.getNaam().equals(oefNaam)).collect(Collectors.toList()).size() != 0;
+        }).collect(Collectors.toList()).size() != 0;
+
+        if (result) {
+            throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
         }
     }
 
