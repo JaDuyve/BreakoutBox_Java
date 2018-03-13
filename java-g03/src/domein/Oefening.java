@@ -20,6 +20,8 @@ public class Oefening {
     private List<Groepsbewerking> lijstGroepsbewerkingen;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Vak vak;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<Doelstellingscode> doelstellingscodes;
 
     public String getNaam() {
         return this.naam;
@@ -82,6 +84,14 @@ public class Oefening {
         this.antwoord = antwoord;
     }
 
+    public List<Doelstellingscode> getDoelstellingscodes() {
+        return doelstellingscodes;
+    }
+
+    public void setDoelstellingscodes(List<Doelstellingscode> doelstellingscodes) {
+        this.doelstellingscodes = doelstellingscodes;
+    }
+
     protected Oefening() {
     }
 
@@ -101,15 +111,7 @@ public class Oefening {
         setVak(vak);
     }
 
-    /**
-     * @param naam
-     * @param opgave
-     * @param vak
-     */
-    public Oefening(String naam, String opgave, String antwoord, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
 
-        this(naam, opgave, antwoord, null, groepsbewerkingen, vak);
-    }
 
 
     @Override

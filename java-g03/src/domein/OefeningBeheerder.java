@@ -156,13 +156,14 @@ public class OefeningBeheerder extends Observable {
     /**
      * @param oefeningNaam
      */
-    public void changeFilter(String oefeningNaam, List<String> vakken) {
+    public void changeFilter(String oefeningNaam, List<String> vakken, List<String> doelstellingscodes) {
         oefeningList.setPredicate(oefening -> {
 
             boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
             boolean vakkenLeeg = vakken == null || vakken.isEmpty();
+            boolean doelstellingenLeeg = doelstellingscodes == null || doelstellingscodes.isEmpty();
 
-            if (oefeningNaamLeeg && vakkenLeeg) {
+            if (oefeningNaamLeeg && vakkenLeeg && doelstellingenLeeg) {
                 return true;
             }
 
@@ -174,14 +175,28 @@ public class OefeningBeheerder extends Observable {
 
             boolean conditieOefeningNaam = oefeningNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowerCaseOefeningNaam);
             boolean conditieVakken = vakkenLeeg ? false : vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
+            boolean conditieDoelstellingen = doelstellingenLeeg ? false : doelstellingscodes.stream().anyMatch(d -> oefening.getDoelstellingscodes().stream().anyMatch(dc -> dc.getCode().equals(d)));
 
             if (oefeningNaamLeeg) {
-                return conditieVakken;
-            } else if (vakkenLeeg) {
-                return conditieOefeningNaam;
+                return conditieVakken && conditieDoelstellingen;
+            }
+            if (vakkenLeeg) {
+                return conditieOefeningNaam && conditieDoelstellingen;
+            }
+            if (doelstellingenLeeg){
+                return conditieOefeningNaam && conditieDoelstellingen;
+            }
+            if (doelstellingenLeeg && oefeningNaamLeeg){
+                return vakkenLeeg;
+            }
+            if (doelstellingenLeeg && vakkenLeeg){
+                return oefeningNaamLeeg;
+            }
+            if (oefeningNaamLeeg && vakkenLeeg){
+                return doelstellingenLeeg;
             }
 
-            return conditieOefeningNaam && conditieVakken;
+            return conditieOefeningNaam && conditieVakken && conditieDoelstellingen;
         });
     }
 
