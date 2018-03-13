@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import domein.BobController;
 import domein.Oefening;
 import domein.OefeningController;
+import domein.SessieController;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -118,7 +119,7 @@ public class OefeningenOverzichtPaneelController extends AnchorPane {
     @FXML
     void backButton(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new StartupMenuController(oefeningController, new BobController()));
+        s.setRoot(new StartupMenuController());
     }
 
     @FXML

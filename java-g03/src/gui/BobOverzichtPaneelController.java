@@ -94,7 +94,7 @@ public class BobOverzichtPaneelController extends VBox {
         if (result.get().equals(ButtonType.OK)) {
             try {
                 bobController.verwijderBob();
-                s.setRoot(new BobSchermController(bobController));
+                s.setRoot(new BobSchermController());
 
             } catch (IllegalArgumentException ex) {
                 AlertBox.showAlertError("Fout delete bob", ex.getMessage(), (Stage) this.getScene().getWindow());
@@ -112,7 +112,7 @@ public class BobOverzichtPaneelController extends VBox {
     @FXML
     void backButton(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new StartupMenuController(new OefeningController(), bobController));
+        s.setRoot(new StartupMenuController());
     }
 
     @FXML

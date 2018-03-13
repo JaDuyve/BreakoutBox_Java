@@ -2,6 +2,7 @@ package startUp;
 
 import domein.BobController;
 import domein.OefeningController;
+import domein.SessieController;
 import gui.StartupMenuController;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -18,7 +19,7 @@ public class StartUp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        StartupMenuController smc = new StartupMenuController(new OefeningController(), new BobController());
+        StartupMenuController smc = new StartupMenuController();
         Scene scene = new Scene(smc);
 
         scene.setFill(Color.TRANSPARENT);

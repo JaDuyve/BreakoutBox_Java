@@ -134,7 +134,7 @@ public class OefeningMakenPaneelController extends StackPane {
                 AlertBox.showAlertError("Fout maak Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
             Scene s = this.getScene();
-            s.setRoot(new OefeningSchermController(oefeningController));
+            s.setRoot(new OefeningSchermController());
         }catch (IllegalArgumentException ex) {
             AlertBox.showAlertError("Fout Oefening Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
         }

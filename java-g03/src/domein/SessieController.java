@@ -1,19 +1,26 @@
 package domein;
 
 import gui.SessieDetailPaneelController;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import persistentie.GenericDao;
+import persistentie.GenericDaoJpa;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class SessieController {
     private SessieBeheerder sessieBeheerder;
+    private GenericDao<Bob> bobRepo;
 
     public SessieController() {
+        bobRepo = new GenericDaoJpa<>(Bob.class);
+        sessieBeheerder = new SessieBeheerder();
     }
 
-    public void create(String naam, Date startDate, Bob bob, File groepen, boolean contactLeer){
+    public void create(String naam, LocalDate startDate, Bob bob, File groepen, boolean contactLeer){
         sessieBeheerder.create(naam, startDate, bob, groepen, contactLeer);
     }
 
@@ -22,7 +29,7 @@ public class SessieController {
     }
 
     public ObservableList<Bob> geefBobs(){
-        throw new NotImplementedException();
+        return FXCollections.observableList(bobRepo.findAll());
     }
 
     public void changeFilter(String sessieNaam){
