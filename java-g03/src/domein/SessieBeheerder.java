@@ -1,22 +1,29 @@
 package domein;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import persistentie.GenericDao;
+import persistentie.GenericDaoJpa;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class SessieBeheerder {
-    private Comparator<Sessie> bySessieNaam;
+    private Comparator<Sessie> bySessieNaam = (s1, s2) -> s1.getNaam().compareToIgnoreCase(s2.getNaam());
+
+
     private Sessie sessie;
-    private List<Sessie> sessies;
+    private GenericDao<Sessie> sessieRepo;
+    private FilteredList<Sessie> sessies;
+
 
     public SessieBeheerder() {
-        sessies = new ArrayList<>();
-
+        sessieRepo = new GenericDaoJpa<>(Sessie.class);
+        setSessieList();
     }
 
     public void create(String naam, LocalDate startDate, Bob bob, File groepen, boolean contactLeer){
@@ -24,7 +31,25 @@ public class SessieBeheerder {
         sessies.add(sessie);
     }
 
+    private ObservableList<Sessie> setSessieList(){
+        if (sessies == null){
+            sessies = new FilteredList<>(FXCollections.observableArrayList(sessieRepo.findAll()));
+        }
+
+        return sessies;
+    }
+
+    public ObservableList<Sessie> geefSessies(){
+        return new SortedList<>(sessies, bySessieNaam);
+    }
+
     public void changeFilter(String naam){
-        throw new NotImplementedException();
+        sessies.setPredicate(sessie -> {
+            if (naam == null || naam.isEmpty()){
+                return true;
+            }
+
+            return sessie.getNaam().toLowerCase().contains(naam.toLowerCase());
+        });
     }
 }
