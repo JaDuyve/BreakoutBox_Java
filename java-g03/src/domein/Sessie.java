@@ -2,19 +2,25 @@ package domein;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.persistence.*;
 import java.io.File;
 import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Sessie {
+    @Id
     private String naam;
+    @Temporal(TemporalType.DATE)
     private LocalDate startDatum;
     private int code;
     private boolean contactLeer;
     private static SecureRandom random = new SecureRandom();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Groep> groepen;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Bob bob;
 
     public Sessie(String naam, LocalDate startDatum, Bob bob, File groepen, boolean contactLeer) {
@@ -24,6 +30,9 @@ public class Sessie {
         setBob(bob);
         groepenToevoegen(groepen);
         setCode(random.nextInt(10000)+ 1000);
+    }
+
+    protected Sessie() {
     }
 
     private void groepenToevoegen(File groepen){

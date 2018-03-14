@@ -1,18 +1,29 @@
 package domein;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Groep {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String naam;
     private String klas;
-    private List <String> leerlingen;
-    private List<?> oefVolg;
 
-    public Groep(String naam, String klas, List<String> leerlingen, List<?> oefVolg) {
+    @ElementCollection
+    private List<String> leerlingen;
+    @ElementCollection
+    private List<Integer> oefVolg;
+
+    public Groep(String naam, String klas, List<String> leerlingen, List<Integer> oefVolg) {
         setNaam(naam);
         setKlas(klas);
         setLeerlingen(leerlingen);
         setOefVolg(oefVolg);
+    }
+
+    protected Groep() {
     }
 
     public String getNaam() {
@@ -52,7 +63,7 @@ public class Groep {
         return oefVolg;
     }
 
-    public void setOefVolg(List<?> oefVolg) {
+    public void setOefVolg(List<Integer> oefVolg) {
         if (oefVolg.isEmpty()){
             throw new IllegalArgumentException(("oefVolg mag niet leeg zijn"));
         }
