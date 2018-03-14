@@ -53,7 +53,7 @@ public class StartupMenuController extends BorderPane {
     @FXML
     void showSessieToevoegen(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new SessieMakenPaneelController(new SessieController()));
+        s.setRoot(new SessieSchermController());
     }
 
 }

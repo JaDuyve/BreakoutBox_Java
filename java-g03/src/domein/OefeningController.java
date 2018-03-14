@@ -14,12 +14,14 @@ import java.util.List;
 public class OefeningController {
     private GenericDao<Vak> vakRepo;
     private GenericDao<Groepsbewerking> groepsbewerkingRepo;
+    private GenericDao<Doelstellingscode> doelstellingscodeRepo;
 
     private OefeningBeheerder oefeningBeheerder = new OefeningBeheerder();
 
     public OefeningController() {
         vakRepo = new GenericDaoJpa<>(Vak.class);
         groepsbewerkingRepo = new GenericDaoJpa<>(Groepsbewerking.class);
+        doelstellingscodeRepo = new GenericDaoJpa<>(Doelstellingscode.class);
     }
 
     public void verwijderOefening() {
@@ -41,6 +43,10 @@ public class OefeningController {
     public ObservableList<Groepsbewerking> geefGroepsbewerkingen() {
         return FXCollections.observableArrayList(groepsbewerkingRepo.findAll());
 
+    }
+
+    public ObservableList<Doelstellingscode> geefDoelstelingscodes(){
+        return FXCollections.observableArrayList(doelstellingscodeRepo.findAll());
     }
 
     public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {

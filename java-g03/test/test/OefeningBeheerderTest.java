@@ -9,8 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import persistentie.OefeningDao;
-import persistentie.OefeningDaoJpa;
+import persistentie.GenericDao;
+import persistentie.GenericDaoJpa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class OefeningBeheerderTest {
 
     private OefeningBeheerder oefeningBeheerder;
 
-    private OefeningDao oefeningDaoDummy;
+    private GenericDao<Oefening> oefeningRepoDummy;
 
     private String oefeningNaam;
     private Oefening returnOef;
@@ -29,18 +29,18 @@ public class OefeningBeheerderTest {
 
     @Before
     public void before(){
-        oefeningDaoDummy = Mockito.mock(OefeningDaoJpa.class);
+        oefeningRepoDummy = Mockito.mock(GenericDaoJpa.class);
 
         List<Oefening> oefeningen = new ArrayList<>();
         oefeningen.add(new Oefening("oefening3","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red")));
         oefeningen.add(new Oefening("oefening2","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red")));
         oefeningen.add(new Oefening("oefening1","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red")));
 
-        Mockito.when(oefeningDaoDummy.findAll()).thenReturn(oefeningen);
+        Mockito.when(oefeningRepoDummy.findAll()).thenReturn(oefeningen);
 
         oefeningBeheerder = new OefeningBeheerder();
 
-        oefeningBeheerder.setOefeningRepo(oefeningDaoDummy);
+        oefeningBeheerder.setOefeningRepo(oefeningRepoDummy);
     }
 
     @Test

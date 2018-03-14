@@ -32,7 +32,15 @@ public class SessieController {
         return FXCollections.observableList(bobRepo.findAll());
     }
 
+    public ObservableList<Sessie> geefSessies() {
+        return sessieBeheerder.geefSessies();
+    }
+
     public void changeFilter(String sessieNaam){
         sessieBeheerder.changeFilter(sessieNaam);
+    }
+
+    public void veranderHuidgeSessie(Sessie sessie){
+        sessieBeheerder.setSessie(sessie);
     }
 }

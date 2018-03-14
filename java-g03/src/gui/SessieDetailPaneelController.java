@@ -1,4 +1,6 @@
 package gui;
 
-public class SessieDetailPaneelController {
+import javafx.scene.layout.VBox;
+
+public class SessieDetailPaneelController extends VBox {
 }

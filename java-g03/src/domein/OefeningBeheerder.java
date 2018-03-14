@@ -24,7 +24,7 @@ public class OefeningBeheerder extends Observable {
     private final Comparator<Oefening> byOefeningNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
 
     public OefeningBeheerder() {
-        setOefeningRepo(new OefeningDaoJpa());
+        setOefeningRepo(new GenericDaoJpa(Oefening.class));
         setBobRepo(new GenericDaoJpa(Bob.class));
         fileTransfer = new FileTransfer();
         getOefeningList();
@@ -34,11 +34,11 @@ public class OefeningBeheerder extends Observable {
         this.bobRepo = mock;
     }
 
-    public OefeningBeheerder(OefeningDao mock) {
+    public OefeningBeheerder(GenericDao mock) {
         this.oefeningRepo = mock;
     }
 
-    public void setOefeningRepo(OefeningDao mock) {
+    public void setOefeningRepo(GenericDao mock) {
         oefeningRepo = mock;
     }
 

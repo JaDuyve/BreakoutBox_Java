@@ -31,12 +31,18 @@ public class SessieBeheerder {
         sessies.add(sessie);
     }
 
+
+
     private ObservableList<Sessie> setSessieList(){
         if (sessies == null){
             sessies = new FilteredList<>(FXCollections.observableArrayList(sessieRepo.findAll()));
         }
 
         return sessies;
+    }
+
+    public void setSessie(Sessie sessie) {
+        this.sessie = sessie;
     }
 
     public ObservableList<Sessie> geefSessies(){
