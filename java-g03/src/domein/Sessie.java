@@ -16,6 +16,7 @@ public class Sessie {
     private LocalDate startDatum;
     private int code;
     private boolean contactLeer;
+    @Transient
     private static SecureRandom random = new SecureRandom();
 
     @OneToMany(cascade = CascadeType.PERSIST)
