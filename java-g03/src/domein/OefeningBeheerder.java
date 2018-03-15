@@ -129,7 +129,7 @@ public class OefeningBeheerder extends Observable {
     public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
         Oefening oef;
         if (feedbackFile == null) {
-            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, groepsbewerkingen, vak);
+            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, null,groepsbewerkingen, vak);
 
         } else {
             oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, vak);

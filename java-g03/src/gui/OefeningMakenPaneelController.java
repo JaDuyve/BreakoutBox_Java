@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import domein.Doelstellingscode;
 import domein.Groepsbewerking;
 import domein.OefeningController;
 import domein.Vak;
@@ -72,7 +73,14 @@ public class OefeningMakenPaneelController extends StackPane {
     @FXML
     private AnchorPane apGroepsbewerking;
 
+    @FXML
+    private Label lblDoelstellingen;
+
+    @FXML
+    private AnchorPane apDoelstellingen;
+
     private ListViewController<Groepsbewerking> lvGroepsbewerking;
+    private ListViewController<Doelstellingscode> lvDoelstellingen;
 
     private OefeningController oefeningController;
     private File opgaveFile;
@@ -93,8 +101,10 @@ public class OefeningMakenPaneelController extends StackPane {
 
     private void buildGui(){
         lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), FXCollections.observableArrayList());
+        lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),FXCollections.observableArrayList());
         vakDropDown.setItems(oefeningController.geefVakken());
         apGroepsbewerking.getChildren().add(lvGroepsbewerking);
+        apDoelstellingen.getChildren().add(lvDoelstellingen);
     }
 
     @FXML

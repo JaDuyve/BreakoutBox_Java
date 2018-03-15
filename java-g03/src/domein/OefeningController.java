@@ -57,8 +57,8 @@ public class OefeningController {
         return oefeningBeheerder.geefOefeningen();
     }
 
-    public void changeFilter(String oefeningNaam, List<String> vakken) {
-        oefeningBeheerder.changeFilter(oefeningNaam, vakken);
+    public void changeFilter(String oefeningNaam, List<String> vakken, List<String> doelstellingen) {
+        oefeningBeheerder.changeFilter(oefeningNaam, vakken, doelstellingen);
     }
 
 

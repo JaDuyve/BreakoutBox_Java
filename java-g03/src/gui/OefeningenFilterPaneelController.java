@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
+import domein.Doelstellingscode;
 import domein.OefeningController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -103,7 +104,7 @@ public class OefeningenFilterPaneelController extends VBox {
             }
         });
 
-        oefeningController.changeFilter(filtByName, filtVakken);
+        oefeningController.changeFilter(filtByName, filtVakken, filtVakken);
     }
 
 }

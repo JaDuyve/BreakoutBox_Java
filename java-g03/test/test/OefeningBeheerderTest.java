@@ -53,7 +53,7 @@ public class OefeningBeheerderTest {
         oefeningen.add(new Oefening("oefening2","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red")));
         oefeningen.add(new Oefening("oefening1","opgavePath", "antwoord", "feedbackPath",new ArrayList<Groepsbewerking>(), new Vak("wiskunde", "red")));
 
-        Mockito.when(oefeningDaoDummy.findAll()).thenReturn(oefeningen);
+        Mockito.when(oefeningRepoDummy.findAll()).thenReturn(oefeningen);
 
         oefeningBeheerder.verwijderOefening();
 
