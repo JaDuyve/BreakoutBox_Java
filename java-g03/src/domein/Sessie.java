@@ -6,14 +6,17 @@ import javax.persistence.*;
 import java.io.File;
 import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+
+import static javax.persistence.TemporalType.DATE;
 
 @Entity
 public class Sessie {
     @Id
     private String naam;
-    @Temporal(TemporalType.DATE)
-    private LocalDate startDatum;
+    @Temporal(DATE)
+    private Date startDatum;
     private int code;
     private boolean contactLeer;
     @Transient
@@ -24,7 +27,7 @@ public class Sessie {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Bob bob;
 
-    public Sessie(String naam, LocalDate startDatum, Bob bob, File groepen, boolean contactLeer) {
+    public Sessie(String naam, Date startDatum, Bob bob, File groepen, boolean contactLeer) {
         setNaam(naam);
         setStartDatum(startDatum);
         setContactLeer(contactLeer);
@@ -62,11 +65,11 @@ public class Sessie {
         this.naam = naam;
     }
 
-    public LocalDate getStartDatum() {
+    public java.util.Date getStartDatum() {
         return startDatum;
     }
 
-    public void setStartDatum(LocalDate startDatum) {
+    public void setStartDatum(Date startDatum) {
         if (startDatum == null){
             throw new IllegalArgumentException("startDatum mag niet leeg zijn");
         }

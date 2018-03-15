@@ -17,6 +17,8 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.ZoneId;
 
 
 public class SessieMakenPaneelController extends VBox{
@@ -74,7 +76,7 @@ public class SessieMakenPaneelController extends VBox{
 
     @FXML
     void createSessie(ActionEvent event) {
-        sessieController.create(txtNaam.getText(), dpStartdatum.getValue(), CBBob.getValue(), groepFile, cbAfstandsleren.isSelected());
+        sessieController.create(txtNaam.getText(), Date.from(dpStartdatum.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), CBBob.getValue(), groepFile, cbAfstandsleren.isSelected());
     }
 
     @FXML

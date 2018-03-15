@@ -104,7 +104,7 @@ public class OefeningenFilterPaneelController extends VBox {
             }
         });
 
-        oefeningController.changeFilter(filtByName, filtVakken, filtVakken);
+        oefeningController.changeFilter(filtByName, filtVakken, new ArrayList<String>());
     }
 
 }

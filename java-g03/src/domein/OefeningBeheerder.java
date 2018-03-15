@@ -177,6 +177,16 @@ public class OefeningBeheerder extends Observable {
             boolean conditieVakken = vakkenLeeg ? false : vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
             boolean conditieDoelstellingen = doelstellingenLeeg ? false : doelstellingscodes.stream().anyMatch(d -> oefening.getDoelstellingscodes().stream().anyMatch(dc -> dc.getCode().equals(d)));
 
+
+            if (doelstellingenLeeg && oefeningNaamLeeg){
+                return conditieVakken;
+            }
+            if (doelstellingenLeeg && vakkenLeeg){
+                return conditieOefeningNaam;
+            }
+            if (oefeningNaamLeeg && vakkenLeeg){
+                return conditieDoelstellingen;
+            }
             if (oefeningNaamLeeg) {
                 return conditieVakken && conditieDoelstellingen;
             }
@@ -185,15 +195,6 @@ public class OefeningBeheerder extends Observable {
             }
             if (doelstellingenLeeg){
                 return conditieOefeningNaam && conditieDoelstellingen;
-            }
-            if (doelstellingenLeeg && oefeningNaamLeeg){
-                return vakkenLeeg;
-            }
-            if (doelstellingenLeeg && vakkenLeeg){
-                return oefeningNaamLeeg;
-            }
-            if (oefeningNaamLeeg && vakkenLeeg){
-                return doelstellingenLeeg;
             }
 
             return conditieOefeningNaam && conditieVakken && conditieDoelstellingen;

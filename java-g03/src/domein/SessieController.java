@@ -20,7 +20,7 @@ public class SessieController {
         sessieBeheerder = new SessieBeheerder();
     }
 
-    public void create(String naam, LocalDate startDate, Bob bob, File groepen, boolean contactLeer){
+    public void create(String naam, Date startDate, Bob bob, File groepen, boolean contactLeer){
         sessieBeheerder.create(naam, startDate, bob, groepen, contactLeer);
     }
 

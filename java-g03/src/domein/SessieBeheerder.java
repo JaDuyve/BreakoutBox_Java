@@ -26,7 +26,7 @@ public class SessieBeheerder {
         setSessieList();
     }
 
-    public void create(String naam, LocalDate startDate, Bob bob, File groepen, boolean contactLeer){
+    public void create(String naam, java.util.Date startDate, Bob bob, File groepen, boolean contactLeer){
         sessie = new Sessie(naam, startDate, bob, groepen, contactLeer);
         sessies.add(sessie);
     }
