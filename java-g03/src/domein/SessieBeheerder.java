@@ -12,7 +12,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.*;
 
-public class SessieBeheerder {
+public class SessieBeheerder extends Observable {
     private Comparator<Sessie> bySessieNaam = (s1, s2) -> s1.getNaam().compareToIgnoreCase(s2.getNaam());
 
 
@@ -24,9 +24,10 @@ public class SessieBeheerder {
     public SessieBeheerder() {
         sessieRepo = new GenericDaoJpa<>(Sessie.class);
         setSessieList();
+
     }
 
-    public void create(String naam, java.util.Date startDate, Bob bob, File groepen, boolean contactLeer){
+    public void create(String naam, Date startDate, Bob bob, File groepen, boolean contactLeer){
         sessie = new Sessie(naam, startDate, bob, groepen, contactLeer);
         sessies.add(sessie);
     }
@@ -58,4 +59,5 @@ public class SessieBeheerder {
             return sessie.getNaam().toLowerCase().contains(naam.toLowerCase());
         });
     }
-}
+    }
+

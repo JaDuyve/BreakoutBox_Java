@@ -1,21 +1,24 @@
 package domein;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static javax.persistence.TemporalType.DATE;
 
 @Entity
 public class Sessie {
     @Id
     private String naam;
-    @Temporal(DATE)
+    @Temporal(TemporalType.DATE)
     private Date startDatum;
     private int code;
     private boolean contactLeer;
@@ -23,7 +26,7 @@ public class Sessie {
     private static SecureRandom random = new SecureRandom();
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    private List<Groep> groepen;
+    private List<Groep> groepen = new ArrayList<Groep>();
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Bob bob;
 
@@ -40,7 +43,26 @@ public class Sessie {
     }
 
     private void groepenToevoegen(File groepen){
-        throw new NotImplementedException();
+        try {
+            List<String> leerlingen = new ArrayList<String>();
+            FileInputStream fis = new FileInputStream(groepen.getPath());
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
+            XSSFSheet excel = wb.getSheetAt(0);
+            for (int i = 1; i <= 20; i++) {
+                String naam = excel.getRow(2).getCell(i).getStringCellValue();
+                if (naam != null && !naam.equals("")){
+                    String klas = excel.getRow(2).getCell(i).getStringCellValue();
+                    for (int j = 4; j< 35; j++) {
+                        leerlingen.add(excel.getRow(i).getCell(j).getStringCellValue());
+                    }
+                    this.groepen.add(new Groep(naam, klas, leerlingen));
+                }
+            }
+            System.out.print(this.groepen);
+
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Bob getBob() {
@@ -65,7 +87,7 @@ public class Sessie {
         this.naam = naam;
     }
 
-    public java.util.Date getStartDatum() {
+    public Date getStartDatum() {
         return startDatum;
     }
 

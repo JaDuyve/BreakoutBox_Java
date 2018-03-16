@@ -30,14 +30,7 @@ public class SessieOverzichtPaneelController extends VBox {
     @FXML
     private JFXButton addBobButton;
 
-    @FXML
-    private JFXButton btnDelete;
 
-    @FXML
-    private JFXButton btnCopy;
-
-    @FXML
-    private JFXButton btnEdit;
 
     @FXML
     private JFXTextField txfZoekNaam;
@@ -46,7 +39,7 @@ public class SessieOverzichtPaneelController extends VBox {
         this.sessieController = sc;
 
         FXMLLoader loader
-                = new FXMLLoader(getClass().getResource("BobOverzichtPaneel.fxml"));
+                = new FXMLLoader(getClass().getResource("SessieOverzichtPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
@@ -59,16 +52,12 @@ public class SessieOverzichtPaneelController extends VBox {
 
     private void build() {
         bobView.setItems(sessieController.geefSessies());
-        btnCopy.setDisable(true);
-        btnDelete.setDisable(true);
-        btnEdit.setDisable(true);
+
 
         bobView.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     sessieController.veranderHuidgeSessie(newValue);
-                    btnCopy.setDisable(false);
-                    btnDelete.setDisable(false);
-                    btnEdit.setDisable(false);
+
                 });
 
     }

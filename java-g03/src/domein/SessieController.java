@@ -25,7 +25,7 @@ public class SessieController {
     }
 
     public void addObserver(SessieDetailPaneelController sessieDetailPaneelController){
-        throw new NotImplementedException();
+        sessieBeheerder.addObserver(sessieDetailPaneelController);
     }
 
     public ObservableList<Bob> geefBobs(){

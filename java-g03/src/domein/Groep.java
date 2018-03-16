@@ -16,7 +16,7 @@ public class Groep {
     @ElementCollection
     private List<Integer> oefVolg;
 
-    public Groep(String naam, String klas, List<String> leerlingen, List<Integer> oefVolg) {
+    public Groep(String naam, String klas, List<String> leerlingen) {
         setNaam(naam);
         setKlas(klas);
         setLeerlingen(leerlingen);
