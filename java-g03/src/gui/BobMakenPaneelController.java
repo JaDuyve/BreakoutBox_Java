@@ -39,7 +39,6 @@ public class BobMakenPaneelController extends StackPane {
 
     private ListViewController<Oefening> lvOefeningen;
     private ListViewController<Actie> lvActies;
-    private ListViewController<Toegangscode> lvToegangscodes;
 
     private BobController bobController;
 
@@ -62,10 +61,8 @@ public class BobMakenPaneelController extends StackPane {
     private void buildGui() {
         lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), FXCollections.observableArrayList());
         lvActies = new ListViewController<>(bobController.geefActies(), FXCollections.observableArrayList());
-        lvToegangscodes = new ListViewController<>(bobController.geefToegangsCodes(), FXCollections.observableArrayList());
         apOefeningen.getChildren().add(lvOefeningen);
         apActies.getChildren().add(lvActies);
-        apToegangscodes.getChildren().add(lvToegangscodes);
     }
 
     @FXML

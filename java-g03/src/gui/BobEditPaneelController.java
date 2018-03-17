@@ -39,7 +39,6 @@ public class BobEditPaneelController extends StackPane {
 
     private ListViewController<Oefening> lvOefeningen;
     private ListViewController<Actie> lvActies;
-    private ListViewController<Toegangscode> lvToegangscodes;
     private Bob bob;
 
     private BobController bobController;
@@ -65,11 +64,9 @@ public class BobEditPaneelController extends StackPane {
         txfNaam.setText(bob.getNaam());
         lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), bob.getLijstOefeningen());
         lvActies = new ListViewController<>(bobController.geefActies(), bob.getLijstActies());
-        lvToegangscodes = new ListViewController<>(bobController.geefToegangsCodes(), bob.getLijstToegangscode());
 
         apOefeningen.getChildren().add(lvOefeningen);
         apActies.getChildren().add(lvActies);
-        apToegangscodes.getChildren().add(lvToegangscodes);
 
 
     }

@@ -65,7 +65,6 @@ public class BobKopiePaneelController extends StackPane {
         try {
             lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), FXCollections.observableArrayList(bob.getLijstOefeningen()));
             lvActies = new ListViewController<>(bobController.geefActies(), FXCollections.observableArrayList(bob.getLijstActies()));
-            lvToegangscodes = new ListViewController<>(bobController.geefToegangsCodes(), FXCollections.observableArrayList(bob.getLijstToegangscode()));
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
         }

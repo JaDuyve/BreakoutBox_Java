@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" type="StackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true">
@@ -49,11 +48,6 @@
                      </font>
                   </Label>
                   <AnchorPane fx:id="apActies" prefWidth="200.0" />
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="125.0" text="Toegangscodes" textAlignment="CENTER">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
-                  </Label>
                   <AnchorPane fx:id="apToegangscodes" prefWidth="200.0" />
                   <HBox alignment="CENTER" spacing="50.0">
                      <children>
