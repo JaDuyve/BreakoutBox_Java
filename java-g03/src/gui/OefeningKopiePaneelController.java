@@ -3,10 +3,7 @@ package gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import domein.Groepsbewerking;
-import domein.Oefening;
-import domein.OefeningController;
-import domein.Vak;
+import domein.*;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,12 +75,19 @@ public class OefeningKopiePaneelController extends StackPane {
     @FXML
     private AnchorPane apGroepsbewerking;
 
+    @FXML
+    private Label lblDoelstellingen;
+
+    @FXML
+    private AnchorPane apDoelstellingen;
+
     private OefeningController oefeningController;
     private File opgaveFile;
     private File feedbackFile;
     private Oefening oefening;
 
     private ListViewController<Groepsbewerking> lvGroepsbewerking;
+    private ListViewController<Doelstellingscode> lvDoelstellingen;
 
     public OefeningKopiePaneelController(OefeningController dc, Oefening oef) {
         this.oefeningController = dc;
@@ -102,11 +106,13 @@ public class OefeningKopiePaneelController extends StackPane {
     private void buildGui(){
         try {
             lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
+            lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),FXCollections.observableArrayList());
 
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
         }
         apGroepsbewerking.getChildren().add(lvGroepsbewerking);
+        apDoelstellingen.getChildren().add(lvDoelstellingen);
         vakDropDown.setItems(oefeningController.geefVakken());
         txfNaam.setText(oefening.getNaam());
         txtAntwoord.setText(oefening.getAntwoord());
@@ -145,10 +151,12 @@ public class OefeningKopiePaneelController extends StackPane {
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
         List<Groepsbewerking> list = new ArrayList<>();
+        List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
         lvGroepsbewerking.getLijstRight().stream().forEach(g -> list.add(g));
+        lvDoelstellingen.getLijstRight().stream().forEach(d -> listDoelstellingen.add(d));
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-        oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak );
+        oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen,vak );
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }

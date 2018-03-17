@@ -84,13 +84,13 @@ public class OefeningBeheerder extends Observable {
      * @param vak
      */
 
-    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
+    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen,Vak vak) {
         controleerOefInBob(oefening);
 
         GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
         GenericDaoJpa.commitTransaction();
-        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
+        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen,vak);
 
 
     }
@@ -126,13 +126,13 @@ public class OefeningBeheerder extends Observable {
      * @param groepsbewerkingen
      * @param vak
      */
-    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
+    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak) {
         Oefening oef;
         if (feedbackFile == null) {
-            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, null,groepsbewerkingen, vak);
+            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, null,groepsbewerkingen, doelstellingen ,vak);
 
         } else {
-            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, vak);
+            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, doelstellingen,vak);
         }
 
         if (oefeningRepo.exists(oef.getNaam())) {

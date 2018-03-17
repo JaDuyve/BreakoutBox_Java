@@ -100,12 +100,13 @@ public class Oefening {
      * @param feedback
      * @param vak
      */
-    public Oefening(String naam, String opgave, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
+    public Oefening(String naam, String opgave, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen,Vak vak) {
         setNaam(naam);
         setOpgave(opgave);
         setAntwoord(antwoord);
         setFeedback(feedback);
         setLijstGroepsbewerkingen(groepsbewerkingen);
+        setDoelstellingscodes(doelstellingen);
         setVak(vak);
     }
 

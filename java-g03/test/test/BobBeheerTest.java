@@ -65,7 +65,7 @@ public class BobBeheerTest
         genericDaoDummy.insert(new Bob("bob2",new ArrayList<Oefening>(), new ArrayList<Actie>(), new ArrayList<Toegangscode>()));
         genericDaoDummy.insert(new Bob("bob3",new ArrayList<Oefening>(), new ArrayList<Actie>(), new ArrayList<Toegangscode>()));
 
-
+        Assert.assertTrue(bobBeheerder.geefBobs().contains(bobTest));
         genericDaoDummy.delete(bobTest);
 
         Assert.assertFalse(bobBeheerder.geefBobs().contains(bobTest));

@@ -32,8 +32,8 @@ public class OefeningController {
         return oefeningBeheerder.getOefening();
     }
 
-    public void wijzigOefening(String naam, File opgavefile, String antwoord, File feedbackfile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        oefeningBeheerder.wijzigOefening(naam, opgavefile, antwoord, feedbackfile, groepsbewerkingen, vak);
+    public void wijzigOefening(String naam, File opgavefile, String antwoord, File feedbackfile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen,Vak vak) {
+        oefeningBeheerder.wijzigOefening(naam, opgavefile, antwoord, feedbackfile, groepsbewerkingen, doelstellingen,vak);
     }
 
     public ObservableList<Vak> geefVakken() {
@@ -49,8 +49,8 @@ public class OefeningController {
         return FXCollections.observableArrayList(doelstellingscodeRepo.findAll());
     }
 
-    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, Vak vak) {
-        oefeningBeheerder.createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, vak);
+    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen,Vak vak) {
+        oefeningBeheerder.createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen,vak);
     }
 
     public ObservableList<Oefening> geefOefeningen() {

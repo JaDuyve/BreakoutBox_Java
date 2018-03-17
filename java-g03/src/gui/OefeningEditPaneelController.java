@@ -2,10 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import domein.Groepsbewerking;
-import domein.Oefening;
-import domein.OefeningController;
-import domein.Vak;
+import domein.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -87,10 +84,15 @@ public class OefeningEditPaneelController extends StackPane {
     @FXML
     private AnchorPane apGroepsbewerking;
 
-    private ListViewController<Groepsbewerking> lvGroepsbewerkingen;
+    @FXML
+    private Label lblDoelstellingen;
 
-    private ObservableList<Groepsbewerking> lijstLeft;
-    private ObservableList<Groepsbewerking> lijstRight;
+    @FXML
+    private AnchorPane apDoelstellingen;
+
+    private ListViewController<Groepsbewerking> lvGroepsbewerkingen;
+    private ListViewController<Doelstellingscode> lvDoelstellingen;
+
     private OefeningController oefeningController;
     private File opgaveFile;
     private File feedbackFile;
@@ -122,10 +124,13 @@ public class OefeningEditPaneelController extends StackPane {
 
         }
         lvGroepsbewerkingen = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), oefening.getLijstGroepsbewerkingen());
+        lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),FXCollections.observableArrayList());
 
         vakDropDown.setItems(oefeningController.geefVakken());
 
         apGroepsbewerking.getChildren().add(lvGroepsbewerkingen);
+        apDoelstellingen.getChildren().add(lvDoelstellingen);
+
     }
 
     @FXML
@@ -154,10 +159,11 @@ public class OefeningEditPaneelController extends StackPane {
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
         List<Groepsbewerking> list = lvGroepsbewerkingen.getLijstRight();
+        List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
         try {
-            oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak);
+            oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen,vak);
         } catch(IllegalArgumentException ex){
             AlertBox.showAlertError("Fout wijzig Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
         }

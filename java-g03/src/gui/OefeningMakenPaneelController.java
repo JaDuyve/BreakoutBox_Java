@@ -136,10 +136,11 @@ public class OefeningMakenPaneelController extends StackPane {
             String naam = txfNaam.getText();
             String antwoord = txtAntwoord.getText();
             List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
+            List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
             Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
             try {
-                oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, vak);
+                oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
             } catch (IllegalArgumentException ex) {
                 AlertBox.showAlertError("Fout maak Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
