@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import domein.Doelstellingscode;
 import domein.Groepsbewerking;
 import domein.Oefening;
 import domein.OefeningController;
@@ -48,6 +49,9 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
     @FXML
     private ListView<Groepsbewerking> left;
 
+    @FXML
+    private ListView<Doelstellingscode> leftDoelstellingen;
+
     private OefeningController oefeningController;
     private Oefening oefening;
 
@@ -80,6 +84,7 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
         txfAntwoord.setText(oefening.getAntwoord());
         txfVak.setText(oefening.getVak().getNaam());
         left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
+        leftDoelstellingen.setItems(FXCollections.observableArrayList(oefening.getDoelstellingscodes()));
         fileLabelOpgave.setText(oefening.getOpgave());
         btnOpenOpgave.setDisable(false);
 
