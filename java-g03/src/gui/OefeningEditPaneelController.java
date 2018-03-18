@@ -119,7 +119,7 @@ public class OefeningEditPaneelController extends StackPane {
         txtAntwoord.setText(oefening.getAntwoord());
         vakDropDown.getSelectionModel().select(oefening.getVak());
         opgaveFile = oefeningController.geefFile(oefening.getOpgave());
-        if (oefening.getFeedback() != null){
+        if (oefening.getFeedback() != null) {
             feedbackFile = oefeningController.geefFile(oefening.getFeedback());
 
         }
@@ -153,7 +153,7 @@ public class OefeningEditPaneelController extends StackPane {
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
-        if (opgaveFile == null){
+        if (opgaveFile == null) {
             throw new IllegalArgumentException("Er is geen opgave geselecteerd.");
         }
         String naam = txfNaam.getText();
@@ -163,16 +163,17 @@ public class OefeningEditPaneelController extends StackPane {
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
         try {
-            oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen,vak);
-        } catch(IllegalArgumentException ex){
+            oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
+            Scene s = this.getScene();
+            s.setRoot(new OefeningSchermController(oefeningController));
+        } catch (IllegalArgumentException ex) {
             AlertBox.showAlertError("Fout wijzig Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
-        Scene s = this.getScene();
-        s.setRoot(new OefeningSchermController(oefeningController));
+
     }
 
     @FXML
-    void canel(ActionEvent event) {
+    void cancel(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import domein.Bob;
+import domein.Sessie;
 import domein.SessieController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,13 +78,20 @@ public class SessieMakenPaneelController extends VBox{
 
     @FXML
     void createSessie(ActionEvent event) {
-        sessieController.create(txtNaam.getText(), Date.from(dpStartdatum.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), CBBob.getValue(), groepFile, cbAfstandsleren.isSelected());
+        try {
+            sessieController.create(txtNaam.getText(), Date.from(dpStartdatum.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), CBBob.getValue(), groepFile, cbAfstandsleren.isSelected());
+            Scene s = this.getScene();
+            s.setRoot(new SessieSchermController(sessieController));
+        } catch(IllegalArgumentException ex ){
+            AlertBox.showAlertError("Fout Sessie Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
+
+        }
     }
 
     @FXML
     void keerTerug(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new StartupMenuController());
+        s.setRoot(new SessieSchermController(sessieController));
     }
 
     @FXML

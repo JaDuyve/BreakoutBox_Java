@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -19,7 +20,7 @@
                   <Insets left="10.0" right="10.0" top="10.0" />
               </VBox.margin>
           </Label>
-          <JFXTextField fx:id="txfNaam" styleClass="txf">
+          <JFXTextField fx:id="txfNaam" editable="false" styleClass="txf">
               <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
               </VBox.margin>
@@ -44,6 +45,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
               </VBox.margin>
           </ListView>
+      <JFXButton fx:id="btnGenerateBobOverzicht" onAction="#generateBobOverzicht" prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: #00897B;" text="Toon overzicht pdf" textFill="WHITE" />
       </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

@@ -84,13 +84,13 @@ public class OefeningBeheerder extends Observable {
      * @param vak
      */
 
-    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen,Vak vak) {
+    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak) {
         controleerOefInBob(oefening);
 
         GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
         GenericDaoJpa.commitTransaction();
-        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen,vak);
+        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen, vak);
 
 
     }
@@ -128,12 +128,15 @@ public class OefeningBeheerder extends Observable {
      */
     public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak) {
         Oefening oef;
-        if (feedbackFile == null) {
-            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, null,groepsbewerkingen, doelstellingen ,vak);
 
-        } else {
-            oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, doelstellingen,vak);
+        if (opgaveFile == null) {
+            throw new IllegalArgumentException("Er moet een opgave pdf meegegeven worden.");
         }
+        if (feedbackFile == null) {
+            throw new IllegalArgumentException("Er moet een feedback pdf meegegeven worden.");
+        }
+
+        oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, doelstellingen, vak);
 
         if (oefeningRepo.exists(oef.getNaam())) {
             throw new IllegalArgumentException("Oefening met naam: " + naam + " bestaat al");
@@ -178,13 +181,13 @@ public class OefeningBeheerder extends Observable {
             boolean conditieDoelstellingen = doelstellingenLeeg ? false : doelstellingscodes.stream().anyMatch(d -> oefening.getDoelstellingscodes().stream().anyMatch(dc -> dc.getCode().equals(d)));
 
 
-            if (doelstellingenLeeg && oefeningNaamLeeg){
+            if (doelstellingenLeeg && oefeningNaamLeeg) {
                 return conditieVakken;
             }
-            if (doelstellingenLeeg && vakkenLeeg){
+            if (doelstellingenLeeg && vakkenLeeg) {
                 return conditieOefeningNaam;
             }
-            if (oefeningNaamLeeg && vakkenLeeg){
+            if (oefeningNaamLeeg && vakkenLeeg) {
                 return conditieDoelstellingen;
             }
             if (oefeningNaamLeeg) {
@@ -193,7 +196,7 @@ public class OefeningBeheerder extends Observable {
             if (vakkenLeeg) {
                 return conditieOefeningNaam && conditieDoelstellingen;
             }
-            if (doelstellingenLeeg){
+            if (doelstellingenLeeg) {
                 return conditieOefeningNaam && conditieDoelstellingen;
             }
 

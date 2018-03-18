@@ -1,9 +1,17 @@
 package domein;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Entity
@@ -29,7 +37,7 @@ public class Bob {
         controleerGenoegActies();
     }
 
-    protected Bob(){
+    protected Bob() {
 
     }
 
@@ -39,7 +47,7 @@ public class Bob {
     }
 
     public void setNaam(String naam) {
-        if (naam == null || naam.isEmpty()){
+        if (naam == null || naam.isEmpty()) {
             throw new IllegalArgumentException("Naam Breakout Box mag niet leeg zijn");
         }
         this.naam = naam;
@@ -72,12 +80,89 @@ public class Bob {
         this.lijstToegangscode = lijstToegangscode;
     }
 
-    public void controleerGenoegActies(){
-        if (lijstOefeningen.size() != lijstActies.size()){
-            throw new IllegalArgumentException("Er moeten evenveel oefeningen zijn als acties.");
+    public void controleerGenoegActies() {
+        if (lijstOefeningen.size() != lijstActies.size() + 1) {
+            throw new IllegalArgumentException("Er moet 1 ACTIE minder zijn dan oefeningen!");
         }
     }
 
+    public void generateBobOverzichtPdf() {
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
+        try {
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            contentStream.beginText();
+            // ------------
+            contentStream.setLeading(16);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
+
+            contentStream.newLineAtOffset(65, 700);
+            contentStream.showText("Breakout-Box " + this.getNaam());
+            contentStream.newLine();
+            contentStream.newLine();
+
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+            contentStream.showText("Oefeningen");
+            contentStream.newLine();
+            contentStream.newLine();
+
+            String tab = "     ";
+            String tab2 = "          ";
+
+            for (Oefening oef : this.getLijstOefeningen()) {
+
+                contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                contentStream.showText("\u25CF"); // bullet
+                contentStream.setFont(PDType1Font.HELVETICA, 14);
+                contentStream.showText(tab +  oef.getNaam());
+                contentStream.newLine();
+
+                for (Doelstellingscode doelstellingscode : oef.getDoelstellingscodes()) {
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText(tab +  doelstellingscode.getCode());
+                    contentStream.newLine();
+                    // ------------
+                }
+                contentStream.newLine();
+            }
+
+            for (Oefening oef : this.getLijstOefeningen()) {
+
+                contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                contentStream.showText("\u25CF"); // bullet
+                contentStream.setFont(PDType1Font.HELVETICA, 14);
+                contentStream.showText(tab +  oef.getNaam());
+                contentStream.newLine();
+
+                for (Doelstellingscode doelstellingscode : oef.getDoelstellingscodes()) {
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText(tab +  doelstellingscode.getCode());
+                    contentStream.newLine();
+                    // ------------
+                }
+                contentStream.newLine();
+            }
+            contentStream.endText();
+            contentStream.close();
+            String fileName = this.getNaam() + ".pdf";
+            // Saving Document
+            document.save(fileName);
+
+            document.close();
+
+            Desktop.getDesktop().open(new File(fileName));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Override
     public String toString() {

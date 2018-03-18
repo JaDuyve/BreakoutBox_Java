@@ -58,13 +58,13 @@ public class BobBeheerder extends Observable {
     }
 
     public void changeFilter(String bobNaam) {
-        bobs.setPredicate(oefening -> {
+        bobs.setPredicate(bob -> {
 
             if (bobNaam == null || bobNaam.isEmpty()) {
                 return true;
             }
 
-            return oefening.getNaam().toLowerCase().contains(bobNaam.toLowerCase());
+            return bob.getNaam().toLowerCase().contains(bobNaam.toLowerCase());
         });
     }
 
@@ -102,6 +102,8 @@ public class BobBeheerder extends Observable {
         createBob(naam, oefeningen, acties);
 
     }
+
+
 
 
 }

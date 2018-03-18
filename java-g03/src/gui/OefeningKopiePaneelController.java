@@ -103,10 +103,10 @@ public class OefeningKopiePaneelController extends StackPane {
         buildGui();
     }
 
-    private void buildGui(){
+    private void buildGui() {
         try {
             lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), oefening.getLijstGroepsbewerkingen());
-            lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),oefening.getDoelstellingscodes());
+            lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(), oefening.getDoelstellingscodes());
 
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
@@ -118,7 +118,7 @@ public class OefeningKopiePaneelController extends StackPane {
         txtAntwoord.setText(oefening.getAntwoord());
         vakDropDown.getSelectionModel().select(oefening.getVak());
         opgaveFile = oefeningController.geefFile(oefening.getOpgave());
-        if (oefening.getFeedback() != null){
+        if (oefening.getFeedback() != null) {
             feedbackFile = oefeningController.geefFile(oefening.getFeedback());
 
         }
@@ -134,7 +134,7 @@ public class OefeningKopiePaneelController extends StackPane {
     }
 
     @FXML
-    void feedbackFileChooser(ActionEvent event){
+    void feedbackFileChooser(ActionEvent event) {
         FileChooser fc2 = new FileChooser();
         fc2.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
         feedbackFile = fc2.showOpenDialog(null);
@@ -145,22 +145,26 @@ public class OefeningKopiePaneelController extends StackPane {
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
-        if (opgaveFile == null){
-            throw new IllegalArgumentException("Er is geen opgave of feedback geselecteerd.");
-        }
+
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
         List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
         List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-        oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen,vak );
-        Scene s = this.getScene();
-        s.setRoot(new OefeningSchermController(oefeningController));
+        try {
+            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
+            Scene s = this.getScene();
+            s.setRoot(new OefeningSchermController(oefeningController));
+        } catch (IllegalArgumentException ex) {
+            AlertBox.showAlertError("Fout Oefening Kopieren", ex.getMessage(), (Stage) this.getScene().getWindow());
+
+        }
+
     }
 
     @FXML
-    void canel(ActionEvent event) {
+    void cancel(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }

@@ -49,10 +49,6 @@ public class BobController {
         bobBeheerder.createBob(naam, oefeningen,acties);
     }
 
-    public ObservableList<Toegangscode> geefToegangsCodes(){
-        return FXCollections.observableArrayList(toegangscodeRepo.findAll());
-    }
-
     public void verwijderBob(){
 
         bobBeheerder.verwijderBob();
@@ -65,7 +61,6 @@ public class BobController {
     public void veranderHuidigeBob(Bob bob) {
         bobBeheerder.setBob(bob);
     }
-
 
     public void addObserver(BobDetailPaneelController bobDetailPaneelController){
         bobBeheerder.addObserver(bobDetailPaneelController);

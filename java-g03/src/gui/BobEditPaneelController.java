@@ -72,13 +72,13 @@ public class BobEditPaneelController extends StackPane {
     void voegBobToe(ActionEvent event) {
         try {
             bobController.wijzigBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight());
-
+            Scene s = this.getScene();
+            s.setRoot(new BobSchermController(bobController));
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Wijzigen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
         }
 
-        Scene s = this.getScene();
-        s.setRoot(new BobSchermController(bobController));
+
     }
 
     @FXML

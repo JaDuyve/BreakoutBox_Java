@@ -99,9 +99,9 @@ public class OefeningMakenPaneelController extends StackPane {
         buildGui();
     }
 
-    private void buildGui(){
+    private void buildGui() {
         lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), FXCollections.observableArrayList());
-        lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),FXCollections.observableArrayList());
+        lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(), FXCollections.observableArrayList());
         vakDropDown.setItems(oefeningController.geefVakken());
         apGroepsbewerking.getChildren().add(lvGroepsbewerking);
         apDoelstellingen.getChildren().add(lvDoelstellingen);
@@ -117,7 +117,7 @@ public class OefeningMakenPaneelController extends StackPane {
     }
 
     @FXML
-    void feedbackFileChooser(ActionEvent event){
+    void feedbackFileChooser(ActionEvent event) {
         FileChooser fc2 = new FileChooser();
         fc2.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
         feedbackFile = fc2.showOpenDialog(null);
@@ -126,33 +126,28 @@ public class OefeningMakenPaneelController extends StackPane {
     }
 
 
-
     @FXML
     void VoegOefeningToe(ActionEvent event) {
-        try {
-            if (opgaveFile == null) {
-                throw new IllegalArgumentException("Er is geen opgave geselecteerd.");
-            }
-            String naam = txfNaam.getText();
-            String antwoord = txtAntwoord.getText();
-            List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
-            List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
-            Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
-            try {
-                oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
-            } catch (IllegalArgumentException ex) {
-                AlertBox.showAlertError("Fout maak Oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
-            }
+        String naam = txfNaam.getText();
+        String antwoord = txtAntwoord.getText();
+        List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
+        List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
+        Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
+
+        try {
+            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
             Scene s = this.getScene();
-            s.setRoot(new OefeningSchermController());
-        }catch (IllegalArgumentException ex) {
+            s.setRoot(new OefeningSchermController(oefeningController));
+        } catch (IllegalArgumentException ex) {
             AlertBox.showAlertError("Fout Oefening Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
+
+
     }
 
     @FXML
-    void canel(ActionEvent event) {
+    void cancel(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new OefeningSchermController(oefeningController));
     }
