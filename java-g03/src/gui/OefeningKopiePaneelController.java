@@ -105,8 +105,8 @@ public class OefeningKopiePaneelController extends StackPane {
 
     private void buildGui(){
         try {
-            lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
-            lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),FXCollections.observableArrayList());
+            lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), oefening.getLijstGroepsbewerkingen());
+            lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),oefening.getDoelstellingscodes());
 
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
@@ -150,10 +150,8 @@ public class OefeningKopiePaneelController extends StackPane {
         }
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
-        List<Groepsbewerking> list = new ArrayList<>();
+        List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
         List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
-        lvGroepsbewerking.getLijstRight().stream().forEach(g -> list.add(g));
-        lvDoelstellingen.getLijstRight().stream().forEach(d -> listDoelstellingen.add(d));
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
 
         oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen,vak );

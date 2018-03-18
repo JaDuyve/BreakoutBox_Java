@@ -124,7 +124,7 @@ public class OefeningEditPaneelController extends StackPane {
 
         }
         lvGroepsbewerkingen = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), oefening.getLijstGroepsbewerkingen());
-        lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(),FXCollections.observableArrayList());
+        lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(), oefening.getDoelstellingscodes());
 
         vakDropDown.setItems(oefeningController.geefVakken());
 
