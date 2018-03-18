@@ -44,16 +44,23 @@ public class Sessie {
 
     private void groepenToevoegen(File groepen){
         try {
-            List<String> leerlingen = new ArrayList<String>();
+            List<String> leerlingen = new ArrayList<>();
+            String lName;
+            String klas;
+            String naam;
             FileInputStream fis = new FileInputStream(groepen.getPath());
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet excel = wb.getSheetAt(0);
             for (int i = 1; i <= 20; i++) {
-                String naam = excel.getRow(2).getCell(i).getStringCellValue();
-                if (naam != null && !naam.equals("")){
-                    String klas = excel.getRow(2).getCell(i).getStringCellValue();
+                 naam = excel.getRow(2).getCell(i).getStringCellValue();
+                if (naam != null || !naam.equals("")){
+                     klas = excel.getRow(3).getCell(i).getStringCellValue();
                     for (int j = 4; j< 35; j++) {
-                        leerlingen.add(excel.getRow(i).getCell(j).getStringCellValue());
+                        lName = excel.getRow(j).getCell(i).getStringCellValue();
+                        if (lName == null || lName.isEmpty()) {
+                            break;
+                        }
+                        leerlingen.add(lName);
                     }
                     this.groepen.add(new Groep(naam, klas, leerlingen));
                 }
