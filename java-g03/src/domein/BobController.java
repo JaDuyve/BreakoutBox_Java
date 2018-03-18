@@ -45,8 +45,8 @@ public class BobController {
         bobBeheerder.changeFilter(bobNaam);
     }
 
-    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes){
-        bobBeheerder.createBob(naam, oefeningen,acties,toegangscodes);
+    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties){
+        bobBeheerder.createBob(naam, oefeningen,acties);
     }
 
     public ObservableList<Toegangscode> geefToegangsCodes(){
@@ -58,8 +58,8 @@ public class BobController {
         bobBeheerder.verwijderBob();
     }
 
-    public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes){
-        bobBeheerder.wijzigBob(naam, oefeningen, acties, toegangscodes);
+    public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties){
+        bobBeheerder.wijzigBob(naam, oefeningen, acties);
     }
 
     public void veranderHuidigeBob(Bob bob) {

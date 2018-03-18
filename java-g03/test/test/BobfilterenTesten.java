@@ -1,3 +1,4 @@
+/*
 package test;
 
 import domein.*;
@@ -61,3 +62,4 @@ public class BobfilterenTesten {
     }
 
 }
+*/

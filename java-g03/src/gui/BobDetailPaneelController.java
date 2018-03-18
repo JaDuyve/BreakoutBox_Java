@@ -25,8 +25,6 @@ public class BobDetailPaneelController extends VBox implements Observer {
     @FXML
     private ListView<Actie> lvActies;
 
-    @FXML
-    private ListView<Toegangscode> lvToegangscodes;
 
     private Bob bob;
 
@@ -48,6 +46,5 @@ public class BobDetailPaneelController extends VBox implements Observer {
         txfNaam.setText(bob.getNaam());
         lvOefeningen.setItems(FXCollections.observableArrayList(bob.getLijstOefeningen()));
         lvActies.setItems(FXCollections.observableArrayList(bob.getLijstActies()));
-        lvToegangscodes.setItems(FXCollections.observableArrayList(bob.getLijstToegangscode()));
     }
 }

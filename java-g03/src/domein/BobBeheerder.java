@@ -7,6 +7,7 @@ import javafx.collections.transformation.SortedList;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
@@ -67,8 +68,8 @@ public class BobBeheerder extends Observable {
         });
     }
 
-    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes) {
-
+    public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
+        List<Toegangscode> toegangscodes = new ArrayList<>(); // TODO - toegangscodes laten genereren best in bob zelf
         Bob bob = new Bob(naam, oefeningen, acties, toegangscodes);
 
         if (bobRepo.exists(bob.getNaam())) {
@@ -94,11 +95,11 @@ public class BobBeheerder extends Observable {
         }
     }
 
-    public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes) {
+    public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
         GenericDaoJpa.startTransaction();
         bobRepo.delete(bob);
         GenericDaoJpa.commitTransaction();
-        createBob(naam, oefeningen, acties, toegangscodes);
+        createBob(naam, oefeningen, acties);
 
     }
 

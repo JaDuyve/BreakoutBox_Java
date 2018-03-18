@@ -26,9 +26,6 @@ public class BobKopiePaneelController extends StackPane {
     private AnchorPane apActies;
 
     @FXML
-    private AnchorPane apToegangscodes;
-
-    @FXML
     private JFXButton btnVoegOefeningToe;
 
     @FXML
@@ -70,14 +67,13 @@ public class BobKopiePaneelController extends StackPane {
         }
         apOefeningen.getChildren().add(lvOefeningen);
         apActies.getChildren().add(lvActies);
-        apToegangscodes.getChildren().add(lvToegangscodes);
         txfNaam.setText(bob.getNaam());
     }
 
     @FXML
     void voegBobToe(ActionEvent event) {
         try {
-            bobController.createBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight(), lvToegangscodes.getLijstRight());
+            bobController.createBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight());
 
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Toevoegen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
