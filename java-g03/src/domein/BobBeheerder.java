@@ -71,8 +71,7 @@ public class BobBeheerder extends Observable {
     }
 
     public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
-        List<Toegangscode> toegangscodes = new ArrayList<>(); // TODO - toegangscodes laten genereren best in bob zelf
-        Bob bob = new Bob(naam, oefeningen, acties, toegangscodes);
+        Bob bob = new Bob(naam, oefeningen, acties);
 
         if (bobRepo.exists(bob.getNaam())) {
             throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
@@ -85,15 +84,12 @@ public class BobBeheerder extends Observable {
     }
 
     public void verwijderBob() {
-       // if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
             GenericDaoJpa.startTransaction();
             bobRepo.delete(bob);
             GenericDaoJpa.commitTransaction();
             bobs.remove(bob);
             bob = null;
-//        } else {
-//            throw new IllegalArgumentException("Uw bob moet leeg zijn.");
-//        }
+
     }
 
     public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {

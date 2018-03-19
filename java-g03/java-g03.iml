@@ -40,16 +40,14 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../../libaries" />
+          <root url="file://$MODULE_DIR$/lib/libaries" />
         </CLASSES>
-        <JAVADOC>
-          <root url="file://$MODULE_DIR$/../../libaries/docs/apidocs" />
-        </JAVADOC>
+        <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../../libaries" />
+          <root url="file://$MODULE_DIR$/lib/libaries" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../../libaries" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../../libaries" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/libaries" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/libaries" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>

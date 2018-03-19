@@ -40,7 +40,7 @@ public class BobFoutiefTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void aanmakenBobWerktNietTest() {
-        new Bob(naam, oefeningen, acties, codes);
+        new Bob(naam, oefeningen, acties);
     }
 
 }

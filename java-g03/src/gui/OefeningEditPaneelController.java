@@ -120,7 +120,7 @@ public class OefeningEditPaneelController extends StackPane {
 
     private void buildGui() {
         lblTitel.setText("Edit Oefening");
-        btnVoegOefeningToe.setText("Change");
+        btnVoegOefeningToe.setText("Wijzige");
         txfNaam.setText(oefening.getNaam());
         txtAntwoord.setText(oefening.getAntwoord());
         txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));

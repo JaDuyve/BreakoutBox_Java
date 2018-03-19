@@ -12,14 +12,12 @@ public class BobController {
 
     private GenericDao<Actie> actieRepo;
     private GenericDao<Oefening> oefeningRepo;
-    private GenericDao<Toegangscode> toegangscodeRepo;
 
     private BobBeheerder bobBeheerder = new BobBeheerder();
 
     public BobController(){
         actieRepo = new GenericDaoJpa<>(Actie.class);
         oefeningRepo = new GenericDaoJpa<>(Oefening.class);
-        toegangscodeRepo = new GenericDaoJpa<>(Toegangscode.class);
     }
 
     public Bob geefBob(){

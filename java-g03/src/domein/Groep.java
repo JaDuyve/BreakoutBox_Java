@@ -1,7 +1,7 @@
 package domein;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Groep {
@@ -10,20 +10,46 @@ public class Groep {
     private long id;
     private String naam;
     private String klas;
+    private boolean contactLeer;
 
     @ElementCollection
     private List<String> leerlingen;
-    @ElementCollection
-    private List<Integer> oefVolg;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private Map<Integer, Pad> paden;
 
-    public Groep(String naam, String klas, List<String> leerlingen) {
+    public Groep(String naam, String klas, List<String> leerlingen, Bob bob, boolean contactLeer) {
         setNaam(naam);
         setKlas(klas);
         setLeerlingen(leerlingen);
-        setOefVolg(oefVolg);
+        setContactLeer(contactLeer);
+
+        generatePaden(bob);
     }
 
     protected Groep() {
+    }
+
+    private void generatePaden(Bob bob) {
+        List<Oefening> oefeningen = bob.getLijstOefeningen();
+        List<Actie> acties = bob.getLijstActies();
+        List<Pad> pads = new ArrayList<>();
+
+        for (int i = 0; i < oefeningen.size() - 1; i++) {
+
+            pads.add(new Pad(oefeningen.get(i), acties.get(i), isContactLeer()));
+        }
+
+
+
+        Collections.shuffle(pads);
+
+        paden = new HashMap<>();
+
+        for (int j = 0; j < pads.size(); j++) {
+            paden.put(j + 1, pads.get(j));
+        }
+
+        paden.put(paden.size() + 1, new Pad(oefeningen.get(oefeningen.size() - 1), new Actie(), isContactLeer()));
     }
 
     public String getNaam() {
@@ -31,8 +57,8 @@ public class Groep {
     }
 
     public void setNaam(String naam) {
-        if (naam.isEmpty() || naam.equals("")){
-            throw new IllegalArgumentException("Naam mag niet leeg zijn");
+        if (naam.isEmpty() || naam.equals("")) {
+            throw new IllegalArgumentException("Groepsaam mag niet leeg zijn");
         }
         this.naam = naam;
     }
@@ -42,7 +68,7 @@ public class Groep {
     }
 
     public void setKlas(String klas) {
-        if (klas.isEmpty() || klas.equals("")){
+        if (klas.isEmpty() || klas.equals("")) {
             throw new IllegalArgumentException("Klas mag niet leeg zijn");
         }
         this.klas = klas;
@@ -53,20 +79,28 @@ public class Groep {
     }
 
     public void setLeerlingen(List<String> leerlingen) {
-        if (leerlingen.isEmpty()){
+        if (leerlingen.isEmpty()) {
             throw new IllegalArgumentException("Leerlingen mag niet leeg zijn");
         }
         this.leerlingen = leerlingen;
     }
 
-    public List<?> getOefVolg() {
-        return oefVolg;
+    public Map<Integer, Pad> getPaden() {
+        return paden;
     }
 
-    public void setOefVolg(List<Integer> oefVolg) {
-        if (oefVolg.isEmpty()){
+    public void setPaden(Map<Integer, Pad> paden) {
+        if (paden.isEmpty()) {
             throw new IllegalArgumentException(("oefVolg mag niet leeg zijn"));
         }
-        this.oefVolg = oefVolg;
+        this.paden = paden;
+    }
+
+    public boolean isContactLeer() {
+        return contactLeer;
+    }
+
+    public void setContactLeer(boolean contactLeer) {
+        this.contactLeer = contactLeer;
     }
 }

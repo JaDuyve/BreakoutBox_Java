@@ -24,15 +24,11 @@ public class Bob {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Actie> lijstActies;
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    private List<Toegangscode> lijstToegangscode;
 
-
-    public Bob(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> toegangscodes) {
+    public Bob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
         setNaam(naam);
         setLijstOefeningen(oefeningen);
         setLijstActies(acties);
-        setLijstToegangscode(toegangscodes);
 
         controleerGenoegActies();
     }
@@ -76,14 +72,6 @@ public class Bob {
         this.lijstActies = lijstActies;
     }
 
-    public List<Toegangscode> getLijstToegangscode() {
-        return lijstToegangscode;
-    }
-
-    public void setLijstToegangscode(List<Toegangscode> lijstToegangscode) {
-        this.lijstToegangscode = lijstToegangscode;
-    }
-
     public void controleerGenoegActies() {
         if (lijstOefeningen.size() != lijstActies.size() + 1) {
             throw new IllegalArgumentException("Er moet 1 ACTIE minder zijn dan oefeningen!");
@@ -93,8 +81,8 @@ public class Bob {
     public void generateBobOverzichtPdf() {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
-        document.addPage(page);
         try {
+            document.addPage(page);
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
             contentStream.beginText();
@@ -132,26 +120,21 @@ public class Bob {
                     // ------------
                 }
                 contentStream.newLine();
+
+                contentStream.endText();
+                contentStream.close();
+
+                page = new PDPage();
+                document.addPage(page);
+                contentStream = new PDPageContentStream(document, page);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(65, 700);
+
+
             }
 
-            for (Oefening oef : this.getLijstOefeningen()) {
 
-                contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
-                contentStream.showText("\u25CF"); // bullet
-                contentStream.setFont(PDType1Font.HELVETICA, 14);
-                contentStream.showText(tab +  oef.getNaam());
-                contentStream.newLine();
-
-                for (Doelstellingscode doelstellingscode : oef.getDoelstellingscodes()) {
-                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
-                    contentStream.showText(tab2 + "\u27A4"); // arrow
-                    contentStream.setFont(PDType1Font.HELVETICA, 14);
-                    contentStream.showText(tab +  doelstellingscode.getCode());
-                    contentStream.newLine();
-                    // ------------
-                }
-                contentStream.newLine();
-            }
             contentStream.endText();
             contentStream.close();
             String fileName = this.getNaam() + ".pdf";

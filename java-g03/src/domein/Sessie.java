@@ -62,7 +62,7 @@ public class Sessie {
                         }
                         leerlingen.add(lName);
                     }
-                    this.groepen.add(new Groep(naam, klas, leerlingen));
+                    this.groepen.add(new Groep(naam, klas, leerlingen, bob, contactLeer));
                 }
             }
             System.out.print(this.groepen);
