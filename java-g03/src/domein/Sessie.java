@@ -35,16 +35,20 @@ public class Sessie {
         setStartDatum(startDatum);
         setContactLeer(contactLeer);
         setBob(bob);
+        setCode(random.nextInt(10000) + 1000);
+
+        if (groepen == null) {
+            throw new IllegalArgumentException("Excel met groepen moet worden toegevoegd.");
+        }
         groepenToevoegen(groepen);
-        setCode(random.nextInt(10000)+ 1000);
     }
 
     protected Sessie() {
     }
 
-    private void groepenToevoegen(File groepen){
+    private void groepenToevoegen(File groepen) {
         try {
-            List<String> leerlingen = new ArrayList<>();
+            List<String> leerlingen;
             String lName;
             String klas;
             String naam;
@@ -52,10 +56,12 @@ public class Sessie {
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet excel = wb.getSheetAt(0);
             for (int i = 1; i <= 20; i++) {
-                 naam = excel.getRow(2).getCell(i).getStringCellValue();
-                if (naam != null || !naam.equals("")){
-                     klas = excel.getRow(3).getCell(i).getStringCellValue();
-                    for (int j = 4; j< 35; j++) {
+                naam = excel.getRow(2).getCell(i).getStringCellValue();
+                leerlingen = new ArrayList<>();
+                boolean bool = !naam.isEmpty();
+                if (naam != null && !naam.isEmpty()) {
+                    klas = excel.getRow(3).getCell(i).getStringCellValue();
+                    for (int j = 4; j < 35; j++) {
                         lName = excel.getRow(j).getCell(i).getStringCellValue();
                         if (lName == null || lName.isEmpty()) {
                             break;
@@ -63,7 +69,13 @@ public class Sessie {
                         leerlingen.add(lName);
                     }
                     this.groepen.add(new Groep(naam, klas, leerlingen, bob, contactLeer));
+                } else {
+                    break;
                 }
+            }
+
+            if (this.groepen.size() == 0) {
+                throw new IllegalArgumentException("Er moeten groepen zitten in de Excel file.");
             }
             System.out.print(this.groepen);
 
@@ -77,7 +89,7 @@ public class Sessie {
     }
 
     public void setBob(Bob bob) {
-        if (bob == null){
+        if (bob == null) {
             throw new IllegalArgumentException("Bob mag niet leeg zijn");
         }
         this.bob = bob;
@@ -88,8 +100,8 @@ public class Sessie {
     }
 
     public void setNaam(String naam) {
-        if (naam.isEmpty() || naam.equals("")){
-            throw new IllegalArgumentException("naam mag niet leeg zijn");
+        if (naam.isEmpty() || naam.equals("")) {
+            throw new IllegalArgumentException("Naam Sessie mag niet leeg zijn");
         }
         this.naam = naam;
     }
@@ -99,7 +111,7 @@ public class Sessie {
     }
 
     public void setStartDatum(Date startDatum) {
-        if (startDatum == null){
+        if (startDatum == null) {
             throw new IllegalArgumentException("startDatum mag niet leeg zijn");
         }
         this.startDatum = startDatum;

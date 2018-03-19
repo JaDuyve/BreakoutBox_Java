@@ -86,7 +86,7 @@ public class Bob {
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
             contentStream.beginText();
-            // ------------
+
             contentStream.setLeading(16);
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
 
@@ -117,7 +117,6 @@ public class Bob {
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
                     contentStream.showText(tab +  doelstellingscode.getCode());
                     contentStream.newLine();
-                    // ------------
                 }
                 contentStream.newLine();
 
@@ -130,6 +129,7 @@ public class Bob {
 
                 contentStream.beginText();
                 contentStream.newLineAtOffset(65, 700);
+                contentStream.setLeading(16);
 
 
             }

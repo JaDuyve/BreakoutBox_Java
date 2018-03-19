@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import org.mockito.internal.util.collections.ListUtil;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -18,25 +19,34 @@ public class SessieBeheerder extends Observable {
 
     private Sessie sessie;
     private GenericDao<Sessie> sessieRepo;
-    private FilteredList<Sessie> sessies;
+    private List<Sessie> sessies;
+    private FilteredList<Sessie> filtSsessie;
 
 
     public SessieBeheerder() {
         sessieRepo = new GenericDaoJpa<>(Sessie.class);
-        setSessieList();
+        getSessieList();
 
     }
 
     public void create(String naam, Date startDate, Bob bob, File groepen, boolean contactLeer){
         sessie = new Sessie(naam, startDate, bob, groepen, contactLeer);
-        sessies.add(sessie);
+
+        if (sessieRepo.exists(sessie.getNaam())) {
+            throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
+        } else {
+            GenericDaoJpa.startTransaction();
+            sessieRepo.insert(sessie);
+            GenericDaoJpa.commitTransaction();
+            sessies.add(sessie);
+        }
     }
 
 
 
-    private ObservableList<Sessie> setSessieList(){
+    private List<Sessie> getSessieList(){
         if (sessies == null){
-            sessies = new FilteredList<>(FXCollections.observableArrayList(sessieRepo.findAll()));
+            sessies = sessieRepo.findAll();
         }
 
         return sessies;
@@ -47,11 +57,12 @@ public class SessieBeheerder extends Observable {
     }
 
     public ObservableList<Sessie> geefSessies(){
-        return new SortedList<>(sessies, bySessieNaam);
+        filtSsessie = new FilteredList<>(FXCollections.observableList(getSessieList()), e -> true);
+        return new SortedList<>(filtSsessie, bySessieNaam);
     }
 
     public void changeFilter(String naam){
-        sessies.setPredicate(sessie -> {
+        filtSsessie.setPredicate(sessie -> {
             if (naam == null || naam.isEmpty()){
                 return true;
             }
