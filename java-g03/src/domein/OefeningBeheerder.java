@@ -19,7 +19,8 @@ public class OefeningBeheerder extends Observable {
     private GenericDao<Bob> bobRepo;
     private FileTransfer fileTransfer;
 
-    private FilteredList<Oefening> oefeningList;
+    private List<Oefening> oefeningen;
+    private FilteredList<Oefening> filtOefeningen;
 
     private final Comparator<Oefening> byOefeningNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
 
@@ -62,16 +63,14 @@ public class OefeningBeheerder extends Observable {
         controleerOefInBob(oefening);
         fileTransfer.connect();
         fileTransfer.deleteFile(oefening.getOpgave());
-        if (oefening.getFeedback() != null) {
-            fileTransfer.deleteFile(oefening.getFeedback());
-        }
+        fileTransfer.deleteFile(oefening.getFeedback());
+
         fileTransfer.disconnect();
         GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
         GenericDaoJpa.commitTransaction();
-        oefeningList = null;
-        getOefeningList();
-
+        oefeningen.remove(oefening);
+        oefening = null;
 
     }
 
@@ -87,25 +86,60 @@ public class OefeningBeheerder extends Observable {
     public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak) {
         controleerOefInBob(oefening);
 
-        GenericDaoJpa.startTransaction();
-        oefeningRepo.delete(oefening);
-        GenericDaoJpa.commitTransaction();
-        createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen, vak);
+        if (!naam.equals(oefening.getNaam())) {
+            createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen, vak);
 
+            GenericDaoJpa.startTransaction();
+            oefeningRepo.delete(oefening);
+            GenericDaoJpa.commitTransaction();
 
+        } else {
+            GenericDaoJpa.startTransaction();
+            System.out.println(opgaveFile.getPath());
+            if (!oefening.getOpgave().equals(opgaveFile.getName())) {
+                fileTransfer.connect();
+                fileTransfer.deleteFile(oefening.getOpgave());
+                oefening.setOpgave("Opgave_" + naam + "_" + opgaveFile.getName());
+                fileTransfer.uploadFile(opgaveFile.getPath(), oefening.getOpgave());
+                fileTransfer.disconnect();
+            }
+            if (!oefening.getFeedback().equals(feedbackFile.getName())) {
+                fileTransfer.connect();
+                fileTransfer.deleteFile(oefening.getFeedback());
+                oefening.setOpgave("Feedback_" + naam + "_" + feedbackFile.getName());
+                fileTransfer.uploadFile(feedbackFile.getPath(), oefening.getFeedback());
+                fileTransfer.disconnect();
+            }
+            if (!antwoord.equals(oefening.getAntwoord())) {
+                oefening.setAntwoord(antwoord);
+            }
+            if (!vak.getNaam().equals(oefening.getVak().getNaam())) {
+                oefening.setVak(vak);
+            }
+            if (!groepsbewerkingen.containsAll(oefening.getLijstGroepsbewerkingen())) {
+                oefening.setLijstGroepsbewerkingen(groepsbewerkingen);
+            }
+            if (!doelstellingen.containsAll(oefening.getDoelstellingscodes())) {
+                oefening.setDoelstellingscodes(doelstellingen);
+            }
+
+            GenericDaoJpa.commitTransaction();
+
+        }
     }
 
 
     public ObservableList<Oefening> geefOefeningen() {
-        return new SortedList<>(getOefeningList(), getByOefeningNaam());
+        filtOefeningen = new FilteredList<>(FXCollections.observableList(getOefeningList()), e -> true);
+        return new SortedList<>(filtOefeningen, getByOefeningNaam());
     }
 
-    private ObservableList<Oefening> getOefeningList() {
-        if (oefeningList == null) {
-            oefeningList = new FilteredList<>(FXCollections.observableList(oefeningRepo.findAll()), e -> true);
+    private List<Oefening> getOefeningList() {
+        if (oefeningen == null) {
+            oefeningen = oefeningRepo.findAll();
         }
 
-        return oefeningList;
+        return oefeningen;
     }
 
     private void controleerOefInBob(Oefening oef) {
@@ -146,12 +180,10 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.commitTransaction();
             fileTransfer.connect();
             fileTransfer.uploadFile(opgaveFile.getPath(), oef.getOpgave());
-            if (oef.getFeedback() != null) {
-                fileTransfer.uploadFile(feedbackFile.getPath(), oef.getFeedback());
-            }
+            fileTransfer.uploadFile(feedbackFile.getPath(), oef.getFeedback());
+
             fileTransfer.disconnect();
-            oefeningList = null;
-            getOefeningList();
+            oefeningen.add(oef);
         }
     }
 
@@ -160,7 +192,7 @@ public class OefeningBeheerder extends Observable {
      * @param oefeningNaam
      */
     public void changeFilter(String oefeningNaam, List<String> vakken, List<String> doelstellingscodes) {
-        oefeningList.setPredicate(oefening -> {
+        filtOefeningen.setPredicate(oefening -> {
 
             boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
             boolean vakkenLeeg = vakken == null || vakken.isEmpty();

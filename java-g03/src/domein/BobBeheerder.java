@@ -15,17 +15,18 @@ import java.util.Observable;
 public class BobBeheerder extends Observable {
 
     private Bob bob;
-    private FilteredList<Bob> bobs;
+    private List<Bob> bobs;
+    private FilteredList<Bob> filtBobs;
     private GenericDao<Bob> bobRepo;
 
     private final Comparator<Bob> byBobNaam = (b1, b2) -> b1.getNaam().compareToIgnoreCase(b2.getNaam());
 
 
-        public BobBeheerder(GenericDao mock)
-        {
-            this.bobRepo = mock;
-            getBobList();
-        }
+    public BobBeheerder(GenericDao mock) {
+        this.bobRepo = mock;
+        getBobList();
+    }
+
     public BobBeheerder() {
         setBobRepo(new GenericDaoJpa<>(Bob.class));
         getBobList();
@@ -36,12 +37,13 @@ public class BobBeheerder extends Observable {
     }
 
     public ObservableList<Bob> geefBobs() {
-        return new SortedList<>(getBobList(), byBobNaam);
+        filtBobs = new FilteredList<>(FXCollections.observableList(getBobList()), e -> true);
+        return new SortedList<>(filtBobs, byBobNaam);
     }
 
-    private ObservableList<Bob> getBobList() {
+    private List<Bob> getBobList() {
         if (bobs == null) {
-            bobs = new FilteredList<>(FXCollections.observableList(bobRepo.findAll()), e -> true);
+            bobs = bobRepo.findAll();
         }
 
         return bobs;
@@ -58,7 +60,7 @@ public class BobBeheerder extends Observable {
     }
 
     public void changeFilter(String bobNaam) {
-        bobs.setPredicate(bob -> {
+        filtBobs.setPredicate(bob -> {
 
             if (bobNaam == null || bobNaam.isEmpty()) {
                 return true;
@@ -78,8 +80,7 @@ public class BobBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             bobRepo.insert(bob);
             GenericDaoJpa.commitTransaction();
-            bobs = null;
-            getBobList();
+            bobs.add(bob);
         }
     }
 
@@ -88,22 +89,32 @@ public class BobBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             bobRepo.delete(bob);
             GenericDaoJpa.commitTransaction();
-            bobs = null;
-            getBobList();
+            bobs.remove(bob);
+            bob = null;
         } else {
             throw new IllegalArgumentException("Uw bob moet leeg zijn.");
         }
     }
 
     public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
-        GenericDaoJpa.startTransaction();
-        bobRepo.delete(bob);
-        GenericDaoJpa.commitTransaction();
-        createBob(naam, oefeningen, acties);
+        if (!bob.getNaam().equals(naam)) {
+            createBob(naam, oefeningen, acties);
+            GenericDaoJpa.startTransaction();
+            bobRepo.delete(bob);
+            GenericDaoJpa.commitTransaction();
+        } else {
+            GenericDaoJpa.startTransaction();
+            if (!oefeningen.containsAll(bob.getLijstOefeningen())) {
+                bob.setLijstOefeningen(oefeningen);
+            }
+            if (!acties.containsAll(bob.getLijstActies())) {
+                bob.setLijstActies(acties);
+            }
+            GenericDaoJpa.commitTransaction();
+        }
+
 
     }
-
-
 
 
 }

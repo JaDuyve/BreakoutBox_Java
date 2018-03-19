@@ -137,8 +137,10 @@ public class OefeningEditPaneelController extends StackPane {
     void opgaveFileChooser(ActionEvent event) {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
-        opgaveFile = fc.showOpenDialog(null);
-
+        File file = fc.showOpenDialog(null);
+        if (file != null){
+            opgaveFile = file;
+        }
 
     }
 
@@ -146,16 +148,15 @@ public class OefeningEditPaneelController extends StackPane {
     void feedbackFileChooser(ActionEvent event) {
         FileChooser fc2 = new FileChooser();
         fc2.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
-        feedbackFile = fc2.showOpenDialog(null);
-
-
+        File file = fc2.showOpenDialog(null);
+        if (file != null){
+            feedbackFile = file;
+        }
     }
 
     @FXML
     void VoegOefeningToe(ActionEvent event) {
-        if (opgaveFile == null) {
-            throw new IllegalArgumentException("Er is geen opgave geselecteerd.");
-        }
+
         String naam = txfNaam.getText();
         String antwoord = txtAntwoord.getText();
         List<Groepsbewerking> list = lvGroepsbewerkingen.getLijstRight();
