@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -52,6 +53,9 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
     @FXML
     private ListView<Doelstellingscode> leftDoelstellingen;
 
+    @FXML
+    private TextField txfTijdslimiet;
+
     private OefeningController oefeningController;
     private Oefening oefening;
 
@@ -83,6 +87,7 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
         colorCircle.setFill(Paint.valueOf(oefening.getVak().getKleur()));
         txfAntwoord.setText(oefening.getAntwoord());
         txfVak.setText(oefening.getVak().getNaam());
+        txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));
         left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
         leftDoelstellingen.setItems(FXCollections.observableArrayList(oefening.getDoelstellingscodes()));
         fileLabelOpgave.setText(oefening.getOpgave());

@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import domein.Doelstellingscode;
 import domein.Groepsbewerking;
 import domein.OefeningController;
@@ -79,6 +80,12 @@ public class OefeningMakenPaneelController extends StackPane {
     @FXML
     private AnchorPane apDoelstellingen;
 
+    @FXML
+    private Label lblTijdslimiet;
+
+    @FXML
+    private TextField txfTijdslimiet;
+
     private ListViewController<Groepsbewerking> lvGroepsbewerking;
     private ListViewController<Doelstellingscode> lvDoelstellingen;
 
@@ -134,9 +141,10 @@ public class OefeningMakenPaneelController extends StackPane {
         List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
         List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
+        int tijdLimiet = Integer.parseInt(txfTijdslimiet.getText());
 
         try {
-            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
+            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdLimiet);
             Scene s = this.getScene();
             s.setRoot(new OefeningSchermController(oefeningController));
         } catch (IllegalArgumentException ex) {

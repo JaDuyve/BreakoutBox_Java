@@ -83,11 +83,11 @@ public class OefeningBeheerder extends Observable {
      * @param vak
      */
 
-    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak) {
+    public void wijzigOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak, int tijdsLimiet) {
         controleerOefInBob(oefening);
 
         if (!naam.equals(oefening.getNaam())) {
-            createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen, vak);
+            createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen, vak, tijdsLimiet);
 
             GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);
@@ -112,6 +112,9 @@ public class OefeningBeheerder extends Observable {
             }
             if (!antwoord.equals(oefening.getAntwoord())) {
                 oefening.setAntwoord(antwoord);
+            }
+            if (tijdsLimiet != oefening.getTijdsLimiet()) {
+                oefening.setTijdsLimiet(tijdsLimiet);
             }
             if (!vak.getNaam().equals(oefening.getVak().getNaam())) {
                 oefening.setVak(vak);
@@ -160,7 +163,7 @@ public class OefeningBeheerder extends Observable {
      * @param groepsbewerkingen
      * @param vak
      */
-    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak) {
+    public void createOefening(String naam, File opgaveFile, String antwoord, File feedbackFile, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen, Vak vak, int tijdsLimiet) {
         Oefening oef;
 
         if (opgaveFile == null) {
@@ -170,7 +173,7 @@ public class OefeningBeheerder extends Observable {
             throw new IllegalArgumentException("Er moet een feedback pdf meegegeven worden.");
         }
 
-        oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, doelstellingen, vak);
+        oef = new Oefening(naam, "Opgave_" + naam + "_" + opgaveFile.getName(), antwoord, "Feedback_" + naam + "_" + feedbackFile.getName(), groepsbewerkingen, doelstellingen, vak, tijdsLimiet);
 
         if (oefeningRepo.exists(oef.getNaam())) {
             throw new IllegalArgumentException("Oefening met naam: " + naam + " bestaat al");

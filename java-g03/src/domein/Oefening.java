@@ -13,6 +13,7 @@ public class Oefening {
     private String opgave;
     private String feedback;
     private String antwoord;
+    private int tijdsLimiet;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Groepsbewerking> lijstGroepsbewerkingen;
@@ -63,6 +64,14 @@ public class Oefening {
         this.feedback = feedback;
     }
 
+    public int getTijdsLimiet() {
+        return tijdsLimiet;
+    }
+
+    public void setTijdsLimiet(int tijdsLimiet) {
+        this.tijdsLimiet = tijdsLimiet;
+    }
+
     public List<Groepsbewerking> getLijstGroepsbewerkingen() {
         return lijstGroepsbewerkingen;
     }
@@ -101,7 +110,7 @@ public class Oefening {
      * @param feedback
      * @param vak
      */
-    public Oefening(String naam, String opgave, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen,Vak vak) {
+    public Oefening(String naam, String opgave, String antwoord, String feedback, List<Groepsbewerking> groepsbewerkingen, List<Doelstellingscode> doelstellingen,Vak vak, int tijdsLimiet) {
         setNaam(naam);
         setOpgave(opgave);
         setAntwoord(antwoord);

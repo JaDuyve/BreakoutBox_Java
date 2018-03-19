@@ -10,10 +10,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 import java.awt.*;
 import java.io.File;
@@ -81,6 +84,12 @@ public class OefeningKopiePaneelController extends StackPane {
     @FXML
     private AnchorPane apDoelstellingen;
 
+    @FXML
+    private Label lblTijdslimiet;
+
+    @FXML
+    private TextField txfTijdslimiet;
+
     private OefeningController oefeningController;
     private File opgaveFile;
     private File feedbackFile;
@@ -122,6 +131,8 @@ public class OefeningKopiePaneelController extends StackPane {
             feedbackFile = oefeningController.geefFile(oefening.getFeedback());
 
         }
+        txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));
+
     }
 
     @FXML
@@ -151,9 +162,10 @@ public class OefeningKopiePaneelController extends StackPane {
         List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
         List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
+        int tijdslimiet = Integer.parseInt(txfTijdslimiet.getText());
 
         try {
-            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
+            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdslimiet);
             Scene s = this.getScene();
             s.setRoot(new OefeningSchermController(oefeningController));
         } catch (IllegalArgumentException ex) {

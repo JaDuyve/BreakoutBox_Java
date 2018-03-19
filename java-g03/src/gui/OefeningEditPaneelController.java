@@ -90,6 +90,12 @@ public class OefeningEditPaneelController extends StackPane {
     @FXML
     private AnchorPane apDoelstellingen;
 
+    @FXML
+    private Label lblTijdslimiet;
+
+    @FXML
+    private TextField txfTijdslimiet;
+
     private ListViewController<Groepsbewerking> lvGroepsbewerkingen;
     private ListViewController<Doelstellingscode> lvDoelstellingen;
 
@@ -117,6 +123,7 @@ public class OefeningEditPaneelController extends StackPane {
         btnVoegOefeningToe.setText("Change");
         txfNaam.setText(oefening.getNaam());
         txtAntwoord.setText(oefening.getAntwoord());
+        txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));
         vakDropDown.getSelectionModel().select(oefening.getVak());
         opgaveFile = oefeningController.geefFile(oefening.getOpgave());
         if (oefening.getFeedback() != null) {
@@ -162,9 +169,10 @@ public class OefeningEditPaneelController extends StackPane {
         List<Groepsbewerking> list = lvGroepsbewerkingen.getLijstRight();
         List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
+        int tijdsLimiet = Integer.parseInt(txfTijdslimiet.getText());
 
         try {
-            oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak);
+            oefeningController.wijzigOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdsLimiet);
             Scene s = this.getScene();
             s.setRoot(new OefeningSchermController(oefeningController));
         } catch (IllegalArgumentException ex) {
