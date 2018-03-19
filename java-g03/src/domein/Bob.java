@@ -58,17 +58,21 @@ public class Bob {
     }
 
     public void setLijstOefeningen(List<Oefening> lijstOefeningen) {
+        if (lijstOefeningen == null || lijstOefeningen.isEmpty()) {
+            throw new IllegalArgumentException("Oefening mag niet leeg gelaten worden.");
+        }
         this.lijstOefeningen = lijstOefeningen;
     }
 
     public List<Actie> getLijstActies() {
-        if (lijstActies == null || lijstActies.isEmpty()) {
-            throw new IllegalArgumentException("Acties mag niet leeg gelaten worden.");
-        }
+
         return lijstActies;
     }
 
     public void setLijstActies(List<Actie> lijstActies) {
+        if (lijstActies == null || lijstActies.isEmpty()) {
+            throw new IllegalArgumentException("Acties mag niet leeg gelaten worden.");
+        }
         this.lijstActies = lijstActies;
     }
 

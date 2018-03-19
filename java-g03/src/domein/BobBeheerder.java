@@ -85,15 +85,15 @@ public class BobBeheerder extends Observable {
     }
 
     public void verwijderBob() {
-        if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
+       // if (bob.getLijstOefeningen().isEmpty() && bob.getLijstActies().isEmpty() && bob.getLijstToegangscode().isEmpty()) {
             GenericDaoJpa.startTransaction();
             bobRepo.delete(bob);
             GenericDaoJpa.commitTransaction();
             bobs.remove(bob);
             bob = null;
-        } else {
-            throw new IllegalArgumentException("Uw bob moet leeg zijn.");
-        }
+//        } else {
+//            throw new IllegalArgumentException("Uw bob moet leeg zijn.");
+//        }
     }
 
     public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
