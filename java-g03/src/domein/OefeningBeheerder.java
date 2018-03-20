@@ -237,6 +237,10 @@ public class OefeningBeheerder extends Observable {
 
             return conditieOefeningNaam && conditieVakken && conditieDoelstellingen;
         });
+
+        if (filtOefeningen.size() == 0){
+            setOefening(null);
+        }
     }
 
 

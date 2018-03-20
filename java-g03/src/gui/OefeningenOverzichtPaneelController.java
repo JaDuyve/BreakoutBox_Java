@@ -14,10 +14,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Optional;
 
 
-public class OefeningenOverzichtPaneelController extends VBox {
+public class OefeningenOverzichtPaneelController extends VBox implements Observer {
 
     @FXML
     private Button backbutton;
@@ -75,12 +77,7 @@ public class OefeningenOverzichtPaneelController extends VBox {
         oefTable.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     oefeningController.veranderHuidigeOefening(newValue);
-                    btnCopy.setDisable(false);
-                    btnDelete.setDisable(false);
-                    btnEdit.setDisable(false);
                 });
-
-
     }
 
     @FXML
@@ -124,6 +121,14 @@ public class OefeningenOverzichtPaneelController extends VBox {
     void kopieerOefening(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new OefeningKopiePaneelController(oefeningController, oefTable.getSelectionModel().getSelectedItem()));
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        boolean isnull = arg == null;
+        btnCopy.setDisable(isnull);
+        btnDelete.setDisable(isnull);
+        btnEdit.setDisable(isnull);
     }
 }
 

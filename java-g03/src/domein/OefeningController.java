@@ -9,6 +9,7 @@ import persistentie.GenericDaoJpa;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 
 public class OefeningController {
@@ -70,7 +71,7 @@ public class OefeningController {
         oefeningBeheerder.setOefening(oefening);
     }
 
-    public void addObservertje(OefeningenDetailPaneelController detailPanelController) {
-        oefeningBeheerder.addObserver(detailPanelController);
+    public void addObservertje(Observer observer) {
+        oefeningBeheerder.addObserver(observer);
     }
 }

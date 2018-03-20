@@ -30,5 +30,6 @@ public class BobSchermController extends BorderPane {
         ds.setRadius(5.0);
         this.getRight().setEffect(ds);
         bobController.addObserver(bobDetailPaneelController);
+        bobController.addObserver(overzichtPanel);
     }
 }

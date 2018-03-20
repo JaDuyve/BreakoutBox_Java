@@ -19,9 +19,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Optional;
 
-public class BobOverzichtPaneelController extends VBox {
+public class BobOverzichtPaneelController extends VBox implements Observer {
 
     private BobController bobController;
 
@@ -70,9 +72,6 @@ public class BobOverzichtPaneelController extends VBox {
         bobView.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     bobController.veranderHuidigeBob(newValue);
-                    btnCopy.setDisable(false);
-                    btnDelete.setDisable(false);
-                    btnEdit.setDisable(false);
                 });
 
     }
@@ -126,4 +125,12 @@ public class BobOverzichtPaneelController extends VBox {
         bobController.changeFilter(txfZoekNaam.getText());
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        boolean isnull = arg == null;
+        btnCopy.setDisable(isnull);
+        btnDelete.setDisable(isnull);
+        btnEdit.setDisable(isnull);
+
+    }
 }

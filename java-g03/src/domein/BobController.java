@@ -7,6 +7,7 @@ import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
 import java.util.List;
+import java.util.Observer;
 
 public class BobController {
 
@@ -62,7 +63,7 @@ public class BobController {
         bobBeheerder.setBob(bob);
     }
 
-    public void addObserver(BobDetailPaneelController bobDetailPaneelController){
-        bobBeheerder.addObserver(bobDetailPaneelController);
+    public void addObserver(Observer observer){
+        bobBeheerder.addObserver(observer);
     }
 }

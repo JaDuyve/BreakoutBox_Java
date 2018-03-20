@@ -46,10 +46,17 @@ public class BobDetailPaneelController extends VBox implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        bob = (Bob)arg;
-        txfNaam.setText(bob.getNaam());
-        lvOefeningen.setItems(FXCollections.observableArrayList(bob.getLijstOefeningen()));
-        lvActies.setItems(FXCollections.observableArrayList(bob.getLijstActies()));
+        if (arg != null){
+            bob = (Bob)arg;
+            txfNaam.setText(bob.getNaam());
+            lvOefeningen.setItems(FXCollections.observableArrayList(bob.getLijstOefeningen()));
+            lvActies.setItems(FXCollections.observableArrayList(bob.getLijstActies()));
+            btnGenerateBobOverzicht.setDisable(false);
+        }else {
+            btnGenerateBobOverzicht.setDisable(true);
+        }
+
+
     }
 
     @FXML

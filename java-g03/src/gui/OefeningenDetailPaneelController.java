@@ -76,26 +76,27 @@ public class OefeningenDetailPaneelController extends VBox implements Observer {
 
     }
 
-    private void buildGui(){
+    private void buildGui() {
         openFeedback.setDisable(true);
         btnOpenOpgave.setDisable(true);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        oefening = (Oefening) arg;
-        colorCircle.setFill(Paint.valueOf(oefening.getVak().getKleur()));
-        txfAntwoord.setText(oefening.getAntwoord());
-        txfVak.setText(oefening.getVak().getNaam());
-        txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));
-        left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
-        leftDoelstellingen.setItems(FXCollections.observableArrayList(oefening.getDoelstellingscodes()));
-        fileLabelOpgave.setText(oefening.getOpgave());
-        btnOpenOpgave.setDisable(false);
+        if (arg != null) {
+            oefening = (Oefening) arg;
+            colorCircle.setFill(Paint.valueOf(oefening.getVak().getKleur()));
+            txfAntwoord.setText(oefening.getAntwoord());
+            txfVak.setText(oefening.getVak().getNaam());
+            txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));
+            left.setItems(FXCollections.observableArrayList(oefening.getLijstGroepsbewerkingen()));
+            leftDoelstellingen.setItems(FXCollections.observableArrayList(oefening.getDoelstellingscodes()));
+            fileLabelOpgave.setText(oefening.getOpgave());
+            btnOpenOpgave.setDisable(false);
 
-        if (oefening.getFeedback() != null){
             openFeedback.setDisable(false);
             fileLabelFeedback.setText(oefening.getFeedback());
+
 
         }
     }

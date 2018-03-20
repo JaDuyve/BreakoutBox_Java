@@ -68,6 +68,10 @@ public class BobBeheerder extends Observable {
 
             return bob.getNaam().toLowerCase().contains(bobNaam.toLowerCase());
         });
+
+        if (filtBobs.size() == 0){
+            setBob(null);
+        }
     }
 
     public void createBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {

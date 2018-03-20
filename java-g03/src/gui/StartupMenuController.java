@@ -27,7 +27,10 @@ public class StartupMenuController extends BorderPane {
     @FXML
     private JFXButton btnDoelstellingscodeToevoegen;
 
-
+    private static BobSchermController bobSchermController =new BobSchermController();
+    private static OefeningSchermController oefeningSchermController =new OefeningSchermController();
+    private static SessieSchermController sessieSchermController = new SessieSchermController();
+    private static DoelstellingscodeBeheerSchermController doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController());;
 
     public StartupMenuController() {
 
@@ -40,30 +43,31 @@ public class StartupMenuController extends BorderPane {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+
     }
 
     @FXML
     void showBobBeheren(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new BobSchermController());
+        s.setRoot(bobSchermController);
     }
 
     @FXML
     void showOefBeheren(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new OefeningSchermController());
+        s.setRoot(oefeningSchermController);
     }
 
     @FXML
     void showSessieToevoegen(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new SessieSchermController());
+        s.setRoot(sessieSchermController);
     }
 
     @FXML
     void showDoelstellingscodeToevoegen(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController()));
+        s.setRoot(doelstellingscodeBeheerSchermController);
     }
 
 }
