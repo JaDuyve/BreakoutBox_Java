@@ -15,10 +15,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <fx:root stylesheets="@../css/app.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <TableView fx:id="oefTable" maxHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
+      <TableView fx:id="oefTable" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="nameTable" prefWidth="585.0" text="Naam" />
           <TableColumn fx:id="categorieTable" prefWidth="275.0" text="Categorieën" />
@@ -76,7 +75,7 @@
                         <Image url="@../images/less.png" />
                      </image>
                      <effect>
-                        <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+                        <ColorAdjust brightness="-1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                   </ImageView>
                </graphic>
