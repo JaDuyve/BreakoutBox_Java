@@ -12,7 +12,9 @@ public class VakController {
 
     private VakBeheerder vakBeheerder = new VakBeheerder();
 
-
+    public VakController() {
+        this.vakBeheerder = vakBeheerder;
+    }
 
     public Vak geefVak(){
 

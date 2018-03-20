@@ -19,7 +19,10 @@ public class DoelstellingscodeBeheerder extends Observable
     private Doelstellingscode doelstellingscode;
     private final Comparator<Doelstellingscode> byDoelstellingscode = (d1, d2) -> d1.getCode().compareToIgnoreCase(d2.getCode());
 
-    public DoelstellingscodeBeheerder(){}
+    public DoelstellingscodeBeheerder()
+    {
+        setDoelstellingscodeRepo(new GenericDaoJpa(Doelstellingscode.class));
+    }
 
     public void createDoelstellingscode(String code)
     {
@@ -80,10 +83,6 @@ public class DoelstellingscodeBeheerder extends Observable
         return new SortedList<>(filtDoelstellingscodes, byDoelstellingscode);
     }
 
-    public void veranderHuidige(Doelstellingscode doelstellingscode)
-    {
-
-    }
 
     public List<Doelstellingscode> getDoelstellingscodes() {
         return doelstellingscodes;
@@ -94,5 +93,9 @@ public class DoelstellingscodeBeheerder extends Observable
         this.doelstellingscode = doelstellingscode;
         setChanged();
         notifyObservers(doelstellingscode);
+    }
+
+    public void setDoelstellingscodeRepo(GenericDao<Doelstellingscode> doelstellingscodeRepo) {
+        this.doelstellingscodeRepo = doelstellingscodeRepo;
     }
 }

@@ -49,7 +49,7 @@ public class Groep {
             paden.put(j + 1, pads.get(j));
         }
 
-        paden.put(paden.size() + 1, new Pad(oefeningen.get(oefeningen.size() - 1), new Actie(), isContactLeer()));
+        paden.put(paden.size() + 1, new Pad(oefeningen.get(oefeningen.size() - 1), null, isContactLeer()));
     }
 
     public String getNaam() {
