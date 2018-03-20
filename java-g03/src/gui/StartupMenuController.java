@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import domein.BobController;
+import domein.DoelstellingscodeController;
 import domein.OefeningController;
 import domein.SessieController;
 import javafx.event.ActionEvent;
@@ -22,6 +23,9 @@ public class StartupMenuController extends BorderPane {
 
     @FXML
     private JFXButton btnSesstieToevoegen;
+
+    @FXML
+    private JFXButton btnDoelstellingscodeToevoegen;
 
 
 
@@ -54,6 +58,12 @@ public class StartupMenuController extends BorderPane {
     void showSessieToevoegen(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(new SessieSchermController());
+    }
+
+    @FXML
+    void showDoelstellingscodeToevoegen(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController()));
     }
 
 }

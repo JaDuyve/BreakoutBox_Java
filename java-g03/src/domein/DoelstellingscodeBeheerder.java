@@ -85,6 +85,10 @@ public class DoelstellingscodeBeheerder extends Observable
 
 
     public List<Doelstellingscode> getDoelstellingscodes() {
+        if (doelstellingscodes == null){
+            doelstellingscodes = doelstellingscodeRepo.findAll();
+        }
+
         return doelstellingscodes;
     }
 

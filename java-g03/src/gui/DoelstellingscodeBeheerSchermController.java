@@ -27,7 +27,7 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane
         this.doelstellingscodeController = doelstellingscodeController;
 
         FXMLLoader loader
-                = new FXMLLoader(getClass().getResource("SessieOverzichtPaneel.fxml"));
+                = new FXMLLoader(getClass().getResource("DoelstellingscodeBeheerScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
