@@ -5,19 +5,18 @@ import com.jfoenix.controls.JFXTextField;
 import domein.Actie;
 import domein.BobController;
 import domein.Oefening;
-import domein.Toegangscode;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BobMakenPaneelController extends StackPane {
+public class BobMakenPaneelController extends BorderPane {
 
     @FXML
     private JFXTextField txfNaam;
@@ -56,6 +55,7 @@ public class BobMakenPaneelController extends StackPane {
     }
 
     private void buildGui() {
+        this.setTop(new TopBarController());
         lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), FXCollections.observableArrayList());
         lvActies = new ListViewController<>(bobController.geefActies(), FXCollections.observableArrayList());
         apOefeningen.getChildren().add(lvOefeningen);

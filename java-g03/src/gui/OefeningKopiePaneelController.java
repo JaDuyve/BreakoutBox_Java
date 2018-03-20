@@ -109,6 +109,7 @@ public class OefeningKopiePaneelController extends BorderPane {
     }
 
     private void buildGui() {
+        this.setTop(new TopBarController());
         try {
             lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), oefening.getLijstGroepsbewerkingen());
             lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(), oefening.getDoelstellingscodes());

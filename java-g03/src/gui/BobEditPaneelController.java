@@ -2,19 +2,22 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import domein.*;
+import domein.Actie;
+import domein.Bob;
+import domein.BobController;
+import domein.Oefening;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BobEditPaneelController extends StackPane {
+public class BobEditPaneelController extends BorderPane {
 
     @FXML
     private JFXTextField txfNaam;
@@ -57,6 +60,7 @@ public class BobEditPaneelController extends StackPane {
     }
 
     private void buildGui() {
+        this.setTop(new TopBarController());
         lblTitel.setText("BREAKOUT-BOX WIJZIGEN");
         txfNaam.setText(bob.getNaam());
         lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), bob.getLijstOefeningen());

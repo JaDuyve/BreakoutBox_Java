@@ -9,12 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BobKopiePaneelController extends StackPane {
+public class BobKopiePaneelController extends BorderPane {
 
     @FXML
     private JFXTextField txfNaam;
@@ -58,7 +58,7 @@ public class BobKopiePaneelController extends StackPane {
     }
 
     private void buildGui() {
-
+        this.setTop(new TopBarController());
         try {
             lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), FXCollections.observableArrayList(bob.getLijstOefeningen()));
             lvActies = new ListViewController<>(bobController.geefActies(), FXCollections.observableArrayList(bob.getLijstActies()));

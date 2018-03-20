@@ -18,7 +18,7 @@ public class BobSchermController extends BorderPane {
 
     public BobSchermController(BobController bc){
         this.bobController = bc;
-
+        this.setTop(new TopBarController());
         overzichtPanel = new BobOverzichtPaneelController(bobController);
         bobDetailPaneelController = new BobDetailPaneelController();
         this.setCenter(overzichtPanel);

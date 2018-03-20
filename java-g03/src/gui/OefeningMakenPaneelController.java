@@ -107,6 +107,7 @@ public class OefeningMakenPaneelController extends BorderPane {
     }
 
     private void buildGui() {
+        this.setTop(new TopBarController());
         lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), FXCollections.observableArrayList());
         lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(), FXCollections.observableArrayList());
         vakDropDown.setItems(oefeningController.geefVakken());

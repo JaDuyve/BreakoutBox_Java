@@ -28,6 +28,7 @@ public class OefeningSchermController extends BorderPane {
         filterPaneelController = new OefeningenFilterPaneelController(oefeningController);
         this.setLeft(filterPaneelController);
         this.setRight(detailPanelController);
+        this.setTop(new TopBarController());
         this.setCenter(overzichtPanel);
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
