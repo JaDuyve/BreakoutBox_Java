@@ -132,4 +132,9 @@ public class Sessie {
     public void setContactLeer(boolean contactLeer) {
         this.contactLeer = contactLeer;
     }
+
+    @Override
+    public String toString() {
+        return this.getNaam();
+    }
 }

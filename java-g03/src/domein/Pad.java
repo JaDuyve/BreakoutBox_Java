@@ -85,9 +85,7 @@ public class Pad {
     }
 
     public void setActie(Actie actie) {
-        if (actie == null && contactLeer) {
-            throw new IllegalArgumentException("Actie moet meegegeven worden voor een pad of contactleer moet uit staan");
-        }
+
         this.actie = actie;
     }
 
