@@ -6,9 +6,9 @@ public class DoelstellingscodeController
 {
     private DoelstellingscodeBeheerder doelstellingscodeBeheerder;
 
-    public DoelstellingscodeController(DoelstellingscodeBeheerder doelstellingscodeBeheerder)
+    public DoelstellingscodeController()
     {
-        setDoelstellingscodeBeheerder(doelstellingscodeBeheerder);
+        setDoelstellingscodeBeheerder(new DoelstellingscodeBeheerder());
     }
 
     public void createDoelstellingscode(String code)
@@ -28,7 +28,7 @@ public class DoelstellingscodeController
 
     public void veranderHuidige(Doelstellingscode doelstellingscode)
     {
-        doelstellingscodeBeheerder.veranderHuidige(doelstellingscode);
+        doelstellingscodeBeheerder.setDoelstellingscode(doelstellingscode);
     }
 
     public ObservableList<Doelstellingscode> geefDoelstellingscodes()
