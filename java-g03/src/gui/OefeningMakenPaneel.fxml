@@ -5,111 +5,123 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fx:id="img" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/mountains.jpg" />
-         </image>
-      </ImageView>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-         <right>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="720.0" prefWidth="400.0" spacing="15.0" styleClass="sidepanels" stylesheets="@../css/app.css" BorderPane.alignment="CENTER">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="anchor" stylesheets="@../css/app.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="25.0" styleClass="sidepanels" stylesheets="@../css/app.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" text="OEFENING MAKEN">
+               <font>
+                  <Font name="Roboto Light" size="36.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="25.0">
                <children>
-                  <Label fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" text="OEFENING MAKEN">
-                     <font>
-                        <Font name="Roboto Light" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblNaam" text="Naam">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="txfNaam" promptText="Naam" />
-                  <Label fx:id="lblAntwoord" text="Antwoord">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="txtAntwoord" promptText="Antwoord" />
-                  <HBox alignment="CENTER" spacing="50.0">
+                  <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
                      <children>
-                        <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE">
+                        <Label fx:id="lblNaam" text="Naam">
                            <font>
-                              <Font name="Roboto Regular" size="14.0" />
+                              <Font name="Roboto" size="18.0" />
                            </font>
-                        </JFXButton>
-                        <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE">
-                           <font>
-                              <Font name="Roboto Regular" size="14.0" />
-                           </font>
-                        </JFXButton>
+                        </Label>
+                        <JFXTextField fx:id="txfNaam" maxWidth="1.7976931348623157E308" minWidth="300.0" promptText="Naam" styleClass="txf" />
                      </children>
-                  </HBox>
-                  <Label fx:id="lblGroepsbewerkingen" alignment="CENTER" prefHeight="18.0" prefWidth="150.0" text="Groepsbewerkingen" textAlignment="CENTER">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane fx:id="apGroepsbewerking" />
-                  <Label fx:id="lblDoelstellingen" alignment="CENTER" layoutX="148.0" layoutY="576.0" prefHeight="18.0" prefWidth="125.0" text="Doelstellingen" textAlignment="CENTER">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane fx:id="apDoelstellingen" layoutX="30.0" layoutY="609.0" />
-                  <Label fx:id="lblVak" text="Vak">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <JFXComboBox fx:id="vakDropDown" prefHeight="20.0" prefWidth="130.0" promptText="-- Kies Vak --">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </JFXComboBox>
-                  <Label fx:id="lblTijdslimiet" text="Tijdslimiet">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="txfTijdslimiet" maxWidth="50.0" minWidth="20.0" prefHeight="25.0" prefWidth="210.0" promptText="0" />
-                  <HBox alignment="CENTER" spacing="50.0">
+                  </VBox>
+                  <VBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="10.0">
                      <children>
-                        <JFXButton fx:id="btnVoegOefeningToe" alignment="CENTER" onAction="#VoegOefeningToe" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Voeg toe" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
+                        <Label fx:id="lblAntwoord" text="Antwoord">
                            <font>
-                              <Font name="Roboto Regular" size="14.0" />
+                              <Font name="Roboto" size="18.0" />
                            </font>
-                        </JFXButton>
-                        <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#cancel" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Annuleren" textFill="WHITE">
-                           <font>
-                              <Font name="Roboto Regular" size="14.0" />
-                           </font>
-                        </JFXButton>
+                        </Label>
+                        <JFXTextField fx:id="txtAntwoord" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" minWidth="300.0" promptText="Antwoord" styleClass="txf" />
                      </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </VBox>
-         </right>
-      </BorderPane>
-   </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="25.0">
+               <children>
+                  <JFXButton fx:id="btnOpgaveButton" onAction="#opgaveFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies opgave" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnFeedbackButton" onAction="#feedbackFileChooser" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Kies Feedback" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="25.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" spacing="25.0">
+                     <children>
+                        <Label fx:id="lblGroepsbewerkingen" alignment="CENTER" text="Groepsbewerkingen" textAlignment="CENTER">
+                           <font>
+                              <Font name="Roboto" size="18.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane fx:id="apGroepsbewerking" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_RIGHT" spacing="25.0">
+                     <children>
+                        <Label fx:id="lblDoelstellingen" alignment="CENTER" text="Doelstellingen" textAlignment="CENTER">
+                           <font>
+                              <Font name="Roboto" size="18.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane fx:id="apDoelstellingen" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label fx:id="lblVak" text="Vak">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="vakDropDown" prefHeight="20.0" prefWidth="130.0" promptText="-- Kies Vak --" styleClass="txf">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <Label fx:id="lblTijdslimiet" text="Tijdslimiet">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txfTijdslimiet" alignment="CENTER" maxWidth="50.0" minWidth="20.0" prefHeight="25.0" prefWidth="210.0" promptText="0" styleClass="txf" />
+            <HBox alignment="CENTER" spacing="25.0">
+               <children>
+                  <JFXButton fx:id="btnVoegOefeningToe" alignment="CENTER" onAction="#VoegOefeningToe" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Voeg toe" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Roboto Regular" size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#cancel" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="Annuleren" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
 </fx:root>

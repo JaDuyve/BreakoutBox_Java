@@ -1,10 +1,8 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import domein.BobController;
 import domein.Oefening;
 import domein.OefeningController;
-import domein.SessieController;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,15 +10,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
 
 
-public class OefeningenOverzichtPaneelController extends BorderPane {
+public class OefeningenOverzichtPaneelController extends VBox {
 
     @FXML
     private Button backbutton;

@@ -10,15 +10,33 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<fx:root stylesheets="@../css/app.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <TableView fx:id="oefTable" maxHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
+<fx:root alignment="CENTER" spacing="20.0" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox spacing="250.0">
+         <children>
+            <Button fx:id="backbutton" alignment="CENTER" mnemonicParsing="false" onAction="#backButton" opacity="0.48" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-effect: none; -fx-font-weight: 100;" text="Menu">
+               <opaqueInsets>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="75.0" fitWidth="75.0">
+                     <image>
+                        <Image url="@../images/less.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Label alignment="CENTER" contentDisplay="RIGHT" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Oefeningen" textFill="#070707" />
+      <TableView fx:id="oefTable" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT">
         <columns>
           <TableColumn fx:id="nameTable" prefWidth="585.0" text="Naam" />
           <TableColumn fx:id="categorieTable" prefWidth="275.0" text="Categorieën" />
@@ -29,13 +47,8 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
       </TableView>
-   </center>
-   <bottom>
-      <HBox alignment="CENTER" prefWidth="570.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefWidth="570.0" spacing="20.0">
          <children>
             <JFXButton fx:id="btnCopy" alignment="CENTER" contentDisplay="CENTER" onAction="#kopieerOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Kopiëren" textFill="WHITE">
                <font>
@@ -62,27 +75,8 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-   </bottom>
-   <top>
-      <AnchorPane prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="backbutton" layoutY="25.0" mnemonicParsing="false" onAction="#backButton" opacity="0.48" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-text-fill: black; -fx-effect: none; -fx-font-weight: 100;" text="Menu">
-               <opaqueInsets>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fitHeight="75.0" fitWidth="75.0">
-                     <image>
-                        <Image url="@../images/less.png" />
-                     </image>
-                     <effect>
-                        <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
-                     </effect>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label contentDisplay="RIGHT" layoutX="337.0" layoutY="27.0" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Oefeningen" textFill="#070707" />
-         </children>
-      </AnchorPane>
-   </top>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </fx:root>

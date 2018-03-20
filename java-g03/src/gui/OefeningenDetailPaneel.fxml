@@ -5,15 +5,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_CENTER" spacing="20.0" styleClass="sidepanels" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" styleClass="sidepanels" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="TOP_CENTER" contentDisplay="CENTER" style="-fx-font-size: 24;" text="DETAILS OEFENING" textAlignment="CENTER">
          <VBox.margin>
@@ -45,41 +43,29 @@
             </VBox>
          </children>
       </HBox>
-      <AnchorPane>
+      <Label opacity="0.45" style="-fx-font-size: 18;" text="Antwoord" />
+      <JFXTextField fx:id="txfAntwoord" alignment="CENTER" editable="false" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-padding: 10;" styleClass="txf">
+      <effect>
+         <DropShadow blurType="GAUSSIAN" color="#00000033" height="10.0" offsetX="2.0" offsetY="4.0" radius="5.75" width="15.0" />
+      </effect>
+      </JFXTextField>
+      <Label opacity="0.45" style="-fx-font-size: 18;" text="Vak" />
+      <HBox alignment="CENTER_LEFT" spacing="25.0">
          <children>
-            <Label layoutX="26.0" layoutY="14.0" opacity="0.45" style="-fx-font-size: 18;" text="Antwoord" />
-            <JFXTextField fx:id="txfAntwoord" alignment="CENTER" editable="false" layoutX="13.0" layoutY="48.0" prefHeight="37.0" prefWidth="373.0" style="-fx-padding: 10;" styleClass="txf">
+            <Circle fx:id="colorCircle" fill="#9e9e9e" radius="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <JFXTextField fx:id="txfVak" alignment="CENTER" editable="false" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-padding: 10;" styleClass="txf">
             <effect>
                <DropShadow blurType="GAUSSIAN" color="#00000033" height="10.0" offsetX="2.0" offsetY="4.0" radius="5.75" width="15.0" />
             </effect>
             </JFXTextField>
          </children>
-      </AnchorPane>
-      <AnchorPane>
-         <children>
-            <Label layoutX="29.0" layoutY="3.0" opacity="0.45" style="-fx-font-size: 18;" text="Vak" />
-            <JFXTextField fx:id="txfVak" alignment="CENTER" editable="false" layoutX="93.0" layoutY="54.0" prefHeight="37.0" prefWidth="293.0" style="-fx-padding: 10;" styleClass="txf">
-            <effect>
-               <DropShadow blurType="GAUSSIAN" color="#00000033" height="10.0" offsetX="2.0" offsetY="4.0" radius="5.75" width="15.0" />
-            </effect>
-            </JFXTextField>
-            <Circle fx:id="colorCircle" fill="#9e9e9e" layoutX="44.0" layoutY="72.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane>
-         <children>
-            <Label layoutX="27.0" layoutY="14.0" opacity="0.45" style="-fx-font-size: 18;" text="Groepsbewerkingen" />
-            <ListView fx:id="left" layoutY="43.0" prefHeight="151.0" prefWidth="400.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane>
-         <children>
-            <Label layoutX="27.0" layoutY="14.0" opacity="0.45" style="-fx-font-size: 18;" text="Doelstellingen" />
-            <ListView fx:id="leftDoelstellingen" layoutY="43.0" prefHeight="151.0" prefWidth="400.0" />
-         </children>
-      </AnchorPane>
-      <Label text="Tijdslimiet" />
-      <TextField fx:id="txfTijdslimiet" />
+      </HBox>
+      <Label opacity="0.45" style="-fx-font-size: 18;" text="Groepsbewerkingen" />
+      <ListView fx:id="left" maxWidth="1.7976931348623157E308" prefHeight="151.0" />
+      <Label opacity="0.45" style="-fx-font-size: 18;" text="Doelstellingen" />
+      <ListView fx:id="leftDoelstellingen" maxWidth="1.7976931348623157E308" prefHeight="151.0" />
+      <Label alignment="CENTER" opacity="0.45" style="-fx-font-family: Roboto; -fx-font-size: 18;" text="Tijdslimiet" />
+      <JFXTextField fx:id="txfTijdslimiet" editable="false" styleClass="txf" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />

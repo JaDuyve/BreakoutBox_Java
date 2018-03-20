@@ -2,7 +2,6 @@ package gui;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
-import domein.Doelstellingscode;
 import domein.OefeningController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -83,7 +82,6 @@ public class OefeningenFilterPaneelController extends VBox {
                     i.getAndIncrement();
                 });
         vbVakken.getChildren().add(gridPane);
-        gridPane.setMinWidth(400);
         gridPane.setHgap(40);
         gridPane.setVgap(20);
     }

@@ -38,5 +38,5 @@ public class OefeningSchermController extends BorderPane {
         this.getLeft().setEffect(ds);
         this.setStyle("-fx-background-color: #FFFFFF;");
         oefeningController.addObservertje(detailPanelController);
-    }
+        }
 }

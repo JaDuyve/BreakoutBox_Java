@@ -2,7 +2,6 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
 import domein.Doelstellingscode;
 import domein.Groepsbewerking;
 import domein.OefeningController;
@@ -12,11 +11,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class OefeningMakenPaneelController extends StackPane {
+public class OefeningMakenPaneelController extends BorderPane {
 
     @FXML
     private Label lblTitel;
@@ -110,6 +110,8 @@ public class OefeningMakenPaneelController extends StackPane {
         lvGroepsbewerking = new ListViewController<>(oefeningController.geefGroepsbewerkingen(), FXCollections.observableArrayList());
         lvDoelstellingen = new ListViewController<>(oefeningController.geefDoelstelingscodes(), FXCollections.observableArrayList());
         vakDropDown.setItems(oefeningController.geefVakken());
+        lvDoelstellingen.setPrefSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+        lvGroepsbewerking.setPrefSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
         apGroepsbewerking.getChildren().add(lvGroepsbewerking);
         apDoelstellingen.getChildren().add(lvDoelstellingen);
     }
