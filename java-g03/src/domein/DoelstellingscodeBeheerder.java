@@ -18,12 +18,14 @@ public class DoelstellingscodeBeheerder extends Observable
     private List<Doelstellingscode> doelstellingscodes;
     private FilteredList<Doelstellingscode> filtDoelstellingscodes;
     private GenericDao<Doelstellingscode> doelstellingscodeRepo;
+    private GenericDao<Oefening> oefeningRepo;
     private Doelstellingscode doelstellingscode;
     private final Comparator<Doelstellingscode> byDoelstellingscode = (d1, d2) -> d1.getCode().compareToIgnoreCase(d2.getCode());
 
     public DoelstellingscodeBeheerder()
     {
         setDoelstellingscodeRepo(new GenericDaoJpa(Doelstellingscode.class));
+        setOefeningRepo(new GenericDaoJpa(Oefening.class));
     }
 
     public void createDoelstellingscode(String code)
@@ -35,9 +37,7 @@ public class DoelstellingscodeBeheerder extends Observable
             throw new IllegalArgumentException("Doelstellingscode met naam: " + code + " bestaat al");
         } else
         {
-            GenericDaoJpa.startTransaction();
             doelstellingscodeRepo.insert(doelstellingscode);
-            GenericDaoJpa.commitTransaction();
             doelstellingscodes.add(doelstellingscode);
         }
     }
@@ -103,9 +103,13 @@ public class DoelstellingscodeBeheerder extends Observable
         this.doelstellingscodeRepo = doelstellingscodeRepo;
     }
 
+    public void setOefeningRepo(GenericDao<Oefening> oefeningRepo) {
+        this.oefeningRepo = oefeningRepo;
+    }
+
     private void controleerCodeInOefening(Doelstellingscode code) {
-        boolean result = doelstellingscodeRepo.findAll().stream()
-                .filter(doel -> doel.getCode().equals(code)).collect(Collectors.toList()).size() != 0;
+        boolean result = oefeningRepo.findAll().stream()
+                .filter(oef -> oef.getDoelstellingscodes().contains(code)).collect(Collectors.toList()).size() != 0;
 
 
         if (result) {
