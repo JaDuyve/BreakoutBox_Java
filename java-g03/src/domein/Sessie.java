@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Sessie {
@@ -183,6 +184,7 @@ public class Sessie {
                 contentStream.setFont(PDType1Font.HELVETICA, 14);
                 contentStream.showText(tab +  groep.getNaam());
                 contentStream.newLine();
+
 
                 for (Pad pad : groep.getPaden().values()) {
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
