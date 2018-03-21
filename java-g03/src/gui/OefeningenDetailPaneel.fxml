@@ -60,7 +60,7 @@
                         <JFXTextField fx:id="txfVak" alignment="CENTER" editable="false" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-padding: 10;" styleClass="txf" />
                      </children>
                      <VBox.margin>
-                        <Insets />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>
@@ -70,7 +70,10 @@
             </VBox>
             <VBox alignment="CENTER_RIGHT">
                <children>
-                  <Label alignment="CENTER" opacity="0.45" style="-fx-font-family: Roboto; -fx-font-size: 18;" text="Tijdslimiet" />
+                  <Label alignment="CENTER" opacity="0.45" style="-fx-font-family: Roboto; -fx-font-size: 18;" text="Tijdslimiet">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Label>
                   <JFXTextField fx:id="txfTijdslimiet" editable="false" styleClass="txf" />
                </children>
                <HBox.margin>
@@ -80,9 +83,9 @@
          </children>
       </HBox>
       <Label opacity="0.45" style="-fx-font-size: 18;" text="Groepsbewerkingen" />
-      <ListView fx:id="left" maxWidth="1.7976931348623157E308" prefHeight="151.0" />
+      <ListView fx:id="left" maxWidth="1.7976931348623157E308" prefHeight="151.0" styleClass="mylistview" />
       <Label opacity="0.45" style="-fx-font-size: 18;" text="Doelstellingen" />
-      <ListView fx:id="leftDoelstellingen" maxWidth="1.7976931348623157E308" prefHeight="151.0" />
+      <ListView fx:id="leftDoelstellingen" maxWidth="1.7976931348623157E308" prefHeight="151.0" styleClass="mylistview" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />

@@ -38,7 +38,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <ListView fx:id="lvGroepen" maxHeight="200.0" minHeight="100.0">
+      <ListView fx:id="lvGroepen" maxHeight="200.0" minHeight="100.0" styleClass="mylistview">
          <VBox.margin>
             <Insets />
          </VBox.margin>

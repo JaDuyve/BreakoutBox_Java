@@ -10,7 +10,7 @@
 
 <fx:root maxHeight="200.0" minHeight="100.0" minWidth="150.0" stylesheets="@../css/app.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXListView fx:id="left" minWidth="250.0" styleClass="kleiner">
+      <JFXListView fx:id="left" minHeight="200.0" minWidth="250.0" styleClass="mylistview">
          <effect>
             <InnerShadow color="#0000001a" />
          </effect></JFXListView>
@@ -31,7 +31,7 @@
             <Insets left="5.0" right="5.0" />
          </HBox.margin>
       </VBox>
-      <JFXListView fx:id="right" minWidth="250.0" styleClass="kleiner">
+      <JFXListView fx:id="right" minHeight="200.0" minWidth="250.0" styleClass="mylistview">
          <effect>
             <InnerShadow color="#0000001a" />
          </effect></JFXListView>

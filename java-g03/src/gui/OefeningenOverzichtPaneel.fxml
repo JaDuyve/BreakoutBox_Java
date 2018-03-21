@@ -38,8 +38,8 @@
       <Label alignment="CENTER" contentDisplay="RIGHT" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Oefeningen" textFill="#070707" />
       <TableView fx:id="oefTable" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" styleClass="mylistview">
         <columns>
-          <TableColumn fx:id="nameTable" prefWidth="585.0" text="Naam" />
-          <TableColumn fx:id="categorieTable" prefWidth="275.0" text="Categorieën" />
+          <TableColumn fx:id="nameTable" maxWidth="1.7976931348623157E308" minWidth="500.0" prefWidth="-1.0" resizable="false" text="Naam" />
+          <TableColumn fx:id="categorieTable" maxWidth="1.7976931348623157E308" minWidth="275.0" prefWidth="-1.0" text="Categorieën" />
         </columns>
          <effect>
             <InnerShadow blurType="GAUSSIAN" color="#0000001a" height="25.38" radius="12.094999999999999" width="25.0" />
