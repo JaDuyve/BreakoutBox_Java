@@ -1,6 +1,5 @@
 package gui;
 
-import domein.BobController;
 import domein.SessieController;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
@@ -20,9 +19,9 @@ public class SessieSchermController extends BorderPane {
 
     public SessieSchermController(SessieController sc){
         this.sessieController = sc;
-
+        this.setTop(new TopBarController());
         sessieOverzichtPanel = new SessieOverzichtPaneelController(sessieController);
-        sessieDetailPanel = new SessieDetailPaneelController();
+        sessieDetailPanel = new SessieDetailPaneelController(sessieController);
         this.setCenter(sessieOverzichtPanel);
         this.setRight(sessieDetailPanel);
         DropShadow ds = new DropShadow();

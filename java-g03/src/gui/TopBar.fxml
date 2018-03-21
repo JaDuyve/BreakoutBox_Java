@@ -2,19 +2,31 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<fx:root alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(96,125,139,1);" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(96,125,139,0.7);" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Breakout-box Controlepaneel" textFill="WHITE">
+      <Label text="  BREAKOUT-BOX  |  LEERKRACHTENPANEEL" textFill="WHITE">
          <font>
             <Font name="Roboto Thin" size="40.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" rotate="-11.3">
+               <image>
+                  <Image url="@../images/box.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+            </ImageView>
+         </graphic>
       </Label>
    </children>
    <padding>
-      <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+      <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
    </padding>
 </fx:root>

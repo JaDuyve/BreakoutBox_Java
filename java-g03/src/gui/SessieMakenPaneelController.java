@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import domein.Bob;
-import domein.Sessie;
 import domein.SessieController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -23,7 +22,7 @@ import java.sql.Date;
 import java.time.ZoneId;
 
 
-public class SessieMakenPaneelController extends VBox{
+public class SessieMakenPaneelController extends BorderPane {
 
     @FXML
     private Label lblSessieMaken;
@@ -73,6 +72,7 @@ public class SessieMakenPaneelController extends VBox{
     }
 
     private void buildGui(){
+        this.setTop(new TopBarController());
         CBBob.setItems(sessieController.geefBobs());
     }
 

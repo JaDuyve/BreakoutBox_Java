@@ -11,12 +11,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DoelstellingscodeBeheerSchermController extends VBox
+public class DoelstellingscodeBeheerSchermController extends BorderPane
 {
 
     @FXML
@@ -52,6 +52,7 @@ public class DoelstellingscodeBeheerSchermController extends VBox
     }
 
     private void build() {
+        this.setTop(new TopBarController());
         lvDoelstellingscodes.setItems(doelstellingscodeController.geefDoelstellingscodes());
 
 

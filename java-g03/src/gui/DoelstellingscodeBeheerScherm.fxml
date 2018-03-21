@@ -7,50 +7,62 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" styleClass="anchor" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="300.0">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="-Infinity" styleClass="anchor" stylesheets="@../css/app.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="25.0" styleClass="makepanels" stylesheets="@../css/app.css">
          <children>
-                <Button fx:id="backbutton" mnemonicParsing="false" onAction="#backButton" opacity="0.48" prefHeight="89.0" prefWidth="161.0" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-text-fill: white; -fx-effect: none; -fx-font-weight: 100;" text="Menu">
-                    <opaqueInsets>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </opaqueInsets>
-                    <graphic>
-                        <ImageView fitHeight="75.0" fitWidth="75.0">
-                            <image>
-                                <Image url="@../images/less.png" />
-                            </image>
-                            <effect>
-                                <ColorAdjust brightness="1.0" />
-                            </effect>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            <JFXTextField fx:id="txfZoekNaam" alignment="CENTER" focusColor="WHITE" onKeyReleased="#zoekNaam" promptText="Zoek op naam" unFocusColor="WHITE" />
-         </children>
-      </HBox>
-          <Label contentDisplay="RIGHT" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Doelstellingscodes" textFill="WHITE" />
-      <JFXListView fx:id="lvDoelstellingscodes" prefHeight="453.0" prefWidth="870.0" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-         <children>
-            <VBox alignment="CENTER" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0">
                <children>
-                  <Label alignment="CENTER" text="Doelstelllingscode toevoegen" textAlignment="CENTER" textFill="WHITE" />
-                  <JFXTextField fx:id="txfToevoegen" alignment="CENTER" focusColor="WHITE" promptText="doelstellingscode" unFocusColor="WHITE" />
+                      <Button fx:id="backbutton" mnemonicParsing="false" onAction="#backButton" opacity="0.48" style="-fx-font-size: 20; -fx-background-color: transparent; -fx-effect: none; -fx-font-weight: 100;" text="Menu">
+                          <opaqueInsets>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                          </opaqueInsets>
+                          <graphic>
+                              <ImageView fitHeight="75.0" fitWidth="75.0">
+                                  <image>
+                                      <Image url="@../images/less.png" />
+                                  </image>
+                                  <effect>
+                                      <ColorAdjust brightness="-1.0" />
+                                  </effect>
+                              </ImageView>
+                          </graphic>
+                      </Button>
+                  <JFXTextField fx:id="txfZoekNaam" alignment="CENTER" focusColor="WHITE" onKeyReleased="#zoekNaam" promptText="Zoek op naam" styleClass="txf" unFocusColor="#a1a1a1" />
                </children>
-            </VBox>
-            <JFXButton fx:id="btnDoelstellingscode" onAction="#createDoelstellingscode" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </JFXButton>
+            </HBox>
+                <Label contentDisplay="RIGHT" opacity="0.82" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Doelstellingscodes" />
+            <JFXListView fx:id="lvDoelstellingscodes">
+               <effect>
+                  <InnerShadow color="#0000001a" height="25.0" radius="12.0" width="25.0" />
+               </effect></JFXListView>
+            <HBox alignment="BOTTOM_CENTER" spacing="150.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER" style="-fx-font-size: 18;" text="Doelstelllingscode toevoegen" textAlignment="CENTER" />
+                        <JFXTextField fx:id="txfToevoegen" focusColor="WHITE" promptText="doelstellingscode" styleClass="txf" unFocusColor="#808080" />
+                     </children>
+                  </VBox>
+                  <JFXButton fx:id="btnDoelstellingscode" onAction="#createDoelstellingscode" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Light" size="13.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
-      </HBox>
-   </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
 </fx:root>

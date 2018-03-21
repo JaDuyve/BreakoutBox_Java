@@ -42,7 +42,7 @@
           <TableColumn fx:id="categorieTable" prefWidth="275.0" text="Categorieën" />
         </columns>
          <effect>
-            <InnerShadow blurType="GAUSSIAN" color="#0000001a" height="23.895" radius="12.188749999999999" width="26.86" />
+            <InnerShadow blurType="GAUSSIAN" color="#0000001a" height="25.38" radius="12.094999999999999" width="25.0" />
          </effect>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -52,22 +52,22 @@
          <children>
             <JFXButton fx:id="btnCopy" alignment="CENTER" contentDisplay="CENTER" onAction="#kopieerOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Kopiëren" textFill="WHITE">
                <font>
-                  <Font name="Roboto Light" size="24.0" />
+                  <Font name="Roboto Light" size="18.0" />
                </font>
             </JFXButton>
             <JFXButton fx:id="btnEdit" onAction="#editOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Wijzigen" textFill="WHITE">
                <font>
-                  <Font name="Roboto Light" size="24.0" />
+                  <Font name="Roboto Light" size="18.0" />
                </font>
             </JFXButton>
             <JFXButton fx:id="btnDelete" onAction="#deleteOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #00897B;" text="Verwijderen" textFill="WHITE">
                <font>
-                  <Font name="Roboto Light" size="24.0" />
+                  <Font name="Roboto Light" size="18.0" />
                </font>
             </JFXButton>
             <JFXButton fx:id="addExerciseButton" onAction="#createOefening" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
                <font>
-                  <Font name="Roboto Light" size="24.0" />
+                  <Font name="Roboto Light" size="18.0" />
                </font>
             </JFXButton>
          </children>

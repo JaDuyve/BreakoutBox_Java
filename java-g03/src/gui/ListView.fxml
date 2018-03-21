@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="200.0" minHeight="100.0" stylesheets="@../css/app.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="200.0" minHeight="100.0" minWidth="150.0" stylesheets="@../css/app.css" type="HBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView fx:id="left">
-         <HBox.margin>
-            <Insets right="5.0" />
-         </HBox.margin>
-      </ListView>
-      <VBox alignment="CENTER" prefWidth="30.0" spacing="5.0">
+      <JFXListView fx:id="left" minWidth="250.0" styleClass="kleiner">
+         <effect>
+            <InnerShadow color="#0000001a" />
+         </effect></JFXListView>
+      <VBox alignment="CENTER" prefWidth="30.0" spacing="15.0">
          <children>
             <JFXButton fx:id="toRight" minWidth="50.0" onAction="#toRight" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B;" text="&gt;&gt;" textFill="WHITE">
                <font>
-                  <Font name="Roboto Bold" size="18.0" />
+                  <Font name="Roboto Light Italic" size="18.0" />
                </font>
             </JFXButton>
             <JFXButton fx:id="toLeft" minWidth="50.0" onAction="#toLeft" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #00897B #00897B;" text="&lt;&lt;" textFill="WHITE">
                <font>
-                  <Font name="Roboto Bold" size="18.0" />
+                  <Font name="Roboto Light Italic" size="18.0" />
                </font>
             </JFXButton>
          </children>
-      </VBox>
-      <ListView fx:id="right">
          <HBox.margin>
-            <Insets left="5.0" />
+            <Insets left="5.0" right="5.0" />
          </HBox.margin>
-      </ListView>
+      </VBox>
+      <JFXListView fx:id="right" minWidth="250.0" styleClass="kleiner">
+         <effect>
+            <InnerShadow color="#0000001a" />
+         </effect></JFXListView>
    </children>
 </fx:root>

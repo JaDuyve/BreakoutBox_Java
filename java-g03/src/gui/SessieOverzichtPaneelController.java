@@ -25,7 +25,7 @@ public class SessieOverzichtPaneelController extends VBox {
     private Label lblBobs;
 
     @FXML
-    private ListView<Sessie> bobView;
+    private ListView<Sessie> sessieView;
 
     @FXML
     private JFXButton addBobButton;
@@ -52,10 +52,10 @@ public class SessieOverzichtPaneelController extends VBox {
     }
 
     private void build() {
-        bobView.setItems(sessieController.geefSessies());
+        sessieView.setItems(sessieController.geefSessies());
 
 
-        bobView.getSelectionModel().selectedItemProperty().addListener(
+        sessieView.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     sessieController.veranderHuidgeSessie(newValue);
 
@@ -82,7 +82,7 @@ public class SessieOverzichtPaneelController extends VBox {
 
     @FXML
     void toonOverzicht(ActionEvent event) {
-        bobView.getSelectionModel().getSelectedItem().generateBobOverzichtPdf();
+        sessieView.getSelectionModel().getSelectedItem().generateBobOverzichtPdf();
     }
 
 }
