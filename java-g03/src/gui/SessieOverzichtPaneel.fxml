@@ -41,7 +41,7 @@
             <Font name="Roboto Light" size="64.0" />
          </font>
       </Label>
-      <JFXListView fx:id="sessieView">
+      <JFXListView fx:id="sessieView" styleClass="mylistview">
          <effect>
             <InnerShadow blurType="GAUSSIAN" color="#0000001a" height="25.0" radius="12.0" width="25.0" />
          </effect></JFXListView>
