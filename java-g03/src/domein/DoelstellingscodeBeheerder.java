@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.Scene;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
@@ -33,7 +34,9 @@ public class DoelstellingscodeBeheerder extends Observable
             throw new IllegalArgumentException("Doelstellingscode met naam: " + code + " bestaat al");
         } else
         {
+            GenericDaoJpa.startTransaction();
             doelstellingscodeRepo.insert(doelstellingscode);
+            GenericDaoJpa.commitTransaction();
             doelstellingscodes.add(doelstellingscode);
         }
     }

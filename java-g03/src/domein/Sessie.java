@@ -15,9 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -185,8 +183,10 @@ public class Sessie {
                 contentStream.showText(tab +  groep.getNaam());
                 contentStream.newLine();
 
+                List<Pad> paden = groep.getPaden().values().stream().map(p -> p).collect(Collectors.toList());
+                Collections.reverse(paden);
 
-                for (Pad pad : groep.getPaden().values()) {
+                for (Pad pad : paden) {
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
@@ -205,7 +205,7 @@ public class Sessie {
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
-                    contentStream.showText("Actie: " + pad.getActie());
+                    contentStream.showText("Actie: " + (pad.getActie() == null? new Actie("Zoek de schatkist" ,"Zoek de schatkist in de klas"): pad.getActie()));
                     contentStream.newLine();
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
