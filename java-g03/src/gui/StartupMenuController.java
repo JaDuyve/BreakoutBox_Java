@@ -30,7 +30,7 @@ public class StartupMenuController extends BorderPane {
     private static BobSchermController bobSchermController =new BobSchermController();
     private static OefeningSchermController oefeningSchermController =new OefeningSchermController();
     private static SessieSchermController sessieSchermController = new SessieSchermController();
-    private static DoelstellingscodeBeheerSchermController doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController());;
+    private static DoelstellingscodeBeheerSchermController doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController();;
 
     public StartupMenuController() {
 

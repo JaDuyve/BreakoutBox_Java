@@ -45,6 +45,11 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane implemen
     @FXML
     private JFXButton btnVerwijder;
 
+    public DoelstellingscodeBeheerSchermController()
+    {
+        this(new DoelstellingscodeController());
+    }
+
     public DoelstellingscodeBeheerSchermController(DoelstellingscodeController doelstellingscodeController) {
         this.doelstellingscodeController = doelstellingscodeController;
 
@@ -88,8 +93,8 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane implemen
     void createDoelstellingscode(ActionEvent event) {
         try {
             doelstellingscodeController.createDoelstellingscode(txfToevoegen.getText());
-            Scene s = this.getScene();
-            s.setRoot(new DoelstellingscodeBeheerSchermController(doelstellingscodeController));
+            lvDoelstellingscodes.setItems(doelstellingscodeController.geefDoelstellingscodes());
+            txfToevoegen.setText("");
         } catch (IllegalArgumentException ex) {
             AlertBox.showAlertError("Fout doelstelling toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
@@ -115,7 +120,7 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane implemen
         if (result.get().equals(ButtonType.OK)) {
             try {
                 doelstellingscodeController.verwijderDoelstellingscode();
-                s.setRoot(new DoelstellingscodeBeheerSchermController(doelstellingscodeController));
+                lvDoelstellingscodes.setItems(doelstellingscodeController.geefDoelstellingscodes());
             }catch (IllegalArgumentException ex){
                 AlertBox.showAlertError("Fout verwijder doelstellingscode", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
