@@ -1,8 +1,5 @@
 package startUp;
 
-import domein.BobController;
-import domein.OefeningController;
-import domein.SessieController;
 import gui.StartupMenuController;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
