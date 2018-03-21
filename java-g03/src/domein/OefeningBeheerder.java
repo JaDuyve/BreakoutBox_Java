@@ -68,9 +68,7 @@ public class OefeningBeheerder extends Observable {
         controleerOefInBob(oefening);
 
 
-        GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
-        GenericDaoJpa.commitTransaction();
 
         jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));
         jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getFeedback())));
@@ -94,9 +92,7 @@ public class OefeningBeheerder extends Observable {
         if (!naam.equals(oefening.getNaam())) {
             createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen, vak, tijdsLimiet);
 
-            GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);
-            GenericDaoJpa.commitTransaction();
 
         } else {
             if (!oefening.getOpgave().equals(opgaveFile.getName())) {
@@ -127,10 +123,8 @@ public class OefeningBeheerder extends Observable {
             if (!doelstellingen.containsAll(oefening.getDoelstellingscodes())) {
                 oefening.setDoelstellingscodes(doelstellingen);
             }
-            GenericDaoJpa.startTransaction();
 
             oefeningRepo.update(oefening);
-            GenericDaoJpa.commitTransaction();
 
         }
     }
@@ -182,9 +176,7 @@ public class OefeningBeheerder extends Observable {
         if (oefeningRepo.exists(oef.getNaam())) {
             throw new IllegalArgumentException("Oefening met naam: " + naam + " bestaat al");
         } else {
-            GenericDaoJpa.startTransaction();
             oefeningRepo.insert(oef);
-            GenericDaoJpa.commitTransaction();
 
             jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", opgaveFile.getPath(), oef.getOpgave())));
             jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", feedbackFile.getPath(), oef.getFeedback())));

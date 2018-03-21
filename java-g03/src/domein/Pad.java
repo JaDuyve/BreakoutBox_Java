@@ -33,7 +33,7 @@ public class Pad {
         setActie(actie);
         setOefening(oefening);
 
-        setToegangscode(new Toegangscode(random.nextInt(10000) + 1000));
+        setToegangscode(new Toegangscode(random.nextInt(10000)));
 
         List<Groepsbewerking> groepsbewerkingList = oefening.getLijstGroepsbewerkingen();
         setGroepsbewerking(groepsbewerkingList.get(random.nextInt(groepsbewerkingList.size() - 1)));

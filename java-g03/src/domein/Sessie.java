@@ -47,7 +47,7 @@ public class Sessie {
         setStartDatum(startDatum);
         setContactLeer(contactLeer);
         setBob(bob);
-        setCode(random.nextInt(10000) + 1000);
+        setCode(random.nextInt(10000));
 
         if (groepen == null) {
             throw new IllegalArgumentException("Excel met groepen moet worden toegevoegd.");

@@ -80,17 +80,13 @@ public class BobBeheerder extends Observable {
         if (bobRepo.exists(bob.getNaam())) {
             throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
         } else {
-            GenericDaoJpa.startTransaction();
             bobRepo.insert(bob);
-            GenericDaoJpa.commitTransaction();
             bobs.add(bob);
         }
     }
 
     public void verwijderBob() {
-            GenericDaoJpa.startTransaction();
             bobRepo.delete(bob);
-            GenericDaoJpa.commitTransaction();
             bobs.remove(bob);
             bob = null;
 
@@ -99,9 +95,7 @@ public class BobBeheerder extends Observable {
     public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
         if (!bob.getNaam().equals(naam)) {
             createBob(naam, oefeningen, acties);
-            GenericDaoJpa.startTransaction();
             bobRepo.delete(bob);
-            GenericDaoJpa.commitTransaction();
         } else {
             if (!oefeningen.containsAll(bob.getLijstOefeningen())) {
                 bob.setLijstOefeningen(oefeningen);
@@ -109,9 +103,7 @@ public class BobBeheerder extends Observable {
             if (!acties.containsAll(bob.getLijstActies())) {
                 bob.setLijstActies(acties);
             }
-            GenericDaoJpa.startTransaction();
             bobRepo.update(bob);
-            GenericDaoJpa.commitTransaction();
         }
 
 
