@@ -65,6 +65,8 @@ public class OefeningBeheerder extends Observable {
 
 
     public void verwijderOefening() {
+        controleerOefInBob(oefening);
+
 
         GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
@@ -97,8 +99,6 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.commitTransaction();
 
         } else {
-            GenericDaoJpa.startTransaction();
-            System.out.println(opgaveFile.getPath());
             if (!oefening.getOpgave().equals(opgaveFile.getName())) {
                 jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));
                 oefening.setOpgave("Opgave_" + naam + "_" + opgaveFile.getName());
@@ -127,7 +127,9 @@ public class OefeningBeheerder extends Observable {
             if (!doelstellingen.containsAll(oefening.getDoelstellingscodes())) {
                 oefening.setDoelstellingscodes(doelstellingen);
             }
+            GenericDaoJpa.startTransaction();
 
+            oefeningRepo.update(oefening);
             GenericDaoJpa.commitTransaction();
 
         }

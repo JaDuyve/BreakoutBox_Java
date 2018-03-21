@@ -47,11 +47,12 @@ public class DoelstellingscodeBeheerder extends Observable
             throw new IllegalArgumentException("Doelstellingscode met naam: " + code + "bestaat niet");
         } else
         {
-            GenericDaoJpa.startTransaction();
             if(!doelstellingscodes.contains(doelstellingscode.getCode()))
             {
                 doelstellingscode.setCode(code);
             }
+            GenericDaoJpa.startTransaction();
+            doelstellingscodeRepo.update(doelstellingscode);
             GenericDaoJpa.commitTransaction();
         }
     }

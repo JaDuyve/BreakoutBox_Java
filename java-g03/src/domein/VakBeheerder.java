@@ -82,10 +82,11 @@ public class VakBeheerder {
             vakRepo.delete(vak);
             GenericDaoJpa.commitTransaction();
         } else {
-            GenericDaoJpa.startTransaction();
             if (!color.equals(vak.getKleur())) {
                 vak.setKleur(color);
             }
+            GenericDaoJpa.startTransaction();
+            vakRepo.update(vak);
 
             GenericDaoJpa.commitTransaction();
         }
