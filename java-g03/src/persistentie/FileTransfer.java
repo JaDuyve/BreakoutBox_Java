@@ -4,9 +4,10 @@ import com.jcraft.jsch.*;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Properties;
 
-public class FileTransfer {
+public class FileTransfer implements Runnable{
 
     private String server;
     private int port;
@@ -18,11 +19,22 @@ public class FileTransfer {
     private Channel channel = null;
     private ChannelSftp c = null;
 
+    private Job jobs = null;
+
     public FileTransfer() {
         server = "188.166.36.83";
         port = 22;
         login = "bob";
         password = "Pazaak2.0";
+    }
+
+    public FileTransfer(Job jobs) {
+        server = "188.166.36.83";
+        port = 22;
+        login = "bob";
+        password = "Pazaak2.0";
+
+        this.jobs = jobs;
     }
 
     public void connect() {
@@ -125,6 +137,27 @@ public class FileTransfer {
         if (session != null) {
             System.out.println("Disconnecting session");
             session.disconnect();
+        }
+    }
+
+
+    @Override
+    public void run() {
+        connect();
+
+        List<String> job;
+
+        while (true){
+            job = jobs.haalJob();
+
+            switch (job.get(0)){
+                case "DELETE":
+                    deleteFile(job.get(1));
+                    break;
+                case "UPLOAD":
+                    uploadFile(job.get(1), job.get(2));
+                    break;
+            }
         }
     }
 }

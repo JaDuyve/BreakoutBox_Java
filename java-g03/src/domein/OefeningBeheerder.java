@@ -4,12 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import org.eclipse.persistence.jpa.config.Array;
 import persistentie.*;
 
 import java.io.File;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Observable;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class OefeningBeheerder extends Observable {
@@ -22,6 +21,8 @@ public class OefeningBeheerder extends Observable {
     private List<Oefening> oefeningen;
     private FilteredList<Oefening> filtOefeningen;
 
+    private Job jobs;
+
     private final Comparator<Oefening> byOefeningNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
 
     public OefeningBeheerder() {
@@ -29,6 +30,10 @@ public class OefeningBeheerder extends Observable {
         setBobRepo(new GenericDaoJpa(Bob.class));
         fileTransfer = new FileTransfer();
         getOefeningList();
+
+        jobs = new Job();
+        new Thread(new FileTransfer(jobs)).start();
+
     }
 
     public void setBobRepo(GenericDaoJpa mock) {
@@ -60,15 +65,13 @@ public class OefeningBeheerder extends Observable {
 
 
     public void verwijderOefening() {
-        controleerOefInBob(oefening);
-        fileTransfer.connect();
-        fileTransfer.deleteFile(oefening.getOpgave());
-        fileTransfer.deleteFile(oefening.getFeedback());
 
-        fileTransfer.disconnect();
         GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
         GenericDaoJpa.commitTransaction();
+
+        jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));
+        jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getFeedback())));
         oefeningen.remove(oefening);
         oefening = null;
 
@@ -97,18 +100,17 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             System.out.println(opgaveFile.getPath());
             if (!oefening.getOpgave().equals(opgaveFile.getName())) {
-                fileTransfer.connect();
-                fileTransfer.deleteFile(oefening.getOpgave());
+                jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));
                 oefening.setOpgave("Opgave_" + naam + "_" + opgaveFile.getName());
-                fileTransfer.uploadFile(opgaveFile.getPath(), oefening.getOpgave());
-                fileTransfer.disconnect();
+                jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", opgaveFile.getPath(), oefening.getOpgave())));
+
             }
             if (!oefening.getFeedback().equals(feedbackFile.getName())) {
-                fileTransfer.connect();
-                fileTransfer.deleteFile(oefening.getFeedback());
-                oefening.setOpgave("Feedback_" + naam + "_" + feedbackFile.getName());
-                fileTransfer.uploadFile(feedbackFile.getPath(), oefening.getFeedback());
-                fileTransfer.disconnect();
+
+                jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getFeedback())));
+                oefening.setFeedback("Feedback_" + naam + "_" + feedbackFile.getName());
+                jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", feedbackFile.getPath(), oefening.getFeedback())));
+
             }
             if (!antwoord.equals(oefening.getAntwoord())) {
                 oefening.setAntwoord(antwoord);
@@ -181,11 +183,10 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             oefeningRepo.insert(oef);
             GenericDaoJpa.commitTransaction();
-            fileTransfer.connect();
-            fileTransfer.uploadFile(opgaveFile.getPath(), oef.getOpgave());
-            fileTransfer.uploadFile(feedbackFile.getPath(), oef.getFeedback());
 
-            fileTransfer.disconnect();
+            jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", opgaveFile.getPath(), oef.getOpgave())));
+            jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", feedbackFile.getPath(), oef.getFeedback())));
+
             oefeningen.add(oef);
         }
     }

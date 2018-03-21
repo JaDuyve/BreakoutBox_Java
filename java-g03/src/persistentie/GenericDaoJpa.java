@@ -61,4 +61,18 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
         T entity = em.find(type, id);
         return entity != null;
     }
+
+    /*public class GenericDaoJpaMulti extends GenericDaoJpa<T> implements Runnable{
+
+        private
+
+        public GenericDaoJpaMulti(Class<T> type) {
+            super(type);
+        }
+
+        @Override
+        public void run() {
+
+        }
+    }*/
 }
