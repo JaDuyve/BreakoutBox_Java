@@ -89,7 +89,7 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane implemen
         try {
             doelstellingscodeController.createDoelstellingscode(txfToevoegen.getText());
             Scene s = this.getScene();
-            s.setRoot(new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController()));
+            s.setRoot(new DoelstellingscodeBeheerSchermController(doelstellingscodeController));
         } catch (IllegalArgumentException ex) {
             AlertBox.showAlertError("Fout doelstelling toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
@@ -115,7 +115,7 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane implemen
         if (result.get().equals(ButtonType.OK)) {
             try {
                 doelstellingscodeController.verwijderDoelstellingscode();
-                s.setRoot(new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController()));
+                s.setRoot(new DoelstellingscodeBeheerSchermController(doelstellingscodeController));
             }catch (IllegalArgumentException ex){
                 AlertBox.showAlertError("Fout verwijder doelstellingscode", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
