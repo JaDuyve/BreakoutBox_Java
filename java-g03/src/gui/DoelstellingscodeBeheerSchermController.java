@@ -9,11 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -75,11 +74,12 @@ public class DoelstellingscodeBeheerSchermController extends VBox
 
     @FXML
     void createDoelstellingscode(ActionEvent event) {
-        if(!txfToevoegen.getText().equals(null))
-        {
+        try {
             doelstellingscodeController.createDoelstellingscode(txfToevoegen.getText());
             Scene s = this.getScene();
             s.setRoot(new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController()));
+        } catch (IllegalArgumentException ex) {
+            AlertBox.showAlertError("Fout doelstelling toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
     }
 
