@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.paint.Color;
-import org.apache.commons.collections4.iterators.FilterListIterator;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
@@ -65,6 +64,9 @@ public class VakBeheerder extends Observable {
     }
 
     public void createVak(String naam) {
+
+
+
         float r = random.nextFloat() / 2f + 0.5f;
         float g = random.nextFloat() / 2f + 0.5f;
         float b = random.nextFloat() / 2f + 0.5f;
@@ -93,8 +95,8 @@ public class VakBeheerder extends Observable {
 
     public void setVak(Vak vak) {
         this.vak = vak;
-
         setChanged();
         notifyObservers(vak);
+
     }
 }

@@ -40,7 +40,9 @@ public class VakController {
 
         vakBeheerder.verwijderVak();
     }
-
+    public void addObserver(Observer observer) {
+        vakBeheerder.addObserver(observer);
+    }
     public void wijzigVak(String naam){
         vakBeheerder.wijzigeVak(naam);
     }
@@ -49,9 +51,8 @@ public class VakController {
         vakBeheerder.setVak(vak);
     }
 
-    public void addObserver(Observer observer){
-        vakBeheerder.addObserver(observer);
-    }
+
+    
 
 
 }

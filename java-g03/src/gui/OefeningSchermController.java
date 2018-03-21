@@ -20,7 +20,7 @@ public class OefeningSchermController extends BorderPane {
 
     }
 
-    public OefeningSchermController(OefeningController oc){
+    public OefeningSchermController(OefeningController oc) {
 
         this.oefeningController = oc;
         detailPanelController = new OefeningenDetailPaneelController(oefeningController);
@@ -40,5 +40,6 @@ public class OefeningSchermController extends BorderPane {
         this.setStyle("-fx-background-color: #FFFFFF;");
         oefeningController.addObservertje(detailPanelController);
         oefeningController.addObservertje(overzichtPanel);
-        }
+    }
+
 }

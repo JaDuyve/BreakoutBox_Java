@@ -1,3 +1,5 @@
+
+
 package gui;
 
 import com.jfoenix.controls.JFXButton;
@@ -22,7 +24,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
-public class VakSchermController extends BorderPane implements Observer {
+public class VakkenSchermController extends BorderPane implements Observer {
     @FXML
     private Button backbutton;
 
@@ -43,12 +45,12 @@ public class VakSchermController extends BorderPane implements Observer {
 
     private VakController vakController;
 
-    public VakSchermController(){
+    public VakkenSchermController() {
 
         vakController = new VakController();
 
         FXMLLoader loader
-                = new FXMLLoader(getClass().getResource("VakScherm.fxml"));
+                = new FXMLLoader(getClass().getResource("VakkenScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
@@ -60,7 +62,7 @@ public class VakSchermController extends BorderPane implements Observer {
         build();
     }
 
-    private void build(){
+    private void build() {
         vakController.addObserver(this);
         this.setTop(new TopBarController());
         lvVakken.setItems(vakController.geefVakken());
@@ -103,7 +105,7 @@ public class VakSchermController extends BorderPane implements Observer {
             try {
                 vakController.verwijderVak();
                 lvVakken.setItems(vakController.geefVakken());
-            }catch (IllegalArgumentException ex){
+            } catch (IllegalArgumentException ex) {
                 AlertBox.showAlertError("Fout verwijder vak", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
         }

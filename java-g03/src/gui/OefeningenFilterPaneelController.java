@@ -55,7 +55,7 @@ public class OefeningenFilterPaneelController extends VBox {
         build();
     }
 
-    private void build() {
+    public void build() {
         GridPane gridPane = new GridPane();
         AtomicInteger i = new AtomicInteger();
         oefeningController.geefVakken().stream()

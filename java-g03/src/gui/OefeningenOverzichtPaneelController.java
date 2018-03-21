@@ -65,7 +65,7 @@ public class OefeningenOverzichtPaneelController extends VBox implements Observe
         build();
     }
 
-    private void build() {
+    public  void build() {
         oefTable.setItems(oefeningController.geefOefeningen());
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
