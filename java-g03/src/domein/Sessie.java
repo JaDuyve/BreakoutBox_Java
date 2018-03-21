@@ -142,12 +142,20 @@ public class Sessie {
         this.contactLeer = contactLeer;
     }
 
+    public List<Groep> getGroepen() {
+        return groepen;
+    }
+
+    public void setGroepen(List<Groep> groepen) {
+        this.groepen = groepen;
+    }
+
     @Override
     public String toString() {
         return this.getNaam();
     }
 
-    public void generateBobOverzichtPdf() {
+    public void generateSessieOverzichtPdf() {
 
         Comparator<Groep> byGroepNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
         SortedList<Groep> sortGroep = new SortedList<>(FXCollections.observableList(this.groepen), byGroepNaam);
@@ -230,9 +238,6 @@ public class Sessie {
                     contentStream.newLineAtOffset(65, 700);
                     contentStream.setLeading(16);
                 }
-
-
-
             }
 
             String fileName = this.getNaam() + ".pdf";

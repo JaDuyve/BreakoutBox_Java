@@ -31,9 +31,6 @@ public class SessieOverzichtPaneelController extends VBox {
     private JFXButton addBobButton;
 
     @FXML
-    private JFXButton btnToonOverzicht;
-
-    @FXML
     private JFXTextField txfZoekNaam;
 
     public SessieOverzichtPaneelController(SessieController sc) {
@@ -80,10 +77,7 @@ public class SessieOverzichtPaneelController extends VBox {
         sessieController.changeFilter(txfZoekNaam.getText());
     }
 
-    @FXML
-    void toonOverzicht(ActionEvent event) {
-        sessieView.getSelectionModel().getSelectedItem().generateBobOverzichtPdf();
-    }
+
 
 }
 

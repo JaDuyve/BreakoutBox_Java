@@ -29,7 +29,7 @@ public class BobEditPaneelController extends BorderPane {
     private AnchorPane apActies;
 
     @FXML
-    private JFXButton btnVoegOefeningToe;
+    private JFXButton btnVoegBobToe;
 
     @FXML
     private JFXButton btnCancel;
@@ -62,7 +62,7 @@ public class BobEditPaneelController extends BorderPane {
     private void buildGui() {
         this.setTop(new TopBarController());
         lblTitel.setText("BREAKOUT-BOX WIJZIGEN");
-        btnVoegOefeningToe.setText("Wijzig");
+        btnVoegBobToe.setText("Wijzig");
         txfNaam.setText(bob.getNaam());
         lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), bob.getLijstOefeningen());
         lvActies = new ListViewController<>(bobController.geefActies(), bob.getLijstActies());

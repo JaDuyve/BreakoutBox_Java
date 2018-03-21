@@ -47,11 +47,6 @@
          </effect></JFXListView>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="774.0" spacing="20.0">
          <children>
-            <JFXButton fx:id="btnToonOverzicht" layoutX="388.0" layoutY="10.0" onAction="#toonOverzicht" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00897B;" text="Toon overzicht" textFill="WHITE">
-               <font>
-                  <Font name="Roboto" size="17.0" />
-               </font>
-            </JFXButton>
             <JFXButton fx:id="addBobButton" onAction="#createBob" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="17.0" />

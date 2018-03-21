@@ -31,7 +31,7 @@
             <HBox alignment="CENTER" spacing="25.0">
                <children>
                   <JFXDatePicker fx:id="dpStartdatum" defaultColor="#007a8f" styleClass="txf" />
-                  <JFXCheckBox fx:id="cbAfstandsleren" style="-fx-font-size: 18;" text="Afstandsleren" />
+                  <JFXCheckBox fx:id="cbAfstandsleren" style="-fx-font-size: 18;" text="Contactleer" />
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="25.0">

@@ -52,6 +52,8 @@ public class SessieBeheerder extends Observable {
 
     public void setSessie(Sessie sessie) {
         this.sessie = sessie;
+        setChanged();
+        notifyObservers(sessie);
     }
 
     public ObservableList<Sessie> geefSessies(){

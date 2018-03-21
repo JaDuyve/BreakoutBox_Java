@@ -92,7 +92,7 @@ public class DoelstellingscodeBeheerder extends Observable
         return doelstellingscodes;
     }
 
-    public void setDoelstellingscode(Doelstellingscode doelstellingscodecode)
+    public void setDoelstellingscode(Doelstellingscode doelstellingscode)
     {
         this.doelstellingscode = doelstellingscode;
         setChanged();

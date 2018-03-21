@@ -29,8 +29,8 @@
       </JFXTextField>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
-            <JFXDatePicker fx:id="jfxDate" editable="false" showWeekNumbers="true" styleClass="txf" />
-            <JFXCheckBox fx:id="btnContact" text="Contactleer" />
+            <JFXDatePicker fx:id="jfxDate" editable="false" onInputMethodTextChanged="#disableEditableDate" showWeekNumbers="true" styleClass="txf" />
+            <JFXCheckBox fx:id="btnContact" onMouseClicked="#disableEditable" text="Contactleer" />
          </children>
       </HBox>
       <Label opacity="0.45" style="-fx-font-size: 18;" text="Groepen">

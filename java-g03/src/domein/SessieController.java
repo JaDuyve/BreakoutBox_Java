@@ -10,6 +10,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Observer;
 
 public class SessieController {
     private SessieBeheerder sessieBeheerder;
@@ -24,8 +25,8 @@ public class SessieController {
         sessieBeheerder.create(naam, startDate, bob, groepen, contactLeer);
     }
 
-    public void addObserver(SessieDetailPaneelController sessieDetailPaneelController){
-        sessieBeheerder.addObserver(sessieDetailPaneelController);
+    public void addObserver(Observer observer){
+        sessieBeheerder.addObserver(observer);
     }
 
     public ObservableList<Bob> geefBobs(){
