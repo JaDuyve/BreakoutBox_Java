@@ -1,18 +1,23 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import domein.Doelstellingscode;
 import domein.DoelstellingscodeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class DoelstellingscodeBeheerSchermController extends BorderPane
+public class DoelstellingscodeBeheerSchermController extends VBox
 {
 
     @FXML
@@ -21,7 +26,16 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane
     @FXML
     private JFXListView<Doelstellingscode> lvDoelstellingscodes;
 
+    @FXML
+    private JFXButton btnDoelstellingscode;
+
     private DoelstellingscodeController doelstellingscodeController;
+
+    @FXML
+    private JFXTextField txfZoekNaam;
+
+    @FXML
+    private JFXTextField txfToevoegen;
 
     public DoelstellingscodeBeheerSchermController(DoelstellingscodeController doelstellingscodeController) {
         this.doelstellingscodeController = doelstellingscodeController;
@@ -56,6 +70,24 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane
     {
         Scene s = this.getScene();
         s.setRoot(new StartupMenuController());
+    }
+
+
+    @FXML
+    void createDoelstellingscode(ActionEvent event) {
+        if(!txfToevoegen.getText().equals(null))
+        {
+            doelstellingscodeController.createDoelstellingscode(txfToevoegen.getText());
+            Scene s = this.getScene();
+            s.setRoot(new DoelstellingscodeBeheerSchermController(new DoelstellingscodeController()));
+        }
+    }
+
+
+    @FXML
+    void zoekNaam(KeyEvent event)
+    {
+        doelstellingscodeController.changeFilter(txfZoekNaam.getText());
     }
 
 }

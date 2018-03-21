@@ -73,7 +73,7 @@ public class DoelstellingscodeBeheerder extends Observable
                 return true;
             }
 
-            return doelstellingscode.getCode().toLowerCase().contains(code.toLowerCase());
+            return doel.getCode().toLowerCase().contains(code.toLowerCase());
         });
     }
 

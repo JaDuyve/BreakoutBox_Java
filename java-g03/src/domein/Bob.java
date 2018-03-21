@@ -117,26 +117,27 @@ public class Bob {
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
                     contentStream.showText(tab +  doelstellingscode.getCode());
                     contentStream.newLine();
+
                 }
                 contentStream.newLine();
 
                 contentStream.endText();
                 contentStream.close();
 
-                page = new PDPage();
-                document.addPage(page);
-                contentStream = new PDPageContentStream(document, page);
+                if(!oef.equals(this.getLijstOefeningen().get(this.getLijstOefeningen().size()-1)))
+                {
+                    page = new PDPage();
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
 
-                contentStream.beginText();
-                contentStream.newLineAtOffset(65, 700);
-                contentStream.setLeading(16);
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(65, 700);
+                    contentStream.setLeading(16);
+                }
 
 
             }
 
-
-            contentStream.endText();
-            contentStream.close();
             String fileName = this.getNaam() + ".pdf";
             // Saving Document
             document.save(fileName);

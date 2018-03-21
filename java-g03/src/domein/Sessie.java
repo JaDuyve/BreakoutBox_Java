@@ -1,18 +1,29 @@
 package domein;
 
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Sessie {
@@ -29,6 +40,7 @@ public class Sessie {
     private List<Groep> groepen = new ArrayList<Groep>();
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Bob bob;
+
 
     public Sessie(String naam, Date startDatum, Bob bob, File groepen, boolean contactLeer) {
         setNaam(naam);
@@ -136,5 +148,106 @@ public class Sessie {
     @Override
     public String toString() {
         return this.getNaam();
+    }
+
+    public void generateBobOverzichtPdf() {
+
+        FilteredList<Groep> filtGroepen;
+        Comparator<Groep> byGroepNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
+        filtGroepen = new FilteredList<>(FXCollections.observableList(this.groepen), e -> true);
+        SortedList<Groep> sortGroep = new SortedList<>(filtGroepen, byGroepNaam);
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        try {
+            document.addPage(page);
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            contentStream.beginText();
+
+            contentStream.setLeading(16);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
+
+            contentStream.newLineAtOffset(65, 700);
+            contentStream.showText("Sessie " + this.getNaam());
+            contentStream.newLine();
+            contentStream.newLine();
+
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+            contentStream.showText("Paden");
+            contentStream.newLine();
+            contentStream.newLine();
+
+            String tab = "     ";
+            String tab2 = "          ";
+
+            for (Groep groep : sortGroep) {
+
+                contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                contentStream.showText("\u25CF"); // bullet
+                contentStream.setFont(PDType1Font.HELVETICA, 14);
+                contentStream.showText(tab +  groep.getNaam());
+                contentStream.newLine();
+
+                for (Pad pad : groep.getPaden().values()) {
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText("Oefening: " +  pad.getOefening());
+                    contentStream.newLine();
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText("Groepsbewerking: " + pad.getGroepsbewerking());
+                    contentStream.newLine();
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText("Antwoord: " + pad.getAntwoord());
+                    contentStream.newLine();
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText("Actie: " + pad.getActie());
+                    contentStream.newLine();
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText("Toegangscode: " + pad.getToegangscode());
+                    contentStream.newLine();
+                    contentStream.showText("------------------------------------------------------------");
+                    contentStream.newLine();
+                }
+                contentStream.newLine();
+
+                contentStream.endText();
+                contentStream.close();
+
+                if(!groep.equals(sortGroep.get(sortGroep.size()-1)))
+                {
+                    page = new PDPage();
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
+
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(65, 700);
+                    contentStream.setLeading(16);
+                }
+
+
+
+            }
+
+            String fileName = this.getNaam() + ".pdf";
+            // Saving Document
+            document.save(fileName);
+
+            document.close();
+
+            Desktop.getDesktop().open(new File(fileName));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
