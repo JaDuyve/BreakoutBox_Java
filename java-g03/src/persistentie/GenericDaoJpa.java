@@ -52,17 +52,17 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
         return entity;
     }
 
-    @Override
+
+
+
     public void update(T object) {
         jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPDATE", object)));
     }
 
-    @Override
     public void delete(T object) {
         jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", object)));
     }
 
-    @Override
     public void insert(T object) {
         jobs.plaatsJob(new ArrayList<>(Arrays.asList("INSERT", object)));
     }

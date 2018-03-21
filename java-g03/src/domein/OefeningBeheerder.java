@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 public class OefeningBeheerder extends Observable {
 
     private Oefening oefening;
-    private GenericDao<Oefening> oefeningRepo;
-    private GenericDao<Bob> bobRepo;
+    private static GenericDao<Oefening> oefeningRepo = new GenericDaoJpa<>(Oefening.class);
+    private static GenericDao<Bob> bobRepo = new GenericDaoJpa<>(Bob.class);
     private FileTransfer fileTransfer;
 
     private List<Oefening> oefeningen;
@@ -26,8 +26,8 @@ public class OefeningBeheerder extends Observable {
     private final Comparator<Oefening> byOefeningNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
 
     public OefeningBeheerder() {
-        setOefeningRepo(new GenericDaoJpa(Oefening.class));
-        setBobRepo(new GenericDaoJpa(Bob.class));
+//        setOefeningRepo(new GenericDaoJpa(Oefening.class));
+//        setBobRepo(new GenericDaoJpa(Bob.class));
         fileTransfer = new FileTransfer();
         getOefeningList();
 

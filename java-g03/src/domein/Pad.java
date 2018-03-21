@@ -36,7 +36,8 @@ public class Pad {
         setToegangscode(new Toegangscode(random.nextInt(10000)));
 
         List<Groepsbewerking> groepsbewerkingList = oefening.getLijstGroepsbewerkingen();
-        setGroepsbewerking(groepsbewerkingList.get(random.nextInt(groepsbewerkingList.size() - 1)));
+        int size = groepsbewerkingList.size();
+        setGroepsbewerking(groepsbewerkingList.get(size == 1 ? 0: random.nextInt(groepsbewerkingList.size() - 1)));
 
         double oefAntwoord = Double.parseDouble(getOefening().getAntwoord());
         double groepWaarde = Double.parseDouble(getGroepsbewerking().getWaarde());
