@@ -30,13 +30,19 @@ public class StartupMenuController extends BorderPane {
     @FXML
     private JFXButton btnVakken;
 
-    private static VakkenSchermController vakkenSchermController = new VakkenSchermController();
-    private static BobSchermController bobSchermController =new BobSchermController();
-    private static OefeningSchermController oefeningSchermController =new OefeningSchermController();
-    private static SessieSchermController sessieSchermController = new SessieSchermController();
-    private static DoelstellingscodeBeheerSchermController doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController();;
+    private static VakkenSchermController vakkenSchermController;
+    private static BobSchermController bobSchermController;
+    private static OefeningSchermController oefeningSchermController;
+    private static SessieSchermController sessieSchermController;
+    private static DoelstellingscodeBeheerSchermController doelstellingscodeBeheerSchermController;
 
     public StartupMenuController() {
+
+        vakkenSchermController = new VakkenSchermController();
+        bobSchermController =new BobSchermController();
+        oefeningSchermController =new OefeningSchermController();
+        SessieSchermController sessieSchermController = new SessieSchermController();
+        doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController();
 
         FXMLLoader loader
                 = new FXMLLoader(getClass().getResource("startupMenu.fxml"));
