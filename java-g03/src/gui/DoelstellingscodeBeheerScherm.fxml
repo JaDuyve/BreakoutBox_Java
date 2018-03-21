@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="-Infinity" styleClass="anchor" stylesheets="@../css/app.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="-Infinity" styleClass="anchor" stylesheets="@../css/app.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="25.0" styleClass="makepanels" stylesheets="@../css/app.css">
          <children>
@@ -40,10 +39,7 @@
                </children>
             </HBox>
                 <Label contentDisplay="RIGHT" opacity="0.82" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Doelstellingscodes" />
-            <JFXListView fx:id="lvDoelstellingscodes" styleClass="mylistview">
-               <effect>
-                  <InnerShadow color="#0000001a" height="25.0" radius="12.0" width="25.0" />
-               </effect></JFXListView>
+            <JFXListView fx:id="lvDoelstellingscodes" styleClass="mylistview" />
             <HBox alignment="BOTTOM_CENTER" spacing="150.0">
                <children>
                   <VBox alignment="CENTER_LEFT" spacing="20.0">
@@ -52,11 +48,16 @@
                         <JFXTextField fx:id="txfToevoegen" focusColor="WHITE" promptText="doelstellingscode" styleClass="txf" unFocusColor="#808080" />
                      </children>
                   </VBox>
-                  <JFXButton fx:id="btnDoelstellingscode" onAction="#createDoelstellingscode" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto Light" size="13.0" />
-                     </font>
-                  </JFXButton>
+                  <VBox spacing="20.0">
+                     <children>
+                        <JFXButton fx:id="btnDoelstellingscode" onAction="#createDoelstellingscode" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Light" size="13.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnVerwijder" alignment="CENTER" onAction="#verwijderDoelstellingscode" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" text="verwijder" textFill="WHITE" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>

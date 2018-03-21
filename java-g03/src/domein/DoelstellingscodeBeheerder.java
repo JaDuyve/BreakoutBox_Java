@@ -11,6 +11,7 @@ import persistentie.GenericDaoJpa;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
+import java.util.stream.Collectors;
 
 public class DoelstellingscodeBeheerder extends Observable
 {
@@ -58,6 +59,7 @@ public class DoelstellingscodeBeheerder extends Observable
 
     public void verwijderDoelstellingscode()
     {
+        controleerCodeInOefening(doelstellingscode);
         doelstellingscodeRepo.delete(doelstellingscode);
         doelstellingscodes.remove(doelstellingscode);
         doelstellingscode = null;
@@ -99,5 +101,15 @@ public class DoelstellingscodeBeheerder extends Observable
 
     public void setDoelstellingscodeRepo(GenericDao<Doelstellingscode> doelstellingscodeRepo) {
         this.doelstellingscodeRepo = doelstellingscodeRepo;
+    }
+
+    private void controleerCodeInOefening(Doelstellingscode code) {
+        boolean result = doelstellingscodeRepo.findAll().stream()
+                .filter(doel -> doel.getCode().equals(code)).collect(Collectors.toList()).size() != 0;
+
+
+        if (result) {
+            throw new IllegalArgumentException("Doelstellingscode is nog gelinkt met een oefening, hierdoor is het niet mogelijk om deze doelstellingscode te verwijderen.");
+        }
     }
 }

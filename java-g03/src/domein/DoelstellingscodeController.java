@@ -2,6 +2,8 @@ package domein;
 
 import javafx.collections.ObservableList;
 
+import java.util.Observer;
+
 public class DoelstellingscodeController
 {
     private DoelstellingscodeBeheerder doelstellingscodeBeheerder;
@@ -44,4 +46,9 @@ public class DoelstellingscodeController
     public void setDoelstellingscodeBeheerder(DoelstellingscodeBeheerder doelstellingscodeBeheerder) {
         this.doelstellingscodeBeheerder = doelstellingscodeBeheerder;
     }
+
+    public void addObservertje(Observer observer) {
+        doelstellingscodeBeheerder.addObserver(observer);
+    }
+
 }
