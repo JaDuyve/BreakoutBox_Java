@@ -27,10 +27,14 @@ public class StartupMenuController extends BorderPane {
     @FXML
     private JFXButton btnDoelstellingscodeToevoegen;
 
+    @FXML
+    private JFXButton btnVakken;
+
     private static BobSchermController bobSchermController =new BobSchermController();
     private static OefeningSchermController oefeningSchermController =new OefeningSchermController();
     private static SessieSchermController sessieSchermController = new SessieSchermController();
     private static DoelstellingscodeBeheerSchermController doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController();;
+    private static VakSchermController vakkenSchermController = new VakSchermController();
 
     public StartupMenuController() {
 
@@ -68,6 +72,12 @@ public class StartupMenuController extends BorderPane {
     void showDoelstellingscodeToevoegen(ActionEvent event) {
         Scene s = this.getScene();
         s.setRoot(doelstellingscodeBeheerSchermController);
+    }
+
+    @FXML
+    void showVakken(ActionEvent event) {
+        Scene s = this.getScene();
+        s.setRoot(vakkenSchermController);
     }
 
 }

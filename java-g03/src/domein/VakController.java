@@ -7,6 +7,7 @@ import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
 import java.util.List;
+import java.util.Observer;
 
 public class VakController {
 
@@ -31,21 +32,25 @@ public class VakController {
         vakBeheerder.changeFilter(naam);
     }
 
-    public void createBob(String naam, String color){
-        vakBeheerder.createVak(naam, color);
+    public void createVak(String naam){
+        vakBeheerder.createVak(naam);
     }
 
-    public void verwijderBob(){
+    public void verwijderVak(){
 
         vakBeheerder.verwijderVak();
     }
 
-    public void wijzigBob(String naam, String color){
-        vakBeheerder.wijzigeVak(naam, color);
+    public void wijzigVak(String naam){
+        vakBeheerder.wijzigeVak(naam);
     }
 
     public void veranderHuidige(Vak vak) {
         vakBeheerder.setVak(vak);
+    }
+
+    public void addObserver(Observer observer){
+        vakBeheerder.addObserver(observer);
     }
 
 

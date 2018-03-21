@@ -4,18 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.paint.Color;
 import org.apache.commons.collections4.iterators.FilterListIterator;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
+import java.security.SecureRandom;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Observable;
 
-public class VakBeheerder {
+public class VakBeheerder extends Observable {
 
     private List<Vak> vakken;
     private Vak vak;
     private FilteredList<Vak> filtVakken;
+    private static SecureRandom random = new SecureRandom();
 
     private GenericDao<Vak> vakRepo;
 
@@ -25,19 +29,19 @@ public class VakBeheerder {
         setVakRepo(new GenericDaoJpa(Vak.class));
     }
 
-    public void setVakRepo(GenericDao<Vak> mock){
+    public void setVakRepo(GenericDao<Vak> mock) {
         vakRepo = mock;
     }
 
-    private List<Vak> getVakken(){
-        if (vakken == null){
+    private List<Vak> getVakken() {
+        if (vakken == null) {
             vakken = vakRepo.findAll();
         }
 
         return vakken;
     }
 
-    public ObservableList<Vak> geefVakken(){
+    public ObservableList<Vak> geefVakken() {
         filtVakken = new FilteredList<>(FXCollections.observableList(getVakken()), e -> true);
         return new SortedList<>(filtVakken, byVakNaam);
     }
@@ -60,8 +64,12 @@ public class VakBeheerder {
 
     }
 
-    public void createVak(String naam, String color) {
-        Vak vak = new Vak(naam, color);
+    public void createVak(String naam) {
+        float r = random.nextFloat() / 2f + 0.5f;
+        float g = random.nextFloat() / 2f + 0.5f;
+        float b = random.nextFloat() / 2f + 0.5f;
+        Color color = Color.color(r, g, b);
+        Vak vak = new Vak(naam, color.toString());
 
         if (vakRepo.exists(vak.getNaam())) {
             throw new IllegalArgumentException("Vak met naam: " + naam + " bestaat al");
@@ -71,18 +79,11 @@ public class VakBeheerder {
         }
     }
 
-    public void wijzigeVak(String naam, String color) {
+    public void wijzigeVak(String naam) {
         if (!vak.getNaam().equals(naam)) {
-            createVak(naam, color);
+            createVak(naam);
             vakRepo.delete(vak);
-        } else {
-            if (!color.equals(vak.getKleur())) {
-                vak.setKleur(color);
-            }
-            vakRepo.update(vak);
-
         }
-
 
     }
 
@@ -92,5 +93,8 @@ public class VakBeheerder {
 
     public void setVak(Vak vak) {
         this.vak = vak;
+
+        setChanged();
+        notifyObservers(vak);
     }
 }
