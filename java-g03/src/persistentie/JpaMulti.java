@@ -27,17 +27,31 @@ public class JpaMulti<T> implements Runnable {
 
             switch ((String) job.get(0)) {
                 case "DELETE":
+                    startTransaction();
                     delete((T) job.get(1));
+                    commitTransaction();
                     break;
                 case "INSERT":
+                    startTransaction();
                     insert((T) job.get(1));
+                    commitTransaction();
                     break;
                 case "UPDATE":
+                    startTransaction();
                     update((T) job.get(1));
+                    commitTransaction();
                     break;
             }
 
         }
+    }
+
+    public  void startTransaction() {
+        em.getTransaction().begin();
+    }
+
+    public void commitTransaction() {
+        em.getTransaction().commit();
     }
 
     public void update(T object) {
