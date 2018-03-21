@@ -152,10 +152,8 @@ public class Sessie {
 
     public void generateBobOverzichtPdf() {
 
-        FilteredList<Groep> filtGroepen;
         Comparator<Groep> byGroepNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
-        filtGroepen = new FilteredList<>(FXCollections.observableList(this.groepen), e -> true);
-        SortedList<Groep> sortGroep = new SortedList<>(filtGroepen, byGroepNaam);
+        SortedList<Groep> sortGroep = new SortedList<>(FXCollections.observableList(this.groepen), byGroepNaam);
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         try {
