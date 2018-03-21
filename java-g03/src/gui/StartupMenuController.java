@@ -41,7 +41,7 @@ public class StartupMenuController extends BorderPane {
         vakkenSchermController = new VakkenSchermController();
         bobSchermController =new BobSchermController();
         oefeningSchermController =new OefeningSchermController();
-        SessieSchermController sessieSchermController = new SessieSchermController();
+        sessieSchermController = new SessieSchermController();
         doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController();
 
         FXMLLoader loader
