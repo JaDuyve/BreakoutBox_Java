@@ -31,6 +31,11 @@ public class StartUp extends Application {
 
 
     }
+
+    @Override
+    public void stop(){
+        System.exit(0);
+    }
 }
 
 

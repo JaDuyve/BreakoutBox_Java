@@ -54,9 +54,7 @@ public class VakBeheerder {
     }
 
     public void verwijderVak() {
-        GenericDaoJpa.startTransaction();
         vakRepo.delete(vak);
-        GenericDaoJpa.commitTransaction();
         vakken.remove(vak);
         vak = null;
 
@@ -68,9 +66,7 @@ public class VakBeheerder {
         if (vakRepo.exists(vak.getNaam())) {
             throw new IllegalArgumentException("Vak met naam: " + naam + " bestaat al");
         } else {
-            GenericDaoJpa.startTransaction();
             vakRepo.insert(vak);
-            GenericDaoJpa.commitTransaction();
             vakken.add(vak);
         }
     }
@@ -78,16 +74,13 @@ public class VakBeheerder {
     public void wijzigeVak(String naam, String color) {
         if (!vak.getNaam().equals(naam)) {
             createVak(naam, color);
-            GenericDaoJpa.startTransaction();
             vakRepo.delete(vak);
-            GenericDaoJpa.commitTransaction();
         } else {
-            GenericDaoJpa.startTransaction();
             if (!color.equals(vak.getKleur())) {
                 vak.setKleur(color);
             }
+            vakRepo.update(vak);
 
-            GenericDaoJpa.commitTransaction();
         }
 
 
