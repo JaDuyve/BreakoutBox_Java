@@ -1,7 +1,6 @@
 package domein;
 
 import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -9,21 +8,17 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 public class Sessie {
@@ -48,7 +43,6 @@ public class Sessie {
         setContactLeer(contactLeer);
         setBob(bob);
         setCode(random.nextInt(10000) + 1000);
-
         if (groepen == null) {
             throw new IllegalArgumentException("Excel met groepen moet worden toegevoegd.");
         }
@@ -113,7 +107,7 @@ public class Sessie {
 
     public void setNaam(String naam) {
         if (naam.isEmpty() || naam.equals("")) {
-            throw new IllegalArgumentException("Naam Sessie mag niet leeg zijn");
+            throw new IllegalArgumentException("Naam sessie mag niet leeg zijn");
         }
         this.naam = naam;
     }
@@ -124,7 +118,11 @@ public class Sessie {
 
     public void setStartDatum(Date startDatum) {
         if (startDatum == null) {
-            throw new IllegalArgumentException("startDatum mag niet leeg zijn");
+            throw new IllegalArgumentException("Startatum mag niet leeg zijn");
+        }
+        Date vandaag = new Date();
+        if(startDatum.before(vandaag)){
+            throw new IllegalArgumentException("De startdatum mag niet in het verleden liggen");
         }
         this.startDatum = startDatum;
     }

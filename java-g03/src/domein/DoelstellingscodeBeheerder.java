@@ -33,9 +33,7 @@ public class DoelstellingscodeBeheerder extends Observable
             throw new IllegalArgumentException("Doelstellingscode met naam: " + code + " bestaat al");
         } else
         {
-            GenericDaoJpa.startTransaction();
             doelstellingscodeRepo.insert(doelstellingscode);
-            GenericDaoJpa.commitTransaction();
             doelstellingscodes.add(doelstellingscode);
         }
     }
@@ -51,17 +49,13 @@ public class DoelstellingscodeBeheerder extends Observable
             {
                 doelstellingscode.setCode(code);
             }
-            GenericDaoJpa.startTransaction();
             doelstellingscodeRepo.update(doelstellingscode);
-            GenericDaoJpa.commitTransaction();
         }
     }
 
     public void verwijderDoelstellingscode()
     {
-        GenericDaoJpa.startTransaction();
         doelstellingscodeRepo.delete(doelstellingscode);
-        GenericDaoJpa.commitTransaction();
         doelstellingscodes.remove(doelstellingscode);
         doelstellingscode = null;
     }
