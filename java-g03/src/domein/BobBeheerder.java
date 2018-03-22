@@ -117,6 +117,7 @@ public class BobBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             bobRepo.update(bob);
             GenericDaoJpa.commitTransaction();
+            setBob(bob);
         }
 
 

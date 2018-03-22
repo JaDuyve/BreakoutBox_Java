@@ -191,10 +191,10 @@ public class Sessie {
                 contentStream.showText(tab +  groep.getNaam());
                 contentStream.newLine();
 
-                List<Pad> paden = groep.getPaden().values().stream().map(p -> p).collect(Collectors.toList());
-                Collections.reverse(paden);
+                //List<Pad> paden = groep.getPaden().values().stream().map(p -> p).collect(Collectors.toList());
+                //Collections.reverse(paden);
 
-                for (Pad pad : paden) {
+                for (Pad pad : groep.getPaden().values()) {
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
