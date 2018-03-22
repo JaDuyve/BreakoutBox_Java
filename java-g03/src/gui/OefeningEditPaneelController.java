@@ -117,7 +117,7 @@ public class OefeningEditPaneelController extends BorderPane {
 
     private void buildGui() {
         this.setTop(new TopBarController());
-        lblTitel.setText("Edit Oefening");
+        lblTitel.setText("Oefening Wijzigen");
         btnVoegOefeningToe.getStyleClass().removeAll();
         btnVoegOefeningToe.getStyleClass().add("button-edit");
         txfNaam.setText(oefening.getNaam());

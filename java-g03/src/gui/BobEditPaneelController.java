@@ -57,6 +57,7 @@ public class BobEditPaneelController extends BorderPane {
             throw new RuntimeException(ex);
         }
         buildGui();
+
     }
 
     private void buildGui() {
