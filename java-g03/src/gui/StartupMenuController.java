@@ -37,7 +37,7 @@ public class StartupMenuController extends BorderPane {
     public StartupMenuController() {
 
         vakkenSchermController = new VakkenSchermController();
-        bobSchermController =new BobSchermController();
+        bobSchermController = new BobSchermController();
         oefeningSchermController =new OefeningSchermController();
         sessieSchermController = new SessieSchermController();
         doelstellingscodeBeheerSchermController =  new DoelstellingscodeBeheerSchermController();
@@ -56,10 +56,10 @@ public class StartupMenuController extends BorderPane {
 
     @FXML
     void showBobBeheren(ActionEvent event) {
-        JFXDecorator decorator = new JFXDecorator((Stage) this.getScene().getWindow(), bobSchermController);
-        decorator.setCustomMaximize(true);
+        //JFXDecorator decorator = new JFXDecorator((Stage) this.getScene().getWindow(), bobSchermController);
+        //decorator.setCustomMaximize(true);
         Scene s = this.getScene();
-        s.setRoot(decorator);
+        s.setRoot(bobSchermController);
     }
 
     @FXML
