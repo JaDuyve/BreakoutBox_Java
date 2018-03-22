@@ -45,6 +45,8 @@ public class BobDetailPaneelController extends VBox implements Observer {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+
+        btnGenerateBobOverzicht.setDisable(true);
     }
 
     @Override

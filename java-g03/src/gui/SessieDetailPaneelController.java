@@ -62,6 +62,8 @@ public class SessieDetailPaneelController extends VBox implements Observer{
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+
+        btnGenerateSessieOverzicht.setDisable(true);
     }
 
     @Override
