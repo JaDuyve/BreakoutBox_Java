@@ -391,13 +391,38 @@
 
 }
 
-.emptyvak .list-cell {
-    -fx-background-color: null;
-}
 
 .emptyvak {
+    -fx-background-image: url('../images/legevak.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+}
+
+.emptyoef {
     -fx-background-image: url('../images/legeoef.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
+    -fx-background-size: contain;
+}
+
+.emptybob {
+    -fx-background-image: url('../images/legebob.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+}
+
+.emptysessie {
+    -fx-background-image: url('../images/legesessie.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+}
+
+.emptycode {
+    -fx-background-image: url('../images/legecode.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
 }

@@ -2,14 +2,13 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-
 import domein.Sessie;
 import domein.SessieController;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
@@ -51,6 +50,24 @@ public class SessieOverzichtPaneelController extends VBox {
     private void build() {
         sessieView.setItems(sessieController.geefSessies());
 
+        if (sessieView.getItems().isEmpty()) {
+            sessieView.getStyleClass().add("emptysessie");
+            sessieView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+        }
+
+        sessieView.getItems().addListener(new ListChangeListener<Sessie>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Sessie> c) {
+                if (sessieView.getItems().isEmpty()) {
+                    sessieView.getStyleClass().add("emptysessie");
+                    sessieView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+                }
+                else {
+                    sessieView.getStyleClass().clear();
+                    sessieView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+                }
+            }
+        });
 
         sessieView.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {

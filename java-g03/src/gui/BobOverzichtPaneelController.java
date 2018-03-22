@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import domein.Bob;
 import domein.BobController;
-import domein.OefeningController;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,6 +69,24 @@ public class BobOverzichtPaneelController extends VBox implements Observer {
         btnDelete.setDisable(true);
         btnEdit.setDisable(true);
 
+        if (bobView.getItems().isEmpty()) {
+            bobView.getStyleClass().add("emptybob");
+            bobView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+        }
+
+        bobView.getItems().addListener(new ListChangeListener<Bob>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Bob> c) {
+                if (bobView.getItems().isEmpty()) {
+                    bobView.getStyleClass().add("emptybob");
+                    bobView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+                }
+                else {
+                    bobView.getStyleClass().clear();
+                    bobView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+                }
+            }
+        });
         bobView.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     bobController.veranderHuidigeBob(newValue);

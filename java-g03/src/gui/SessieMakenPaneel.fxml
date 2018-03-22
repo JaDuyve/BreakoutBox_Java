@@ -41,7 +41,7 @@
                         <Insets bottom="7.25" left="7.25" right="7.25" top="7.25" />
                      </padding>
                   </JFXButton>
-                  <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#keerTerug" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" styleClass="cancel-button" text="Cancel" textFill="#fffdfd" />
+                  <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#keerTerug" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" styleClass="cancel-button" textFill="#fffdfd" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />

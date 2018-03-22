@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import domein.Oefening;
 import domein.OefeningController;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,23 +66,41 @@ public class OefeningenOverzichtPaneelController extends VBox implements Observe
         build();
     }
 
-    public  void build() {
+    public void build() {
      /*   if (oefeningController.geefOefeningen().isEmpty()) {
             oefTable.setStyle("-fx-background-image: url('../images/legeoef.png'); ");
         }
 */
-            oefTable.setItems(oefeningController.geefOefeningen());
-            categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
-            nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
+        oefTable.setItems(oefeningController.geefOefeningen());
+        categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
+        nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
 
-            btnCopy.setDisable(true);
-            btnDelete.setDisable(true);
-            btnEdit.setDisable(true);
+        btnCopy.setDisable(true);
+        btnDelete.setDisable(true);
+        btnEdit.setDisable(true);
 
-            oefTable.getSelectionModel().selectedItemProperty().addListener(
-                    (ObservableValue, oldValue, newValue) -> {
-                        oefeningController.veranderHuidigeOefening(newValue);
-                    });
+        if (oefTable.getItems().isEmpty()) {
+            oefTable.getStyleClass().add("emptyoef");
+            oefTable.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+        }
+
+        oefTable.getItems().addListener(new ListChangeListener<Oefening>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Oefening> c) {
+                if (oefTable.getItems().isEmpty()) {
+                    oefTable.getStyleClass().add("emptyoef");
+                    oefTable.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+                } else {
+                    oefTable.getStyleClass().clear();
+                    oefTable.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+                }
+            }
+        });
+
+        oefTable.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue, oldValue, newValue) -> {
+                    oefeningController.veranderHuidigeOefening(newValue);
+                });
     }
 
     @FXML
@@ -97,7 +116,7 @@ public class OefeningenOverzichtPaneelController extends VBox implements Observe
             try {
                 oefeningController.verwijderOefening();
                 s.setRoot(new OefeningSchermController(oefeningController));
-            }catch (IllegalArgumentException ex){
+            } catch (IllegalArgumentException ex) {
                 AlertBox.showAlertError("Fout verwijder oefening", ex.getMessage(), (Stage) this.getScene().getWindow());
             }
         }

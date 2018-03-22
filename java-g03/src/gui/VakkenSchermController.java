@@ -67,16 +67,24 @@ public class VakkenSchermController extends BorderPane implements Observer {
         this.setTop(new TopBarController());
         lvVakken.setItems(vakController.geefVakken());
 
-        vakController.geefVakken().addListener((ListChangeListener<? super Vak>) c ->
-                {
-                    if (lvVakken.getItems().isEmpty()) {
-                        lvVakken.getStyleClass().add("emptyvak");
-                    }
-                    else {
-                        lvVakken.getStyleClass().clear();
-                    }
+        if (lvVakken.getItems().isEmpty()) {
+            lvVakken.getStyleClass().add("emptyvak");
+            lvVakken.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+        }
+
+        lvVakken.getItems().addListener(new ListChangeListener<Vak>() {
+            @Override
+            public void onChanged(Change<? extends Vak> c) {
+                if (lvVakken.getItems().isEmpty()) {
+                    lvVakken.getStyleClass().add("emptyvak");
+                    lvVakken.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
-        );
+                else {
+                    lvVakken.getStyleClass().clear();
+                    lvVakken.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+                }
+            }
+        });
         lvVakken.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     vakController.veranderHuidige(newValue);
