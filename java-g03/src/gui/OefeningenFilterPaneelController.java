@@ -32,7 +32,12 @@ public class OefeningenFilterPaneelController extends VBox {
     private JFXTextField txtFiltByName;
 
     @FXML
+    private JFXTextField txtFiltByDoel;
+
+    @FXML
     private VBox vbVakken;
+
+
 
     private Map<String, JFXCheckBox> vakken;
 
@@ -92,9 +97,12 @@ public class OefeningenFilterPaneelController extends VBox {
 
     }
 
-
+    @FXML
+    public void filtByDoel(KeyEvent event) {
+        changeFilter();
+    }
     private void changeFilter() {
-        String filtByName = txtFiltByName.getText();
+
         List<String> filtVakken = new ArrayList<>();
         vakken.entrySet().stream().forEach(vak -> {
             if (vak.getValue().isSelected()) {
@@ -102,7 +110,7 @@ public class OefeningenFilterPaneelController extends VBox {
             }
         });
 
-        oefeningController.changeFilter(filtByName, filtVakken, new ArrayList<String>());
+        oefeningController.changeFilter(txtFiltByName.getText(), filtVakken, txtFiltByDoel.getText());
     }
 
 }

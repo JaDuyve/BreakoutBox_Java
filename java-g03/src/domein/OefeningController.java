@@ -1,13 +1,11 @@
 package domein;
 
-import gui.OefeningenDetailPaneelController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
@@ -58,7 +56,7 @@ public class OefeningController {
         return oefeningBeheerder.geefOefeningen();
     }
 
-    public void changeFilter(String oefeningNaam, List<String> vakken, List<String> doelstellingen) {
+    public void changeFilter(String oefeningNaam, List<String> vakken, String doelstellingen) {
         oefeningBeheerder.changeFilter(oefeningNaam, vakken, doelstellingen);
     }
 

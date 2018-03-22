@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import org.eclipse.persistence.jpa.config.Array;
-import persistentie.*;
+import persistentie.FileTransfer;
+import persistentie.GenericDao;
+import persistentie.GenericDaoJpa;
+import persistentie.Job;
 
 import java.io.File;
 import java.util.*;
@@ -194,12 +196,28 @@ public class OefeningBeheerder extends Observable {
     /**
      * @param oefeningNaam
      */
-    public void changeFilter(String oefeningNaam, List<String> vakken, List<String> doelstellingscodes) {
+    public void changeFilter(String oefeningNaam, List<String> vakken, String doelstellingscodes) {
         filtOefeningen.setPredicate(oefening -> {
 
-            boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
-            boolean vakkenLeeg = vakken == null || vakken.isEmpty();
-            boolean doelstellingenLeeg = doelstellingscodes == null || doelstellingscodes.isEmpty();
+            //boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
+            //boolean vakkenLeeg = vakken == null || vakken.isEmpty();
+            boolean oefeningNaamLeeg = false;
+            boolean vakkenLeeg = false;
+            boolean doelstellingenLeeg = false;
+
+            if (oefeningNaam == null || oefeningNaam.isEmpty())
+            {
+                oefeningNaamLeeg = true;
+            }
+            if (vakken == null || vakken.isEmpty())
+            {
+                vakkenLeeg = true;
+            }
+            if(doelstellingscodes == null || doelstellingscodes.isEmpty())
+            {
+                doelstellingenLeeg = true;
+            }
+            //boolean doelstellingenLeeg = doelstellingscodes == null || doelstellingscodes.isEmpty();
 
             if (oefeningNaamLeeg && vakkenLeeg && doelstellingenLeeg) {
                 return true;
@@ -213,7 +231,8 @@ public class OefeningBeheerder extends Observable {
 
             boolean conditieOefeningNaam = oefeningNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowerCaseOefeningNaam);
             boolean conditieVakken = vakkenLeeg ? false : vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
-            boolean conditieDoelstellingen = doelstellingenLeeg ? false : doelstellingscodes.stream().anyMatch(d -> oefening.getDoelstellingscodes().stream().anyMatch(dc -> dc.getCode().equals(d)));
+            boolean conditieDoelstellingen = doelstellingenLeeg ? false : oefening.getDoelstellingscodes().stream().map(Doelstellingscode::toString).anyMatch(d ->
+                    d.toLowerCase().contains(doelstellingscodes.toLowerCase()));
 
 
             if (doelstellingenLeeg && oefeningNaamLeeg) {
@@ -232,7 +251,7 @@ public class OefeningBeheerder extends Observable {
                 return conditieOefeningNaam && conditieDoelstellingen;
             }
             if (doelstellingenLeeg) {
-                return conditieOefeningNaam && conditieDoelstellingen;
+                return conditieOefeningNaam && conditieVakken;
             }
 
             return conditieOefeningNaam && conditieVakken && conditieDoelstellingen;

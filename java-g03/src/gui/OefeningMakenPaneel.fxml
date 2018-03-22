@@ -118,7 +118,7 @@
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txfTijdslimiet" alignment="CENTER" maxWidth="50.0" minWidth="20.0" prefHeight="25.0" prefWidth="210.0" promptText="0" styleClass="txf" />
+            <JFXTextField fx:id="txfTijdslimiet" alignment="CENTER" maxWidth="50.0" minWidth="20.0" prefHeight="25.0" prefWidth="210.0" promptText="--Tijd--" styleClass="txf" />
             <HBox alignment="CENTER" spacing="50.0">
                <children>
                   <JFXButton fx:id="btnVoegOefeningToe" alignment="CENTER" buttonType="RAISED" onAction="#VoegOefeningToe" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" styleClass="add-button" textFill="WHITE">
