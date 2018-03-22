@@ -144,15 +144,23 @@ public class OefeningMakenPaneelController extends BorderPane {
         List<Groepsbewerking> list = lvGroepsbewerking.getLijstRight();
         List<Doelstellingscode> listDoelstellingen = lvDoelstellingen.getLijstRight();
         Vak vak = vakDropDown.getSelectionModel().getSelectedItem();
-        int tijdLimiet = Integer.parseInt(txfTijdslimiet.getText());
-
-        try {
-            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdLimiet);
-            Scene s = this.getScene();
-            s.setRoot(new OefeningSchermController(oefeningController));
-        } catch (IllegalArgumentException ex) {
-            AlertBox.showAlertError("Fout Oefening Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
+        int tijdLimiet = 0;
+        try{
+            tijdLimiet = Integer.parseInt(txfTijdslimiet.getText());
+            try {
+                oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdLimiet);
+                Scene s = this.getScene();
+                s.setRoot(new OefeningSchermController());
+            } catch (IllegalArgumentException ex) {
+                AlertBox.showAlertError("Fout Oefening Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
+            }
+        } catch(NumberFormatException ex)
+        {
+            AlertBox.showAlertError("Fout oefening toevoegen", "Tijdslimiet moet ingevuld zijn of moet een nummer zijn", (Stage) this.getScene().getWindow());
         }
+
+
+
 
 
     }
