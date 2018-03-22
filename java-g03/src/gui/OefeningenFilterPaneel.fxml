@@ -20,7 +20,7 @@
             <Insets top="30.0" />
          </VBox.margin>
         </JFXTextField>
-      <JFXTextField fx:id="txtFiltByDoel" alignment="TOP_LEFT" minWidth="250.0" onKeyReleased="#filtByDoel" prefColumnCount="6" prefHeight="26.0" promptText="Zoek op doelstelling" styleClass="txf">
+      <JFXTextField fx:id="txtFiltByDoel" alignment="TOP_LEFT" disable="true" minWidth="250.0" onKeyReleased="#filtByDoel" prefColumnCount="6" prefHeight="26.0" promptText="Zoek op doelstelling" styleClass="txf">
          <effect>
             <DropShadow blurType="GAUSSIAN" color="#00000033" height="10.0" offsetX="2.0" offsetY="4.0" radius="5.75" width="15.0" />
          </effect>
