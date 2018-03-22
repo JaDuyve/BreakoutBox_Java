@@ -54,7 +54,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0">
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="50.0">
          <children>
             <JFXButton fx:id="btnCopy" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" maxHeight="78.0" maxWidth="80.0" onAction="#kopieerOefening" prefHeight="78.0" prefWidth="80.0" style="-fx-background-color: #00897B;" styleClass="copy-button" textAlignment="CENTER" textFill="WHITE">
                <font>
