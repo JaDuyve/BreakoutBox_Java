@@ -96,6 +96,7 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);
             GenericDaoJpa.commitTransaction();
+            oefeningen.remove(oefening);
         } else {
             if (!oefening.getOpgave().equals(opgaveFile.getName())) {
                 jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));

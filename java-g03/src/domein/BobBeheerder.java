@@ -103,7 +103,10 @@ public class BobBeheerder extends Observable {
         controleerBobInSessie(bob);
         if (!bob.getNaam().equals(naam)) {
             createBob(naam, oefeningen, acties);
+            GenericDaoJpa.startTransaction();
             bobRepo.delete(bob);
+            GenericDaoJpa.commitTransaction();
+            bobs.remove(bob);
         } else {
             if (!oefeningen.containsAll(bob.getLijstOefeningen())) {
                 bob.setLijstOefeningen(oefeningen);
