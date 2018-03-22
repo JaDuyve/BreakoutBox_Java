@@ -116,7 +116,8 @@ public class OefeningEditPaneelController extends BorderPane {
     private void buildGui() {
         this.setTop(new TopBarController());
         lblTitel.setText("Edit Oefening");
-        btnVoegOefeningToe.setText("Wijzigen");
+        btnVoegOefeningToe.getStyleClass().removeAll();
+        btnVoegOefeningToe.getStyleClass().add("button-edit");
         txfNaam.setText(oefening.getNaam());
         txtAntwoord.setText(oefening.getAntwoord());
         txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));

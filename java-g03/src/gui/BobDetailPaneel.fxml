@@ -37,7 +37,7 @@
               </VBox.margin>
           </Label>
       <JFXListView fx:id="lvActies" maxHeight="200.0" minHeight="100.0" minWidth="250.0" />
-      <JFXButton fx:id="btnGenerateBobOverzicht" onAction="#generateBobOverzicht" prefHeight="46.0" prefWidth="137.0" style="-fx-background-color: #00897B;" text="Toon Overzicht PDF" textFill="WHITE" />
+      <JFXButton fx:id="btnGenerateBobOverzicht" onAction="#generateBobOverzicht" prefHeight="46.0" prefWidth="137.0" style="-fx-background-color: #00897B;" styleClass="pdf-button" textFill="WHITE" />
       </children>
    <padding>
       <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

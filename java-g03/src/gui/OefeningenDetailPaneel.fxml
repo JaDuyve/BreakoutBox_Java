@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" styleClass="sidepanels" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="300.0" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" styleClass="sidepanels" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="TOP_CENTER" contentDisplay="CENTER" style="-fx-font-size: 24; -fx-font-family: 'Robito Light';" text="DETAILS OEFENING" textAlignment="CENTER">
          <VBox.margin>
@@ -22,7 +22,7 @@
             <VBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
                   <Label opacity="0.45" style="-fx-font-size: 18;" text="Open Opgave" textAlignment="CENTER" />
-                  <JFXButton fx:id="btnOpenOpgave" onAction="#openOpgave" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" text="Open" textFill="WHITE">
+                  <JFXButton fx:id="btnOpenOpgave" onAction="#openOpgave" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" styleClass="attach-button" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="16.0" />
                      </font>
@@ -33,7 +33,7 @@
             <VBox alignment="CENTER_RIGHT" spacing="20.0">
                <children>
                   <Label opacity="0.45" style="-fx-font-size: 18;" text="Open Feedback" textAlignment="CENTER" />
-                  <JFXButton fx:id="openFeedback" onAction="#openFeedback" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" text="Open" textFill="WHITE">
+                  <JFXButton fx:id="openFeedback" onAction="#openFeedback" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" styleClass="attach-button" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="16.0" />
                      </font>
@@ -83,9 +83,9 @@
          </children>
       </HBox>
       <Label opacity="0.45" style="-fx-font-size: 18;" text="Groepsbewerkingen" />
-      <ListView fx:id="left" maxWidth="1.7976931348623157E308" prefHeight="151.0" styleClass="mylistview" />
+      <JFXListView fx:id="left" prefHeight="150.0" styleClass="mylistview" />
       <Label opacity="0.45" style="-fx-font-size: 18;" text="Doelstellingen" />
-      <ListView fx:id="leftDoelstellingen" maxWidth="1.7976931348623157E308" prefHeight="151.0" styleClass="mylistview" />
+      <JFXListView fx:id="leftDoelstellingen" prefHeight="150.0" styleClass="mylistview" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />

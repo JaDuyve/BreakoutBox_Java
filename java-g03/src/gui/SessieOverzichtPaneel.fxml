@@ -47,7 +47,7 @@
          </effect></JFXListView>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="774.0" spacing="20.0">
          <children>
-            <JFXButton fx:id="addBobButton" onAction="#createBob" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: FF8F00;" text="Toevoegen" textFill="WHITE">
+            <JFXButton fx:id="addBobButton" onAction="#createBob" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: FF8F00;" styleClass="add-button" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>

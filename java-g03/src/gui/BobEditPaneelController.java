@@ -62,7 +62,9 @@ public class BobEditPaneelController extends BorderPane {
     private void buildGui() {
         this.setTop(new TopBarController());
         lblTitel.setText("BREAKOUT-BOX WIJZIGEN");
-        btnVoegBobToe.setText("Wijzig");
+        btnVoegBobToe.getStyleClass().removeAll();
+        btnVoegBobToe.getStyleClass().add("button-edit");
+
         txfNaam.setText(bob.getNaam());
         lvOefeningen = new ListViewController<>(bobController.geefOefeningen(), bob.getLijstOefeningen());
         lvActies = new ListViewController<>(bobController.geefActies(), bob.getLijstActies());

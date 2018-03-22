@@ -66,18 +66,22 @@ public class OefeningenOverzichtPaneelController extends VBox implements Observe
     }
 
     public  void build() {
-        oefTable.setItems(oefeningController.geefOefeningen());
-        categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
-        nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
+     /*   if (oefeningController.geefOefeningen().isEmpty()) {
+            oefTable.setStyle("-fx-background-image: url('../images/legeoef.png'); ");
+        }
+*/
+            oefTable.setItems(oefeningController.geefOefeningen());
+            categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
+            nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
 
-        btnCopy.setDisable(true);
-        btnDelete.setDisable(true);
-        btnEdit.setDisable(true);
+            btnCopy.setDisable(true);
+            btnDelete.setDisable(true);
+            btnEdit.setDisable(true);
 
-        oefTable.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue, oldValue, newValue) -> {
-                    oefeningController.veranderHuidigeOefening(newValue);
-                });
+            oefTable.getSelectionModel().selectedItemProperty().addListener(
+                    (ObservableValue, oldValue, newValue) -> {
+                        oefeningController.veranderHuidigeOefening(newValue);
+                    });
     }
 
     @FXML

@@ -3,11 +3,11 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import domein.Vak;
 import domein.VakController;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,6 +67,16 @@ public class VakkenSchermController extends BorderPane implements Observer {
         this.setTop(new TopBarController());
         lvVakken.setItems(vakController.geefVakken());
 
+        vakController.geefVakken().addListener((ListChangeListener<? super Vak>) c ->
+                {
+                    if (lvVakken.getItems().isEmpty()) {
+                        lvVakken.getStyleClass().add("emptyvak");
+                    }
+                    else {
+                        lvVakken.getStyleClass().clear();
+                    }
+                }
+        );
         lvVakken.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue, oldValue, newValue) -> {
                     vakController.veranderHuidige(newValue);

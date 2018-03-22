@@ -13,10 +13,12 @@
     -fx-background-color: rgba(250, 250, 250, 1);
     -fx-font-family: 'Roboto', Verdana, sans-serif;
 }
+
 .makepanels {
     -fx-background-color: rgba(250, 250, 250, 0.8);
     -fx-font-family: 'Roboto', Verdana, sans-serif;
 }
+
 .txf {
     -fx-background-color: white;
     -fx-border-radius: 5;
@@ -115,90 +117,287 @@
     -fx-border-width: 2.0;
     -fx-text-fill: #212121;
 }
+
 .list-view {
-	-fx-background-color: rgba(250, 250, 250, 0.8);
+    -fx-background-color: rgba(250, 250, 250, 0.8);
 }
+
 .list-view .list-cell:even {
--fx-background-color: rgba(255, 255, 255, 0.8);
--fx-text-fill: black;
--fx-font-size: 18px;
--fx-padding: 10px;
--fx-font-family: 'Roboto Light', Verdana, sans-serif;
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-padding: 15px 10px;
+    -fx-font-family: 'Roboto Light', Verdana, sans-serif;
 }
+
 .list-view .list-cell:odd {
--fx-background-color: rgba(250, 250, 250, 0.8);
--fx-text-fill: black;
--fx-font-size: 16px;
--fx-padding: 15px;
--fx-font-family: 'Roboto Light', Verdana, sans-serif;
+    -fx-background-color: rgba(250, 250, 250, 0.8);
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-padding: 15px 10px;
+    -fx-font-family: 'Roboto Light', Verdana, sans-serif;
 }
-.list-view .list-cell .kleiner {
-	-fx-font-size: 12px;
-	-fx-padding: 10px;
+
+.list-view .list-cell:filled:selected:focused {
+    -fx-background-color: rgba(158, 158, 158, 1);
+    -fx-text-fill: white;
 }
+
 /** CSS **/
-.mylistview{
-	-fx-border-color:derive(gray,80%);
+
+.mylistview {
+    -fx-border-color: derive(gray, 80%);
 }
 
 /* The main scrollbar CSS class of ListView */
-.mylistview .scroll-bar:horizontal ,
-.mylistview  .scroll-bar:vertical{
-    -fx-background-color:transparent;
+
+.mylistview .scroll-bar:horizontal,
+.mylistview .scroll-bar:vertical {
+    -fx-background-color: transparent;
 
 }
 
 /* The increment and decrement button CSS class of scrollbar */
-.mylistview .increment-button ,.mylistview .decrement-button {
-    -fx-background-color:transparent;
-	-fx-background-radius: 2em;
+
+.mylistview .increment-button,
+.mylistview .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 2em;
 
 }
 
 /* The main scrollbar **track** CSS class  */
-.mylistview .scroll-bar:horizontal .track,
-.mylistview .scroll-bar:vertical .track{
-	-fx-background-color: transparent;
-	-fx-border-color:derive(gray,80%);
 
-	-fx-background-radius: 2em;
-	-fx-border-radius:2em;
+.mylistview .scroll-bar:horizontal .track,
+.mylistview .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: derive(gray, 80%);
+
+    -fx-background-radius: 2em;
+    -fx-border-radius: 2em;
 }
 
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+
 .mylistview .scroll-bar:horizontal .thumb,
 .mylistview .scroll-bar:vertical .thumb {
-    -fx-background-color:derive(black,90%);
-	-fx-background-insets: 2, 0, 0;
-	-fx-background-radius: 2em;
+    -fx-background-color: derive(black, 90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
 
 }
 
 /* ------------------------------------------------------------------------------------- */
+
 /** EVENT CSS **/
+
 /* ------------------------------------------------------------------------------------- */
 
 /* The main scrollbar **track** CSS class on event of "hover" and "pressed" */
 
-.mylistview .scroll-bar:horizontal:hover .track ,
-.mylistview .scroll-bar:horizontal:pressed .track ,
+.mylistview .scroll-bar:horizontal:hover .track,
+.mylistview .scroll-bar:horizontal:pressed .track,
 .mylistview .scroll-bar:vertical:hover .track,
-.mylistview .scroll-bar:vertical:pressed .track{
-     -fx-background-color: derive(#434343,20%);
+.mylistview .scroll-bar:vertical:pressed .track {
+    -fx-background-color: derive(#434343, 20%);
 
-	 -fx-opacity: 0.2;
-	 -fx-background-radius: 0em;
+    -fx-opacity: 0.2;
+    -fx-background-radius: 0em;
 
 }
 
 /* The main scrollbar **thumb** CSS class on event of "hover" and "pressed" */
+
 .mylistview .scroll-bar .thumb:hover,
-.mylistview .scroll-bar .thumb:pressed{
-    -fx-background-color: derive(black,50%);
+.mylistview .scroll-bar .thumb:pressed {
+    -fx-background-color: derive(black, 50%);
 }
 
-.mylistview .increment-button:hover ,.mylistview .decrement-button:hover {
-    -fx-background-color:derive(gray,100%);
-	-fx-border-color:derive(gray,80%);	
-	-fx-padding:10px;
+.mylistview .increment-button:hover,
+.mylistview .decrement-button:hover {
+    -fx-background-color: derive(gray, 100%);
+    -fx-border-color: derive(gray, 80%);
+    -fx-padding: 10px;
+}
+
+/*BUTTONS*/
+
+.copy-button {
+    -fx-background-image: url(../images/copy.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-insets: -10;
+}
+
+.delete-button {
+    -fx-background-image: url(../images/delete.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-insets: -10;
+}
+
+.add-button {
+    -fx-background-image: url(../images/add.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-insets: -10;
+}
+
+.edit-button {
+    -fx-background-image: url(../images/edit.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-insets: -10;
+}
+
+.attach-button {
+    -fx-background-image: url(../images/attach.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+}
+
+.cancel-button {
+    -fx-background-image: url(../images/cancel.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-insets: -10;
+}
+
+.pdf-button {
+    -fx-background-image: url(../images/pdf.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-insets: -10;
+}
+
+.groupadd-button {
+    -fx-background-image: url(../images/group.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-insets: -10;
+}
+
+.left-button {
+    -fx-background-image: url(../images/left.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+
+}
+
+.right-button {
+    -fx-background-image: url(../images/right.png);
+    -fx-background-size: 32px 32px;
+    -fx-background-radius: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+
+}
+
+.emptyvak .list-cell {
+    -fx-background-color: null;
+}
+
+.emptyvak {
+    -fx-background-image: url('../images/legeoef.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
 }

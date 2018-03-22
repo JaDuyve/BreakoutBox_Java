@@ -1,10 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import domein.BobController;
-import domein.DoelstellingscodeController;
-import domein.OefeningController;
-import domein.SessieController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
