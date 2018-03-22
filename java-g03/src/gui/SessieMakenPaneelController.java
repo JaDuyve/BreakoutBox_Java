@@ -71,7 +71,7 @@ public class SessieMakenPaneelController extends BorderPane {
         buildGui();
     }
 
-    private void buildGui(){
+    private void buildGui() {
         this.setTop(new TopBarController());
         CBBob.setItems(sessieController.geefBobs());
     }
@@ -82,11 +82,15 @@ public class SessieMakenPaneelController extends BorderPane {
             sessieController.create(txtNaam.getText(), Date.from(dpStartdatum.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), CBBob.getValue(), groepFile, cbAfstandsleren.isSelected());
             Scene s = this.getScene();
             s.setRoot(new SessieSchermController(sessieController));
-        } catch(IllegalArgumentException ex ){
+        } catch (IllegalArgumentException ex) {
             AlertBox.showAlertError("Fout Sessie Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
+
+        } catch (IllegalStateException ex) {
+            AlertBox.showAlertError("Fout Excel document", ex.getMessage(), (Stage) this.getScene().getWindow());
 
         }
     }
+
 
     @FXML
     void keerTerug(ActionEvent event) {
