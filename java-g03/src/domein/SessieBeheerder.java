@@ -35,7 +35,10 @@ public class SessieBeheerder extends Observable {
         if (sessieRepo.exists(sessie.getNaam())) {
             throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
         } else {
+
+            GenericDaoJpa.startTransaction();
             sessieRepo.insert(sessie);
+            GenericDaoJpa.commitTransaction();
             sessies.add(sessie);
         }
     }

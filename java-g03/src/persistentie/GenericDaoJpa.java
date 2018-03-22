@@ -14,13 +14,14 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
     private static final EntityManagerFactory emf = JPAUtil.getEntityManagerFactory();
     protected static final EntityManager em = emf.createEntityManager();
     private final Class<T> type;
-    private JobJpa jobs;
-
+//    private JobJpa jobs;
+//    JpaMulti<T> multi;
 
     public GenericDaoJpa(Class<T> type) {
         this.type = type;
-        this.jobs = new JobJpa();
-        new Thread(new JpaMulti(this.type, em, this.jobs)).start();
+//        this.jobs = new JobJpa();
+//        multi = new JpaMulti<>(this.type, this.jobs);
+//        new Thread(multi).start();
     }
 
     public static void closePersistency() {
@@ -52,19 +53,28 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
         return entity;
     }
 
-
-
+//    public void update(T object) {
+//        jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPDATE", object)));
+//    }
+//
+//    public void delete(T object) {
+//        jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", object)));
+//    }
+//
+//    public void insert(T object) {
+//        jobs.plaatsJob(new ArrayList<>(Arrays.asList("INSERT", object)));
+//    }
 
     public void update(T object) {
-        jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPDATE", object)));
+        em.merge(object);
     }
 
     public void delete(T object) {
-        jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", object)));
+        em.remove(em.merge(object));
     }
 
     public void insert(T object) {
-        jobs.plaatsJob(new ArrayList<>(Arrays.asList("INSERT", object)));
+        em.persist(object);
     }
 
     @Override

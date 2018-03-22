@@ -69,7 +69,7 @@ public class BobBeheerder extends Observable {
             return bob.getNaam().toLowerCase().contains(bobNaam.toLowerCase());
         });
 
-        if (filtBobs.size() == 0){
+        if (filtBobs.size() == 0) {
             setBob(null);
         }
     }
@@ -80,15 +80,19 @@ public class BobBeheerder extends Observable {
         if (bobRepo.exists(bob.getNaam())) {
             throw new IllegalArgumentException("Breakout Box met naam: " + naam + " bestaat al");
         } else {
+            GenericDaoJpa.startTransaction();
             bobRepo.insert(bob);
+            GenericDaoJpa.commitTransaction();
             bobs.add(bob);
         }
     }
 
     public void verwijderBob() {
-            bobRepo.delete(bob);
-            bobs.remove(bob);
-            bob = null;
+        GenericDaoJpa.startTransaction();
+        bobRepo.delete(bob);
+        GenericDaoJpa.commitTransaction();
+        bobs.remove(bob);
+        bob = null;
 
     }
 
@@ -103,7 +107,9 @@ public class BobBeheerder extends Observable {
             if (!acties.containsAll(bob.getLijstActies())) {
                 bob.setLijstActies(acties);
             }
+            GenericDaoJpa.startTransaction();
             bobRepo.update(bob);
+            GenericDaoJpa.commitTransaction();
         }
 
 

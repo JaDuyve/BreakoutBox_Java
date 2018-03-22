@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 public class OefeningBeheerder extends Observable {
 
     private Oefening oefening;
-    private static GenericDao<Oefening> oefeningRepo = new GenericDaoJpa<>(Oefening.class);
-    private static GenericDao<Bob> bobRepo = new GenericDaoJpa<>(Bob.class);
+    private GenericDao<Oefening> oefeningRepo;
+    private GenericDao<Bob> bobRepo;
     private FileTransfer fileTransfer;
 
     private List<Oefening> oefeningen;
@@ -26,8 +26,8 @@ public class OefeningBeheerder extends Observable {
     private final Comparator<Oefening> byOefeningNaam = (o1, o2) -> o1.getNaam().compareToIgnoreCase(o2.getNaam());
 
     public OefeningBeheerder() {
-//        setOefeningRepo(new GenericDaoJpa(Oefening.class));
-//        setBobRepo(new GenericDaoJpa(Bob.class));
+        setOefeningRepo(new GenericDaoJpa(Oefening.class));
+        setBobRepo(new GenericDaoJpa(Bob.class));
         fileTransfer = new FileTransfer();
         getOefeningList();
 
@@ -67,8 +67,10 @@ public class OefeningBeheerder extends Observable {
     public void verwijderOefening() {
         controleerOefInBob(oefening);
 
-
+        GenericDaoJpa.startTransaction();
         oefeningRepo.delete(oefening);
+        GenericDaoJpa.commitTransaction();
+
 
         jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));
         jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getFeedback())));
@@ -91,9 +93,9 @@ public class OefeningBeheerder extends Observable {
 
         if (!naam.equals(oefening.getNaam())) {
             createOefening(naam, opgaveFile, antwoord, feedbackFile, groepsbewerkingen, doelstellingen, vak, tijdsLimiet);
-
+            GenericDaoJpa.startTransaction();
             oefeningRepo.delete(oefening);
-
+            GenericDaoJpa.commitTransaction();
         } else {
             if (!oefening.getOpgave().equals(opgaveFile.getName())) {
                 jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));
@@ -123,9 +125,9 @@ public class OefeningBeheerder extends Observable {
             if (!doelstellingen.containsAll(oefening.getDoelstellingscodes())) {
                 oefening.setDoelstellingscodes(doelstellingen);
             }
-
+            GenericDaoJpa.startTransaction();
             oefeningRepo.update(oefening);
-
+            GenericDaoJpa.startTransaction();
         }
     }
 
@@ -176,7 +178,9 @@ public class OefeningBeheerder extends Observable {
         if (oefeningRepo.exists(oef.getNaam())) {
             throw new IllegalArgumentException("Oefening met naam: " + naam + " bestaat al");
         } else {
+            GenericDaoJpa.startTransaction();
             oefeningRepo.insert(oef);
+            GenericDaoJpa.commitTransaction();
 
             jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", opgaveFile.getPath(), oef.getOpgave())));
             jobs.plaatsJob(new ArrayList<>(Arrays.asList("UPLOAD", feedbackFile.getPath(), oef.getFeedback())));
@@ -233,7 +237,7 @@ public class OefeningBeheerder extends Observable {
             return conditieOefeningNaam && conditieVakken && conditieDoelstellingen;
         });
 
-        if (filtOefeningen.size() == 0){
+        if (filtOefeningen.size() == 0) {
             setOefening(null);
         }
     }

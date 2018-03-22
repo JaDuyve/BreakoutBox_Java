@@ -57,7 +57,9 @@ public class VakBeheerder extends Observable {
     }
 
     public void verwijderVak() {
+        GenericDaoJpa.startTransaction();
         vakRepo.delete(vak);
+        GenericDaoJpa.commitTransaction();
         vakken.remove(vak);
         vak = null;
 
@@ -76,7 +78,9 @@ public class VakBeheerder extends Observable {
         if (vakRepo.exists(vak.getNaam())) {
             throw new IllegalArgumentException("Vak met naam: " + naam + " bestaat al");
         } else {
+            GenericDaoJpa.startTransaction();
             vakRepo.insert(vak);
+            GenericDaoJpa.commitTransaction();
             vakken.add(vak);
         }
     }
@@ -84,7 +88,9 @@ public class VakBeheerder extends Observable {
     public void wijzigeVak(String naam) {
         if (!vak.getNaam().equals(naam)) {
             createVak(naam);
+            GenericDaoJpa.startTransaction();
             vakRepo.delete(vak);
+            GenericDaoJpa.commitTransaction();
         }
 
     }
