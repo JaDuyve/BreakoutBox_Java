@@ -118,6 +118,7 @@ public class Oefening {
         setLijstGroepsbewerkingen(groepsbewerkingen);
         setDoelstellingscodes(doelstellingen);
         setVak(vak);
+        setTijdsLimiet(tijdsLimiet);
     }
 
 
@@ -141,4 +142,6 @@ public class Oefening {
     public String toString() {
         return naam;
     }
+
+
 }

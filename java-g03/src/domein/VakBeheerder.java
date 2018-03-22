@@ -12,6 +12,7 @@ import java.security.SecureRandom;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
+import java.util.stream.Collectors;
 
 public class VakBeheerder extends Observable {
 
@@ -21,11 +22,13 @@ public class VakBeheerder extends Observable {
     private static SecureRandom random = new SecureRandom();
 
     private GenericDao<Vak> vakRepo;
+    private GenericDao<Oefening> oefeningRepo;
 
     private Comparator<Vak> byVakNaam = (v1, v2) -> v1.getNaam().compareToIgnoreCase(v2.getNaam());
 
     public VakBeheerder() {
         setVakRepo(new GenericDaoJpa(Vak.class));
+        oefeningRepo = new GenericDaoJpa<>(Oefening.class) ;
     }
 
     public void setVakRepo(GenericDao<Vak> mock) {
@@ -57,6 +60,7 @@ public class VakBeheerder extends Observable {
     }
 
     public void verwijderVak() {
+        controleerVakInOef(vak);
         GenericDaoJpa.startTransaction();
         vakRepo.delete(vak);
         GenericDaoJpa.commitTransaction();
@@ -86,6 +90,7 @@ public class VakBeheerder extends Observable {
     }
 
     public void wijzigeVak(String naam) {
+        controleerVakInOef(vak);
         if (!vak.getNaam().equals(naam)) {
             createVak(naam);
             GenericDaoJpa.startTransaction();
@@ -103,6 +108,17 @@ public class VakBeheerder extends Observable {
         this.vak = vak;
         setChanged();
         notifyObservers(vak);
+    }
 
+    private void controleerVakInOef(Vak vak) {
+        boolean result = false;
+        for (Oefening oef : oefeningRepo.findAll()){
+            result = oef.getVak().getNaam().equalsIgnoreCase(vak.getNaam());
+        }
+
+
+        if (result) {
+            throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
+        }
     }
 }

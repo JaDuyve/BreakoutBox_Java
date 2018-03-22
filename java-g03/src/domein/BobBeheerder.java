@@ -18,6 +18,7 @@ public class BobBeheerder extends Observable {
     private List<Bob> bobs;
     private FilteredList<Bob> filtBobs;
     private GenericDao<Bob> bobRepo;
+    private GenericDao<Sessie> sessieRepo;
 
     private final Comparator<Bob> byBobNaam = (b1, b2) -> b1.getNaam().compareToIgnoreCase(b2.getNaam());
 
@@ -29,6 +30,7 @@ public class BobBeheerder extends Observable {
 
     public BobBeheerder() {
         setBobRepo(new GenericDaoJpa<>(Bob.class));
+        sessieRepo = new GenericDaoJpa<>(Sessie.class);
         getBobList();
     }
 
@@ -88,6 +90,7 @@ public class BobBeheerder extends Observable {
     }
 
     public void verwijderBob() {
+        controleerBobInSessie(bob);
         GenericDaoJpa.startTransaction();
         bobRepo.delete(bob);
         GenericDaoJpa.commitTransaction();
@@ -97,6 +100,7 @@ public class BobBeheerder extends Observable {
     }
 
     public void wijzigBob(String naam, List<Oefening> oefeningen, List<Actie> acties) {
+        controleerBobInSessie(bob);
         if (!bob.getNaam().equals(naam)) {
             createBob(naam, oefeningen, acties);
             bobRepo.delete(bob);
@@ -113,6 +117,18 @@ public class BobBeheerder extends Observable {
         }
 
 
+    }
+
+    private void controleerBobInSessie(Bob bob) {
+        boolean result = false;
+        for (Sessie sessie : sessieRepo.findAll()){
+            result = sessie.getBob().getNaam().equalsIgnoreCase(bob.getNaam());
+        }
+
+
+        if (result) {
+            throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
+        }
     }
 
 

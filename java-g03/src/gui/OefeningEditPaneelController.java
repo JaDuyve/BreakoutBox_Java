@@ -3,6 +3,8 @@ package gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import domein.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -134,6 +136,18 @@ public class OefeningEditPaneelController extends BorderPane {
 
         apGroepsbewerking.getChildren().add(lvGroepsbewerkingen);
         apDoelstellingen.getChildren().add(lvDoelstellingen);
+
+        txtAntwoord.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    txtAntwoord.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));
 
     }
 

@@ -127,7 +127,7 @@ public class OefeningBeheerder extends Observable {
             }
             GenericDaoJpa.startTransaction();
             oefeningRepo.update(oefening);
-            GenericDaoJpa.startTransaction();
+            GenericDaoJpa.commitTransaction();
         }
     }
 
