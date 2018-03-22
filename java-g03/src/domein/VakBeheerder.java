@@ -114,11 +114,15 @@ public class VakBeheerder extends Observable {
         boolean result = false;
         for (Oefening oef : oefeningRepo.findAll()){
             result = oef.getVak().getNaam().equalsIgnoreCase(vak.getNaam());
+
+            if (result){
+                break;
+            }
         }
 
 
         if (result) {
-            throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
+            throw new IllegalArgumentException("Oefening is nog gelinkte met een Oefening, hierdoor is het niet mogelijk om deze Vak te verwijderen.");
         }
     }
 }

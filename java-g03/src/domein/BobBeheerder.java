@@ -123,11 +123,14 @@ public class BobBeheerder extends Observable {
         boolean result = false;
         for (Sessie sessie : sessieRepo.findAll()){
             result = sessie.getBob().getNaam().equalsIgnoreCase(bob.getNaam());
+            if (result){
+                break;
+            }
         }
 
 
         if (result) {
-            throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
+            throw new IllegalArgumentException("Oefening is nog gelinkte met een Sessie, hierdoor is het niet mogelijk om deze Bob te verwijderen.");
         }
     }
 
