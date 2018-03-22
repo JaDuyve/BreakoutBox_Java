@@ -131,6 +131,18 @@ public class OefeningKopiePaneelController extends BorderPane {
 
         }
         txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));
+        txfTijdslimiet.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    txfTijdslimiet.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+                if (newValue.isEmpty()){
+                    txfTijdslimiet.setText(Integer.toString(0));
+                }
+            }
+        });
 
         txtAntwoord.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -139,6 +151,8 @@ public class OefeningKopiePaneelController extends BorderPane {
                 if (!newValue.matches("\\d*")) {
                     txtAntwoord.setText(newValue.replaceAll("[^\\d]", ""));
                 }
+
+
             }
         });
         txfTijdslimiet.setText(Integer.toString(oefening.getTijdsLimiet()));

@@ -118,6 +118,20 @@ public class OefeningMakenPaneelController extends BorderPane {
         apGroepsbewerking.getChildren().add(lvGroepsbewerking);
         apDoelstellingen.getChildren().add(lvDoelstellingen);
 
+        txfTijdslimiet.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    txfTijdslimiet.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+
+                if (newValue.isEmpty()){
+                    txfTijdslimiet.setText(Integer.toString(0));
+                }
+            }
+        });
+
         txtAntwoord.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -162,15 +176,9 @@ public class OefeningMakenPaneelController extends BorderPane {
             oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdLimiet);
             Scene s = this.getScene();
             s.setRoot(new OefeningSchermController());
-        }catch (NumberFormatException ex)
-        {
-            AlertBox.showAlertError("Fout oefening toevoegen", "Tijdslimiet moet ingevuld zijn of moet een nummer zijn", (Stage) this.getScene().getWindow());
         } catch (IllegalArgumentException ex) {
             AlertBox.showAlertError("Fout Oefening Toevoegen", ex.getMessage(), (Stage) this.getScene().getWindow());
         }
-
-
-
 
 
     }

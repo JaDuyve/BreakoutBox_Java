@@ -108,14 +108,14 @@ public class BobBeheerder extends Observable {
             GenericDaoJpa.commitTransaction();
             bobs.remove(bob);
         } else {
+            GenericDaoJpa.startTransaction();
+
             if (!oefeningen.containsAll(bob.getLijstOefeningen())) {
                 bob.setLijstOefeningen(oefeningen);
             }
             if (!acties.containsAll(bob.getLijstActies())) {
                 bob.setLijstActies(acties);
             }
-            GenericDaoJpa.startTransaction();
-            bobRepo.update(bob);
             GenericDaoJpa.commitTransaction();
             setBob(bob);
         }

@@ -137,6 +137,21 @@ public class OefeningEditPaneelController extends BorderPane {
         apGroepsbewerking.getChildren().add(lvGroepsbewerkingen);
         apDoelstellingen.getChildren().add(lvDoelstellingen);
 
+
+        txfTijdslimiet.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    txfTijdslimiet.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+
+                if (newValue.isEmpty()){
+                    txfTijdslimiet.setText(Integer.toString(0));
+                }
+            }
+        });
+
         txtAntwoord.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,

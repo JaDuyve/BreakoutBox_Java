@@ -100,6 +100,8 @@ public class OefeningBeheerder extends Observable {
             GenericDaoJpa.commitTransaction();
             oefeningen.remove(oefening);
         } else {
+            GenericDaoJpa.startTransaction();
+
             if (!oefening.getOpgave().equals(opgaveFile.getName())) {
                 jobs.plaatsJob(new ArrayList<>(Arrays.asList("DELETE", oefening.getOpgave())));
                 oefening.setOpgave("Opgave_" + naam + "_" + opgaveFile.getName());
@@ -128,8 +130,6 @@ public class OefeningBeheerder extends Observable {
             if (!doelstellingen.containsAll(oefening.getDoelstellingscodes())) {
                 oefening.setDoelstellingscodes(doelstellingen);
             }
-            GenericDaoJpa.startTransaction();
-            oefeningRepo.update(oefening);
             GenericDaoJpa.commitTransaction();
             setOefening(oefening);
         }
@@ -155,7 +155,7 @@ public class OefeningBeheerder extends Observable {
 
 
         if (result) {
-            throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening te verwijderen.");
+            throw new IllegalArgumentException("Oefening is nog gelinkte met een Breakout Box, hierdoor is het niet mogelijk om deze oefening aan te passen.");
         }
     }
 

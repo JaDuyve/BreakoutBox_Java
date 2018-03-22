@@ -89,6 +89,9 @@ public class Oefening {
     }
 
     public void setAntwoord(String antwoord) {
+        if (antwoord == null || antwoord.isEmpty()){
+            throw new IllegalArgumentException("Antwoord mag niet leeg gelaten worden.");
+        }
         this.antwoord = antwoord;
     }
 
