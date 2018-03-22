@@ -67,10 +67,6 @@ public class OefeningenOverzichtPaneelController extends VBox implements Observe
     }
 
     public void build() {
-     /*   if (oefeningController.geefOefeningen().isEmpty()) {
-            oefTable.setStyle("-fx-background-image: url('../images/legeoef.png'); ");
-        }
-*/
         oefTable.setItems(oefeningController.geefOefeningen());
         categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
         nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));

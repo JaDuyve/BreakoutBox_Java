@@ -19,7 +19,7 @@
             </Label>
             <Label style="-fx-font-size: 48; -fx-font-family: 'Roboto Thin';" text="Controlepanelen" textFill="WHITE">
                <VBox.margin>
-                  <Insets top="200.0" />
+                  <Insets bottom="50.0" top="200.0" />
                </VBox.margin>
             </Label>
             <VBox alignment="CENTER" spacing="50.0">
@@ -36,15 +36,15 @@
                               <Font name="Roboto" size="24.0" />
                            </font>
                         </JFXButton>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0">
-                     <children>
                         <JFXButton fx:id="btnOefB" alignment="CENTER" onAction="#showOefBeheren" prefHeight="100.0" prefWidth="300.0" text="Oefeningen" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Roboto" size="24.0" />
                            </font>
                         </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="50.0">
+                     <children>
                         <JFXButton fx:id="btnDoelstellingscodeToevoegen" alignment="CENTER" onAction="#showDoelstellingscodeToevoegen" prefHeight="100.0" prefWidth="300.0" text="Doelstellingscodes" textFill="WHITE">
                            <font>
                               <Font name="Roboto" size="24.0" />

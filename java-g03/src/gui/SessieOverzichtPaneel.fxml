@@ -45,12 +45,15 @@
          <effect>
             <InnerShadow blurType="GAUSSIAN" color="#0000001a" height="25.0" radius="12.0" width="25.0" />
          </effect></JFXListView>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="774.0" spacing="20.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="774.0" spacing="20.0">
          <children>
-            <JFXButton fx:id="addBobButton" onAction="#createBob" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: FF8F00;" styleClass="add-button" textFill="WHITE">
+            <JFXButton fx:id="addBobButton" buttonType="RAISED" onAction="#createBob" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: FF8F00;" styleClass="add-button" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
             </JFXButton>
          </children>
       </HBox>

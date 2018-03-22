@@ -22,7 +22,7 @@
             <VBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
                   <Label opacity="0.45" style="-fx-font-size: 18;" text="Open Opgave" textAlignment="CENTER" />
-                  <JFXButton fx:id="btnOpenOpgave" onAction="#openOpgave" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" styleClass="attach-button" textFill="WHITE">
+                  <JFXButton fx:id="btnOpenOpgave" buttonType="RAISED" onAction="#openOpgave" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" styleClass="attach-button" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="16.0" />
                      </font>
@@ -33,7 +33,7 @@
             <VBox alignment="CENTER_RIGHT" spacing="20.0">
                <children>
                   <Label opacity="0.45" style="-fx-font-size: 18;" text="Open Feedback" textAlignment="CENTER" />
-                  <JFXButton fx:id="openFeedback" onAction="#openFeedback" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" styleClass="attach-button" textFill="WHITE">
+                  <JFXButton fx:id="openFeedback" buttonType="RAISED" onAction="#openFeedback" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #00897B;" styleClass="attach-button" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="16.0" />
                      </font>

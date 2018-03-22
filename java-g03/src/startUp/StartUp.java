@@ -1,5 +1,6 @@
 package startUp;
 
+import com.jfoenix.controls.JFXDecorator;
 import gui.StartupMenuController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,10 +18,13 @@ public class StartUp extends Application {
 
 
         StartupMenuController smc = new StartupMenuController();
-        Scene scene = new Scene(smc);
+        JFXDecorator decorator = new JFXDecorator(primaryStage, smc);
+        decorator.setCustomMaximize(true);
+        Scene scene = new Scene(decorator);
 
         scene.setFill(Color.TRANSPARENT);
         primaryStage.setTitle("BreakOutBox");
+
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();

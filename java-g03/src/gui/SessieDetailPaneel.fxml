@@ -47,7 +47,7 @@
       <JFXTextField fx:id="txfBob" editable="false" styleClass="txf" />
       <Label opacity="0.45" style="-fx-font-size: 18;" text="Toegangscode" />
       <JFXTextField fx:id="txfCode" editable="false" styleClass="txf" />
-      <JFXButton fx:id="btnGenerateSessieOverzicht" onAction="#generateSessieOverzicht" prefHeight="46.0" prefWidth="137.0" style="-fx-background-color: #00897B;" styleClass="pdf-button" textFill="WHITE" />
+      <JFXButton fx:id="btnGenerateSessieOverzicht" buttonType="RAISED" onAction="#generateSessieOverzicht" prefHeight="46.0" prefWidth="137.0" style="-fx-background-color: #00897B;" styleClass="pdf-button" textFill="WHITE" />
    </children>
    <padding>
       <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

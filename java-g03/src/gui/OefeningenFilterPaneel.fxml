@@ -12,7 +12,7 @@
          <VBox.margin>
             <Insets bottom="10.0" top="30.0" />
          </VBox.margin></Label>
-        <JFXTextField fx:id="txtFiltByName" alignment="TOP_LEFT" onKeyReleased="#filtByName" prefColumnCount="6" prefHeight="26.0" prefWidth="100.0" promptText="Zoek op naam" styleClass="txf">
+        <JFXTextField fx:id="txtFiltByName" alignment="TOP_LEFT" minWidth="250.0" onKeyReleased="#filtByName" prefColumnCount="6" prefHeight="26.0" promptText="Zoek op naam" styleClass="txf">
             <effect>
                 <DropShadow blurType="GAUSSIAN" color="#00000033" height="10.0" offsetX="2.0" offsetY="4.0" radius="5.75" width="15.0" />
             </effect>

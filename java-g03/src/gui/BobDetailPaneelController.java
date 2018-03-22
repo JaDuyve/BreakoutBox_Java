@@ -1,16 +1,18 @@
 package gui;
+
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.controls.JFXTextField;
 import domein.Actie;
 import domein.Bob;
 import domein.Oefening;
-import domein.Toegangscode;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -37,6 +39,7 @@ public class BobDetailPaneelController extends VBox implements Observer {
                 = new FXMLLoader(getClass().getResource("BobDetailPaneel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
+
         try {
             loader.load();
         } catch (IOException ex) {

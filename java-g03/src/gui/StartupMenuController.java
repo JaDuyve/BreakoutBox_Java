@@ -1,11 +1,13 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDecorator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -54,8 +56,10 @@ public class StartupMenuController extends BorderPane {
 
     @FXML
     void showBobBeheren(ActionEvent event) {
+        JFXDecorator decorator = new JFXDecorator((Stage) this.getScene().getWindow(), bobSchermController);
+        decorator.setCustomMaximize(true);
         Scene s = this.getScene();
-        s.setRoot(bobSchermController);
+        s.setRoot(decorator);
     }
 
     @FXML

@@ -24,7 +24,7 @@
             <Label fx:id="lblNaam" style="-fx-font-size: 18;" text="Naam" />
             <JFXTextField fx:id="txtNaam" promptText="Naam Sessie" styleClass="txf" />
             <Label fx:id="lblGroepen" style="-fx-font-size: 18;" text="Groepen" />
-            <JFXButton fx:id="btnSelecteerGroepen" onAction="#selecteerGroepen" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" styleClass="groupadd-button" textFill="WHITE" />
+            <JFXButton fx:id="btnSelecteerGroepen" buttonType="RAISED" onAction="#selecteerGroepen" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" styleClass="groupadd-button" textFill="WHITE" />
             <Label fx:id="lblBreakoutbox" style="-fx-font-size: 18;" text="Selecteer Breakoutbox" />
             <JFXComboBox fx:id="CBBob" prefHeight="25.0" prefWidth="124.0" styleClass="txf" />
             <Label fx:id="lblStartdatum" style="-fx-font-size: 18;" text="Startdatum" />
@@ -36,12 +36,12 @@
             </HBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
-                  <JFXButton fx:id="btnCreateSessie" alignment="CENTER" onAction="#createSessie" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" styleClass="add-button" textFill="WHITE">
+                  <JFXButton fx:id="btnCreateSessie" alignment="CENTER" buttonType="RAISED" onAction="#createSessie" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: FF8F00;" styleClass="add-button" textFill="WHITE">
                      <padding>
                         <Insets bottom="7.25" left="7.25" right="7.25" top="7.25" />
                      </padding>
                   </JFXButton>
-                  <JFXButton fx:id="btnCancel" alignment="CENTER" onAction="#keerTerug" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" styleClass="cancel-button" textFill="#fffdfd" />
+                  <JFXButton fx:id="btnCancel" alignment="CENTER" buttonType="RAISED" onAction="#keerTerug" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #00897B;" styleClass="cancel-button" textFill="#fffdfd" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
