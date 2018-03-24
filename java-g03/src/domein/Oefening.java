@@ -19,7 +19,7 @@ public class Oefening {
     private List<Groepsbewerking> lijstGroepsbewerkingen;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Vak vak;
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Doelstellingscode> doelstellingscodes;
 
     public String getNaam() {

@@ -197,28 +197,12 @@ public class OefeningBeheerder extends Observable {
     /**
      * @param oefeningNaam
      */
-    public void changeFilter(String oefeningNaam, List<String> vakken, String doelstellingscodes) {
+    public void changeFilter(String oefeningNaam, List<String> vakken, String doelstellingscode) {
         filtOefeningen.setPredicate(oefening -> {
 
-            //boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
-            //boolean vakkenLeeg = vakken == null || vakken.isEmpty();
-            boolean oefeningNaamLeeg = false;
-            boolean vakkenLeeg = false;
-            boolean doelstellingenLeeg = false;
-
-            if (oefeningNaam == null || oefeningNaam.isEmpty())
-            {
-                oefeningNaamLeeg = true;
-            }
-            if (vakken == null || vakken.isEmpty())
-            {
-                vakkenLeeg = true;
-            }
-            if(doelstellingscodes == null || doelstellingscodes.isEmpty())
-            {
-                doelstellingenLeeg = true;
-            }
-            //boolean doelstellingenLeeg = doelstellingscodes == null || doelstellingscodes.isEmpty();
+            boolean oefeningNaamLeeg = oefeningNaam == null || oefeningNaam.isEmpty();
+            boolean vakkenLeeg = vakken == null || vakken.isEmpty();
+            boolean doelstellingenLeeg = doelstellingscode == null || doelstellingscode.isEmpty();
 
             if (oefeningNaamLeeg && vakkenLeeg && doelstellingenLeeg) {
                 return true;
@@ -232,8 +216,7 @@ public class OefeningBeheerder extends Observable {
 
             boolean conditieOefeningNaam = oefeningNaamLeeg ? false : oefening.getNaam().toLowerCase().contains(lowerCaseOefeningNaam);
             boolean conditieVakken = vakkenLeeg ? false : vakken.stream().anyMatch(t -> t.equals(oefening.getVak().getNaam()));
-            boolean conditieDoelstellingen = doelstellingenLeeg ? false : oefening.getDoelstellingscodes().stream().map(Doelstellingscode::toString).anyMatch(d ->
-                    d.toLowerCase().contains(doelstellingscodes.toLowerCase()));
+            boolean conditieDoelstellingen = doelstellingenLeeg ? false : oefening.getDoelstellingscodes().stream().map(Doelstellingscode::toString).anyMatch(d -> d.toLowerCase().contains(doelstellingscode.toLowerCase()));
 
 
             if (doelstellingenLeeg && oefeningNaamLeeg) {

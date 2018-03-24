@@ -82,7 +82,7 @@ public class BobEditPaneelController extends BorderPane {
         try {
             bobController.wijzigBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight());
             Scene s = this.getScene();
-            s.setRoot(new BobSchermController(bobController));
+            s.setRoot(new BobSchermController());
         } catch (IllegalArgumentException e) {
             AlertBox.showAlertError("Wijzigen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
         }
@@ -93,6 +93,6 @@ public class BobEditPaneelController extends BorderPane {
     @FXML
     void cancel(ActionEvent event) {
         Scene s = this.getScene();
-        s.setRoot(new BobSchermController(bobController));
+        s.setRoot(new BobSchermController());
     }
 }

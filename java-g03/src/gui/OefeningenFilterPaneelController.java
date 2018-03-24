@@ -89,6 +89,7 @@ public class OefeningenFilterPaneelController extends VBox {
         vbVakken.getChildren().add(gridPane);
         gridPane.setHgap(40);
         gridPane.setVgap(20);
+        txtFiltByDoel.setDisable(false);
     }
 
     @FXML
@@ -101,6 +102,7 @@ public class OefeningenFilterPaneelController extends VBox {
     public void filtByDoel(KeyEvent event) {
         changeFilter();
     }
+
     private void changeFilter() {
 
         List<String> filtVakken = new ArrayList<>();
