@@ -52,6 +52,6 @@ public class Actie {
 
     @Override
     public String toString() {
-        return  naam;
+        return  naam.toLowerCase();
     }
 }

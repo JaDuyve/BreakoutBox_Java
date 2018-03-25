@@ -153,7 +153,7 @@ public class Sessie {
 
     @Override
     public String toString() {
-        return this.getNaam();
+        return this.getNaam().toLowerCase();
     }
 
     public void generateSessieOverzichtPdf() {

@@ -106,6 +106,6 @@ public class Groep {
 
     @Override
     public String toString() {
-        return getNaam();
+        return getNaam().toLowerCase();
     }
 }

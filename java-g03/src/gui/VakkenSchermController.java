@@ -80,7 +80,7 @@ public class VakkenSchermController extends BorderPane implements Observer {
                     lvVakken.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
                 else {
-                    lvVakken.getStyleClass().clear();
+                    lvVakken.getStyleClass().remove("emptyvak");
                     lvVakken.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
             }

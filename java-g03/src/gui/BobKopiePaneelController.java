@@ -73,7 +73,12 @@ public class BobKopiePaneelController extends BorderPane {
     @FXML
     void voegBobToe(ActionEvent event) {
         try {
-            bobController.createBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight());
+            if(bob.getNaam().equals(txfNaam.getText())) {
+                bobController.createBob(txfNaam.getText() + " kopie", lvOefeningen.getLijstRight(), lvActies.getLijstRight());
+            }
+            else {
+                bobController.createBob(txfNaam.getText(), lvOefeningen.getLijstRight(), lvActies.getLijstRight());
+            }
             Scene s = this.getScene();
             s.setRoot(new BobSchermController(bobController));
         } catch (IllegalArgumentException e) {

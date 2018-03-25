@@ -63,7 +63,7 @@ public class SessieOverzichtPaneelController extends VBox {
                     sessieView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
                 else {
-                    sessieView.getStyleClass().clear();
+                    sessieView.getStyleClass().remove("emptysessie");
                     sessieView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
             }

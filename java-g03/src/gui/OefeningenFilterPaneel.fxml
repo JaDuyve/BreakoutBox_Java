@@ -8,7 +8,7 @@
 
 <fx:root spacing="25.0" styleClass="sidepanels" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-        <Label prefHeight="23.0" style="-fx-font-size: 17;" text="FILTER">
+        <Label prefHeight="23.0" style="-fx-font-size: 24; -fx-font-family: 'Roboto Light';" text="FILTER">
          <VBox.margin>
             <Insets bottom="10.0" top="30.0" />
          </VBox.margin></Label>

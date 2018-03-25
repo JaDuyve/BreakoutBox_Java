@@ -84,7 +84,7 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane implemen
                     lvDoelstellingscodes.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
                 else {
-                    lvDoelstellingscodes.getStyleClass().clear();
+                    lvDoelstellingscodes.getStyleClass().remove("emptycode");
                     lvDoelstellingscodes.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
             }

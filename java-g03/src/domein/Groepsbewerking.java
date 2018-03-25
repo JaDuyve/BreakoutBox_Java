@@ -80,6 +80,6 @@ public class Groepsbewerking {
 
 	@Override
 	public String toString() {
-		return this.naam;
+		return this.naam.toLowerCase();
 	}
 }

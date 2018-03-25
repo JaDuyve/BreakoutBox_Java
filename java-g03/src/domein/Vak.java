@@ -57,6 +57,6 @@ public class Vak {
 
     @Override
     public String toString() {
-        return this.naam;
+        return this.naam.toLowerCase();
     }
 }

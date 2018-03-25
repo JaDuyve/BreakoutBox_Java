@@ -82,7 +82,7 @@ public class BobOverzichtPaneelController extends VBox implements Observer {
                     bobView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
                 else {
-                    bobView.getStyleClass().clear();
+                    bobView.getStyleClass().remove("emptybob");
                     bobView.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
             }

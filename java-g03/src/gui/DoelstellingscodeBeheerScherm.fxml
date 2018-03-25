@@ -39,7 +39,7 @@
                </children>
             </HBox>
                 <Label contentDisplay="RIGHT" opacity="0.82" style="-fx-font-size: 64; -fx-font-family: 'Roboto Light';" text="Doelstellingscodes" />
-            <JFXListView fx:id="lvDoelstellingscodes" styleClass="mylistview" />
+            <JFXListView fx:id="lvDoelstellingscodes" maxHeight="450.0" minHeight="450.0" styleClass="mylistview" />
             <HBox alignment="BOTTOM_CENTER" spacing="100.0">
                <children>
                   <VBox alignment="CENTER_LEFT" spacing="20.0">

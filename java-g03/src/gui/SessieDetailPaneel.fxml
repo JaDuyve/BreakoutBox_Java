@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="25.0" styleClass="sidepanels" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="25.0" styleClass="sidepanels" stylesheets="@../css/app.css" type="VBox" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER">
          <children>
@@ -45,7 +45,7 @@
          </VBox.margin>
       </Label>
       <JFXTextField fx:id="txfBob" editable="false" styleClass="txf" />
-      <Label opacity="0.45" style="-fx-font-size: 18;" text="Toegangscode" />
+      <Label opacity="0.45" style="-fx-font-size: 18;" text="Sessiecode" />
       <JFXTextField fx:id="txfCode" editable="false" styleClass="txf" />
       <JFXButton fx:id="btnGenerateSessieOverzicht" buttonType="RAISED" onAction="#generateSessieOverzicht" prefHeight="46.0" prefWidth="137.0" style="-fx-background-color: #00897B;" styleClass="pdf-button" textFill="WHITE" />
    </children>

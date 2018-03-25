@@ -190,7 +190,13 @@ public class OefeningKopiePaneelController extends BorderPane {
         int tijdslimiet = Integer.parseInt(txfTijdslimiet.getText());
 
         try {
-            oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdslimiet);
+            if (oefening.getNaam().equals(naam)) {
+                oefeningController.createOefening(naam +" kopie", opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdslimiet);
+            }
+            else {
+                oefeningController.createOefening(naam, opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdslimiet);
+            }
+            oefeningController.createOefening(naam +" kopie", opgaveFile, antwoord, feedbackFile, list, listDoelstellingen, vak, tijdslimiet);
             Scene s = this.getScene();
             s.setRoot(new OefeningSchermController(oefeningController));
         } catch (IllegalArgumentException ex) {

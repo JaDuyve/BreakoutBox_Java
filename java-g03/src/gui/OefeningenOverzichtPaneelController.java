@@ -69,8 +69,8 @@ public class OefeningenOverzichtPaneelController extends VBox implements Observe
     public void build() {
         oefTable.setPlaceholder(new Label(""));
         oefTable.setItems(oefeningController.geefOefeningen());
-        categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam()));
-        nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam()));
+        categorieTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getVak().getNaam().toLowerCase()));
+        nameTable.setCellValueFactory(cel -> new ReadOnlyStringWrapper(cel.getValue().getNaam().toLowerCase()));
 
         btnCopy.setDisable(true);
         btnDelete.setDisable(true);
@@ -88,7 +88,7 @@ public class OefeningenOverzichtPaneelController extends VBox implements Observe
                     oefTable.getStyleClass().add("emptyoef");
                     oefTable.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 } else {
-                    oefTable.getStyleClass().clear();
+                    oefTable.getStyleClass().remove("emptyoef");
                     oefTable.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
                 }
             }

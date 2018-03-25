@@ -143,7 +143,7 @@ public class Oefening {
 
     @Override
     public String toString() {
-        return naam;
+        return naam.toLowerCase();
     }
 
 

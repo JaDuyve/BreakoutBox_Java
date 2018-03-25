@@ -31,6 +31,6 @@ public class Toegangscode {
 
     @Override
     public String toString() {
-        return  Integer.toString(code);
+        return  Integer.toString(code).toLowerCase();
     }
 }

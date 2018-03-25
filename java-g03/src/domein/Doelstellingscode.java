@@ -30,6 +30,6 @@ public class Doelstellingscode {
 
     @Override
     public String toString() {
-        return code;
+        return code.toLowerCase();
     }
 }

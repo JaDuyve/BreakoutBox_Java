@@ -41,7 +41,7 @@
             <Font name="Roboto Light" size="64.0" />
          </font>
       </Label>
-      <JFXListView fx:id="bobView" styleClass="mylistview">
+      <JFXListView fx:id="bobView" maxHeight="450.0" minHeight="450.0" styleClass="mylistview">
          <effect>
             <InnerShadow color="#0000001a" height="25.0" radius="12.0" width="25.0" />
          </effect></JFXListView>
