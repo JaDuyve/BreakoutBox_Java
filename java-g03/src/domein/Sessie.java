@@ -15,9 +15,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 public class Sessie {
@@ -120,7 +121,7 @@ public class Sessie {
             throw new IllegalArgumentException("Startatum mag niet leeg zijn");
         }
         Date vandaag = new Date();
-        if(startDatum.before(vandaag)){
+        if (startDatum.before(vandaag)) {
             throw new IllegalArgumentException("De startdatum mag niet in het verleden liggen");
         }
         this.startDatum = startDatum;
@@ -188,17 +189,41 @@ public class Sessie {
                 contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                 contentStream.showText("\u25CF"); // bullet
                 contentStream.setFont(PDType1Font.HELVETICA, 14);
-                contentStream.showText(tab +  groep.getNaam());
+                contentStream.showText(tab + groep.getNaam());
+                contentStream.newLine();
+                contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                contentStream.showText(tab2 + "\u25CF"); // arrow
+                contentStream.setFont(PDType1Font.HELVETICA, 14);
+                contentStream.showText("Klas: " + groep.getKlas());
                 contentStream.newLine();
 
-                //List<Pad> paden = groep.getPaden().values().stream().map(p -> p).collect(Collectors.toList());
-                //Collections.reverse(paden);
+                contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                contentStream.showText(tab2 + "\u25CF"); // arrow
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+                contentStream.showText("Leerlingen");
+                contentStream.newLine();
+
+                for (String leerling : groep.getLeerlingen()) {
+                    contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                    contentStream.showText(tab2 + tab2 + "\u27A4"); // arrow
+                    contentStream.setFont(PDType1Font.HELVETICA, 14);
+                    contentStream.showText("Leerling: " + leerling);
+                    contentStream.newLine();
+                }
+                contentStream.newLine();
+
+
+                contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
+                contentStream.showText(tab2 + "\u25CF"); // arrow
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+                contentStream.showText("Oefenigen");
+                contentStream.newLine();
 
                 for (Pad pad : groep.getPaden().values()) {
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
-                    contentStream.showText("Oefening: " +  pad.getOefening());
+                    contentStream.showText("Oefening: " + pad.getOefening());
                     contentStream.newLine();
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
@@ -213,7 +238,7 @@ public class Sessie {
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
-                    contentStream.showText("Actie: " + (pad.getActie() == null? new Actie("Zoek de schatkist" ,"Zoek de schatkist in de klas"): pad.getActie()));
+                    contentStream.showText("Actie: " + (pad.getActie() == null ? new Actie("Zoek de schatkist", "Zoek de schatkist in de klas") : pad.getActie()));
                     contentStream.newLine();
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + "\u27A4"); // arrow
@@ -228,8 +253,7 @@ public class Sessie {
                 contentStream.endText();
                 contentStream.close();
 
-                if(!groep.equals(sortGroep.get(sortGroep.size()-1)))
-                {
+                if (!groep.equals(sortGroep.get(sortGroep.size() - 1))) {
                     page = new PDPage();
                     document.addPage(page);
                     contentStream = new PDPageContentStream(document, page);
