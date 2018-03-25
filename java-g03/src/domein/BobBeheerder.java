@@ -7,7 +7,6 @@ import javafx.collections.transformation.SortedList;
 import persistentie.GenericDao;
 import persistentie.GenericDaoJpa;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Observable;
@@ -134,7 +133,7 @@ public class BobBeheerder extends Observable {
 
 
         if (result) {
-            throw new IllegalArgumentException("Breakout box is nog gelinkte met een Sessie, hierdoor is het niet mogelijk om deze Bob te verwijderen.");
+            throw new IllegalArgumentException("Breakout Box is nog gelinkte met een Sessie, hierdoor is het niet mogelijk om deze Breakout Box te verwijderen.");
         }
     }
 
