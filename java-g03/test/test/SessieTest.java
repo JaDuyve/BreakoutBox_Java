@@ -40,17 +40,17 @@ public class SessieTest {
 
     @Test
     public void startDatumJuistTest(){
-        Sessie sessie = new Sessie("Test", new Date(2018, 05, 30), bob, new File("C:\\Users\\Axel\\OneDrive\\Desktop\\GroepenTest.xlsx"), false);
+        Sessie sessie = new Sessie("Test", new Date(2018, 05, 30), bob, new File("C:\\Users\\Jari Duyvejonck\\Documents\\Groepen2MetData.xlsx"), false);
         Assert.assertEquals(new Date(2018, 05, 30).toString(), sessie.getStartDatum().toString());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void startDatumTeVroegWerptException() {
-        Sessie sessie = new Sessie("Test", new Date(2017, 05, 30), bob, new File("C:\\Users\\Axel\\OneDrive\\Desktop\\GroepenTest.xlsx"), false);
+        Sessie sessie = new Sessie("Test", new Date(2018, 03, 23), bob, new File("C:\\Users\\Jari Duyvejonck\\Documents\\Groepen2MetData.xlsx"), false);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void startDatumVerkeerdeInvoerWerptException(){
-        Sessie sessie = new Sessie("Test", new Date(2046517, 025, 40), bob, new File("C:\\Users\\Axel\\OneDrive\\Desktop\\GroepenTest.xlsx"), false);
+        Sessie sessie = new Sessie("Test", new Date(2046517, 025, 40), bob, new File("C:\\Users\\Jari Duyvejonck\\Documents\\Groepen2MetData.xlsx"), false);
     }
 }

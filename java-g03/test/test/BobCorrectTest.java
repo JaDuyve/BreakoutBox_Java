@@ -16,27 +16,42 @@ public class BobCorrectTest {
     private String naam;
     private List<Oefening> oefeningen;
     private List<Actie> acties;
-    private List<Toegangscode> codes;
 
-    public BobCorrectTest(String naam, List<Oefening> oefeningen, List<Actie> acties, List<Toegangscode> codes) {
+    public BobCorrectTest(String naam, List<Oefening> oefeningen, List<Actie> acties) {
         this.naam = naam;
         this.oefeningen = oefeningen;
         this.acties = acties;
-        this.codes = codes;
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> getTestParameters(){
+    public static Collection<Object[]> getTestParameters() {
         return Arrays.asList(
                 new Object[][]{
-                     //   {"Correcte naam", new ArrayList<Oefening>(Arrays.asList(new Oefening("oefening3", "opgavePath", "antwoord", "feedbackPath", new ArrayList<Groepsbewerking>(Arrays.asList(new Groepsbewerking("groepsbewerking1", "test", "2", Bewerking.AFTREKKING),new Groepsbewerking("groepsbewerking2", "test", "2", Bewerking.AFTREKKING))), new Vak("wiskunde", "red"))), new ArrayList<Actie>(Arrays.asList(new Actie("potje", "Zoek blauw potje"), new Actie("blad", "zoek het gele blad"), new Actie("doos", "zoek de rode doos"))), new ArrayList<Toegangscode>())},
-                        {"Correcte Naam", new ArrayList<Oefening>(), new ArrayList<Actie>(), new ArrayList<Toegangscode>()},
-                        {"Correcte Naam", new ArrayList<Oefening>(), new ArrayList<Actie>(), new ArrayList<Toegangscode>()},
+                        {"Correcte Naam",
+                                new ArrayList<Oefening>(
+                                        Arrays.asList(
+                                                new Oefening("oefening3", "opgavePath", "antwoord", "feedbackPath",
+                                                        new ArrayList<Groepsbewerking>(Arrays.asList(
+                                                                new Groepsbewerking("groepsbewerking1", "test", "2", Bewerking.AFTREKKING),
+                                                                new Groepsbewerking("groepsbewerking2", "test", "2", Bewerking.AFTREKKING))),
+                                                        new ArrayList<Doelstellingscode>(),
+                                                        new Vak("wiskunde", "red"), 1),
+                                                new Oefening("oefening2", "opPath", "antwoord", "feedPath",
+                                                        new ArrayList<Groepsbewerking>(Arrays.asList(
+                                                                new Groepsbewerking("groepsbewerking1", "test", "2", Bewerking.AFTREKKING),
+                                                                new Groepsbewerking("groepsbewerking2", "test", "2", Bewerking.AFTREKKING))),
+                                                        new ArrayList<Doelstellingscode>(),
+                                                        new Vak("Getallenleer", "green"), 1)
+                                        )
+                                ),
+                                new ArrayList<Actie>(Arrays.asList(new Actie("zoek doos", "zoek groene doos"))),
+
+                        },
                 });
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void aanmakenBobWerktNietTest() {
+    @Test
+    public void aanmakenBobCorrectTest() {
         new Bob(naam, oefeningen, acties);
     }
 
