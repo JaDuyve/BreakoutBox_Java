@@ -47,7 +47,7 @@ public class DoelstellingscodeController
         this.doelstellingscodeBeheerder = doelstellingscodeBeheerder;
     }
 
-    public void addObservertje(Observer observer) {
+    public void addObserver(Observer observer) {
         doelstellingscodeBeheerder.addObserver(observer);
     }
 

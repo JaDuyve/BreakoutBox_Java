@@ -72,7 +72,7 @@ public class Bob {
         this.lijstActies = lijstActies;
     }
 
-    public void controleerGenoegActies() {
+    private void controleerGenoegActies() {
         if (lijstOefeningen.size() != lijstActies.size() + 1) {
             throw new IllegalArgumentException("Er moet 1 ACTIE minder zijn dan oefeningen!");
         }

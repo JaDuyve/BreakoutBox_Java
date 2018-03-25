@@ -17,9 +17,12 @@ public class DoelstellingscodeBeheerder extends Observable
 {
     private List<Doelstellingscode> doelstellingscodes;
     private FilteredList<Doelstellingscode> filtDoelstellingscodes;
+
     private GenericDao<Doelstellingscode> doelstellingscodeRepo;
     private GenericDao<Oefening> oefeningRepo;
+
     private Doelstellingscode doelstellingscode;
+
     private final Comparator<Doelstellingscode> byDoelstellingscode = (d1, d2) -> d1.getCode().compareToIgnoreCase(d2.getCode());
 
     public DoelstellingscodeBeheerder()

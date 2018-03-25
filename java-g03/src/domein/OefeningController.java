@@ -69,7 +69,7 @@ public class OefeningController {
         oefeningBeheerder.setOefening(oefening);
     }
 
-    public void addObservertje(Observer observer) {
+    public void addObserver(Observer observer) {
         oefeningBeheerder.addObserver(observer);
     }
 }

@@ -43,6 +43,7 @@ public class VakController {
     public void addObserver(Observer observer) {
         vakBeheerder.addObserver(observer);
     }
+
     public void wijzigVak(String naam){
         vakBeheerder.wijzigeVak(naam);
     }

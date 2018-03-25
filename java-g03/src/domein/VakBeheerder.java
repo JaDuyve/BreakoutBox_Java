@@ -67,24 +67,8 @@ public class VakBeheerder extends Observable {
         vak = null;
 
     }
-    /*private String getMatColor(String typeColor)
-    {
-        String returnColor = Color.BLACK.toString();
-        int arrayId = getResources().getIdentifier("mdcolor_" + typeColor, "array", getApplicationContext().getPackageName());
 
-        if (arrayId != 0)
-        {
-            TypedArray colors = getResources().obtainTypedArray(arrayId);
-            int index = (int) (Math.random() * colors.length());
-            returnColor = colors.getColor(index, Color.BLACK);
-            colors.recycle();
-        }
-        return returnColor;
-    }*/
     public void createVak(String naam) {
-
-        //txt.setTextColor(getMatColor("500"));
-
 
         float r = random.nextFloat() / 2f + 0.5f;
         float g = random.nextFloat() / 2f + 0.5f;

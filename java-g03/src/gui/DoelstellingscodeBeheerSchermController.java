@@ -66,7 +66,7 @@ public class DoelstellingscodeBeheerSchermController extends BorderPane implemen
     }
 
     private void build() {
-        doelstellingscodeController.addObservertje(this);
+        doelstellingscodeController.addObserver(this);
         btnVerwijder.setDisable(true);
         this.setTop(new TopBarController());
         lvDoelstellingscodes.setItems(doelstellingscodeController.geefDoelstellingscodes());
