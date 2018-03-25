@@ -84,7 +84,7 @@ public class BobEditPaneelController extends BorderPane {
             Scene s = this.getScene();
             s.setRoot(new BobSchermController());
         } catch (IllegalArgumentException e) {
-            AlertBox.showAlertError("Wijzigen breakout box", e.getMessage(), (Stage) this.getScene().getWindow());
+            AlertBox.showAlertError("Wijzigen breakout box", "Breakout box is nog gelinkte met een Sessie, hierdoor is het niet mogelijk om deze Bob te verwijderen.", (Stage) this.getScene().getWindow());
         }
 
 

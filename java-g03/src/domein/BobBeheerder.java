@@ -134,7 +134,7 @@ public class BobBeheerder extends Observable {
 
 
         if (result) {
-            throw new IllegalArgumentException("Oefening is nog gelinkte met een Sessie, hierdoor is het niet mogelijk om deze Bob te verwijderen.");
+            throw new IllegalArgumentException("Breakout box is nog gelinkte met een Sessie, hierdoor is het niet mogelijk om deze Bob te verwijderen.");
         }
     }
 
