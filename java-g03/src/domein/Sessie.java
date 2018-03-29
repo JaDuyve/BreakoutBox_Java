@@ -162,6 +162,7 @@ public class Sessie {
         SortedList<Groep> sortGroep = new SortedList<>(FXCollections.observableList(this.groepen), byGroepNaam);
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
+        int teller;
         try {
             document.addPage(page);
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
@@ -174,6 +175,8 @@ public class Sessie {
             contentStream.newLineAtOffset(65, 700);
             contentStream.showText("Sessie " + this.getNaam());
             contentStream.newLine();
+            contentStream.showText("Sessie code " + this.getCode());
+            contentStream.newLine();
             contentStream.newLine();
 
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
@@ -185,6 +188,7 @@ public class Sessie {
             String tab2 = "          ";
 
             for (Groep groep : sortGroep) {
+                teller = 0;
 
                 contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                 contentStream.showText("\u25CF"); // bullet
@@ -247,6 +251,24 @@ public class Sessie {
                     contentStream.newLine();
                     contentStream.showText("------------------------------------------------------------");
                     contentStream.newLine();
+                    teller++;
+                    if(teller%3 == 0 )
+                    {
+                        if(teller != groep.getPaden().size())
+                        {
+                            contentStream.endText();
+                            contentStream.close();
+                            page = new PDPage();
+                            document.addPage(page);
+                            contentStream = new PDPageContentStream(document, page);
+
+                            contentStream.beginText();
+                            contentStream.newLineAtOffset(65, 700);
+                            contentStream.setLeading(16);
+                        }
+
+                    }
+
                 }
                 contentStream.newLine();
 
