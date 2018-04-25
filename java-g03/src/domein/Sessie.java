@@ -26,6 +26,7 @@ public class Sessie {
     private String naam;
     @Temporal(TemporalType.DATE)
     private Date startDatum;
+
     private int code;
     private boolean contactLeer;
     @Transient

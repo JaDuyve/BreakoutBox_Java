@@ -11,11 +11,14 @@ public class Groep {
     private String naam;
     private String klas;
     private boolean contactLeer;
+    private int progress;
 
     @ElementCollection
     private List<String> leerlingen;
     @OneToMany(cascade = CascadeType.PERSIST)
     private Map<Integer, Pad> paden;
+    @OneToOne(cascade=CascadeType.PERSIST)
+    private GroepState currentState;
 
     public Groep(String naam, String klas, List<String> leerlingen, Bob bob, boolean contactLeer) {
         setNaam(naam);
@@ -24,6 +27,8 @@ public class Groep {
         setContactLeer(contactLeer);
 
         generatePaden(bob);
+
+        progress = 1;
     }
 
     protected Groep() {
@@ -102,6 +107,10 @@ public class Groep {
 
     public void setContactLeer(boolean contactLeer) {
         this.contactLeer = contactLeer;
+    }
+
+    public GroepState getCurrentState() {
+        return currentState;
     }
 
     @Override
