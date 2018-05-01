@@ -13,12 +13,13 @@
         <class>domein.Actie</class>
         <class>domein.Toegangscode</class>
         <class>domein.Pad</class>
-        <class>domein.GroepFinishedState</class>
-        <class>domein.GroepState</class>
-        <class>domein.GroepGeblokkeerdState</class>
-        <class>domein.GroepGekozenState</class>
-        <class>domein.GroepSpeelState</class>
-        <class>domein.GroepKanSpelenState</class>
+        <!--<class>domein.Leerling</class>-->
+        <!--<class>domein.GroepFinishedState</class>-->
+        <!--<class>domein.GroepState</class>-->
+        <!--<class>domein.GroepGeblokkeerdState</class>-->
+        <!--<class>domein.GroepGekozenState</class>-->
+        <!--<class>domein.GroepSpeelState</class>-->
+        <!--<class>domein.GroepKanSpelenState</class>-->
 
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://breakoutbox.database.windows.net:1433;database=BoB;encrypt=false;trustServerCertificate=false;hostNameInCertificate=breakoutbox.database.windows.net;loginTimeout=30;"/>

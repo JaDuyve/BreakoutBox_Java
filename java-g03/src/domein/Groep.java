@@ -13,17 +13,16 @@ public class Groep {
     private boolean contactLeer;
     private int progress;
 
-    @ElementCollection
-    private List<String> leerlingen;
+    private String leerlingen;
     @OneToMany(cascade = CascadeType.PERSIST)
     private Map<Integer, Pad> paden;
-    @OneToOne(cascade=CascadeType.PERSIST)
-    private GroepState currentState;
+//    @OneToOne(cascade=CascadeType.PERSIST)
+//    private GroepState currentState;
 
     public Groep(String naam, String klas, List<String> leerlingen, Bob bob, boolean contactLeer) {
         setNaam(naam);
         setKlas(klas);
-        setLeerlingen(leerlingen);
+        setLeerlingen(leerlingCollectieOpvullen(leerlingen));
         setContactLeer(contactLeer);
 
         generatePaden(bob);
@@ -32,6 +31,12 @@ public class Groep {
     }
 
     protected Groep() {
+    }
+
+    private String leerlingCollectieOpvullen(List<String> leerlingen){
+        StringBuilder namen = new StringBuilder();
+        leerlingen.stream().forEach(l -> namen.append(l).append(", "));
+        return namen.toString();
     }
 
     private void generatePaden(Bob bob) {
@@ -79,11 +84,11 @@ public class Groep {
         this.klas = klas;
     }
 
-    public List<String> getLeerlingen() {
+    public String getLeerlingen() {
         return leerlingen;
     }
 
-    public void setLeerlingen(List<String> leerlingen) {
+    public void setLeerlingen(String leerlingen) {
         if (leerlingen.isEmpty()) {
             throw new IllegalArgumentException("Leerlingen mag niet leeg zijn");
         }
@@ -109,9 +114,9 @@ public class Groep {
         this.contactLeer = contactLeer;
     }
 
-    public GroepState getCurrentState() {
-        return currentState;
-    }
+//    public GroepState getCurrentState() {
+//        return currentState;
+//    }
 
     @Override
     public String toString() {

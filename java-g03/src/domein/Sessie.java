@@ -15,10 +15,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Sessie {
@@ -207,8 +206,8 @@ public class Sessie {
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
                 contentStream.showText("Leerlingen");
                 contentStream.newLine();
-
-                for (String leerling : groep.getLeerlingen()) {
+                List<String> leerlingen = Arrays.stream(groep.getLeerlingen().split(", ")).collect(Collectors.toList());
+                for (String leerling : leerlingen) {
                     contentStream.setFont(PDType1Font.ZAPF_DINGBATS, 8);
                     contentStream.showText(tab2 + tab2 + "\u27A4"); // arrow
                     contentStream.setFont(PDType1Font.HELVETICA, 14);
