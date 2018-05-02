@@ -41,19 +41,24 @@ public class Pad {
 
         double oefAntwoord = Double.parseDouble(getOefening().getAntwoord());
         double groepWaarde = Double.parseDouble(getGroepsbewerking().getWaarde());
+        int antwoord;
 
         switch (getGroepsbewerking().getBewerking()){
             case VERMENIGVULDIGING:
-                setAntwoord(Double.toString(oefAntwoord * groepWaarde));
+                antwoord = (int) (oefAntwoord * groepWaarde);
+                setAntwoord(Integer.toString(antwoord));
                 break;
             case DELING:
-                setAntwoord(Double.toString(oefAntwoord / groepWaarde));
+                antwoord = (int) (oefAntwoord / groepWaarde);
+                setAntwoord(Integer.toString(antwoord));
                 break;
             case OPTELLING:
-                setAntwoord(Double.toString(oefAntwoord + groepWaarde));
+                antwoord = (int) (oefAntwoord + groepWaarde);
+                setAntwoord(Integer.toString(antwoord));
                 break;
             case AFTREKKING:
-                setAntwoord(Double.toString(oefAntwoord - groepWaarde));
+                antwoord = (int) (oefAntwoord - groepWaarde);
+                setAntwoord(Integer.toString(antwoord));
                 break;
         }
 
