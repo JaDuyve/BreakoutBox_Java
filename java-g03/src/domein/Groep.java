@@ -12,6 +12,7 @@ public class Groep {
     private String klas;
     private boolean contactLeer;
     private int progress;
+    private int Fout;
 
     private String leerlingen;
     @OneToMany(cascade = CascadeType.PERSIST)
@@ -28,6 +29,7 @@ public class Groep {
         generatePaden(bob);
 
         progress = 1;
+        Fout = 0;
     }
 
     protected Groep() {
