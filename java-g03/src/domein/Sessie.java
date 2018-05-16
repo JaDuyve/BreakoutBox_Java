@@ -28,6 +28,7 @@ public class Sessie {
 
     private int code;
     private boolean contactLeer;
+    private boolean HasEnded;
     @Transient
     private static SecureRandom random = new SecureRandom();
 
@@ -47,6 +48,8 @@ public class Sessie {
             throw new IllegalArgumentException("Excel met groepen moet worden toegevoegd.");
         }
         groepenToevoegen(groepen);
+
+        HasEnded = false;
     }
 
     protected Sessie() {
